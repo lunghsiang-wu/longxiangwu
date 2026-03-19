@@ -3,7 +3,7 @@ title: "Dimension Reduction of Handwritten Digit Images"
 description: "An dimension reduction project"
 author:
   - name: "Longxiang Wu"
-date: 2024-11-01
+date: 2024-12-20
 output:
   distill::distill_article:
     self_contained: false
