@@ -1,0 +1,314 @@
+---
+title: "Face Recognition Combined with Principal Component Analysis"
+description: "A feature selection project"
+author:
+  - name: "Longxiang Wu"
+date: 2025-3-2
+output:
+  distill::distill_article:
+    self_contained: false
+---
+---
+jupyter:
+  jupytext:
+    text_representation:
+      extension: .Rmd
+      format_name: rmarkdown
+      format_version: '1.2'
+      jupytext_version: 1.19.1
+  kernelspec:
+    display_name: Python 3 (ipykernel)
+    language: python
+    name: python3
+---
+
+```{r setup, include=FALSE}
+library(reticulate)
+use_python("/Users/Zhuanz/anaconda3/bin/python3.11", required = TRUE)
+# or use your conda environment
+use_condaenv("base", required = TRUE)
+```
+
+<!-- #region -->
+#### 0 Experiment environment
+
+```{python}
+# !pip freeze | grep pandas;
+# !pip freeze | grep numpy;
+# !pip freeze | grep matplotlib;
+# !pip freeze | grep seaborn;
+# !pip freeze | grep scikit-learn;
+# !pip freeze | grep minepy;
+```
+
+### 1 Data explore
+The data of this case comes from the course teaching questionnaire made by Gazi University among students in 2013. You can refer to its official website. In this survey, each student needs to answer 28 multiple-choice questions related to the course, and the 5 options {1,2,3,4,5} of each question represent the answer. The degree of approval of the questioner to the question. In addition, there are 5 characteristics of the course and the information of the teacher in charge of the course, including the teacher's work number, course ID, number of classes, attendance rate and course difficulty.
+
+The following is an introduction to the meaning of 33 characteristics:
+
+
+```{python}
+# %config InlineBackend.figure_format='retina'
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+with open("feature_introduction.txt", "r") as f:
+    lines = f.read().splitlines()
+
+df_intro = pd.DataFrame(lines, columns=["intro"])
+
+for i in range(len(df_intro)):
+    print(df_intro["intro"][i])
+```
+
+The purpose of this case is to find the key characteristics that affect the attendance rate and the popularity of the course, so we need to pay attention to attendance (attendance) and Q9 (course liking), and establish the characteristic selection of the target variables respectively.
+
+Read the data:
+
+```{python}
+# To display all columns, add the following command.
+pd.set_option('display.max_columns',None)
+data=pd.read_csv("turkiye-student-evaluation_generic.csv")
+data.head()
+```
+
+Observe the basic information of the data set:
+
+```{python}
+data.info()
+```
+
+Observation found:
+
+1) The dimension of the data set is (5820, 33);
+
+2) All the features are complete and do not need to process missing values;
+
+3) All data is int64 type, and there is no need for numerical conversion;
+
+4) All features are discrete variables and are not suitable for some feature selection methods for continuous data (such as Pearson correlation coefficient).
+
+```{python}
+data.describe()
+```
+
+Observing the common statistics of each feature, it is found that there is no quantitative difference between the data, and there is no need for standardised processing.
+
+Observe the correlation between characteristics:
+
+```{python}
+# For intuitive display, we name 5 characteristics representing course information as I1-I5.
+df_cor=data.copy()
+df_cor.columns=pd.Index(["I1","I2","I3","I4","I5"]+list(df_cor.columns[5:34]))
+df_cor.head()
+```
+
+```{python}
+corr = df_cor.corr()
+mask = np.zeros_like(corr, dtype=bool)
+mask[np.triu_indices_from(mask)] = True
+f, ax = plt.subplots(figsize=(10, 10))
+cmap = sns.diverging_palette(220, 10, as_cmap=True)
+sns.heatmap(corr, mask=mask, cmap=cmap, vmax=1.0,
+            square=True, xticklabels=2, yticklabels=2,
+            linewidths=.3, cbar_kws={"shrink": .5}, ax=ax)
+plt.show()
+```
+
+Feature I4, that is, `attendance`, and I5 (`difficulty`) are highly correlated, and there is a strong correlation between 28 questions. Characteristics I1-I3 about the basic information of the course have no obvious correlation with other characteristics.
+
+
+### 2 Characteristic selection based on attendance rate
+
+Feature selection generally has two purposes:
+
+1) Choose the best features to improve the performance of the model;
+
+2) Understand data, such as the relationship between characteristics, data structure characteristics, etc.;
+
+For the first case, it is suitable to adopt encapsulated and embedded methods, because the filter feature selection does not have the screening function for features with the same effect, such as multiple collinearity and other problems, which is easy to cause redundancy; for the second case, it is suitable for filtering methods or stable embedded methods, filtering methods The method is simple and effective, and can explain the relationship between features. General encapsulation and embedded methods are model-based, which are prone to low scores of important features (there are related features), so the stability is not strong. Embedded methods with strong stability are: random lasso, ridge regression, random logi Stic and so on.
+
+This case only requires finding the key characteristics that affect attendance rate and course popularity, without further building model prediction, so we can use simple filter feature selection: the feature selection based on attendance adopts the chi-square test method, and the feature selection based on the popularity of the course adopts mutual information MI C is the indicator.
+
+Preparations before selecting features:
+
+
+
+```{python}
+# Define the number of key features selected
+N=6
+
+# Prepare the original characteristics
+df_feature=data.copy()
+del df_feature["attendance"]
+
+# Prepare the labelling
+label=data["attendance"]
+
+"""
+The function find_name(new_feature, df_feature) is used to output the name of the key feature;
+Input: original features, selected key features;
+Output: the name of the key feature
+"""
+def find_name(new_feature, df_feature):
+    
+    # Define the list to store the key feature name
+    feature_name=[]
+    col=df_feature.columns
+    
+    # Find the name information of key features
+    for i in range(N):
+        for j in range(df_feature.shape[1]):
+            
+            # The discrimination standard is that the feature vector in new_feature is consistent with the feature vector in df_feature.
+            if np.mean(abs(new_feature[i]-df_feature[col[j]]))==0:
+                feature_name.append(col[j])
+                print (i+1,col[j]) 
+                break
+    return feature_name
+```
+
+The following uses the chi-square test method to select the top N key characteristics that affect attendance:
+
+```{python}
+# Use the chi-square test to select the first N key features
+from sklearn.feature_selection import SelectKBest,chi2 
+new_feature=SelectKBest(chi2,k=N).fit_transform(df_feature,label).T
+FS_list=find_name(new_feature, df_feature)
+```
+
+Through the chi-square test method, we selected the first six key characteristics that affect attendance, namely difficulty, Q17, Q21, Q22, Q25 and Q28. Next, we will further observe the impact of these key characteristics on the distribution of attendance in order to find the relationship between them.
+
+```{python}
+# Draw a box diagram of the distribution of attendance rates under different characteristic values
+f, axes = plt.subplots(2, 3, figsize=(20,10))
+for i,item in enumerate(FS_list):
+    sns.boxplot(x=item, y='attendance', data=data, ax=axes[i//3, i%3])
+plt.show()
+```
+
+Observing the above box diagram can be found that:
+
+1) When the difficulty of the course is 3-5, there is no obvious difference in the distribution of attendance rate; when the difficulty of the course is 2, the median attendance rate is reduced to 1; when the difficulty of the course is 1, the vast majority of the attendance rate is 0, which means that when the difficulty of the course is very small, students hardly attend; at the same time, the difficulty of the course and the attendance rate are one There is a positive correlation in the fixed interval.
+
+2) We can easily notice that the five characteristics of Q17, Q21, Q22, Q25 and Q28 have a similar impact on attendance, because their box diagram distribution is almost exactly the same. Observe the meaning of characteristics:
+
+Q17: Teacher's class on time
+
+Q21: The teacher teaches with a positive attitude
+
+Q22: Teachers have an open mind and respect students' views.
+
+Q25: The teacher will answer questions about the course after class.
+
+Q28: Teachers will treat all students objectively and politely.
+
+These characteristics describe the teacher's teaching style and etiquette attitude, which shows that students are more concerned about these factors. Further observe the single box diagram. When the characteristic degree is 1, the median attendance rate is 0; when the characteristic degree is 2-3, the median attendance rate is 1; when the characteristic degree is 4-5, the median attendance rate is 2; the above analysis shows that there is also a certain positive correlation between these characteristics and attendance rate. Department.
+
+In general, there is a certain positive correlation between the six selected characteristics and the attendance rate. Take the difficulty of the course as an example, and further observe the intensity of this relationship. It should be noted that the characteristics are all discrete variables. The following simple regression is to replace x_estimator with the mean.
+
+```{python}
+# Further observe how the positive correlation strength is
+sns.jointplot(x='difficulty',y='attendance',data=data,kind='reg',x_estimator= np.mean,order=2)
+plt.show()
+```
+
+There is indeed a positive correlation between the difficulty of the course and the attendance rate, but this relationship is more obvious when the difficulty of the course is low, so from the overall perspective, the parabola is more in line with this relationship.
+
+If you also want to observe the specific distribution, you can use the following procedures to realise it:
+
+```{python}
+# Output the attendance rate statistics when the difficulty of the course is 1
+diff_1=data["attendance"][data["difficulty"]==1]
+index=diff_1.index
+count=np.zeros(5)
+for i in range(len(diff_1)):
+    for j in range(5):
+        if diff_1[index[i]]==j:
+            count[j] += 1
+print(count) 
+```
+
+### 3 Selection of characteristics based on the popularity of the course
+Use mutual information MIC as an indicator to select the key features that affect Q9 (course likeability). First, do some preparation:
+
+```{python}
+# Define the number of key features selected
+N=6
+
+# Prepare the original characteristics
+df_feature=data.copy()
+del df_feature["Q9"]
+
+# Prepare the labelling
+label=data["Q9"]
+```
+
+Next, use the mutual information MIC to select the top N key characteristics that affect Q9 (course likeability):
+
+```{python}
+from sklearn.feature_selection import mutual_info_regression
+
+def FS_MIC(target, feature, N):
+    
+    col = feature.columns
+    mic_scores = mutual_info_regression(feature, target)
+    
+    dict_order = dict(zip(col, mic_scores))
+    
+    new_feature = sorted(dict_order.items(), key=lambda item: item[1], reverse=True)
+    
+    for i in range(N):
+        print(new_feature[i])
+    
+    feature_top, score = zip(*new_feature)
+    df = pd.DataFrame(np.array(score[:N]), columns=["MIC"], index=feature_top[:N])
+    fig = plt.figure(figsize=(6, 4))
+    ax1 = fig.add_subplot(1, 1, 1)
+    df.plot(kind="bar", ax=ax1)
+    plt.ylim([min(score[:N])*0.75, max(score[:N])*1.25])
+    plt.show()
+    
+    return list(feature_top[:N])
+```
+
+```{python}
+FS_list=FS_MIC(label, df_feature, N)
+```
+
+Through the mutual information MIC method, we have selected six key characteristics that affect Q9, namely Q10, Q7, Q11, Q8, Q5 and Q6. Next, we will further observe the impact of these key characteristics on the popularity distribution of the course in order to find out the relationship between them.
+
+```{python}
+# Draw a box diagram of the distribution of course popularity under different characteristic values
+f, axes = plt.subplots(2, 3, figsize=(20,10))
+for i,item in enumerate(FS_list):
+    sns.boxplot(x=item, y='Q9', data=data, ax=axes[i//3, i%3])
+plt.show()
+```
+
+First, observe the meaning of the characteristics:
+
+Q10: The course met my initial expectations.
+
+Q8: Tests, homework and exams play an effect on learning
+
+Q11: The course is beneficial to my career development
+
+Q7: Rich course organisation
+
+Q5: I am very satisfied with the classroom discussion and homework assignment.
+
+Q12: The course taught me to look at the world from a new perspective.
+
+These characteristics describe the gains and feelings of the course, which shows that students are more concerned about these factors. Further observe the single box diagram, and find that there is a certain positive correlation between these characteristics and the popularity of the course. Take Q10 as an example, further observe the strength of this relationship. It should be noted that the characteristics are all discrete variables. The following simple regression is to replace x_estimator with the mean.
+
+```{python}
+# Further observe how the positive correlation strength is
+sns.jointplot(x='Q10',y='Q9',data=data,kind='reg',x_estimator= np.mean)
+plt.show()
+```
+
+There is an obvious linear positive correlation between the characteristic Q10 and Q9, which shows that in general, when the course content meets students' expectations, students will like the course.
+
