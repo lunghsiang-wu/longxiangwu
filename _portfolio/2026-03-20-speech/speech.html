@@ -1,0 +1,2155 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1"/>
+  <meta name="generator" content="distill" />
+
+  <style type="text/css">
+  /* Hide doc at startup (prevent jankiness while JS renders/transforms) */
+  body {
+    visibility: hidden;
+  }
+  </style>
+
+ <!--radix_placeholder_import_source-->
+ <!--/radix_placeholder_import_source-->
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css" data-origin="pandoc">
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  { color: #00769e; background-color: #f1f3f5; }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span { color: #00769e; } /* Normal */
+code span.al { color: #ad0000; } /* Alert */
+code span.an { color: #5e5e5e; } /* Annotation */
+code span.at { color: #657422; } /* Attribute */
+code span.bn { color: #ad0000; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #00769e; } /* ControlFlow */
+code span.ch { color: #20794d; } /* Char */
+code span.cn { color: #8f5902; } /* Constant */
+code span.co { color: #5e5e5e; } /* Comment */
+code span.cv { color: #5e5e5e; font-style: italic; } /* CommentVar */
+code span.do { color: #5e5e5e; font-style: italic; } /* Documentation */
+code span.dt { color: #ad0000; } /* DataType */
+code span.dv { color: #ad0000; } /* DecVal */
+code span.er { color: #ad0000; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #ad0000; } /* Float */
+code span.fu { color: #4758ab; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #5e5e5e; } /* Information */
+code span.kw { color: #00769e; } /* Keyword */
+code span.op { color: #5e5e5e; } /* Operator */
+code span.ot { color: #00769e; } /* Other */
+code span.pp { color: #ad0000; } /* Preprocessor */
+code span.sc { color: #5e5e5e; } /* SpecialChar */
+code span.ss { color: #20794d; } /* SpecialString */
+code span.st { color: #20794d; } /* String */
+code span.va { color: #111111; } /* Variable */
+code span.vs { color: #20794d; } /* VerbatimString */
+code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
+</style>
+
+
+  <!--radix_placeholder_meta_tags-->
+  <title>Speech Recognition</title>
+
+  <meta property="description" itemprop="description" content="A probabilistic graphical models project"/>
+
+
+  <!--  https://schema.org/Article -->
+  <meta property="article:published" itemprop="datePublished" content="2025-07-08"/>
+  <meta property="article:created" itemprop="dateCreated" content="2025-07-08"/>
+  <meta name="article:author" content="Longxiang Wu"/>
+
+  <!--  https://developers.facebook.com/docs/sharing/webmasters#markup -->
+  <meta property="og:title" content="Speech Recognition"/>
+  <meta property="og:type" content="article"/>
+  <meta property="og:description" content="A probabilistic graphical models project"/>
+  <meta property="og:locale" content="en_US"/>
+
+  <!--  https://dev.twitter.com/cards/types/summary -->
+  <meta property="twitter:card" content="summary"/>
+  <meta property="twitter:title" content="Speech Recognition"/>
+  <meta property="twitter:description" content="A probabilistic graphical models project"/>
+
+  <!--/radix_placeholder_meta_tags-->
+  <!--radix_placeholder_rmarkdown_metadata-->
+
+  <script type="text/json" id="radix-rmarkdown-metadata">
+  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","author","date","output","preview"]}},"value":[{"type":"character","attributes":{},"value":["Speech Recognition"]},{"type":"character","attributes":{},"value":["A probabilistic graphical models project"]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name"]}},"value":[{"type":"character","attributes":{},"value":["Longxiang Wu"]}]}]},{"type":"character","attributes":{},"value":["2025-7-8"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained"]}},"value":[{"type":"logical","attributes":{},"value":[false]}]}]},{"type":"character","attributes":{},"value":["chinese.png"]}]}
+  </script>
+  <!--/radix_placeholder_rmarkdown_metadata-->
+  
+  <script type="text/json" id="radix-resource-manifest">
+  {"type":"character","attributes":{},"value":["architecture.png","dataset/audio/apple/apple01.wav","dataset/audio/apple/apple02.wav","dataset/audio/apple/apple03.wav","dataset/audio/apple/apple04.wav","dataset/audio/apple/apple05.wav","dataset/audio/apple/apple06.wav","dataset/audio/apple/apple07.wav","dataset/audio/apple/apple08.wav","dataset/audio/apple/apple09.wav","dataset/audio/apple/apple10.wav","dataset/audio/apple/apple11.wav","dataset/audio/apple/apple12.wav","dataset/audio/apple/apple13.wav","dataset/audio/apple/apple14.wav","dataset/audio/apple/apple15.wav","dataset/audio/banana/banana01.wav","dataset/audio/banana/banana02.wav","dataset/audio/banana/banana03.wav","dataset/audio/banana/banana04.wav","dataset/audio/banana/banana05.wav","dataset/audio/banana/banana06.wav","dataset/audio/banana/banana07.wav","dataset/audio/banana/banana08.wav","dataset/audio/banana/banana09.wav","dataset/audio/banana/banana10.wav","dataset/audio/banana/banana11.wav","dataset/audio/banana/banana12.wav","dataset/audio/banana/banana13.wav","dataset/audio/banana/banana14.wav","dataset/audio/banana/banana15.wav","dataset/audio/kiwi/kiwi01.wav","dataset/audio/kiwi/kiwi02.wav","dataset/audio/kiwi/kiwi03.wav","dataset/audio/kiwi/kiwi04.wav","dataset/audio/kiwi/kiwi05.wav","dataset/audio/kiwi/kiwi06.wav","dataset/audio/kiwi/kiwi07.wav","dataset/audio/kiwi/kiwi08.wav","dataset/audio/kiwi/kiwi09.wav","dataset/audio/kiwi/kiwi10.wav","dataset/audio/kiwi/kiwi11.wav","dataset/audio/kiwi/kiwi12.wav","dataset/audio/kiwi/kiwi13.wav","dataset/audio/kiwi/kiwi14.wav","dataset/audio/kiwi/kiwi15.wav","dataset/audio/lime/lime01.wav","dataset/audio/lime/lime02.wav","dataset/audio/lime/lime03.wav","dataset/audio/lime/lime04.wav","dataset/audio/lime/lime05.wav","dataset/audio/lime/lime06.wav","dataset/audio/lime/lime07.wav","dataset/audio/lime/lime08.wav","dataset/audio/lime/lime09.wav","dataset/audio/lime/lime10.wav","dataset/audio/lime/lime11.wav","dataset/audio/lime/lime12.wav","dataset/audio/lime/lime13.wav","dataset/audio/lime/lime14.wav","dataset/audio/lime/lime15.wav","dataset/audio/orange/orange01.wav","dataset/audio/orange/orange02.wav","dataset/audio/orange/orange03.wav","dataset/audio/orange/orange04.wav","dataset/audio/orange/orange05.wav","dataset/audio/orange/orange06.wav","dataset/audio/orange/orange07.wav","dataset/audio/orange/orange08.wav","dataset/audio/orange/orange09.wav","dataset/audio/orange/orange10.wav","dataset/audio/orange/orange11.wav","dataset/audio/orange/orange12.wav","dataset/audio/orange/orange13.wav","dataset/audio/orange/orange14.wav","dataset/audio/orange/orange15.wav","dataset/audio/peach/peach01.wav","dataset/audio/peach/peach02.wav","dataset/audio/peach/peach03.wav","dataset/audio/peach/peach04.wav","dataset/audio/peach/peach05.wav","dataset/audio/peach/peach06.wav","dataset/audio/peach/peach07.wav","dataset/audio/peach/peach08.wav","dataset/audio/peach/peach09.wav","dataset/audio/peach/peach10.wav","dataset/audio/peach/peach11.wav","dataset/audio/peach/peach12.wav","dataset/audio/peach/peach13.wav","dataset/audio/peach/peach14.wav","dataset/audio/peach/peach15.wav","dataset/audio/pineapple/pineapple01.wav","dataset/audio/pineapple/pineapple02.wav","dataset/audio/pineapple/pineapple03.wav","dataset/audio/pineapple/pineapple04.wav","dataset/audio/pineapple/pineapple05.wav","dataset/audio/pineapple/pineapple06.wav","dataset/audio/pineapple/pineapple07.wav","dataset/audio/pineapple/pineapple08.wav","dataset/audio/pineapple/pineapple09.wav","dataset/audio/pineapple/pineapple10.wav","dataset/audio/pineapple/pineapple11.wav","dataset/audio/pineapple/pineapple12.wav","dataset/audio/pineapple/pineapple13.wav","dataset/audio/pineapple/pineapple14.wav","dataset/audio/pineapple/pineapple15.wav","JdlHe.png","speech_files/figure-html5/unnamed-chunk-10-7.png","speech_files/figure-html5/unnamed-chunk-16-9.png","speech_files/figure-html5/unnamed-chunk-6-1.png","speech_files/figure-html5/unnamed-chunk-8-3.png","speech_files/figure-html5/unnamed-chunk-9-5.png"]}
+  </script>
+  <!--radix_placeholder_navigation_in_header-->
+  <!--/radix_placeholder_navigation_in_header-->
+  <!--radix_placeholder_distill-->
+
+  <style type="text/css">
+
+  body {
+    background-color: white;
+  }
+
+  .pandoc-table {
+    width: 100%;
+  }
+
+  .pandoc-table>caption {
+    margin-bottom: 10px;
+  }
+
+  .pandoc-table th:not([align]) {
+    text-align: left;
+  }
+
+  .pagedtable-footer {
+    font-size: 15px;
+  }
+
+  d-byline .byline {
+    grid-template-columns: 2fr 2fr;
+  }
+
+  d-byline .byline h3 {
+    margin-block-start: 1.5em;
+  }
+
+  d-byline .byline .authors-affiliations h3 {
+    margin-block-start: 0.5em;
+  }
+
+  .authors-affiliations .orcid-id {
+    width: 16px;
+    height:16px;
+    margin-left: 4px;
+    margin-right: 4px;
+    vertical-align: middle;
+    padding-bottom: 2px;
+  }
+
+  d-title .dt-tags {
+    margin-top: 1em;
+    grid-column: text;
+  }
+
+  .dt-tags .dt-tag {
+    text-decoration: none;
+    display: inline-block;
+    color: rgba(0,0,0,0.6);
+    padding: 0em 0.4em;
+    margin-right: 0.5em;
+    margin-bottom: 0.4em;
+    font-size: 70%;
+    border: 1px solid rgba(0,0,0,0.2);
+    border-radius: 3px;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+
+  d-article table.gt_table td,
+  d-article table.gt_table th {
+    border-bottom: none;
+    font-size: 100%;
+  }
+
+  .html-widget {
+    margin-bottom: 2.0em;
+  }
+
+  .l-screen-inset {
+    padding-right: 16px;
+  }
+
+  .l-screen .caption {
+    margin-left: 10px;
+  }
+
+  .shaded {
+    background: rgb(247, 247, 247);
+    padding-top: 20px;
+    padding-bottom: 20px;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  }
+
+  .shaded .html-widget {
+    margin-bottom: 0;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+  }
+
+  .shaded .shaded-content {
+    background: white;
+  }
+
+  .text-output {
+    margin-top: 0;
+    line-height: 1.5em;
+  }
+
+  .hidden {
+    display: none !important;
+  }
+
+  hr.section-separator {
+    border: none;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    margin: 0px;
+  }
+
+
+  d-byline {
+    border-top: none;
+  }
+
+  d-article {
+    padding-top: 2.5rem;
+    padding-bottom: 30px;
+    border-top: none;
+  }
+
+  d-appendix {
+    padding-top: 30px;
+  }
+
+  d-article>p>img {
+    width: 100%;
+  }
+
+  d-article h2 {
+    margin: 1rem 0 1.5rem 0;
+  }
+
+  d-article h3 {
+    margin-top: 1.5rem;
+  }
+
+  d-article iframe {
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    margin-bottom: 2.0em;
+    width: 100%;
+  }
+
+  /* Tweak code blocks */
+
+  d-article div.sourceCode code,
+  d-article pre code {
+    font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+  }
+
+  d-article pre,
+  d-article div.sourceCode,
+  d-article div.sourceCode pre {
+    overflow: auto;
+  }
+
+  d-article div.sourceCode {
+    background-color: white;
+  }
+
+  d-article div.sourceCode pre {
+    padding-left: 10px;
+    font-size: 12px;
+    border-left: 2px solid rgba(0,0,0,0.1);
+  }
+
+  d-article pre {
+    font-size: 12px;
+    color: black;
+    background: none;
+    margin-top: 0;
+    text-align: left;
+    white-space: pre;
+    word-spacing: normal;
+    word-break: normal;
+    word-wrap: normal;
+    line-height: 1.5;
+
+    -moz-tab-size: 4;
+    -o-tab-size: 4;
+    tab-size: 4;
+
+    -webkit-hyphens: none;
+    -moz-hyphens: none;
+    -ms-hyphens: none;
+    hyphens: none;
+  }
+
+  d-article pre a {
+    border-bottom: none;
+  }
+
+  d-article pre a:hover {
+    border-bottom: none;
+    text-decoration: underline;
+  }
+
+  d-article details {
+    grid-column: text;
+    margin-bottom: 0.8em;
+  }
+
+  @media(min-width: 768px) {
+
+  d-article pre,
+  d-article div.sourceCode,
+  d-article div.sourceCode pre {
+    overflow: visible !important;
+  }
+
+  d-article div.sourceCode pre {
+    padding-left: 18px;
+    font-size: 14px;
+  }
+
+  /* tweak for Pandoc numbered line within distill */
+  d-article pre.numberSource code > span {
+      left: -2em;
+  }
+
+  d-article pre {
+    font-size: 14px;
+  }
+
+  }
+
+  figure img.external {
+    background: white;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    box-shadow: 0 1px 8px rgba(0, 0, 0, 0.1);
+    padding: 18px;
+    box-sizing: border-box;
+  }
+
+  /* CSS for d-contents */
+
+  .d-contents {
+    grid-column: text;
+    color: rgba(0,0,0,0.8);
+    font-size: 0.9em;
+    padding-bottom: 1em;
+    margin-bottom: 1em;
+    padding-bottom: 0.5em;
+    margin-bottom: 1em;
+    padding-left: 0.25em;
+    justify-self: start;
+  }
+
+  @media(min-width: 1000px) {
+    .d-contents.d-contents-float {
+      height: 0;
+      grid-column-start: 1;
+      grid-column-end: 4;
+      justify-self: center;
+      padding-right: 3em;
+      padding-left: 2em;
+    }
+  }
+
+  .d-contents nav h3 {
+    font-size: 18px;
+    margin-top: 0;
+    margin-bottom: 1em;
+  }
+
+  .d-contents li {
+    list-style-type: none
+  }
+
+  .d-contents nav > ul {
+    padding-left: 0;
+  }
+
+  .d-contents ul {
+    padding-left: 1em
+  }
+
+  .d-contents nav ul li {
+    margin-top: 0.6em;
+    margin-bottom: 0.2em;
+  }
+
+  .d-contents nav a {
+    font-size: 13px;
+    border-bottom: none;
+    text-decoration: none
+    color: rgba(0, 0, 0, 0.8);
+  }
+
+  .d-contents nav a:hover {
+    text-decoration: underline solid rgba(0, 0, 0, 0.6)
+  }
+
+  .d-contents nav > ul > li > a {
+    font-weight: 600;
+  }
+
+  .d-contents nav > ul > li > ul {
+    font-weight: inherit;
+  }
+
+  .d-contents nav > ul > li > ul > li {
+    margin-top: 0.2em;
+  }
+
+
+  .d-contents nav ul {
+    margin-top: 0;
+    margin-bottom: 0.25em;
+  }
+
+  .d-article-with-toc h2:nth-child(2) {
+    margin-top: 0;
+  }
+
+
+  /* Figure */
+
+  .figure {
+    position: relative;
+    margin-bottom: 2.5em;
+    margin-top: 1.5em;
+  }
+
+  .figure .caption {
+    color: rgba(0, 0, 0, 0.6);
+    font-size: 12px;
+    line-height: 1.5em;
+  }
+
+  .figure img.external {
+    background: white;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    box-shadow: 0 1px 8px rgba(0, 0, 0, 0.1);
+    padding: 18px;
+    box-sizing: border-box;
+  }
+
+  .figure .caption a {
+    color: rgba(0, 0, 0, 0.6);
+  }
+
+  .figure .caption b,
+  .figure .caption strong, {
+    font-weight: 600;
+    color: rgba(0, 0, 0, 1.0);
+  }
+
+  /* Citations */
+
+  d-article .citation {
+    color: inherit;
+    cursor: inherit;
+  }
+
+  div.hanging-indent{
+    margin-left: 1em; text-indent: -1em;
+  }
+
+  /* Citation hover box */
+
+  .tippy-box[data-theme~=light-border] {
+    background-color: rgba(250, 250, 250, 0.95);
+  }
+
+  .tippy-content > p {
+    margin-bottom: 0;
+    padding: 2px;
+  }
+
+
+  /* Tweak 1000px media break to show more text */
+
+  @media(min-width: 1000px) {
+    .base-grid,
+    distill-header,
+    d-title,
+    d-abstract,
+    d-article,
+    d-appendix,
+    distill-appendix,
+    d-byline,
+    d-footnote-list,
+    d-citation-list,
+    distill-footer {
+      grid-template-columns: [screen-start] 1fr [page-start kicker-start] 80px [middle-start] 50px [text-start kicker-end] 65px 65px 65px 65px 65px 65px 65px 65px [text-end gutter-start] 65px [middle-end] 65px [page-end gutter-end] 1fr [screen-end];
+      grid-column-gap: 16px;
+    }
+
+    .grid {
+      grid-column-gap: 16px;
+    }
+
+    d-article {
+      font-size: 1.06rem;
+      line-height: 1.7em;
+    }
+    figure .caption, .figure .caption, figure figcaption {
+      font-size: 13px;
+    }
+  }
+
+  @media(min-width: 1180px) {
+    .base-grid,
+    distill-header,
+    d-title,
+    d-abstract,
+    d-article,
+    d-appendix,
+    distill-appendix,
+    d-byline,
+    d-footnote-list,
+    d-citation-list,
+    distill-footer {
+      grid-template-columns: [screen-start] 1fr [page-start kicker-start] 60px [middle-start] 60px [text-start kicker-end] 60px 60px 60px 60px 60px 60px 60px 60px [text-end gutter-start] 60px [middle-end] 60px [page-end gutter-end] 1fr [screen-end];
+      grid-column-gap: 32px;
+    }
+
+    .grid {
+      grid-column-gap: 32px;
+    }
+  }
+
+
+  /* Get the citation styles for the appendix (not auto-injected on render since
+     we do our own rendering of the citation appendix) */
+
+  d-appendix .citation-appendix,
+  .d-appendix .citation-appendix {
+    font-size: 11px;
+    line-height: 15px;
+    border-left: 1px solid rgba(0, 0, 0, 0.1);
+    padding-left: 18px;
+    border: 1px solid rgba(0,0,0,0.1);
+    background: rgba(0, 0, 0, 0.02);
+    padding: 10px 18px;
+    border-radius: 3px;
+    color: rgba(150, 150, 150, 1);
+    overflow: hidden;
+    margin-top: -12px;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+  }
+
+  /* Include appendix styles here so they can be overridden */
+
+  d-appendix {
+    contain: layout style;
+    font-size: 0.8em;
+    line-height: 1.7em;
+    margin-top: 60px;
+    margin-bottom: 0;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    color: rgba(0,0,0,0.5);
+    padding-top: 60px;
+    padding-bottom: 48px;
+  }
+
+  d-appendix h3 {
+    grid-column: page-start / text-start;
+    font-size: 15px;
+    font-weight: 500;
+    margin-top: 1em;
+    margin-bottom: 0;
+    color: rgba(0,0,0,0.65);
+  }
+
+  d-appendix h3 + * {
+    margin-top: 1em;
+  }
+
+  d-appendix ol {
+    padding: 0 0 0 15px;
+  }
+
+  @media (min-width: 768px) {
+    d-appendix ol {
+      padding: 0 0 0 30px;
+      margin-left: -30px;
+    }
+  }
+
+  d-appendix li {
+    margin-bottom: 1em;
+  }
+
+  d-appendix a {
+    color: rgba(0, 0, 0, 0.6);
+  }
+
+  d-appendix > * {
+    grid-column: text;
+  }
+
+  d-appendix > d-footnote-list,
+  d-appendix > d-citation-list,
+  d-appendix > distill-appendix {
+    grid-column: screen;
+  }
+
+  /* Include footnote styles here so they can be overridden */
+
+  d-footnote-list {
+    contain: layout style;
+  }
+
+  d-footnote-list > * {
+    grid-column: text;
+  }
+
+  d-footnote-list a.footnote-backlink {
+    color: rgba(0,0,0,0.3);
+    padding-left: 0.5em;
+  }
+
+
+
+  /* Anchor.js */
+
+  .anchorjs-link {
+    /*transition: all .25s linear; */
+    text-decoration: none;
+    border-bottom: none;
+  }
+  *:hover > .anchorjs-link {
+    margin-left: -1.125em !important;
+    text-decoration: none;
+    border-bottom: none;
+  }
+
+  /* Social footer */
+
+  .social_footer {
+    margin-top: 30px;
+    margin-bottom: 0;
+    color: rgba(0,0,0,0.67);
+  }
+
+  .disqus-comments {
+    margin-right: 30px;
+  }
+
+  .disqus-comment-count {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.4);
+    cursor: pointer;
+  }
+
+  #disqus_thread {
+    margin-top: 30px;
+  }
+
+  .article-sharing a {
+    border-bottom: none;
+    margin-right: 8px;
+  }
+
+  .article-sharing a:hover {
+    border-bottom: none;
+  }
+
+  .sidebar-section.subscribe {
+    font-size: 12px;
+    line-height: 1.6em;
+  }
+
+  .subscribe p {
+    margin-bottom: 0.5em;
+  }
+
+
+  .article-footer .subscribe {
+    font-size: 15px;
+    margin-top: 45px;
+  }
+
+
+  .sidebar-section.custom {
+    font-size: 12px;
+    line-height: 1.6em;
+  }
+
+  .custom p {
+    margin-bottom: 0.5em;
+  }
+
+  /* Styles for listing layout (hide title) */
+  .layout-listing d-title, .layout-listing .d-title {
+    display: none;
+  }
+
+  /* Styles for posts lists (not auto-injected) */
+
+
+  .posts-with-sidebar {
+    padding-left: 45px;
+    padding-right: 45px;
+  }
+
+  .posts-list .description h2,
+  .posts-list .description p {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", Arial, sans-serif;
+  }
+
+  .posts-list .description h2 {
+    font-weight: 700;
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+
+  .posts-list h2.post-tag {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+    padding-bottom: 12px;
+  }
+  .posts-list {
+    margin-top: 60px;
+    margin-bottom: 24px;
+  }
+
+  .posts-list .post-preview {
+    text-decoration: none;
+    overflow: hidden;
+    display: block;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    padding: 24px 0;
+  }
+
+  .post-preview-last {
+    border-bottom: none !important;
+  }
+
+  .posts-list .posts-list-caption {
+    grid-column: screen;
+    font-weight: 400;
+  }
+
+  .posts-list .post-preview h2 {
+    margin: 0 0 6px 0;
+    line-height: 1.2em;
+    font-style: normal;
+    font-size: 24px;
+  }
+
+  .posts-list .post-preview p {
+    margin: 0 0 12px 0;
+    line-height: 1.4em;
+    font-size: 16px;
+  }
+
+  .posts-list .post-preview .thumbnail {
+    box-sizing: border-box;
+    margin-bottom: 24px;
+    position: relative;
+    max-width: 500px;
+  }
+  .posts-list .post-preview img {
+    width: 100%;
+    display: block;
+  }
+
+  .posts-list .metadata {
+    font-size: 12px;
+    line-height: 1.4em;
+    margin-bottom: 18px;
+  }
+
+  .posts-list .metadata > * {
+    display: inline-block;
+  }
+
+  .posts-list .metadata .publishedDate {
+    margin-right: 2em;
+  }
+
+  .posts-list .metadata .dt-authors {
+    display: block;
+    margin-top: 0.3em;
+    margin-right: 2em;
+  }
+
+  .posts-list .dt-tags {
+    display: block;
+    line-height: 1em;
+  }
+
+  .posts-list .dt-tags .dt-tag {
+    display: inline-block;
+    color: rgba(0,0,0,0.6);
+    padding: 0.3em 0.4em;
+    margin-right: 0.2em;
+    margin-bottom: 0.4em;
+    font-size: 60%;
+    border: 1px solid rgba(0,0,0,0.2);
+    border-radius: 3px;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+
+  .posts-list img {
+    opacity: 1;
+  }
+
+  .posts-list img[data-src] {
+    opacity: 0;
+  }
+
+  .posts-more {
+    clear: both;
+  }
+
+
+  .posts-sidebar {
+    font-size: 16px;
+  }
+
+  .posts-sidebar h3 {
+    font-size: 16px;
+    margin-top: 0;
+    margin-bottom: 0.5em;
+    font-weight: 400;
+    text-transform: uppercase;
+  }
+
+  .sidebar-section {
+    margin-bottom: 30px;
+  }
+
+  .categories ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .categories li {
+    color: rgba(0, 0, 0, 0.8);
+    margin-bottom: 0;
+  }
+
+  .categories li>a {
+    border-bottom: none;
+  }
+
+  .categories li>a:hover {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.4);
+  }
+
+  .categories .active {
+    font-weight: 600;
+  }
+
+  .categories .category-count {
+    color: rgba(0, 0, 0, 0.4);
+  }
+
+
+  @media(min-width: 768px) {
+    .posts-list .post-preview h2 {
+      font-size: 26px;
+    }
+    .posts-list .post-preview .thumbnail {
+      float: right;
+      width: 30%;
+      margin-bottom: 0;
+    }
+    .posts-list .post-preview .description {
+      float: left;
+      width: 45%;
+    }
+    .posts-list .post-preview .metadata {
+      float: left;
+      width: 20%;
+      margin-top: 8px;
+    }
+    .posts-list .post-preview p {
+      margin: 0 0 12px 0;
+      line-height: 1.5em;
+      font-size: 16px;
+    }
+    .posts-with-sidebar .posts-list {
+      float: left;
+      width: 75%;
+    }
+    .posts-with-sidebar .posts-sidebar {
+      float: right;
+      width: 20%;
+      margin-top: 60px;
+      padding-top: 24px;
+      padding-bottom: 24px;
+    }
+  }
+
+
+  /* Improve display for browsers without grid (IE/Edge <= 15) */
+
+  .downlevel {
+    line-height: 1.6em;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", Arial, sans-serif;
+    margin: 0;
+  }
+
+  .downlevel .d-title {
+    padding-top: 6rem;
+    padding-bottom: 1.5rem;
+  }
+
+  .downlevel .d-title h1 {
+    font-size: 50px;
+    font-weight: 700;
+    line-height: 1.1em;
+    margin: 0 0 0.5rem;
+  }
+
+  .downlevel .d-title p {
+    font-weight: 300;
+    font-size: 1.2rem;
+    line-height: 1.55em;
+    margin-top: 0;
+  }
+
+  .downlevel .d-byline {
+    padding-top: 0.8em;
+    padding-bottom: 0.8em;
+    font-size: 0.8rem;
+    line-height: 1.8em;
+  }
+
+  .downlevel .section-separator {
+    border: none;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+  }
+
+  .downlevel .d-article {
+    font-size: 1.06rem;
+    line-height: 1.7em;
+    padding-top: 1rem;
+    padding-bottom: 2rem;
+  }
+
+
+  .downlevel .d-appendix {
+    padding-left: 0;
+    padding-right: 0;
+    max-width: none;
+    font-size: 0.8em;
+    line-height: 1.7em;
+    margin-bottom: 0;
+    color: rgba(0,0,0,0.5);
+    padding-top: 40px;
+    padding-bottom: 48px;
+  }
+
+  .downlevel .footnotes ol {
+    padding-left: 13px;
+  }
+
+  .downlevel .base-grid,
+  .downlevel .distill-header,
+  .downlevel .d-title,
+  .downlevel .d-abstract,
+  .downlevel .d-article,
+  .downlevel .d-appendix,
+  .downlevel .distill-appendix,
+  .downlevel .d-byline,
+  .downlevel .d-footnote-list,
+  .downlevel .d-citation-list,
+  .downlevel .distill-footer,
+  .downlevel .appendix-bottom,
+  .downlevel .posts-container {
+    padding-left: 40px;
+    padding-right: 40px;
+  }
+
+  @media(min-width: 768px) {
+    .downlevel .base-grid,
+    .downlevel .distill-header,
+    .downlevel .d-title,
+    .downlevel .d-abstract,
+    .downlevel .d-article,
+    .downlevel .d-appendix,
+    .downlevel .distill-appendix,
+    .downlevel .d-byline,
+    .downlevel .d-footnote-list,
+    .downlevel .d-citation-list,
+    .downlevel .distill-footer,
+    .downlevel .appendix-bottom,
+    .downlevel .posts-container {
+    padding-left: 150px;
+    padding-right: 150px;
+    max-width: 900px;
+  }
+  }
+
+  .downlevel pre code {
+    display: block;
+    border-left: 2px solid rgba(0, 0, 0, .1);
+    padding: 0 0 0 20px;
+    font-size: 14px;
+  }
+
+  .downlevel code, .downlevel pre {
+    color: black;
+    background: none;
+    font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+    text-align: left;
+    white-space: pre;
+    word-spacing: normal;
+    word-break: normal;
+    word-wrap: normal;
+    line-height: 1.5;
+
+    -moz-tab-size: 4;
+    -o-tab-size: 4;
+    tab-size: 4;
+
+    -webkit-hyphens: none;
+    -moz-hyphens: none;
+    -ms-hyphens: none;
+    hyphens: none;
+  }
+
+  .downlevel .posts-list .post-preview {
+    color: inherit;
+  }
+
+
+
+  </style>
+
+  <script type="application/javascript">
+
+  function is_downlevel_browser() {
+    if (bowser.isUnsupportedBrowser({ msie: "12", msedge: "16"},
+                                   window.navigator.userAgent)) {
+      return true;
+    } else {
+      return window.load_distill_framework === undefined;
+    }
+  }
+
+  // show body when load is complete
+  function on_load_complete() {
+
+    // add anchors
+    if (window.anchors) {
+      window.anchors.options.placement = 'left';
+      window.anchors.add('d-article > h2, d-article > h3, d-article > h4, d-article > h5');
+    }
+
+
+    // set body to visible
+    document.body.style.visibility = 'visible';
+
+    // force redraw for leaflet widgets
+    if (window.HTMLWidgets) {
+      var maps = window.HTMLWidgets.findAll(".leaflet");
+      $.each(maps, function(i, el) {
+        var map = this.getMap();
+        map.invalidateSize();
+        map.eachLayer(function(layer) {
+          if (layer instanceof L.TileLayer)
+            layer.redraw();
+        });
+      });
+    }
+
+    // trigger 'shown' so htmlwidgets resize
+    $('d-article').trigger('shown');
+  }
+
+  function init_distill() {
+
+    init_common();
+
+    // create front matter
+    var front_matter = $('<d-front-matter></d-front-matter>');
+    $('#distill-front-matter').wrap(front_matter);
+
+    // create d-title
+    $('.d-title').changeElementType('d-title');
+
+    // separator
+    var separator = '<hr class="section-separator" style="clear: both"/>';
+    // prepend separator above appendix
+    $('.d-byline').before(separator);
+    $('.d-article').before(separator);
+
+    // create d-byline
+    var byline = $('<d-byline></d-byline>');
+    $('.d-byline').replaceWith(byline);
+
+    // create d-article
+    var article = $('<d-article></d-article>');
+    $('.d-article').wrap(article).children().unwrap();
+
+    // move posts container into article
+    $('.posts-container').appendTo($('d-article'));
+
+    // create d-appendix
+    $('.d-appendix').changeElementType('d-appendix');
+
+    // flag indicating that we have appendix items
+    var appendix = $('.appendix-bottom').children('h3').length > 0;
+
+    // replace footnotes with <d-footnote>
+    $('.footnote-ref').each(function(i, val) {
+      appendix = true;
+      var href = $(this).attr('href');
+      var id = href.replace('#', '');
+      var fn = $('#' + id);
+      var fn_p = $('#' + id + '>p');
+      fn_p.find('.footnote-back').remove();
+      var text = fn_p.html();
+      var dtfn = $('<d-footnote></d-footnote>');
+      dtfn.html(text);
+      $(this).replaceWith(dtfn);
+    });
+    // remove footnotes
+    $('.footnotes').remove();
+
+    // move refs into #references-listing
+    $('#references-listing').replaceWith($('#refs'));
+
+    $('h1.appendix, h2.appendix').each(function(i, val) {
+      $(this).changeElementType('h3');
+    });
+    $('h3.appendix').each(function(i, val) {
+      var id = $(this).attr('id');
+      $('.d-contents a[href="#' + id + '"]').parent().remove();
+      appendix = true;
+      $(this).nextUntil($('h1, h2, h3')).addBack().appendTo($('d-appendix'));
+    });
+
+    // show d-appendix if we have appendix content
+    $("d-appendix").css('display', appendix ? 'grid' : 'none');
+
+    // localize layout chunks to just output
+    $('.layout-chunk').each(function(i, val) {
+
+      // capture layout
+      var layout = $(this).attr('data-layout');
+
+      // apply layout to markdown level block elements
+      var elements = $(this).children().not('details, div.sourceCode, pre, script');
+      elements.each(function(i, el) {
+        var layout_div = $('<div class="' + layout + '"></div>');
+        if (layout_div.hasClass('shaded')) {
+          var shaded_content = $('<div class="shaded-content"></div>');
+          $(this).wrap(shaded_content);
+          $(this).parent().wrap(layout_div);
+        } else {
+          $(this).wrap(layout_div);
+        }
+      });
+
+
+      // unwrap the layout-chunk div
+      $(this).children().unwrap();
+    });
+
+    // remove code block used to force  highlighting css
+    $('.distill-force-highlighting-css').parent().remove();
+
+    // remove empty line numbers inserted by pandoc when using a
+    // custom syntax highlighting theme, except when numbering line
+    // in code chunk
+    $('pre:not(.numberLines) code.sourceCode a:empty').remove();
+
+    // load distill framework
+    load_distill_framework();
+
+    // wait for window.distillRunlevel == 4 to do post processing
+    function distill_post_process() {
+
+      if (!window.distillRunlevel || window.distillRunlevel < 4)
+        return;
+
+      // hide author/affiliations entirely if we have no authors
+      var front_matter = JSON.parse($("#distill-front-matter").html());
+      var have_authors = front_matter.authors && front_matter.authors.length > 0;
+      if (!have_authors)
+        $('d-byline').addClass('hidden');
+
+      // article with toc class
+      $('.d-contents').parent().addClass('d-article-with-toc');
+
+      // strip links that point to #
+      $('.authors-affiliations').find('a[href="#"]').removeAttr('href');
+
+      // add orcid ids
+      $('.authors-affiliations').find('.author').each(function(i, el) {
+        var orcid_id = front_matter.authors[i].orcidID;
+        var author_name = front_matter.authors[i].author
+        if (orcid_id) {
+          var a = $('<a></a>');
+          a.attr('href', 'https://orcid.org/' + orcid_id);
+          var img = $('<img></img>');
+          img.addClass('orcid-id');
+          img.attr('alt', author_name ? 'ORCID ID for ' + author_name : 'ORCID ID');
+          img.attr('src','data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA2ZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDo1N0NEMjA4MDI1MjA2ODExOTk0QzkzNTEzRjZEQTg1NyIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDozM0NDOEJGNEZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDozM0NDOEJGM0ZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M1IE1hY2ludG9zaCI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOkZDN0YxMTc0MDcyMDY4MTE5NUZFRDc5MUM2MUUwNEREIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjU3Q0QyMDgwMjUyMDY4MTE5OTRDOTM1MTNGNkRBODU3Ii8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+84NovQAAAR1JREFUeNpiZEADy85ZJgCpeCB2QJM6AMQLo4yOL0AWZETSqACk1gOxAQN+cAGIA4EGPQBxmJA0nwdpjjQ8xqArmczw5tMHXAaALDgP1QMxAGqzAAPxQACqh4ER6uf5MBlkm0X4EGayMfMw/Pr7Bd2gRBZogMFBrv01hisv5jLsv9nLAPIOMnjy8RDDyYctyAbFM2EJbRQw+aAWw/LzVgx7b+cwCHKqMhjJFCBLOzAR6+lXX84xnHjYyqAo5IUizkRCwIENQQckGSDGY4TVgAPEaraQr2a4/24bSuoExcJCfAEJihXkWDj3ZAKy9EJGaEo8T0QSxkjSwORsCAuDQCD+QILmD1A9kECEZgxDaEZhICIzGcIyEyOl2RkgwAAhkmC+eAm0TAAAAABJRU5ErkJggg==');
+          a.append(img);
+          $(this).append(a);
+        }
+      });
+
+      // hide elements of author/affiliations grid that have no value
+      function hide_byline_column(caption) {
+        $('d-byline').find('h3:contains("' + caption + '")').parent().css('visibility', 'hidden');
+      }
+
+      // affiliations
+      var have_affiliations = false;
+      for (var i = 0; i<front_matter.authors.length; ++i) {
+        var author = front_matter.authors[i];
+        if (author.affiliation !== "&nbsp;") {
+          have_affiliations = true;
+          break;
+        }
+      }
+      if (!have_affiliations)
+        $('d-byline').find('h3:contains("Affiliations")').css('visibility', 'hidden');
+
+      // published date
+      if (!front_matter.publishedDate)
+        hide_byline_column("Published");
+
+      // document object identifier
+      var doi = $('d-byline').find('h3:contains("DOI")');
+      var doi_p = doi.next().empty();
+      if (!front_matter.doi) {
+        // if we have a citation and valid citationText then link to that
+        if ($('#citation').length > 0 && front_matter.citationText) {
+          doi.html('Citation');
+          $('<a href="#citation"></a>')
+            .text(front_matter.citationText)
+            .appendTo(doi_p);
+        } else {
+          hide_byline_column("DOI");
+        }
+      } else {
+        $('<a></a>')
+           .attr('href', "https://doi.org/" + front_matter.doi)
+           .html(front_matter.doi)
+           .appendTo(doi_p);
+      }
+
+       // change plural form of authors/affiliations
+      if (front_matter.authors.length === 1) {
+        var grid = $('.authors-affiliations');
+        grid.children('h3:contains("Authors")').text('Author');
+        grid.children('h3:contains("Affiliations")').text('Affiliation');
+      }
+
+      // remove d-appendix and d-footnote-list local styles
+      $('d-appendix > style:first-child').remove();
+      $('d-footnote-list > style:first-child').remove();
+
+      // move appendix-bottom entries to the bottom
+      $('.appendix-bottom').appendTo('d-appendix').children().unwrap();
+      $('.appendix-bottom').remove();
+
+      // hoverable references
+      $('span.citation[data-cites]').each(function() {
+        const citeChild = $(this).children()[0]
+        // Do not process if @xyz has been used without escaping and without bibliography activated
+        // https://github.com/rstudio/distill/issues/466
+        if (citeChild === undefined) return true
+
+        if (citeChild.nodeName == "D-FOOTNOTE") {
+          var fn = citeChild
+          $(this).html(fn.shadowRoot.querySelector("sup"))
+          $(this).id = fn.id
+          fn.remove()
+        }
+        var refs = $(this).attr('data-cites').split(" ");
+        var refHtml = refs.map(function(ref) {
+          // Could use CSS.escape too here, we insure backward compatibility in navigator
+          return "<p>" + $('div[id="ref-' + ref + '"]').html() + "</p>";
+        }).join("\n");
+        window.tippy(this, {
+          allowHTML: true,
+          content: refHtml,
+          maxWidth: 500,
+          interactive: true,
+          interactiveBorder: 10,
+          theme: 'light-border',
+          placement: 'bottom-start'
+        });
+      });
+
+      // fix footnotes in tables (#411)
+      // replacing broken distill.pub feature
+      $('table d-footnote').each(function() {
+        // we replace internal showAtNode methode which is triggered when hovering a footnote
+        this.hoverBox.showAtNode = function(node) {
+          // ported from https://github.com/distillpub/template/pull/105/files
+          calcOffset = function(elem) {
+              let x = elem.offsetLeft;
+              let y = elem.offsetTop;
+              // Traverse upwards until an `absolute` element is found or `elem`
+              // becomes null.
+              while (elem = elem.offsetParent && elem.style.position != 'absolute') {
+                  x += elem.offsetLeft;
+                  y += elem.offsetTop;
+              }
+
+              return { left: x, top: y };
+          }
+          // https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/offsetTop
+          const bbox = node.getBoundingClientRect();
+          const offset = calcOffset(node);
+          this.show([offset.left + bbox.width, offset.top + bbox.height]);
+        }
+      })
+
+      // clear polling timer
+      clearInterval(tid);
+
+      // show body now that everything is ready
+      on_load_complete();
+    }
+
+    var tid = setInterval(distill_post_process, 50);
+    distill_post_process();
+
+  }
+
+  function init_downlevel() {
+
+    init_common();
+
+     // insert hr after d-title
+    $('.d-title').after($('<hr class="section-separator"/>'));
+
+    // check if we have authors
+    var front_matter = JSON.parse($("#distill-front-matter").html());
+    var have_authors = front_matter.authors && front_matter.authors.length > 0;
+
+    // manage byline/border
+    if (!have_authors)
+      $('.d-byline').remove();
+    $('.d-byline').after($('<hr class="section-separator"/>'));
+    $('.d-byline a').remove();
+
+    // remove toc
+    $('.d-contents').remove();
+
+    // move appendix elements
+    $('h1.appendix, h2.appendix').each(function(i, val) {
+      $(this).changeElementType('h3');
+    });
+    $('h3.appendix').each(function(i, val) {
+      $(this).nextUntil($('h1, h2, h3')).addBack().appendTo($('.d-appendix'));
+    });
+
+
+    // inject headers into references and footnotes
+    var refs_header = $('<h3></h3>');
+    refs_header.text('References');
+    $('#refs').prepend(refs_header);
+
+    var footnotes_header = $('<h3></h3');
+    footnotes_header.text('Footnotes');
+    $('.footnotes').children('hr').first().replaceWith(footnotes_header);
+
+    // move appendix-bottom entries to the bottom
+    $('.appendix-bottom').appendTo('.d-appendix').children().unwrap();
+    $('.appendix-bottom').remove();
+
+    // remove appendix if it's empty
+    if ($('.d-appendix').children().length === 0)
+      $('.d-appendix').remove();
+
+    // prepend separator above appendix
+    $('.d-appendix').before($('<hr class="section-separator" style="clear: both"/>'));
+
+    // trim code
+    $('pre>code').each(function(i, val) {
+      $(this).html($.trim($(this).html()));
+    });
+
+    // move posts-container right before article
+    $('.posts-container').insertBefore($('.d-article'));
+
+    $('body').addClass('downlevel');
+
+    on_load_complete();
+  }
+
+
+  function init_common() {
+
+    // jquery plugin to change element types
+    (function($) {
+      $.fn.changeElementType = function(newType) {
+        var attrs = {};
+
+        $.each(this[0].attributes, function(idx, attr) {
+          attrs[attr.nodeName] = attr.nodeValue;
+        });
+
+        this.replaceWith(function() {
+          return $("<" + newType + "/>", attrs).append($(this).contents());
+        });
+      };
+    })(jQuery);
+
+    // prevent underline for linked images
+    $('a > img').parent().css({'border-bottom' : 'none'});
+
+    // mark non-body figures created by knitr chunks as 100% width
+    $('.layout-chunk').each(function(i, val) {
+      var figures = $(this).find('img, .html-widget');
+      // ignore leaflet img layers (#106)
+      figures = figures.filter(':not(img[class*="leaflet"])')
+      if ($(this).attr('data-layout') !== "l-body") {
+        figures.css('width', '100%');
+      } else {
+        figures.css('max-width', '100%');
+        figures.filter("[width]").each(function(i, val) {
+          var fig = $(this);
+          fig.css('width', fig.attr('width') + 'px');
+        });
+
+      }
+    });
+
+    // auto-append index.html to post-preview links in file: protocol
+    // and in rstudio ide preview
+    $('.post-preview').each(function(i, val) {
+      if (window.location.protocol === "file:")
+        $(this).attr('href', $(this).attr('href') + "index.html");
+    });
+
+    // get rid of index.html references in header
+    if (window.location.protocol !== "file:") {
+      $('.distill-site-header a[href]').each(function(i,val) {
+        $(this).attr('href', $(this).attr('href').replace(/^index[.]html/, "./"));
+      });
+    }
+
+    // add class to pandoc style tables
+    $('tr.header').parent('thead').parent('table').addClass('pandoc-table');
+    $('.kable-table').children('table').addClass('pandoc-table');
+
+    // add figcaption style to table captions
+    $('caption').parent('table').addClass("figcaption");
+
+    // initialize posts list
+    if (window.init_posts_list)
+      window.init_posts_list();
+
+    // implmement disqus comment link
+    $('.disqus-comment-count').click(function() {
+      window.headroom_prevent_pin = true;
+      $('#disqus_thread').toggleClass('hidden');
+      if (!$('#disqus_thread').hasClass('hidden')) {
+        var offset = $(this).offset();
+        $(window).resize();
+        $('html, body').animate({
+          scrollTop: offset.top - 35
+        });
+      }
+    });
+  }
+
+  document.addEventListener('DOMContentLoaded', function() {
+    if (is_downlevel_browser())
+      init_downlevel();
+    else
+      window.addEventListener('WebComponentsReady', init_distill);
+  });
+
+  </script>
+
+  <!--/radix_placeholder_distill-->
+  <script src="speech_files/header-attrs-2.30/header-attrs.js"></script>
+  <script src="speech_files/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+  <script src="speech_files/popper-2.6.0/popper.min.js"></script>
+  <link href="speech_files/tippy-6.2.7/tippy.css" rel="stylesheet" />
+  <link href="speech_files/tippy-6.2.7/tippy-light-border.css" rel="stylesheet" />
+  <script src="speech_files/tippy-6.2.7/tippy.umd.min.js"></script>
+  <script src="speech_files/anchor-4.2.2/anchor.min.js"></script>
+  <script src="speech_files/bowser-1.9.3/bowser.min.js"></script>
+  <script src="speech_files/webcomponents-2.0.0/webcomponents.js"></script>
+  <script src="speech_files/distill-2.2.21/template.v2.js"></script>
+  <!--radix_placeholder_site_in_header-->
+  <!--/radix_placeholder_site_in_header-->
+
+
+</head>
+
+<body>
+
+<!--radix_placeholder_front_matter-->
+
+<script id="distill-front-matter" type="text/json">
+{"title":"Speech Recognition","description":"A probabilistic graphical models project","authors":[{"author":"Longxiang Wu","authorURL":"#","affiliation":"&nbsp;","affiliationURL":"#","orcidID":""}],"publishedDate":"2025-07-08T00:00:00.000+08:00","citationText":"Wu, 2025"}
+</script>
+
+<!--/radix_placeholder_front_matter-->
+<!--radix_placeholder_navigation_before_body-->
+<!--/radix_placeholder_navigation_before_body-->
+<!--radix_placeholder_site_before_body-->
+<!--/radix_placeholder_site_before_body-->
+
+<div class="d-title">
+<h1>Speech Recognition</h1>
+
+<!--radix_placeholder_categories-->
+<!--/radix_placeholder_categories-->
+<p>A probabilistic graphical models project</p>
+</div>
+
+<div class="d-byline">
+  Longxiang Wu  
+  
+<br/>2025-7-8
+</div>
+
+<div class="d-article">
+<!-- #region -->
+<p>Speech recognition is one of the most challenging tasks in natural language processing, and it is also a field that has developed rapidly in recent years. Automated Speech Recognition (ASR) can enable machines to understand the sounds made by humans (such as the languages of various countries). It has a wide range of applications, such as translation, human-computer interaction design and voice information retrieval (Spe Ech Information Retrieval, SIR) and so on. Modern ASR technology integrates signal processing, pattern recognition, network and communication into a unified framework. At present, the technologies adopted in ASR can be divided into three categories:</p>
+<ul>
+<li><p>Hidden Markov Model (HMM)</p></li>
+<li><p>Neural Networks (NN)</p></li>
+<li><p>Synthesis of the former two</p></li>
+</ul>
+<p>In the past period of time, HMM has become the most successful voice recognition model in ASR. HMM is very effective for the analysis of time series. Almost all Large Vocabulary Continuous Speech Recognition (LVCSR) systems are based on HMM.</p>
+<p>In this case, we first briefly describe the core framework of the LVCSR system based on HMM, and then use the HMM model (specifically Gaussian Mixture Model HMM, GMM-HMM) to specifically realise the lexical recognition of a single speaker. This case will not completely implement a voice recognition system. We just hope that through this case, readers can deeply understand some of the core ideas of HMM on voice recognition.</p>
+<p>In addition to the method of implementing HMM in this case, the implementation of HMM can also use the Python toolkit hmmlearn.</p>
+<h3 id="speech-recognition-framework">1 Speech recognition framework</h3>
+<p><img src="architecture.png" /></p>
+<p>The whole HMM-based voice recognition system is divided into feature extraction and HMM-based decoding process.</p>
+<h3 id="feature-extraction">1.1 Feature extraction</h3>
+<p>This stage extracts features that are convenient for voice recognition from the audio waveform, which is equivalent to the Encoding part. One of the simplest and most widely used methods is the analysis of mel-frequency cepstral coefficients (MFCCs).</p>
+<p>Mel-frequency is proposed based on the auditory characteristics of the human ear (similar to the decibel concept), which has a nonlinear correspondence with the Hertz frequency. The inverse spectrum (cepstrum) is the spectrum obtained by the Fourier transform of a signal after logarithmic operation and then the Fourier inverse transformation. After extracting the characteristics of MFCCs, the waveform diagram is programmed with the mel inverse spectrum diagram, as follows:
+<img src="JdlHe.png" /></p>
+<p>The entire feature extraction process is the process of converting audio waveforms into fixed-length acoustic vectors <span class="math inline">\(Y_{1:T} = y_1, \ldots, y_T\)</span>.</p>
+<h3 id="decoding">1.2 Decoding</h3>
+<p>In short, the decoding process is to find the word sequence <span class="math inline">\(w_{1:L} = w_1, \ldots, w_L\)</span> most likely to produce the acoustic vector <span class="math inline">\(Y\)</span>, i.e., to find:</p>
+<p><span class="math display">\[\hat{w} = \arg\max_{w}\{p(w|Y)\}\]</span></p>
+<p>However, the discriminative <span class="math inline">\(P(w|Y)\)</span> is not easy to model directly. Therefore, it is necessary to convert the above problem into another equivalent form via Bayes’ theorem:</p>
+<p><span class="math display">\[\hat{w} = \arg\max_{w}\{p(Y|w)p(w)\}\]</span></p>
+<p>The likelihood <span class="math inline">\(p(Y|w)\)</span> is determined by the acoustic model, and the prior probability <span class="math inline">\(p(w)\)</span> is determined by the language model. In the acoustic model, the basic unit of sound is the phone, such as /b/, /ae/, /t/. The core of the acoustic model is the HMM model. These phones are determined by a pronunciation dictionary, which determines the words composed of phones. See the HMM-based speech recognition framework diagram.</p>
+<h3 id="data-exploration">2 Data Exploration</h3>
+<p>The dataset used in this case (sourced from <a href="https://code.google.com/archive/p/hunpos/">Google Code project by Hakon Sandsmark</a>) is single speaker data, not multispeaker data, so the robustness requirements on the model are not particularly high. The feature extraction method used in this case is not suitable for multispeaker speech recognition.</p>
+<h3 id="word-content-in-audio-files">2.1 Word Content in Audio Files</h3>
+<p>Let’s first look at what words are contained in the audio files in the folder:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode" id="cb1"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>fpaths <span class="op">=</span> [] <span class="co"># File path</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>labels <span class="op">=</span> [] <span class="co"># The content of the words contained in each voice file</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>spoken <span class="op">=</span> [] <span class="co"># List of words contained in all voice files</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> f <span class="kw">in</span> os.listdir(<span class="st">&#39;dataset/audio&#39;</span>)[<span class="dv">1</span>:]: </span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> w <span class="kw">in</span> os.listdir(<span class="st">&#39;dataset/audio/&#39;</span> <span class="op">+</span> f):</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>        fpaths.append(<span class="st">&#39;dataset/audio/&#39;</span> <span class="op">+</span> f <span class="op">+</span> <span class="st">&#39;/&#39;</span> <span class="op">+</span> w)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>        labels.append(f)</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> f <span class="kw">not</span> <span class="kw">in</span> spoken:</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>            spoken.append(f)</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&#39;Words spoken:&#39;</span>, spoken)</span></code></pre></div>
+<pre><code>Words spoken: [&#39;kiwi&#39;, &#39;lime&#39;, &#39;banana&#39;, &#39;pineapple&#39;, &#39;orange&#39;, &#39;peach&#39;]</code></pre>
+</div>
+<p>In order to facilitate the subsequent analysis, we use a label vector all_labels to represent the word content of each voice file.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode" id="cb3"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.io <span class="im">import</span> wavfile</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> np.zeros((<span class="bu">len</span>(fpaths), <span class="dv">32000</span>)) <span class="co"># Each behaviour has a voice sample, and each column is a feature of the sample.</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>maxsize <span class="op">=</span> <span class="op">-</span><span class="dv">1</span> <span class="co"># The maximum number of columns, the duration of each audio file is different, so it needs to be constantly changed in the loop.</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> n,<span class="bu">file</span> <span class="kw">in</span> <span class="bu">enumerate</span>(fpaths):</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    _, d <span class="op">=</span> wavfile.read(<span class="bu">file</span>)</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    data[n, :d.shape[<span class="dv">0</span>]] <span class="op">=</span> d</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> d.shape[<span class="dv">0</span>] <span class="op">&gt;</span> maxsize:</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>        maxsize <span class="op">=</span> d.shape[<span class="dv">0</span>]</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> data[:, :maxsize]</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="co">#Each sample file is one row in data, and has one entry in labels</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&#39;Number of files total:&#39;</span>, data.shape[<span class="dv">0</span>])</span></code></pre></div>
+<pre><code>Number of files total: 90</code></pre>
+<div class="sourceCode" id="cb5"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>all_labels <span class="op">=</span> np.zeros(data.shape[<span class="dv">0</span>])</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> n, l <span class="kw">in</span> <span class="bu">enumerate</span>(<span class="bu">set</span>(labels)):</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    all_labels[np.array([i <span class="cf">for</span> i, _ <span class="kw">in</span> <span class="bu">enumerate</span>(labels) <span class="cf">if</span> _ <span class="op">==</span> l])] <span class="op">=</span> n</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&#39;data&#39;</span>,data.shape)</span></code></pre></div>
+<pre><code>data (90, 6966)</code></pre>
+<div class="sourceCode" id="cb7"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&#39;Labels and label indices&#39;</span>, all_labels)</span></code></pre></div>
+<pre><code>Labels and label indices [1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 4. 4. 4. 4. 4. 4. 4. 4. 4.
+ 4. 4. 4. 4. 4. 4. 5. 5. 5. 5. 5. 5. 5. 5. 5. 5. 5. 5. 5. 5. 5. 3. 3. 3.
+ 3. 3. 3. 3. 3. 3. 3. 3. 3. 3. 3. 3. 2. 2. 2. 2. 2. 2. 2. 2. 2. 2. 2. 2.
+ 2. 2. 2. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0.]</code></pre>
+</div>
+<p>There are a total of 90 files with 7 different words. Each word is read 15 times in total, and each time it is stored in a separate wav format voice file. The data set data has a total of 90 rows and 6,966 columns.</p>
+<h3 id="visualisation-of-audio-waveform">2.2 Visualisation of audio waveform</h3>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode" id="cb9"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns <span class="co"># Import the seaborn package</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>sns.set_context(<span class="st">&quot;notebook&quot;</span>,font_scale<span class="op">=</span><span class="fl">1.3</span>) <span class="co"># Notebook format, enlarge the horizontal and vertical coordinate mark</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>sns.set_palette(<span class="st">&#39;Set2&#39;</span>) <span class="co"># Use Set2 for colour matching  </span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Packages required for importing audio processing and DCT (discrete cosine transformation) conversion</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> scipy.io.wavfile</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.fftpack <span class="im">import</span> dct</span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Embedded mode</span></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a><span class="co"># %matplotlib inline </span></span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a><span class="co"># %config InlineBackend.figure_format = &#39;retina&#39; # Retina high-definition display</span></span></code></pre></div>
+</div>
+<p>In order to facilitate the subsequent drawing of spectrum diagrams, here we define a function of drawing <code>spectrum_plot</code>:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode" id="cb10"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co">&quot;&quot;&quot;</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="co">Function spectrum_plot(): Draw a spectrum diagram</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="co">Input parameter sequence: time series, in milliseconds (ms)</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="co">Output parameter amplitude: amplitude value</span></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="co">&quot;&quot;&quot;</span></span></code></pre></div>
+<pre><code>&#39;\nFunction spectrum_plot(): Draw a spectrum diagram\n\nInput parameter sequence: time series, in milliseconds (ms)\n\nOutput parameter amplitude: amplitude value\n&#39;</code></pre>
+<div class="sourceCode" id="cb12"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> spectrum_plot(sequence,amplitude):</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>    plt.figure(figsize<span class="op">=</span>(<span class="dv">8</span>,<span class="dv">4</span>))</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    plt.plot(time_sequence,signal)</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>    plt.xlabel(<span class="st">&#39;miliseconds&#39;</span>)</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>    plt.ylabel(<span class="st">&#39;Amplitude(signed 16 bit)&#39;</span>)</span></code></pre></div>
+</div>
+<p>Choose the file <code>./audio/apple/apple01.wav</code> file to observe its audio waveform.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode" id="cb13"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>sample_rate, signal <span class="op">=</span> scipy.io.wavfile.read(<span class="st">&#39;dataset/audio/apple/apple01.wav&#39;</span>)  <span class="co"># import data</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span> (<span class="st">&#39;sample_rate:&#39;</span>,sample_rate,<span class="st">&#39;Hz&#39;</span>)</span></code></pre></div>
+<pre><code>sample_rate: 8000 Hz</code></pre>
+<div class="sourceCode" id="cb15"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span> (<span class="st">&#39;signal time_interval:&#39;</span>,<span class="dv">1000</span><span class="op">*</span>signal.shape[<span class="dv">0</span>]<span class="op">/</span><span class="bu">float</span>(sample_rate),<span class="st">&#39;ms&#39;</span>)</span></code></pre></div>
+<pre><code>signal time_interval: 336.75 ms</code></pre>
+</div>
+<p>The whole audio sampling frequency is 8000 Hz, and the duration of this audio is 336.75 ms. Define the <code>time_sequence</code> to set the duration of the waveform, which needs to be converted into a time millisecond measure according to the sampling frequency calculation.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode" id="cb17"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>time_sequence <span class="op">=</span> [item<span class="op">*</span><span class="dv">1000</span><span class="op">/</span><span class="bu">float</span>(sample_rate) <span class="cf">for</span> item <span class="kw">in</span> <span class="bu">range</span>(signal.shape[<span class="dv">0</span>])]</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>spectrum_plot(time_sequence,signal) </span></code></pre></div>
+<p><img src="speech_files/figure-html5/unnamed-chunk-6-1.png" alt="" width="768" /></p>
+</div>
+<h3 id="feature-extraction-1">3 Feature Extraction</h3>
+<p>There are two traditional audio feature extraction methods: one is simple resonance peak extraction, and the other is the widely used and proven effective Mel-frequency cepstral coefficients (MFCCs) extraction method. Currently, quite a few people have started attempting to use deep neural networks for feature extraction, which we will consider and elaborate on in other cases. The feature extraction method directly determines the performance of the speech recognition system. In this case, our focus is on the HMM model application part, so we use the simple resonance peak extraction method to extract features.</p>
+<p>Now that we have imported the audio data into the array <code>signal</code>, we next need to extract features from the raw data. We use the simple frequency peak detection method to extract features.</p>
+<h3 id="short-time-fourier-transform-stft">3.1 Short-Time Fourier Transform STFT</h3>
+<p>To find the peaks in the frequency spectrum, we need to use a technique called Short Time Fourier Transform (STFT). STFT is a key technique in many Digital Signal Processing (DSP) processes, and is implemented by many efficient computational methods (refer to <a href="https://numpy.org">numpy-based implementation</a>, and matplotlib has a direct STFT implementation via the <a href="https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.specgram.html">specgram() function</a>). Since our data is relatively simple, we choose to implement our own STFT function.</p>
+<p>The principle of this method is actually very simple: first, the audio will be divided into several small blocks, then a Fast Fourier Transform (FFT) is applied to each block, producing a two-dimensional FFT “image”, which is what we commonly refer to as the spectrogram. Choosing different FFT sizes yields results at different frequency resolutions, and overlapping these windows allows us to control time resolution at the cost of increased data size.</p>
+<p>Simply put, assuming the raw data x is a vector of length 20, if the FFT size is 10 and the overlap window is 5 (i.e., half of the FFT), then we will get the two-dimensional <code>STFT_x</code> result as follows (shown in pseudocode form):</p>
+<pre><code>STFT_X[0, :] = FFT(X[0:9])
+
+STFT_X[1, :] = FFT(X[5:14])
+
+STFT_X[2, :] = FFT(X[10:19])</code></pre>
+<p>This way we obtain 3 FFT frames from the raw data x. Next, we need to find the peaks from each row of <code>STFT_x</code>.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode" id="cb19"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> scipy</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="co">&quot;&quot;&quot;</span></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a><span class="co">Function stft(): realise short-time Fourier transform STFT</span></span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a><span class="co">Input parameter x: raw data, ndarray;</span></span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a><span class="co">Fftsize: FFT size, the default is 64</span></span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a><span class="co">Overlap_pct: overlap window size (multiple of FFT size), default to 0.5</span></span>
+<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a><span class="co">Output parameter raw[:,:(fftsize//2)]: two-dimensional STFT spectrum</span></span>
+<span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a><span class="co">&quot;&quot;&quot;</span></span></code></pre></div>
+<pre><code>&#39;\nFunction stft(): realise short-time Fourier transform STFT\n\nInput parameter x: raw data, ndarray;\n\nFftsize: FFT size, the default is 64\n\nOverlap_pct: overlap window size (multiple of FFT size), default to 0.5\n\nOutput parameter raw[:,:(fftsize//2)]: two-dimensional STFT spectrum\n&#39;</code></pre>
+<div class="sourceCode" id="cb21"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> stft(x, fftsize<span class="op">=</span><span class="dv">64</span>, overlap_pct<span class="op">=</span><span class="fl">.5</span>):</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>    hop <span class="op">=</span> <span class="bu">int</span>(fftsize <span class="op">*</span> (<span class="dv">1</span> <span class="op">-</span> overlap_pct))</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>    w <span class="op">=</span> np.hanning(fftsize <span class="op">+</span> <span class="dv">1</span>)[:<span class="op">-</span><span class="dv">1</span>]  <span class="co"># Convert to Hanning window</span></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>    raw <span class="op">=</span> np.array([np.fft.rfft(w <span class="op">*</span> x[i:i <span class="op">+</span> fftsize]) <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">0</span>, <span class="bu">len</span>(x) <span class="op">-</span> fftsize, hop)])</span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> raw[:, :(fftsize <span class="op">//</span> <span class="dv">2</span>)]</span></code></pre></div>
+</div>
+<p>After defining the STFT function, let’s take a look at the spectrum diagram of one of the voices converted by STFT.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode" id="cb22"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">8</span>,<span class="dv">4</span>))</span></code></pre></div>
+<pre><code>&lt;Figure size 800x400 with 0 Axes&gt;</code></pre>
+<div class="sourceCode" id="cb24"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>plt.plot(data[<span class="dv">0</span>, :])</span></code></pre></div>
+<pre><code>[&lt;matplotlib.lines.Line2D object at 0x15489a790&gt;]</code></pre>
+<div class="sourceCode" id="cb26"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">&#39;Timeseries example for </span><span class="sc">%s</span><span class="st">&#39;</span><span class="op">%</span>labels[<span class="dv">0</span>])</span></code></pre></div>
+<pre><code>Text(0.5, 1.0, &#39;Timeseries example for kiwi&#39;)</code></pre>
+<div class="sourceCode" id="cb28"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>plt.xlim(<span class="dv">0</span>, <span class="dv">3000</span>)</span></code></pre></div>
+<pre><code>(0.0, 3000.0)</code></pre>
+<div class="sourceCode" id="cb30"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">&#39;Time (samples)&#39;</span>)</span></code></pre></div>
+<pre><code>Text(0.5, 0, &#39;Time (samples)&#39;)</code></pre>
+<div class="sourceCode" id="cb32"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">&#39;Amplitude (signed 16 bit)&#39;</span>)</span></code></pre></div>
+<pre><code>Text(0, 0.5, &#39;Amplitude (signed 16 bit)&#39;)</code></pre>
+<div class="sourceCode" id="cb34"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>plt.figure()</span></code></pre></div>
+<pre><code>&lt;Figure size 650x400 with 0 Axes&gt;</code></pre>
+<div class="sourceCode" id="cb36"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Draw STFT power spectrum PSD (power spectrum density)</span></span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a><span class="co"># In order to avoid calculating log0, add 1 at the end</span></span>
+<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a>log_freq <span class="op">=</span> <span class="dv">20</span> <span class="op">*</span> np.log(np.<span class="bu">abs</span>(stft(data[<span class="dv">0</span>, :])) <span class="op">+</span> <span class="dv">1</span>) <span class="co"># stft结果取对数</span></span>
+<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(log_freq.shape)</span></code></pre></div>
+<pre><code>(216, 32)</code></pre>
+<div class="sourceCode" id="cb38"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>plt.imshow(log_freq, cmap<span class="op">=</span><span class="st">&#39;winter&#39;</span>, interpolation<span class="op">=</span><span class="va">None</span>)</span></code></pre></div>
+<pre><code>&lt;matplotlib.image.AxesImage object at 0x15488d2d0&gt;</code></pre>
+<div class="sourceCode" id="cb40"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>plt.colorbar()</span></code></pre></div>
+<pre><code>&lt;matplotlib.colorbar.Colorbar object at 0x1548c2d10&gt;</code></pre>
+<div class="sourceCode" id="cb42"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">&#39;Freq (bin)&#39;</span>)</span></code></pre></div>
+<pre><code>Text(0.5, 0, &#39;Freq (bin)&#39;)</code></pre>
+<div class="sourceCode" id="cb44"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">&#39;Time (overlapped frames)&#39;</span>)</span></code></pre></div>
+<pre><code>Text(0, 0.5, &#39;Time (overlapped frames)&#39;)</code></pre>
+<div class="sourceCode" id="cb46"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>plt.ylim(log_freq.shape[<span class="dv">1</span>])</span></code></pre></div>
+<pre><code>(32.0, -0.5)</code></pre>
+<div class="sourceCode" id="cb48"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">&#39;PSD of </span><span class="sc">%s</span><span class="st"> example&#39;</span><span class="op">%</span>labels[<span class="dv">0</span>])</span></code></pre></div>
+<pre><code>Text(0.5, 1.0, &#39;PSD of kiwi example&#39;)</code></pre>
+<p><img src="speech_files/figure-html5/unnamed-chunk-8-3.png" alt="" width="624" /></p>
+</div>
+<h3 id="peak-extraction">3.2 Peak Extraction</h3>
+<p>With the STFT results, we can use a sliding window to extract peaks. The main steps of the algorithm are as follows:</p>
+<ol type="1">
+<li>Create a window of length x; in this example, we use a window size of 9;</li>
+<li>Divide the window into three parts: left, center, and right. For a window of size 9, the format is LLLCCCRRR;</li>
+<li>Apply statistical functions such as <code>mean</code>, <code>median</code>, <code>max</code>, <code>min</code> to each part of the window;</li>
+<li>If the maximum statistical value in the center part (CCC) is greater than the maximum statistical values of the left (LLL) and right (RRR) parts, proceed to step 5, otherwise proceed to step 6;</li>
+<li>If the maximum value of f(CCC) is at the exact center of the window, a frequency peak has been found — mark it and continue searching for the next peak; otherwise jump to step 6;</li>
+<li>Slide the window to the next sample and repeat the above process, e.g. from <code>data[0:9]</code> to <code>data[1:10]</code>;</li>
+<li>Once all the raw STFT data has been processed, a number of peaks can be detected. Sort them in descending order by value and take the top <span class="math inline">\(N\)</span> peaks; in this case <span class="math inline">\(N = 6\)</span>.</li>
+</ol>
+<p>We define a <code>peakfind</code> function to extract the peaks.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode" id="cb50"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> numpy.lib.stride_tricks <span class="im">import</span> as_strided</span>
+<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb50-3"><a href="#cb50-3" aria-hidden="true" tabindex="-1"></a><span class="co">&quot;&quot;&quot;</span></span>
+<span id="cb50-4"><a href="#cb50-4" aria-hidden="true" tabindex="-1"></a><span class="co">Function peakfind(): Peak detection of STFT</span></span>
+<span id="cb50-5"><a href="#cb50-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb50-6"><a href="#cb50-6" aria-hidden="true" tabindex="-1"></a><span class="co">Input parameter x: STFT spectrum;</span></span>
+<span id="cb50-7"><a href="#cb50-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb50-8"><a href="#cb50-8" aria-hidden="true" tabindex="-1"></a><span class="co">N_peaks: the final number of peaks selected</span></span>
+<span id="cb50-9"><a href="#cb50-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb50-10"><a href="#cb50-10" aria-hidden="true" tabindex="-1"></a><span class="co">L_size: the size of the left half of the window, the default is 3</span></span>
+<span id="cb50-11"><a href="#cb50-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb50-12"><a href="#cb50-12" aria-hidden="true" tabindex="-1"></a><span class="co">R_size: the size of the middle part of the window, the default is 3</span></span>
+<span id="cb50-13"><a href="#cb50-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb50-14"><a href="#cb50-14" aria-hidden="true" tabindex="-1"></a><span class="co">C_size: the size of the right half of the window, the default is 3</span></span>
+<span id="cb50-15"><a href="#cb50-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb50-16"><a href="#cb50-16" aria-hidden="true" tabindex="-1"></a><span class="co">F: The statistical function adopted for each part is defaulted to the mean np.mean</span></span>
+<span id="cb50-17"><a href="#cb50-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb50-18"><a href="#cb50-18" aria-hidden="true" tabindex="-1"></a><span class="co">Output parameter heights: the height corresponding to the wave peak (amplitude)</span></span>
+<span id="cb50-19"><a href="#cb50-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb50-20"><a href="#cb50-20" aria-hidden="true" tabindex="-1"></a><span class="co">Top[:n_peaks]: the frequency value of the previous n_peaks</span></span>
+<span id="cb50-21"><a href="#cb50-21" aria-hidden="true" tabindex="-1"></a><span class="co">&quot;&quot;&quot;</span></span></code></pre></div>
+<pre><code>&#39;\nFunction peakfind(): Peak detection of STFT\n\nInput parameter x: STFT spectrum;\n\nN_peaks: the final number of peaks selected\n\nL_size: the size of the left half of the window, the default is 3\n\nR_size: the size of the middle part of the window, the default is 3\n\nC_size: the size of the right half of the window, the default is 3\n\nF: The statistical function adopted for each part is defaulted to the mean np.mean\n\nOutput parameter heights: the height corresponding to the wave peak (amplitude)\n\nTop[:n_peaks]: the frequency value of the previous n_peaks\n&#39;</code></pre>
+<div class="sourceCode" id="cb52"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> peakfind(x, n_peaks, l_size<span class="op">=</span><span class="dv">3</span>, r_size<span class="op">=</span><span class="dv">3</span>, c_size<span class="op">=</span><span class="dv">3</span>, f<span class="op">=</span>np.mean):</span>
+<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a>    win_size <span class="op">=</span> l_size <span class="op">+</span> r_size <span class="op">+</span> c_size</span>
+<span id="cb52-3"><a href="#cb52-3" aria-hidden="true" tabindex="-1"></a>    shape <span class="op">=</span> x.shape[:<span class="op">-</span><span class="dv">1</span>] <span class="op">+</span> (x.shape[<span class="op">-</span><span class="dv">1</span>] <span class="op">-</span> win_size <span class="op">+</span> <span class="dv">1</span>, win_size)</span>
+<span id="cb52-4"><a href="#cb52-4" aria-hidden="true" tabindex="-1"></a>    strides <span class="op">=</span> x.strides <span class="op">+</span> (x.strides[<span class="op">-</span><span class="dv">1</span>],)</span>
+<span id="cb52-5"><a href="#cb52-5" aria-hidden="true" tabindex="-1"></a>    xs <span class="op">=</span> as_strided(x, shape<span class="op">=</span>shape, strides<span class="op">=</span>strides)</span>
+<span id="cb52-6"><a href="#cb52-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> is_peak(x):</span>
+<span id="cb52-7"><a href="#cb52-7" aria-hidden="true" tabindex="-1"></a>        centered <span class="op">=</span> (np.argmax(x) <span class="op">==</span> l_size <span class="op">+</span> <span class="bu">int</span>(c_size<span class="op">/</span><span class="dv">2</span>))</span>
+<span id="cb52-8"><a href="#cb52-8" aria-hidden="true" tabindex="-1"></a>        l <span class="op">=</span> x[:l_size]</span>
+<span id="cb52-9"><a href="#cb52-9" aria-hidden="true" tabindex="-1"></a>        c <span class="op">=</span> x[l_size:l_size <span class="op">+</span> c_size]</span>
+<span id="cb52-10"><a href="#cb52-10" aria-hidden="true" tabindex="-1"></a>        r <span class="op">=</span> x[<span class="op">-</span>r_size:]</span>
+<span id="cb52-11"><a href="#cb52-11" aria-hidden="true" tabindex="-1"></a>        passes <span class="op">=</span> np.<span class="bu">max</span>(c) <span class="op">&gt;</span> np.<span class="bu">max</span>([f(l), f(r)])</span>
+<span id="cb52-12"><a href="#cb52-12" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> centered <span class="kw">and</span> passes:</span>
+<span id="cb52-13"><a href="#cb52-13" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> np.<span class="bu">max</span>(c)</span>
+<span id="cb52-14"><a href="#cb52-14" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span>:</span>
+<span id="cb52-15"><a href="#cb52-15" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> <span class="op">-</span><span class="dv">1</span></span>
+<span id="cb52-16"><a href="#cb52-16" aria-hidden="true" tabindex="-1"></a>    r <span class="op">=</span> np.apply_along_axis(is_peak, <span class="dv">1</span>, xs)</span>
+<span id="cb52-17"><a href="#cb52-17" aria-hidden="true" tabindex="-1"></a>    top <span class="op">=</span> np.argsort(r, <span class="va">None</span>)[::<span class="op">-</span><span class="dv">1</span>]</span>
+<span id="cb52-18"><a href="#cb52-18" aria-hidden="true" tabindex="-1"></a>    heights <span class="op">=</span> r[top[:n_peaks]]</span>
+<span id="cb52-19"><a href="#cb52-19" aria-hidden="true" tabindex="-1"></a>    top[top <span class="op">&gt;</span> <span class="op">-</span><span class="dv">1</span>] <span class="op">=</span> top[top <span class="op">&gt;</span> <span class="op">-</span><span class="dv">1</span>] <span class="op">+</span> l_size <span class="op">+</span> <span class="bu">int</span>(c_size <span class="op">/</span> <span class="fl">2.</span>)</span>
+<span id="cb52-20"><a href="#cb52-20" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> heights, top[:n_peaks]</span></code></pre></div>
+<p><img src="speech_files/figure-html5/unnamed-chunk-9-5.png" alt="" width="768" /></p>
+</div>
+<p>Next, let’s take a look at the peak detection results of the STFT spectrum under the same frame and different window sizes.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode" id="cb53"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">8</span>,<span class="dv">4</span>))</span></code></pre></div>
+<pre><code>&lt;Figure size 800x400 with 0 Axes&gt;</code></pre>
+<div class="sourceCode" id="cb55"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a>plot_data <span class="op">=</span> np.<span class="bu">abs</span>(stft(data[<span class="dv">0</span>, :]))[<span class="dv">20</span>,:]</span>
+<span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a>values, locs <span class="op">=</span> peakfind(plot_data, l_size<span class="op">=</span><span class="dv">1</span>,c_size<span class="op">=</span><span class="dv">1</span>,r_size<span class="op">=</span><span class="dv">1</span>,n_peaks<span class="op">=</span><span class="dv">6</span>)</span>
+<span id="cb55-3"><a href="#cb55-3" aria-hidden="true" tabindex="-1"></a>fp_3 <span class="op">=</span> locs[values <span class="op">&gt;</span> <span class="op">-</span><span class="dv">1</span>]</span>
+<span id="cb55-4"><a href="#cb55-4" aria-hidden="true" tabindex="-1"></a>fv_3 <span class="op">=</span> values[values <span class="op">&gt;</span> <span class="op">-</span><span class="dv">1</span>]</span>
+<span id="cb55-5"><a href="#cb55-5" aria-hidden="true" tabindex="-1"></a>values, locs <span class="op">=</span> peakfind(plot_data, l_size<span class="op">=</span><span class="dv">3</span>,c_size<span class="op">=</span><span class="dv">3</span>,r_size<span class="op">=</span><span class="dv">3</span>,n_peaks<span class="op">=</span><span class="dv">6</span>)</span>
+<span id="cb55-6"><a href="#cb55-6" aria-hidden="true" tabindex="-1"></a>fp_9 <span class="op">=</span> locs[values <span class="op">&gt;</span> <span class="op">-</span><span class="dv">1</span>]</span>
+<span id="cb55-7"><a href="#cb55-7" aria-hidden="true" tabindex="-1"></a>fv_9 <span class="op">=</span> values[values <span class="op">&gt;</span> <span class="op">-</span><span class="dv">1</span>]</span>
+<span id="cb55-8"><a href="#cb55-8" aria-hidden="true" tabindex="-1"></a>f1 <span class="op">=</span> plt.plot(plot_data)</span>
+<span id="cb55-9"><a href="#cb55-9" aria-hidden="true" tabindex="-1"></a>f2 <span class="op">=</span> plt.plot(fp_3, fv_3, <span class="st">&#39;&lt;&#39;</span>)</span>
+<span id="cb55-10"><a href="#cb55-10" aria-hidden="true" tabindex="-1"></a>f3 <span class="op">=</span> plt.plot(fp_9, fv_9, <span class="st">&#39;&gt;&#39;</span>)</span>
+<span id="cb55-11"><a href="#cb55-11" aria-hidden="true" tabindex="-1"></a>plt.legend([<span class="st">&#39;stft data&#39;</span>,<span class="st">&#39;window size 3&#39;</span>,<span class="st">&#39;window size 9&#39;</span>])</span></code></pre></div>
+<pre><code>&lt;matplotlib.legend.Legend object at 0x15485cdd0&gt;</code></pre>
+<div class="sourceCode" id="cb57"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">&#39;Frequency (bins)&#39;</span>)</span></code></pre></div>
+<pre><code>Text(0.5, 0, &#39;Frequency (bins)&#39;)</code></pre>
+<div class="sourceCode" id="cb59"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">&#39;Amplitude&#39;</span>)</span></code></pre></div>
+<pre><code>Text(0, 0.5, &#39;Amplitude&#39;)</code></pre>
+<div class="sourceCode" id="cb61"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb61-1"><a href="#cb61-1" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">&#39;Peak location example&#39;</span>)</span></code></pre></div>
+<pre><code>Text(0.5, 1.0, &#39;Peak location example&#39;)</code></pre>
+<p><img src="speech_files/figure-html5/unnamed-chunk-10-7.png" alt="" width="768" /></p>
+</div>
+<p>We observed that when the window is 9, there are only 3 peaks that meet the conditions, and the complete 6 peaks cannot be taken. So our peak search is not perfect. Because for FFT with a size of 64, the window with a size of 9 is relatively large, and it is easy to filter out some peaks. This has some negative effects on subsequent models. In order to find more peaks, too large FFT can be done, but under the same time resolution, the effect of the subsequent model will also be negatively affected. Therefore, some advanced feature extraction methods are needed, such as MFCCs, which we will not deal with here.</p>
+<p>In the last part of feature extraction, we extract the peak data of all voice samples as the input of the subsequent GMM-HMM model.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode" id="cb63"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb63-1"><a href="#cb63-1" aria-hidden="true" tabindex="-1"></a>all_obs <span class="op">=</span> []</span>
+<span id="cb63-2"><a href="#cb63-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(data.shape[<span class="dv">0</span>]):</span>
+<span id="cb63-3"><a href="#cb63-3" aria-hidden="true" tabindex="-1"></a>    d <span class="op">=</span> np.<span class="bu">abs</span>(stft(data[i, :]))</span>
+<span id="cb63-4"><a href="#cb63-4" aria-hidden="true" tabindex="-1"></a>    n_dim <span class="op">=</span> <span class="dv">6</span></span>
+<span id="cb63-5"><a href="#cb63-5" aria-hidden="true" tabindex="-1"></a>    obs <span class="op">=</span> np.zeros((n_dim, d.shape[<span class="dv">0</span>]))</span>
+<span id="cb63-6"><a href="#cb63-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> r <span class="kw">in</span> <span class="bu">range</span>(d.shape[<span class="dv">0</span>]):</span>
+<span id="cb63-7"><a href="#cb63-7" aria-hidden="true" tabindex="-1"></a>        _, t <span class="op">=</span> peakfind(d[r, :], n_peaks<span class="op">=</span>n_dim)</span>
+<span id="cb63-8"><a href="#cb63-8" aria-hidden="true" tabindex="-1"></a>        obs[:, r] <span class="op">=</span> t.copy()</span>
+<span id="cb63-9"><a href="#cb63-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> i <span class="op">%</span> <span class="dv">10</span> <span class="op">==</span> <span class="dv">0</span>:</span>
+<span id="cb63-10"><a href="#cb63-10" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">&quot;Processed obs </span><span class="sc">%s</span><span class="st">&quot;</span> <span class="op">%</span> i)</span>
+<span id="cb63-11"><a href="#cb63-11" aria-hidden="true" tabindex="-1"></a>    all_obs.append(obs)</span></code></pre></div>
+<pre><code>Processed obs 0
+Processed obs 10
+Processed obs 20
+Processed obs 30
+Processed obs 40
+Processed obs 50
+Processed obs 60
+Processed obs 70
+Processed obs 80</code></pre>
+<div class="sourceCode" id="cb65"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb65-1"><a href="#cb65-1" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb65-2"><a href="#cb65-2" aria-hidden="true" tabindex="-1"></a>all_obs <span class="op">=</span> np.atleast_3d(all_obs)</span>
+<span id="cb65-3"><a href="#cb65-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span> (all_obs.shape)</span></code></pre></div>
+<pre><code>(90, 6, 216)</code></pre>
+</div>
+<p>The final result is a 90 × 6 × 216 three-dimensional array, where each audio waveform ends up with 216 overlapping frames, and each frame is described by the frequencies corresponding to the top 6 peak values.</p>
+<h2 id="gmm-hmm-model-decoding">4 GMM-HMM Model Decoding</h2>
+<p>After extracting the spectral peak features of the audio waveforms, we can begin the decoding part. This part requires the GMM-HMM model, which is a very complex algorithm. You can refer to <a href="https://brown.edu">Brown’s summary</a> and <a href="https://moore.edu">Moore’s summary</a>.</p>
+<p>Our implemented model does not include the Viterbi backtracking part, because here we only care about speech classification, and the Baum-Welch and forward-backward parts of the model are already sufficient for our needs.</p>
+<p>The HMM model is mainly used in three scenarios:</p>
+<ol type="1">
+<li>State probability estimation <span class="math inline">\(P(S|O)\)</span>. If there is prior information about the meaning of the states, this method will be very effective;</li>
+<li>Path estimation. Given an observed time series, what is the most probable “state path” — this is not covered in this case;</li>
+<li>Maximum likelihood estimation <span class="math inline">\(P(O|\lambda)\)</span>. By maximizing the probability of the observed values under certain parameter conditions, the optimal parameters <span class="math inline">\(\lambda\)</span> of the HMM are trained. This case mainly adopts this method.</li>
+</ol>
+<p>We use the Baum-Welch algorithm to train the HMM model. At the same time, this part uses scipy 0.14 for multivariate normal density computation. Next, we directly define the GMM-HMM model class <code>GmmHmm</code>, and then the forward-backward algorithm, EM process, model training, prediction, and other procedures are all encapsulated in the class <code>GmmHmm</code> through defined functions.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode" id="cb67"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb67-1"><a href="#cb67-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> scipy.stats <span class="im">as</span> st</span>
+<span id="cb67-2"><a href="#cb67-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb67-3"><a href="#cb67-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb67-4"><a href="#cb67-4" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> GmmHmm:</span>
+<span id="cb67-5"><a href="#cb67-5" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb67-6"><a href="#cb67-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, n_states):</span>
+<span id="cb67-7"><a href="#cb67-7" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.n_states <span class="op">=</span> n_states</span>
+<span id="cb67-8"><a href="#cb67-8" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.random_state <span class="op">=</span> np.random.RandomState(<span class="dv">0</span>)</span>
+<span id="cb67-9"><a href="#cb67-9" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb67-10"><a href="#cb67-10" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Random initialisation</span></span>
+<span id="cb67-11"><a href="#cb67-11" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.prior <span class="op">=</span> <span class="va">self</span>._normalize(<span class="va">self</span>.random_state.rand(<span class="va">self</span>.n_states, <span class="dv">1</span>))</span>
+<span id="cb67-12"><a href="#cb67-12" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.A <span class="op">=</span> <span class="va">self</span>._stochasticize(<span class="va">self</span>.random_state.rand(<span class="va">self</span>.n_states, <span class="va">self</span>.n_states))</span>
+<span id="cb67-13"><a href="#cb67-13" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb67-14"><a href="#cb67-14" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.mu <span class="op">=</span> <span class="va">None</span></span>
+<span id="cb67-15"><a href="#cb67-15" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.covs <span class="op">=</span> <span class="va">None</span></span>
+<span id="cb67-16"><a href="#cb67-16" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.n_dims <span class="op">=</span> <span class="va">None</span></span>
+<span id="cb67-17"><a href="#cb67-17" aria-hidden="true" tabindex="-1"></a>           </span>
+<span id="cb67-18"><a href="#cb67-18" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> _forward(<span class="va">self</span>, B):</span>
+<span id="cb67-19"><a href="#cb67-19" aria-hidden="true" tabindex="-1"></a>        log_likelihood <span class="op">=</span> <span class="fl">0.</span></span>
+<span id="cb67-20"><a href="#cb67-20" aria-hidden="true" tabindex="-1"></a>        T <span class="op">=</span> B.shape[<span class="dv">1</span>]</span>
+<span id="cb67-21"><a href="#cb67-21" aria-hidden="true" tabindex="-1"></a>        alpha <span class="op">=</span> np.zeros(B.shape)</span>
+<span id="cb67-22"><a href="#cb67-22" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> t <span class="kw">in</span> <span class="bu">range</span>(T):</span>
+<span id="cb67-23"><a href="#cb67-23" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> t <span class="op">==</span> <span class="dv">0</span>:</span>
+<span id="cb67-24"><a href="#cb67-24" aria-hidden="true" tabindex="-1"></a>                alpha[:, t] <span class="op">=</span> B[:, t] <span class="op">*</span> <span class="va">self</span>.prior.ravel()</span>
+<span id="cb67-25"><a href="#cb67-25" aria-hidden="true" tabindex="-1"></a>            <span class="cf">else</span>:</span>
+<span id="cb67-26"><a href="#cb67-26" aria-hidden="true" tabindex="-1"></a>                alpha[:, t] <span class="op">=</span> B[:, t] <span class="op">*</span> np.dot(<span class="va">self</span>.A.T, alpha[:, t <span class="op">-</span> <span class="dv">1</span>])</span>
+<span id="cb67-27"><a href="#cb67-27" aria-hidden="true" tabindex="-1"></a>         </span>
+<span id="cb67-28"><a href="#cb67-28" aria-hidden="true" tabindex="-1"></a>            alpha_sum <span class="op">=</span> np.<span class="bu">sum</span>(alpha[:, t])</span>
+<span id="cb67-29"><a href="#cb67-29" aria-hidden="true" tabindex="-1"></a>            alpha[:, t] <span class="op">/=</span> alpha_sum</span>
+<span id="cb67-30"><a href="#cb67-30" aria-hidden="true" tabindex="-1"></a>            log_likelihood <span class="op">=</span> log_likelihood <span class="op">+</span> np.log(alpha_sum)</span>
+<span id="cb67-31"><a href="#cb67-31" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> log_likelihood, alpha</span>
+<span id="cb67-32"><a href="#cb67-32" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb67-33"><a href="#cb67-33" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> _backward(<span class="va">self</span>, B):</span>
+<span id="cb67-34"><a href="#cb67-34" aria-hidden="true" tabindex="-1"></a>        T <span class="op">=</span> B.shape[<span class="dv">1</span>]</span>
+<span id="cb67-35"><a href="#cb67-35" aria-hidden="true" tabindex="-1"></a>        beta <span class="op">=</span> np.zeros(B.shape)<span class="op">;</span></span>
+<span id="cb67-36"><a href="#cb67-36" aria-hidden="true" tabindex="-1"></a>           </span>
+<span id="cb67-37"><a href="#cb67-37" aria-hidden="true" tabindex="-1"></a>        beta[:, <span class="op">-</span><span class="dv">1</span>] <span class="op">=</span> np.ones(B.shape[<span class="dv">0</span>])</span>
+<span id="cb67-38"><a href="#cb67-38" aria-hidden="true" tabindex="-1"></a>            </span>
+<span id="cb67-39"><a href="#cb67-39" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> t <span class="kw">in</span> <span class="bu">range</span>(T <span class="op">-</span> <span class="dv">1</span>)[::<span class="op">-</span><span class="dv">1</span>]:</span>
+<span id="cb67-40"><a href="#cb67-40" aria-hidden="true" tabindex="-1"></a>            beta[:, t] <span class="op">=</span> np.dot(<span class="va">self</span>.A, (B[:, t <span class="op">+</span> <span class="dv">1</span>] <span class="op">*</span> beta[:, t <span class="op">+</span> <span class="dv">1</span>]))</span>
+<span id="cb67-41"><a href="#cb67-41" aria-hidden="true" tabindex="-1"></a>            beta[:, t] <span class="op">/=</span> np.<span class="bu">sum</span>(beta[:, t])</span>
+<span id="cb67-42"><a href="#cb67-42" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> beta</span>
+<span id="cb67-43"><a href="#cb67-43" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb67-44"><a href="#cb67-44" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> _state_likelihood(<span class="va">self</span>, obs):</span>
+<span id="cb67-45"><a href="#cb67-45" aria-hidden="true" tabindex="-1"></a>        obs <span class="op">=</span> np.atleast_2d(obs)</span>
+<span id="cb67-46"><a href="#cb67-46" aria-hidden="true" tabindex="-1"></a>        B <span class="op">=</span> np.zeros((<span class="va">self</span>.n_states, obs.shape[<span class="dv">1</span>]))</span>
+<span id="cb67-47"><a href="#cb67-47" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> s <span class="kw">in</span> <span class="bu">range</span>(<span class="va">self</span>.n_states):</span>
+<span id="cb67-48"><a href="#cb67-48" aria-hidden="true" tabindex="-1"></a>            <span class="co">#N This part requires Scipy above version 0.14.</span></span>
+<span id="cb67-49"><a href="#cb67-49" aria-hidden="true" tabindex="-1"></a>            np.random.seed(<span class="va">self</span>.random_state.randint(<span class="dv">1</span>))</span>
+<span id="cb67-50"><a href="#cb67-50" aria-hidden="true" tabindex="-1"></a>            B[s, :] <span class="op">=</span> st.multivariate_normal.pdf(</span>
+<span id="cb67-51"><a href="#cb67-51" aria-hidden="true" tabindex="-1"></a>                obs.T, mean<span class="op">=</span><span class="va">self</span>.mu[:, s].T, cov<span class="op">=</span><span class="va">self</span>.covs[:, :, s].T)</span>
+<span id="cb67-52"><a href="#cb67-52" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> B</span>
+<span id="cb67-53"><a href="#cb67-53" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb67-54"><a href="#cb67-54" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> _normalize(<span class="va">self</span>, x):</span>
+<span id="cb67-55"><a href="#cb67-55" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> (x <span class="op">+</span> (x <span class="op">==</span> <span class="dv">0</span>)) <span class="op">/</span> np.<span class="bu">sum</span>(x)</span>
+<span id="cb67-56"><a href="#cb67-56" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb67-57"><a href="#cb67-57" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> _stochasticize(<span class="va">self</span>, x):</span>
+<span id="cb67-58"><a href="#cb67-58" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> (x <span class="op">+</span> (x <span class="op">==</span> <span class="dv">0</span>)) <span class="op">/</span> np.<span class="bu">sum</span>(x, axis<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb67-59"><a href="#cb67-59" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb67-60"><a href="#cb67-60" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> _em_init(<span class="va">self</span>, obs):</span>
+<span id="cb67-61"><a href="#cb67-61" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb67-62"><a href="#cb67-62" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="va">self</span>.n_dims <span class="kw">is</span> <span class="va">None</span>:</span>
+<span id="cb67-63"><a href="#cb67-63" aria-hidden="true" tabindex="-1"></a>            <span class="va">self</span>.n_dims <span class="op">=</span> obs.shape[<span class="dv">0</span>]</span>
+<span id="cb67-64"><a href="#cb67-64" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="va">self</span>.mu <span class="kw">is</span> <span class="va">None</span>:</span>
+<span id="cb67-65"><a href="#cb67-65" aria-hidden="true" tabindex="-1"></a>            subset <span class="op">=</span> <span class="va">self</span>.random_state.choice(np.arange(<span class="va">self</span>.n_dims), size<span class="op">=</span><span class="va">self</span>.n_states, replace<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb67-66"><a href="#cb67-66" aria-hidden="true" tabindex="-1"></a>            <span class="va">self</span>.mu <span class="op">=</span> obs[:, subset]</span>
+<span id="cb67-67"><a href="#cb67-67" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="va">self</span>.covs <span class="kw">is</span> <span class="va">None</span>:</span>
+<span id="cb67-68"><a href="#cb67-68" aria-hidden="true" tabindex="-1"></a>            <span class="va">self</span>.covs <span class="op">=</span> np.zeros((<span class="va">self</span>.n_dims, <span class="va">self</span>.n_dims, <span class="va">self</span>.n_states))</span>
+<span id="cb67-69"><a href="#cb67-69" aria-hidden="true" tabindex="-1"></a>            <span class="va">self</span>.covs <span class="op">+=</span> np.diag(np.diag(np.cov(obs)))[:, :, <span class="va">None</span>]</span>
+<span id="cb67-70"><a href="#cb67-70" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="va">self</span></span>
+<span id="cb67-71"><a href="#cb67-71" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb67-72"><a href="#cb67-72" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> _em_step(<span class="va">self</span>, obs): </span>
+<span id="cb67-73"><a href="#cb67-73" aria-hidden="true" tabindex="-1"></a>        obs <span class="op">=</span> np.atleast_2d(obs)</span>
+<span id="cb67-74"><a href="#cb67-74" aria-hidden="true" tabindex="-1"></a>        B <span class="op">=</span> <span class="va">self</span>._state_likelihood(obs)</span>
+<span id="cb67-75"><a href="#cb67-75" aria-hidden="true" tabindex="-1"></a>        T <span class="op">=</span> obs.shape[<span class="dv">1</span>]</span>
+<span id="cb67-76"><a href="#cb67-76" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb67-77"><a href="#cb67-77" aria-hidden="true" tabindex="-1"></a>        log_likelihood, alpha <span class="op">=</span> <span class="va">self</span>._forward(B)</span>
+<span id="cb67-78"><a href="#cb67-78" aria-hidden="true" tabindex="-1"></a>        beta <span class="op">=</span> <span class="va">self</span>._backward(B)</span>
+<span id="cb67-79"><a href="#cb67-79" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb67-80"><a href="#cb67-80" aria-hidden="true" tabindex="-1"></a>        xi_sum <span class="op">=</span> np.zeros((<span class="va">self</span>.n_states, <span class="va">self</span>.n_states))</span>
+<span id="cb67-81"><a href="#cb67-81" aria-hidden="true" tabindex="-1"></a>        gamma <span class="op">=</span> np.zeros((<span class="va">self</span>.n_states, T))</span>
+<span id="cb67-82"><a href="#cb67-82" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb67-83"><a href="#cb67-83" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> t <span class="kw">in</span> <span class="bu">range</span>(T <span class="op">-</span> <span class="dv">1</span>):</span>
+<span id="cb67-84"><a href="#cb67-84" aria-hidden="true" tabindex="-1"></a>            partial_sum <span class="op">=</span> <span class="va">self</span>.A <span class="op">*</span> np.dot(alpha[:, t], (beta[:, t] <span class="op">*</span> B[:, t <span class="op">+</span> <span class="dv">1</span>]).T)</span>
+<span id="cb67-85"><a href="#cb67-85" aria-hidden="true" tabindex="-1"></a>            xi_sum <span class="op">+=</span> <span class="va">self</span>._normalize(partial_sum)</span>
+<span id="cb67-86"><a href="#cb67-86" aria-hidden="true" tabindex="-1"></a>            partial_g <span class="op">=</span> alpha[:, t] <span class="op">*</span> beta[:, t]</span>
+<span id="cb67-87"><a href="#cb67-87" aria-hidden="true" tabindex="-1"></a>            gamma[:, t] <span class="op">=</span> <span class="va">self</span>._normalize(partial_g)</span>
+<span id="cb67-88"><a href="#cb67-88" aria-hidden="true" tabindex="-1"></a>              </span>
+<span id="cb67-89"><a href="#cb67-89" aria-hidden="true" tabindex="-1"></a>        partial_g <span class="op">=</span> alpha[:, <span class="op">-</span><span class="dv">1</span>] <span class="op">*</span> beta[:, <span class="op">-</span><span class="dv">1</span>]</span>
+<span id="cb67-90"><a href="#cb67-90" aria-hidden="true" tabindex="-1"></a>        gamma[:, <span class="op">-</span><span class="dv">1</span>] <span class="op">=</span> <span class="va">self</span>._normalize(partial_g)</span>
+<span id="cb67-91"><a href="#cb67-91" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb67-92"><a href="#cb67-92" aria-hidden="true" tabindex="-1"></a>        expected_prior <span class="op">=</span> gamma[:, <span class="dv">0</span>]</span>
+<span id="cb67-93"><a href="#cb67-93" aria-hidden="true" tabindex="-1"></a>        expected_A <span class="op">=</span> <span class="va">self</span>._stochasticize(xi_sum)</span>
+<span id="cb67-94"><a href="#cb67-94" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb67-95"><a href="#cb67-95" aria-hidden="true" tabindex="-1"></a>        expected_mu <span class="op">=</span> np.zeros((<span class="va">self</span>.n_dims, <span class="va">self</span>.n_states))</span>
+<span id="cb67-96"><a href="#cb67-96" aria-hidden="true" tabindex="-1"></a>        expected_covs <span class="op">=</span> np.zeros((<span class="va">self</span>.n_dims, <span class="va">self</span>.n_dims, <span class="va">self</span>.n_states))</span>
+<span id="cb67-97"><a href="#cb67-97" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb67-98"><a href="#cb67-98" aria-hidden="true" tabindex="-1"></a>        gamma_state_sum <span class="op">=</span> np.<span class="bu">sum</span>(gamma, axis<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb67-99"><a href="#cb67-99" aria-hidden="true" tabindex="-1"></a>        <span class="co">#Before the division operation, change 0 to 1.</span></span>
+<span id="cb67-100"><a href="#cb67-100" aria-hidden="true" tabindex="-1"></a>        gamma_state_sum <span class="op">=</span> gamma_state_sum <span class="op">+</span> (gamma_state_sum <span class="op">==</span> <span class="dv">0</span>)</span>
+<span id="cb67-101"><a href="#cb67-101" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb67-102"><a href="#cb67-102" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> s <span class="kw">in</span> <span class="bu">range</span>(<span class="va">self</span>.n_states):</span>
+<span id="cb67-103"><a href="#cb67-103" aria-hidden="true" tabindex="-1"></a>            gamma_obs <span class="op">=</span> obs <span class="op">*</span> gamma[s, :]</span>
+<span id="cb67-104"><a href="#cb67-104" aria-hidden="true" tabindex="-1"></a>            expected_mu[:, s] <span class="op">=</span> np.<span class="bu">sum</span>(gamma_obs, axis<span class="op">=</span><span class="dv">1</span>) <span class="op">/</span> gamma_state_sum[s]</span>
+<span id="cb67-105"><a href="#cb67-105" aria-hidden="true" tabindex="-1"></a>            partial_covs <span class="op">=</span> np.dot(gamma_obs, obs.T) <span class="op">/</span> gamma_state_sum[s] <span class="op">-</span> np.dot(expected_mu[:, s], expected_mu[:, s].T)</span>
+<span id="cb67-106"><a href="#cb67-106" aria-hidden="true" tabindex="-1"></a>            <span class="co"># 对称</span></span>
+<span id="cb67-107"><a href="#cb67-107" aria-hidden="true" tabindex="-1"></a>            partial_covs <span class="op">=</span> np.triu(partial_covs) <span class="op">+</span> np.triu(partial_covs).T <span class="op">-</span> np.diag(partial_covs)</span>
+<span id="cb67-108"><a href="#cb67-108" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb67-109"><a href="#cb67-109" aria-hidden="true" tabindex="-1"></a>        <span class="co">#Add diagonal elements to ensure semi-determinity</span></span>
+<span id="cb67-110"><a href="#cb67-110" aria-hidden="true" tabindex="-1"></a>        expected_covs <span class="op">+=</span> <span class="fl">.01</span> <span class="op">*</span> np.eye(<span class="va">self</span>.n_dims)[:, :, <span class="va">None</span>]</span>
+<span id="cb67-111"><a href="#cb67-111" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb67-112"><a href="#cb67-112" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.prior <span class="op">=</span> expected_prior</span>
+<span id="cb67-113"><a href="#cb67-113" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.mu <span class="op">=</span> expected_mu</span>
+<span id="cb67-114"><a href="#cb67-114" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.covs <span class="op">=</span> expected_covs</span>
+<span id="cb67-115"><a href="#cb67-115" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.A <span class="op">=</span> expected_A</span>
+<span id="cb67-116"><a href="#cb67-116" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> log_likelihood</span>
+<span id="cb67-117"><a href="#cb67-117" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb67-118"><a href="#cb67-118" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> fit(<span class="va">self</span>, obs, n_iter<span class="op">=</span><span class="dv">15</span>):</span>
+<span id="cb67-119"><a href="#cb67-119" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Obj supports 2D or 3D arrays</span></span>
+<span id="cb67-120"><a href="#cb67-120" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb67-121"><a href="#cb67-121" aria-hidden="true" tabindex="-1"></a>        <span class="co"># The form of 2D array is n_features, n_dims</span></span>
+<span id="cb67-122"><a href="#cb67-122" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb67-123"><a href="#cb67-123" aria-hidden="true" tabindex="-1"></a>        <span class="co"># The form of 3D array is n_examples, n_features, n_dims</span></span>
+<span id="cb67-124"><a href="#cb67-124" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb67-125"><a href="#cb67-125" aria-hidden="true" tabindex="-1"></a>        <span class="co"># For example, if a voice fragment contains 6 characteristics and consists of 105 different samples</span></span>
+<span id="cb67-126"><a href="#cb67-126" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb67-127"><a href="#cb67-127" aria-hidden="true" tabindex="-1"></a>        <span class="co"># So this obj array is three-dimensional, the size is (105,6,X), where X is the number of frames.</span></span>
+<span id="cb67-128"><a href="#cb67-128" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb67-129"><a href="#cb67-129" aria-hidden="true" tabindex="-1"></a>        <span class="co"># For data containing only one sample, obj size is (6,X)</span></span>
+<span id="cb67-130"><a href="#cb67-130" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="bu">len</span>(obs.shape) <span class="op">==</span> <span class="dv">2</span>:</span>
+<span id="cb67-131"><a href="#cb67-131" aria-hidden="true" tabindex="-1"></a>            <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(n_iter):</span>
+<span id="cb67-132"><a href="#cb67-132" aria-hidden="true" tabindex="-1"></a>                <span class="va">self</span>._em_init(obs)</span>
+<span id="cb67-133"><a href="#cb67-133" aria-hidden="true" tabindex="-1"></a>                log_likelihood <span class="op">=</span> <span class="va">self</span>._em_step(obs)</span>
+<span id="cb67-134"><a href="#cb67-134" aria-hidden="true" tabindex="-1"></a>        <span class="cf">elif</span> <span class="bu">len</span>(obs.shape) <span class="op">==</span> <span class="dv">3</span>:</span>
+<span id="cb67-135"><a href="#cb67-135" aria-hidden="true" tabindex="-1"></a>            count <span class="op">=</span> obs.shape[<span class="dv">0</span>]</span>
+<span id="cb67-136"><a href="#cb67-136" aria-hidden="true" tabindex="-1"></a>            <span class="cf">for</span> n <span class="kw">in</span> <span class="bu">range</span>(count):</span>
+<span id="cb67-137"><a href="#cb67-137" aria-hidden="true" tabindex="-1"></a>                <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(n_iter):</span>
+<span id="cb67-138"><a href="#cb67-138" aria-hidden="true" tabindex="-1"></a>                    <span class="va">self</span>._em_init(obs[n, :, :])</span>
+<span id="cb67-139"><a href="#cb67-139" aria-hidden="true" tabindex="-1"></a>                    log_likelihood <span class="op">=</span> <span class="va">self</span>._em_step(obs[n, :, :])</span>
+<span id="cb67-140"><a href="#cb67-140" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="va">self</span></span>
+<span id="cb67-141"><a href="#cb67-141" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb67-142"><a href="#cb67-142" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> transform(<span class="va">self</span>, obs):</span>
+<span id="cb67-143"><a href="#cb67-143" aria-hidden="true" tabindex="-1"></a>        <span class="co"># obj supports 2D or 3D arrays</span></span>
+<span id="cb67-144"><a href="#cb67-144" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb67-145"><a href="#cb67-145" aria-hidden="true" tabindex="-1"></a>        <span class="co"># The form of 2D array is n_features, n_dims</span></span>
+<span id="cb67-146"><a href="#cb67-146" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb67-147"><a href="#cb67-147" aria-hidden="true" tabindex="-1"></a>        <span class="co"># The form of 3D array is n_examples, n_features, n_dims</span></span>
+<span id="cb67-148"><a href="#cb67-148" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb67-149"><a href="#cb67-149" aria-hidden="true" tabindex="-1"></a>        <span class="co"># For example, if a voice fragment contains 6 characteristics and consists of 105 different samples</span></span>
+<span id="cb67-150"><a href="#cb67-150" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb67-151"><a href="#cb67-151" aria-hidden="true" tabindex="-1"></a>        <span class="co"># So this obj array is three-dimensional, the size is (105,6,X), where X is the number of frames.</span></span>
+<span id="cb67-152"><a href="#cb67-152" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb67-153"><a href="#cb67-153" aria-hidden="true" tabindex="-1"></a>        <span class="co"># For data containing only one sample, obj size is (6,X)</span></span>
+<span id="cb67-154"><a href="#cb67-154" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="bu">len</span>(obs.shape) <span class="op">==</span> <span class="dv">2</span>:</span>
+<span id="cb67-155"><a href="#cb67-155" aria-hidden="true" tabindex="-1"></a>            B <span class="op">=</span> <span class="va">self</span>._state_likelihood(obs)</span>
+<span id="cb67-156"><a href="#cb67-156" aria-hidden="true" tabindex="-1"></a>            log_likelihood, _ <span class="op">=</span> <span class="va">self</span>._forward(B)</span>
+<span id="cb67-157"><a href="#cb67-157" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> log_likelihood</span>
+<span id="cb67-158"><a href="#cb67-158" aria-hidden="true" tabindex="-1"></a>        <span class="cf">elif</span> <span class="bu">len</span>(obs.shape) <span class="op">==</span> <span class="dv">3</span>:</span>
+<span id="cb67-159"><a href="#cb67-159" aria-hidden="true" tabindex="-1"></a>            count <span class="op">=</span> obs.shape[<span class="dv">0</span>]</span>
+<span id="cb67-160"><a href="#cb67-160" aria-hidden="true" tabindex="-1"></a>            out <span class="op">=</span> np.zeros((count,))</span>
+<span id="cb67-161"><a href="#cb67-161" aria-hidden="true" tabindex="-1"></a>            <span class="cf">for</span> n <span class="kw">in</span> <span class="bu">range</span>(count):</span>
+<span id="cb67-162"><a href="#cb67-162" aria-hidden="true" tabindex="-1"></a>                B <span class="op">=</span> <span class="va">self</span>._state_likelihood(obs[n, :, :])</span>
+<span id="cb67-163"><a href="#cb67-163" aria-hidden="true" tabindex="-1"></a>                log_likelihood, _ <span class="op">=</span> <span class="va">self</span>._forward(B)</span>
+<span id="cb67-164"><a href="#cb67-164" aria-hidden="true" tabindex="-1"></a>                out[n] <span class="op">=</span> log_likelihood</span>
+<span id="cb67-165"><a href="#cb67-165" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> out</span></code></pre></div>
+</div>
+<p>Next, we choose two (4,40) arrays and put them into the class for training.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode" id="cb68"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb68-1"><a href="#cb68-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="va">__name__</span> <span class="op">==</span> <span class="st">&quot;__main__&quot;</span>:</span>
+<span id="cb68-2"><a href="#cb68-2" aria-hidden="true" tabindex="-1"></a>    rstate <span class="op">=</span> np.random.RandomState(<span class="dv">0</span>)</span>
+<span id="cb68-3"><a href="#cb68-3" aria-hidden="true" tabindex="-1"></a>    t1 <span class="op">=</span> np.ones((<span class="dv">4</span>, <span class="dv">40</span>)) <span class="op">+</span> <span class="fl">.001</span> <span class="op">*</span> rstate.rand(<span class="dv">4</span>, <span class="dv">40</span>)</span>
+<span id="cb68-4"><a href="#cb68-4" aria-hidden="true" tabindex="-1"></a>    t1 <span class="op">/=</span> t1.<span class="bu">sum</span>(axis<span class="op">=</span><span class="dv">0</span>) <span class="co"># NORMALISATION</span></span>
+<span id="cb68-5"><a href="#cb68-5" aria-hidden="true" tabindex="-1"></a>    t2 <span class="op">=</span> rstate.rand(<span class="op">*</span>t1.shape)</span>
+<span id="cb68-6"><a href="#cb68-6" aria-hidden="true" tabindex="-1"></a>    t2 <span class="op">/=</span> t2.<span class="bu">sum</span>(axis<span class="op">=</span><span class="dv">0</span>) <span class="co"># NORMALISATION</span></span>
+<span id="cb68-7"><a href="#cb68-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb68-8"><a href="#cb68-8" aria-hidden="true" tabindex="-1"></a>    m1 <span class="op">=</span> GmmHmm(<span class="dv">2</span>)</span>
+<span id="cb68-9"><a href="#cb68-9" aria-hidden="true" tabindex="-1"></a>    m1.fit(t1)</span>
+<span id="cb68-10"><a href="#cb68-10" aria-hidden="true" tabindex="-1"></a>    m2 <span class="op">=</span> GmmHmm(<span class="dv">2</span>)</span>
+<span id="cb68-11"><a href="#cb68-11" aria-hidden="true" tabindex="-1"></a>    m2.fit(t2)</span>
+<span id="cb68-12"><a href="#cb68-12" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb68-13"><a href="#cb68-13" aria-hidden="true" tabindex="-1"></a>    m1t1 <span class="op">=</span> m1.transform(t1)</span>
+<span id="cb68-14"><a href="#cb68-14" aria-hidden="true" tabindex="-1"></a>    m2t1 <span class="op">=</span> m2.transform(t1)</span>
+<span id="cb68-15"><a href="#cb68-15" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">&quot;Likelihoods for test set 1&quot;</span>)</span>
+<span id="cb68-16"><a href="#cb68-16" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">&quot;M1:&quot;</span>, m1t1)</span>
+<span id="cb68-17"><a href="#cb68-17" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">&quot;M2:&quot;</span>, m2t1)</span>
+<span id="cb68-18"><a href="#cb68-18" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">&quot;Prediction for test set 1&quot;</span>)</span>
+<span id="cb68-19"><a href="#cb68-19" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">&quot;Model&quot;</span>, np.argmax([m1t1, m2t1]) <span class="op">+</span> <span class="dv">1</span>)</span>
+<span id="cb68-20"><a href="#cb68-20" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>()</span>
+<span id="cb68-21"><a href="#cb68-21" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb68-22"><a href="#cb68-22" aria-hidden="true" tabindex="-1"></a>    m1t2 <span class="op">=</span> m1.transform(t2)</span>
+<span id="cb68-23"><a href="#cb68-23" aria-hidden="true" tabindex="-1"></a>    m2t2 <span class="op">=</span> m2.transform(t2)</span>
+<span id="cb68-24"><a href="#cb68-24" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">&quot;Likelihoods for test set 2&quot;</span>)</span>
+<span id="cb68-25"><a href="#cb68-25" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">&quot;M1:&quot;</span>, m1t2)</span>
+<span id="cb68-26"><a href="#cb68-26" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">&quot;M2:&quot;</span>, m2t2)</span>
+<span id="cb68-27"><a href="#cb68-27" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">&quot;Prediction for test set 2&quot;</span>)</span>
+<span id="cb68-28"><a href="#cb68-28" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">&quot;Model&quot;</span>, np.argmax([m1t2, m2t2]) <span class="op">+</span> <span class="dv">1</span>)</span></code></pre></div>
+<pre><code>&lt;__main__.GmmHmm object at 0x154973390&gt;
+&lt;__main__.GmmHmm object at 0x1549502d0&gt;
+Likelihoods for test set 1
+M1: 221.38828575112734
+M2: 165.27280230776495
+Prediction for test set 1
+Model 1
+
+Likelihoods for test set 2
+M1: 33.19459421485196
+M2: 59.15274753052998
+Prediction for test set 2
+Model 2</code></pre>
+</div>
+<p>For sample t1, it better fits model M1; for sample t2, it better fits model M2.</p>
+<h3 id="speech-recognition-model-training-and-prediction">5 Speech Recognition Model Training and Prediction</h3>
+<p>Now all the preparation work is complete, and all that remains is to train the model using actual audio samples and make predictions.</p>
+<h3 id="traintest-split">5.1 Train/Test Split</h3>
+<p>Next, we use 80% of the original 105 samples as the training set and 20% as the test set for model training and prediction. To ensure that the word class distribution of samples in the test set and training set is balanced, we need to pass the label <code>all_labels</code> of each sample’s word to the <code>stratify</code> parameter when splitting the dataset.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode" id="cb70"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb70-1"><a href="#cb70-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> train_test_split</span>
+<span id="cb70-2"><a href="#cb70-2" aria-hidden="true" tabindex="-1"></a>X_train, X_test, y_train, y_test <span class="op">=</span> train_test_split(all_obs,</span>
+<span id="cb70-3"><a href="#cb70-3" aria-hidden="true" tabindex="-1"></a>                                                    all_labels,</span>
+<span id="cb70-4"><a href="#cb70-4" aria-hidden="true" tabindex="-1"></a>                                                    train_size<span class="op">=</span><span class="fl">0.8</span>,</span>
+<span id="cb70-5"><a href="#cb70-5" aria-hidden="true" tabindex="-1"></a>                                                    test_size<span class="op">=</span><span class="fl">0.2</span>,</span>
+<span id="cb70-6"><a href="#cb70-6" aria-hidden="true" tabindex="-1"></a>                                                    random_state <span class="op">=</span><span class="dv">666</span>,</span>
+<span id="cb70-7"><a href="#cb70-7" aria-hidden="true" tabindex="-1"></a>                                                    stratify<span class="op">=</span>all_labels)</span>
+<span id="cb70-8"><a href="#cb70-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb70-9"><a href="#cb70-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Since the result of HMM is probability, we need to normalise the characteristics.</span></span>
+<span id="cb70-10"><a href="#cb70-10" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> n,i <span class="kw">in</span> <span class="bu">enumerate</span>(all_obs):</span>
+<span id="cb70-11"><a href="#cb70-11" aria-hidden="true" tabindex="-1"></a>    all_obs[n] <span class="op">/=</span> all_obs[n].<span class="bu">sum</span>(axis<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb70-12"><a href="#cb70-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb70-13"><a href="#cb70-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&#39;Size of training matrix:&#39;</span>, X_train.shape)</span></code></pre></div>
+<pre><code>Size of training matrix: (72, 6, 216)</code></pre>
+<div class="sourceCode" id="cb72"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb72-1"><a href="#cb72-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&#39;Size of testing matrix:&#39;</span>, X_test.shape)</span></code></pre></div>
+<pre><code>Size of testing matrix: (18, 6, 216)</code></pre>
+</div>
+<p>In order to predict the words in each voice, we need to train 7 independent GMM-HMM models, each corresponding to one word. Then we extract the characteristics in the test voice sample, “feed” to 7 models, and select the word corresponding to the GMM-HMM with the highest output similarity as the prediction results.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode" id="cb74"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb74-1"><a href="#cb74-1" aria-hidden="true" tabindex="-1"></a>ys <span class="op">=</span> <span class="bu">set</span>(all_labels)</span>
+<span id="cb74-2"><a href="#cb74-2" aria-hidden="true" tabindex="-1"></a>ms <span class="op">=</span> [GmmHmm(<span class="dv">6</span>) <span class="cf">for</span> y <span class="kw">in</span> ys]</span>
+<span id="cb74-3"><a href="#cb74-3" aria-hidden="true" tabindex="-1"></a>_ <span class="op">=</span> [m.fit(X_train[y_train <span class="op">==</span> y, :, :]) <span class="cf">for</span> m, y <span class="kw">in</span> <span class="bu">zip</span>(ms, ys)]</span>
+<span id="cb74-4"><a href="#cb74-4" aria-hidden="true" tabindex="-1"></a>ps <span class="op">=</span> [m.transform(X_test) <span class="cf">for</span> m <span class="kw">in</span> ms]</span>
+<span id="cb74-5"><a href="#cb74-5" aria-hidden="true" tabindex="-1"></a>res <span class="op">=</span> np.vstack(ps)</span>
+<span id="cb74-6"><a href="#cb74-6" aria-hidden="true" tabindex="-1"></a>predicted_labels <span class="op">=</span> np.argmax(res, axis<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb74-7"><a href="#cb74-7" aria-hidden="true" tabindex="-1"></a>missed <span class="op">=</span> (predicted_labels <span class="op">!=</span> y_test)</span>
+<span id="cb74-8"><a href="#cb74-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&#39;Test accuracy: </span><span class="sc">%.2f</span><span class="st"> percent&#39;</span> <span class="op">%</span> (<span class="dv">100</span> <span class="op">*</span> (<span class="dv">1</span> <span class="op">-</span> np.mean(missed))))</span></code></pre></div>
+<pre><code>Test accuracy: 16.67 percent</code></pre>
+</div>
+<p>It seems that the accuracy rate is relatively high, but it is not very good. After all, this is a simple single-sound source task. Let’s take a look at the situation of the confusion matrix:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode" id="cb76"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb76-1"><a href="#cb76-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> confusion_matrix</span>
+<span id="cb76-2"><a href="#cb76-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb76-3"><a href="#cb76-3" aria-hidden="true" tabindex="-1"></a>cm <span class="op">=</span> confusion_matrix(y_test, predicted_labels)</span>
+<span id="cb76-4"><a href="#cb76-4" aria-hidden="true" tabindex="-1"></a>f,ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">8</span>,<span class="dv">6</span>))</span>
+<span id="cb76-5"><a href="#cb76-5" aria-hidden="true" tabindex="-1"></a>sns.heatmap(cm, </span>
+<span id="cb76-6"><a href="#cb76-6" aria-hidden="true" tabindex="-1"></a>            annot<span class="op">=</span><span class="va">True</span>,</span>
+<span id="cb76-7"><a href="#cb76-7" aria-hidden="true" tabindex="-1"></a>            cmap<span class="op">=</span><span class="st">&#39;summer&#39;</span>,</span>
+<span id="cb76-8"><a href="#cb76-8" aria-hidden="true" tabindex="-1"></a>            linewidths<span class="op">=</span><span class="fl">1.3</span>)</span></code></pre></div>
+<pre><code>&lt;Axes: &gt;</code></pre>
+<div class="sourceCode" id="cb78"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb78-1"><a href="#cb78-1" aria-hidden="true" tabindex="-1"></a>ax.set_xticklabels(spoken)</span></code></pre></div>
+<pre><code>[Text(0.5, 0, &#39;kiwi&#39;), Text(1.5, 0, &#39;lime&#39;), Text(2.5, 0, &#39;banana&#39;), Text(3.5, 0, &#39;pineapple&#39;), Text(4.5, 0, &#39;orange&#39;), Text(5.5, 0, &#39;peach&#39;)]</code></pre>
+<div class="sourceCode" id="cb80"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb80-1"><a href="#cb80-1" aria-hidden="true" tabindex="-1"></a>ax.set_yticklabels(spoken,rotation<span class="op">=</span><span class="st">&#39;horizontal&#39;</span>)</span></code></pre></div>
+<pre><code>[Text(0, 0.5, &#39;kiwi&#39;), Text(0, 1.5, &#39;lime&#39;), Text(0, 2.5, &#39;banana&#39;), Text(0, 3.5, &#39;pineapple&#39;), Text(0, 4.5, &#39;orange&#39;), Text(0, 5.5, &#39;peach&#39;)]</code></pre>
+<div class="sourceCode" id="cb82"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb82-1"><a href="#cb82-1" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">&#39;Confusion matrix, single speaker&#39;</span>)</span></code></pre></div>
+<pre><code>Text(0.5, 1.0, &#39;Confusion matrix, single speaker&#39;)</code></pre>
+<div class="sourceCode" id="cb84"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb84-1"><a href="#cb84-1" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">&#39;True label&#39;</span>)</span></code></pre></div>
+<pre><code>Text(62.25, 0.5, &#39;True label&#39;)</code></pre>
+<div class="sourceCode" id="cb86"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb86-1"><a href="#cb86-1" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">&#39;Predicted label&#39;</span>)</span></code></pre></div>
+<pre><code>Text(0.5, 28.249999999999986, &#39;Predicted label&#39;)</code></pre>
+<p><img src="speech_files/figure-html5/unnamed-chunk-16-9.png" alt="" width="768" /></p>
+</div>
+<h3 id="summary">6 Summary</h3>
+<p>After arduous exploration, we can finally completely extract the peak characteristics of the voice waveform and use them for the training of the GMM-HMM model, and finally realise the recognition of single-sound source voice. You can try to record the voice file of several words with your own voice, and then use the steps of this case to generate a self-identification. The voice recognition model of your own voice. In the future, we can try to use MFCCs or deep neural networks to deal with the problem of voice recognition!</p>
+<div class="sourceCode" id="cb88"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<!--radix_placeholder_article_footer-->
+<!--/radix_placeholder_article_footer-->
+</div>
+
+<div class="d-appendix">
+</div>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+<!--radix_placeholder_site_after_body-->
+<!--/radix_placeholder_site_after_body-->
+<!--radix_placeholder_appendices-->
+<div class="appendix-bottom"></div>
+<!--/radix_placeholder_appendices-->
+<!--radix_placeholder_navigation_after_body-->
+<!--/radix_placeholder_navigation_after_body-->
+
+</body>
+
+</html>
