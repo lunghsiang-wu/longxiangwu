@@ -40,4 +40,4 @@ meta() %>%
   )
 ```
  
-Hi! <span class="wave">👋</span> I am a data scientist who helps insurance companies do customers profiling. I love wrangling, modeling, and visualizing data, and helping others do the same. 
+Hi! <span class="wave">👋</span> I am a data scientist who helps financial companies do customers profiling and develop marketing strategies. I love wrangling, modeling, and visualizing data, and helping others do the same. 

@@ -17,7 +17,7 @@ navbar:
     - text: "Portfolio"
       href: portfolio.html
     - text: "CV"
-      href: longxiang_wu_cv.html
+      href: https://drive.google.com/file/d/190kXs9isebW4GFZZX8br7D4UGOveJrME/view?usp=sharing
     - icon: fa fa-github
       href: https://github.com/lunghsiang-wu
     - icon: fa fa-linkedin
