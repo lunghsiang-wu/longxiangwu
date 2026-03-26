@@ -7,19 +7,19 @@ title: "Longxiang Wu"
 ## Professional
 
 
-I’m an enthusiastic professional data scientist with over ten years of experience collaborating on data analysis with diverse partners in industry and tech.  My previous work experiences include predicting the sales of JD.com and analysing the logisitc data. I am a member of Irish Statistical Association.    
+I am an enthusiastic data scientist with over ten years of experience collaborating with diverse partners across industry and technology. My work spans the full data pipeline — from exploratory analysis to production-ready predictive models. Notable projects include developing sales forecasting models for JD.com and conducting in-depth logistics data analysis to drive operational efficiency. I am a proud member of the Irish Statistical Association, reflecting my commitment to staying engaged with the broader data science community and upholding rigorous statistical standards in my practice.   
 
 
 ## Personal
 
-I am single and currently living with my parents.
+I am currently at an exciting and grounded stage of life — single, living with my family, and fully invested in both personal growth and professional development. I find that the closeness and support of family life brings a sense of perspective and balance that quietly informs the way I work: with patience, care, and a long-term mindset. Outside of data and algorithms, I am someone who values meaningful connections, continuous learning, and the belief that the best work comes from those who bring their whole selves to what they do.
 
 
 ## Contact
 
 Want to chat?  Go ahead, pipe up!  Feel free to contact me on [email](mailto:longxiangwu@outlook.com){target="_blank"}, or [LinkedIn](www.linkedin.com/in/longxiang-wu-003506106){target="_blank"}. I hope to hear from you!
 
-## Books I am reading
+## Books I Am Reading
 
 <center>
 :::: {style="display: flex; gap: 10px; align-items: flex-start;"}
