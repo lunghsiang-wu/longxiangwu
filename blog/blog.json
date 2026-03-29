@@ -1,5 +1,22 @@
 [
   {
+    "path": "blog/2026-03-29-harmonic/",
+    "title": "What is Harmoinc Analysis?",
+    "description": "A method of determining the period of the cyclical term in a time series.",
+    "author": [
+      {
+        "name": "Longxiang Wu",
+        "url": "https://lunghsiang-wu.github.io/longxiangwu/"
+      }
+    ],
+    "date": "2025-06-07",
+    "categories": [],
+    "contents": "\nA method of determining the period of the cyclical term \\(S_t\\) in a time series of the form\n\\[X_t = S_t + \\epsilon_t\\]\nwhere \\(\\epsilon_t\\) represents the random fluctuations of the series about \\(S_t\\). The cyclical term is\nrepresented as a sum of sine and cosine terms so that \\(X_t\\) becomes\n\\[X_t = \\sum_i (A_i \\cos \\omega_i t + B_i \\sin \\omega_i t) + \\epsilon_t\\]\nFor certain series the periodicity of the cyclical component can be specified very accu-\nrately, as, for example, in the case of economic or geophysical series which contain a strict\n12-month cycle. In such cases, the coefficients \\(\\{A_i\\}\\), \\(\\{B_i\\}\\) can be estimated by regression\ntechniques. For many series, however, there may be several periodic terms present with\nunknown periods and so not only the coefficients \\(\\{A_i\\}\\), \\(\\{B_i\\}\\) have to be estimated but\nalso the unknown frequencies \\(\\{\\omega_i\\}\\). The so-called hidden periodicities can often be\ndetermined by examination of the periodogram which is a plot of \\(I(\\omega)\\) against \\(\\omega\\) where\n\\[I(\\omega) = \\frac{2}{N} \\left\\{ \\left[ \\sum_{i=1}^{N} X_t \\cos(\\omega t) \\right]^2 + \\left[ \\sum_{i=1}^{N} X_t \\sin(\\omega t) \\right]^2 \\right\\}\\]\nand \\(\\omega = 2\\pi p/N\\), \\(p = 1, 2, \\ldots, [N/2]\\); \\(N\\) is the length of the series. Large ordinates on this plot indicate the presence of a cyclical component at a particular frequency. As an\nexample of the application of this procedure Fig.1 shows the sunspot series and the\nFig.1 Sunspot activity and its periodogramperiodogram of this series based on 281 observations. It is clear that the ordinate at\n\\(\\omega = 2\\pi \\times 28/281\\), corresponding to a period of approximately 10 years, is appreciably\nlarger than the other ordinates. If several peaks are observed in the periodogram it\ncannot be concluded that each of these corresponds to a genuine periodic component in\n\\(X_t\\) since it is possible that peaks may occur due simply to random fluctuations in the noise\nterm \\(\\epsilon_t\\). Various procedures for formally assessing periodic ordinates are available of\nwhich the most commonly used are Schuster’s test, Walker’s test and Fisher’s g statistic.\n\n\n\n",
+    "preview": "blog/2026-03-29-harmonic/1666424753792.jpeg",
+    "last_modified": "2026-03-29T10:54:03+08:00",
+    "input_file": "harmonic.knit.md"
+  },
+  {
     "path": "blog/2026-03-29-fuzzy/",
     "title": "What is Fuzzy Set Theory?",
     "description": "A radically different approach to dealing with uncertainty than the traditional probabilistic and statistical methods.",
