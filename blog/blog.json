@@ -1,5 +1,22 @@
 [
   {
+    "path": "blog/2026-03-29-ipf/",
+    "title": "What are Inverse Polynomial Functions?",
+    "description": "Functions useful for modelling many dose–response relationships in biology.",
+    "author": [
+      {
+        "name": "Longxiang Wu",
+        "url": "https://lunghsiang-wu.github.io/longxiangwu/"
+      }
+    ],
+    "date": "2025-07-01",
+    "categories": [],
+    "contents": "\nFunctions useful for modelling many dose–response relationships in biology. For a particular dose or stimulus \\(x\\), the expected value of the response variable, \\(y\\), is defined by\n\\[E(y) = \\frac{x + \\alpha}{\\sum_{i=0}^{d} \\beta_i (x + \\alpha)^i} \\quad x \\geq 0\\]\nThe parameters, \\(\\beta_1, \\beta_2, \\ldots, \\beta_d\\), define the shape of the dose–response curve and \\(\\alpha\\) defines its\nposition on the \\(x\\) axis. A particularly useful form of the function is obtained by setting \\(\\alpha = 0\\)\nand \\(d = 1\\). The resulting curve is\n\\[E(y) = \\frac{x}{\\beta_0 + \\beta_1 x} \\quad x \\geq 0\\]\nwhich can be rewritten as\n\\[E(y) = \\frac{k_1 x}{k_2 + x}\\]\nwhere \\(k_1 = 1/\\beta_1\\) and \\(k_2 = \\beta_0/\\beta_1\\). This final equation is equivalent to the Michaelis–Menten equation.\n\nExamples of inverse normal distributions: \\(\\mu = 1.0\\); \\(\\lambda = 2.0, 6.0\\).\n\n\n\n",
+    "preview": "blog/2026-03-29-ipf/polywiggle.gif",
+    "last_modified": "2026-03-29T13:05:46+08:00",
+    "input_file": "ipf.knit.md"
+  },
+  {
     "path": "blog/2026-03-29-harmonic/",
     "title": "What is Harmoinc Analysis?",
     "description": "A method of determining the period of the cyclical term in a time series.",
