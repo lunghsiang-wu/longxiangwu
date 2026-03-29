@@ -1,5 +1,22 @@
 [
   {
+    "path": "blog/2026-03-29-eu/",
+    "title": "What is EU Model?",
+    "description": "A model used in investigations of the rate of success of in vitro fertilization.",
+    "author": [
+      {
+        "name": "Longxiang Wu",
+        "url": "https://lunghsiang-wu.github.io/longxiangwu/"
+      }
+    ],
+    "date": "2025-02-05",
+    "categories": [],
+    "contents": "\nA model used in investigations of the rate of success of in vitro fertilization (IVF), defined\nin terms of the following two parameters.\n\\[\\begin{aligned}\ne &= \\text{Prob(of a viable embryo)} \\\\\nu &= \\text{Prob(of a receptive uterus)}\n\\end{aligned}\\]\nAssuming the two events, viable embryo and receptive uterus, are independent, the\nprobability of observing \\(j\\) implantations out of \\(i\\) transferred embryos is given by\n\\[P(j|i, u, e) = \\binom{i}{j} ue^j(1-e)^{i-j}, \\text{ for } j = 1, 2, 3, \\ldots, i.\\]\nThe probability of at least one implantation out of \\(i\\) transferred embryos is given by\n\\[P(j > 0 | i, u, e) = u[1 - (1-e)^i]\\]\nand the probability of no implantations by\n\\[P(j = 0 | i, u, e) = 1 - u[1 - (1-e)^i]\\]\nThe parameters \\(u\\) and \\(e\\) can be estimated by maximum likelihood estimation from observations\non the number of attempts at IVF with \\(j\\) implantations from \\(i\\) transferred.\n\n\n\n",
+    "preview": {},
+    "last_modified": "2026-03-29T10:11:34+08:00",
+    "input_file": "eu.knit.md"
+  },
+  {
     "path": "blog/2026-03-29-diggle/",
     "title": "What is Diggle-Kenward Model for Dropouts?",
     "description": "A model applicable to longitudinal data in which the dropout process may give rise to informative missing values.",
