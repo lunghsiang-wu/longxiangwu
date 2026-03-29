@@ -1,5 +1,24 @@
 [
   {
+    "path": "blog/2026-03-29-delta/",
+    "title": "What is Delta Method?",
+    "description": "A procedure that uses the Taylor series expansion of a function of one or more random variables to obtain approximations to the expected value of the function and to its variance.",
+    "author": [
+      {
+        "name": "Longxiang Wu",
+        "url": "https://lunghsiang-wu.github.io/longxiangwu/"
+      }
+    ],
+    "date": "2024-12-10",
+    "categories": [],
+    "contents": "\nA procedure that uses the Taylor series expansion of a function of one or more\nrandom variables to obtain approximations to the expected value of the function and to its\nvariance. For example, writing a variable \\(x\\) as \\(x = \\mu + \\epsilon\\) where \\(E(x) = \\mu\\) and \\(E(\\epsilon) = 0\\),\nTaylor’s expansion gives\n\\[f(x) = f(\\mu) + \\epsilon \\frac{df(x)}{dx}\\bigg|_{x=\\mu} + \\frac{\\epsilon^2}{2} \\frac{d^2f(x)}{dx^2}\\bigg|_{x=\\mu} + \\cdots\\]\nIf terms involving \\(\\epsilon^2, \\epsilon^3\\), etc. are assumed to be negligible then\n\\[f(x) \\approx f(\\mu) + (x - \\mu)f'(\\mu)\\]\nSo that\n\\[\\text{var}[f(x)] \\approx [f'(\\mu)]^2 \\text{var}(x)\\]\nSo if \\(f(x) = \\ln x\\) then \\(\\text{var}(\\ln x) = (1/\\mu^2)\\text{var}(x)\\).\n\n\n\n",
+    "preview": "blog/2026-03-29-delta/schematic.png",
+    "last_modified": "2026-03-29T09:33:15+08:00",
+    "input_file": "delta.knit.md",
+    "preview_width": 5966,
+    "preview_height": 4371
+  },
+  {
     "path": "blog/2026-03-29-da/",
     "title": "What is Data Augmentation?",
     "description": "A scheme for augmenting observed data so as to make it more easy to analyse.",

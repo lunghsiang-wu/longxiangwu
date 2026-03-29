@@ -1,0 +1,39 @@
+---
+title: "What is Delta Method?"
+description: |
+  A procedure that uses the Taylor series expansion of a function of one or more random variables to obtain approximations to the expected value of the function and to its variance.
+author:
+  - name: Longxiang Wu
+    url: https://lunghsiang-wu.github.io/longxiangwu/
+date: 2024-12-10
+preview: schematic.png
+output:
+  distill::distill_article:
+    self_contained: false
+    includes:
+      in_header: header.html
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+A procedure that uses the *Taylor series expansion* of a function of one or more
+random variables to obtain approximations to the expected value of the function and to its
+variance. For example, writing a variable $x$ as $x = \mu + \epsilon$ where $E(x) = \mu$ and $E(\epsilon) = 0$,
+Taylor's expansion gives
+
+$$f(x) = f(\mu) + \epsilon \frac{df(x)}{dx}\bigg|_{x=\mu} + \frac{\epsilon^2}{2} \frac{d^2f(x)}{dx^2}\bigg|_{x=\mu} + \cdots$$
+
+If terms involving $\epsilon^2, \epsilon^3$, etc. are assumed to be negligible then
+
+$$f(x) \approx f(\mu) + (x - \mu)f'(\mu)$$
+
+So that
+
+$$\text{var}[f(x)] \approx [f'(\mu)]^2 \text{var}(x)$$
+
+So if $f(x) = \ln x$ then $\text{var}(\ln x) = (1/\mu^2)\text{var}(x)$.
+
+
