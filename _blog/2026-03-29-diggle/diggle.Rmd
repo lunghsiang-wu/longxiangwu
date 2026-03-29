@@ -5,7 +5,7 @@ description: |
 author:
   - name: Longxiang Wu
     url: https://lunghsiang-wu.github.io/longxiangwu/
-date: 2026-03-29
+date: 2025-01-02
 preview: Latent-growth-model-assuming-missing-data-to-be-MAR-solid-black-to-calculate.png
 output:
   distill::distill_article:
