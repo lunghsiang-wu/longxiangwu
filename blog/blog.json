@@ -1,5 +1,96 @@
 [
   {
+    "path": "blog/2026-03-29-mart/",
+    "title": "What is Martingale?",
+    "description": {},
+    "author": [
+      {
+        "name": "Longxiang Wu",
+        "url": "https://lunghsiang-wu.github.io/longxiangwu/"
+      }
+    ],
+    "date": "2026-03-18",
+    "categories": [],
+    "contents": "\nIn a gambling context the term originally referred to a system for recouping losses by\ndoubling the stake after each loss. The modern mathematical concept can also be viewed in\nsuch terms as a mathematical formalization of the concept of a ‘fair’ game defined as one in\nwhich the expected size of the gambler’s bank after the \\(n\\)th game given the results of all\nprevious games is unchanged from the size after the \\((n-1)\\)th game, i.e. the gambler’s\naverage gain or loss after each game, given the previous history of the games is zero. More\nformally the term refers to a stochastic process, or a sequence of random variables \\(S_1, S_2, \\ldots,\\)\nwhich is such that the expected value of the \\((n+1)\\)th random variable conditional on the\nvalues of the first \\(n\\), equals the value of the \\(n\\)th random variable, i.e.\n\\[E(S_{n+1} | S_1, S_2, \\ldots, S_n) = S_n \\qquad n \\geq 1\\]\nso that \\(E(S_n)\\) does not depend on \\(n\\).\n\n\n\n",
+    "preview": "blog/2026-03-29-mart/1694284809.jpg",
+    "last_modified": "2026-03-29T14:06:03+08:00",
+    "input_file": "mart.knit.md"
+  },
+  {
+    "path": "blog/2026-03-29-manyo/",
+    "title": "What are Many-outlier Detection Procedures?",
+    "description": "Procedures for detecting multiple outliers in a sample of n observations.",
+    "author": [
+      {
+        "name": "Longxiang Wu",
+        "url": "https://lunghsiang-wu.github.io/longxiangwu/"
+      }
+    ],
+    "date": "2026-01-04",
+    "categories": [],
+    "contents": "\nProcedures for detecting multiple outliers in a sample of\n\\(n\\) observations, \\(x_1, x_2, \\ldots, x_n\\). Generally based on assuming that \\(k\\) of the observations\n\\(x_{i_1}, x_{i_2}, \\ldots, x_{i_k}\\) are outliers distributed normally with mean \\(\\mu + \\lambda_{i_j}, j = 1, \\ldots, k\\) and variance\n\\(\\sigma^2\\), while the remaining \\(n\\)-\\(k\\) observations are normally distributed with mean \\(\\mu\\) and again\nvariance \\(\\sigma^2\\). Three such procedures are:\nThe extreme standardized deviate (ESD), given by\n\\[\\text{ESD}_i = |x^{(S_i - 1)} - \\bar{x}(S_{i-1})| / s(S_{i-1}), \\quad i = 1, \\ldots, k\\]\nwhere \\(x^{(S_i-1)}\\) is the observation farthest away from the mean \\(\\bar{x}(S_{i-1})\\) in the subset\n\\(S_{i-1}\\), and\n\\[s^2(S_{i-1}) = \\sum_{j=1}^{n-i+1} [x_j(S_{i-1}) - \\bar{x}(S_{i-1})]^2 / (n - i)\\]\n\\(S_0 = \\{x_1, x_2, \\ldots, x_n\\}\\) and subsets \\(S_i, i = 1, \\ldots, k-1\\) are formed by deleting an\nobservation farthest from the mean of the subset \\(S_{i-1}\\).\nThe standardized range procedure (STR):\n\\[\\text{STR}_i = [x_l(S_{i-1}) - x_s(S_{i-1})] / s(S_{i-1}), \\quad i = 1, \\ldots, k\\]\nwhere \\(x_l(S_{i-1})\\) is the largest observation in the subset \\(S_{i-1}\\), and \\(x_s(S_{i-1})\\) is the smallest\nobservation in the subset \\(S_{i-1}\\).\nThe kurtosis procedure (KUR):\n\\[\\text{KUR}_i = (n - i + 1) \\sum_{j=1}^{n-i+1} [x_j(S_{i-1}) - \\bar{x}(S_{i-1})]^4 / \\left[ \\sum_{j=1}^{n-i+1} \\{x_j(S_{i-1}) - \\bar{x}(S_{i-1})\\}^2 \\right]^2,\\]\n\\[i = 1, \\ldots, k\\]\nSample values of any of these statistics are compared with the corresponding critical\nvalues for \\(i=k\\). If a sample value is found to be greater than the corresponding critical\nvalue, \\(k\\) outliers are declared to be present in the sample; otherwise, similar comparisons are made for \\(i = k-1, \\ldots, 1\\) until for a particular value of \\(i=l\\), the sample value\nis greater than the corresponding ordeal value in which case \\(l\\) outliers are declared to\nbe present in the sample. If for \\(i=1\\) the sample value of the statistics is less than or\nequal to the corresponding critical value, no outliers are detected.\n\n\n\n",
+    "preview": "blog/2026-03-29-manyo/out.png",
+    "last_modified": "2026-03-29T13:58:52+08:00",
+    "input_file": "manyo.knit.md",
+    "preview_width": 1024,
+    "preview_height": 768
+  },
+  {
+    "path": "blog/2026-03-29-logrank/",
+    "title": "What is Logrank Test?",
+    "description": "A test for comparing two or more sets of survival times, to assess the null hypothesis that there is no difference in the survival experience of the individuals in the different groups.",
+    "author": [
+      {
+        "name": "Longxiang Wu",
+        "url": "https://lunghsiang-wu.github.io/longxiangwu/"
+      }
+    ],
+    "date": "2025-12-05",
+    "categories": [],
+    "contents": "\nA test for comparing two or more sets of survival times, to assess the null hypothesis\nthat there is no difference in the survival experience of the individuals in the different groups.\nFor the two-group situation the test statistic is\n\\[U = \\sum_{j=1}^{r} (d_{1j} - e_{1j})\\]\nwhere \\(d_{1j}\\) is the number of deaths in the first group at \\(t_{(j)}\\), the \\(j\\)th ordered death time,\n\\(j = 1, 2, \\ldots, r\\), and \\(e_{1j}\\) is the corresponding expected number of deaths given by\n\\[e_{1j} = n_{1j} d_j / n_j\\]\nwhere \\(d_j\\) is the total number of deaths at time \\(t_{(j)}\\), \\(n_j\\) is the total number of individuals at risk at\nthis time, and \\(n_{1j}\\) the number of individuals at risk in the first group. The expected value of \\(U\\)\nis zero and its variance is given by\n\nLognormal distributions for \\(\\mu = 1.0\\); \\(\\sigma = 0.5, 1.0, 1.5\\).\n\\[V = \\sum_{j=1}^{r} n_j v_{1j}\\]\nwhere\n\\[v_{1j} = \\frac{n_{1j} n_{2j} d_j (n_j - d_j)}{n_j^2 (n_j - 1)}\\]\nConsequently \\(U/\\sqrt{V}\\) can be referred to a standard normal distribution to assess the\nhypothesis of interest. Other tests use the same test statistic with different values for the\nweights. The Tarone–Ware test, for example, uses \\(w_j = \\sqrt{n_j}\\) and the Peto-Prentice test uses\n\\[w_j = \\prod_{i=1}^{j} \\frac{n_i - d_i + 1}{n_i + 1}\\]\n\n\n\n",
+    "preview": "blog/2026-03-29-logrank/Slide13.png",
+    "last_modified": "2026-03-29T13:50:26+08:00",
+    "input_file": "logrank.knit.md",
+    "preview_width": 1280,
+    "preview_height": 720
+  },
+  {
+    "path": "blog/2026-03-29-local/",
+    "title": "What is Locally Weighted Regression?",
+    "description": "A method of regression analysis in which polynomials of degree one (linear) or two (quadratic) are used to approximate the regression function in particular ‘neighbourhoods’ of the space of the explanatory variables.",
+    "author": [
+      {
+        "name": "Longxiang Wu",
+        "url": "https://lunghsiang-wu.github.io/longxiangwu/"
+      }
+    ],
+    "date": "2025-11-05",
+    "categories": [],
+    "contents": "\nA method of regression analysis in which polynomials of degree one (linear) or two (quadratic) are used to approximate the regression function in particular ‘neighbourhoods’ of the space of the explanatory variables. Often useful for smoothing scatter diagrams to allow any structure to be seen more clearly and for identifying possible non-linear relationships between the response and explanatory variables. A robust estimation procedure (usually known as loess) is used to guard against deviant points distorting the smoothed points. Essentially the process involves an adaptation of iteratively reweighted least squares. The example shown in Fig. 1 illustrates a situation in which the locally weighted regression differs considerably from the linear regression of y on x as fitted by least squares estimation.\nFig.1 Scatterplot of breast cancer mortality rate versus temperature of region with lines fitted by least squares calculation and by locally weighted regression.\n\n\n",
+    "preview": "blog/2026-03-29-local/local.webp",
+    "last_modified": "2026-03-29T13:38:46+08:00",
+    "input_file": "local.knit.md"
+  },
+  {
+    "path": "blog/2026-03-29-kernel/",
+    "title": "What are Kernel Density Estimators?",
+    "description": "Methods of estimating a probability distribution using estimators.",
+    "author": [
+      {
+        "name": "Longxiang Wu",
+        "url": "https://lunghsiang-wu.github.io/longxiangwu/"
+      }
+    ],
+    "date": "2025-10-17",
+    "categories": [],
+    "contents": "\nMethods of estimating a probability distribution using estimators of the form\n\\[\\hat{f}(x) = \\frac{1}{nh} \\sum_{i=1}^{n} K\\left(\\frac{x - X_i}{h}\\right)\\]\nwhere \\(h\\) is known as window width or bandwidth and \\(K\\) is the kernel function which\nis such that\n\\[\\int_{-\\infty}^{\\infty} K(u) \\mathrm{d}u = 1\\]\nEssentially such kernel estimators sum a series of ‘bumps’ placed at each of the observations. The kernel function determines the shape of the bumps while \\(h\\) determines their width.\nThree commonly used kernel functions are\nRectangular:\n\\(K(x) = 0.5\\) if \\(|x| < 1\\) and \\(K(x) = 0\\) otherwise\nTriangular:\n\\(K(x) = 1 - |x|\\) if \\(|x| < 1\\) and \\(K(x) = 0\\) otherwise\nGaussian:\n\\(K(x) = \\dfrac{1}{\\sqrt{2\\pi}} e^{-\\frac{1}{2}x^2}\\)\nThe kernel estimator is a series of ‘bumps’ placed at the observations, with the kernel function determining the shape of the\nbumps and the window width \\(h\\) determining their width. Figure 78 shows the individual\nbumps and the estimate, \\(\\hat{f}\\), obtained from adding them up for an artificial set of data points\nusing a Gaussian kernel. The extension of kernel density estimation from univariate\nsituations to multivariate data is relatively straightforward.\n\n\n\n",
+    "preview": "blog/2026-03-29-kernel/kde-featured-image.png",
+    "last_modified": "2026-03-29T13:28:49+08:00",
+    "input_file": "kernel.knit.md",
+    "preview_width": 1200,
+    "preview_height": 675
+  },
+  {
     "path": "blog/2026-03-29-jacobian/",
     "title": "What is Jacobian Leverage?",
     "description": "An attempt to extend the concept of leverage in regression to non-linear models.",
@@ -47,7 +138,7 @@
     "categories": [],
     "contents": "\nFunctions useful for modelling many dose–response relationships in biology. For a particular dose or stimulus \\(x\\), the expected value of the response variable, \\(y\\), is defined by\n\\[E(y) = \\frac{x + \\alpha}{\\sum_{i=0}^{d} \\beta_i (x + \\alpha)^i} \\quad x \\geq 0\\]\nThe parameters, \\(\\beta_1, \\beta_2, \\ldots, \\beta_d\\), define the shape of the dose–response curve and \\(\\alpha\\) defines its\nposition on the \\(x\\) axis. A particularly useful form of the function is obtained by setting \\(\\alpha = 0\\)\nand \\(d = 1\\). The resulting curve is\n\\[E(y) = \\frac{x}{\\beta_0 + \\beta_1 x} \\quad x \\geq 0\\]\nwhich can be rewritten as\n\\[E(y) = \\frac{k_1 x}{k_2 + x}\\]\nwhere \\(k_1 = 1/\\beta_1\\) and \\(k_2 = \\beta_0/\\beta_1\\). This final equation is equivalent to the Michaelis–Menten equation.\n\nExamples of inverse normal distributions: \\(\\mu = 1.0\\); \\(\\lambda = 2.0, 6.0\\).\n\n\n\n",
     "preview": "blog/2026-03-29-ipf/polywiggle.gif",
-    "last_modified": "2026-03-29T13:05:46+08:00",
+    "last_modified": "2026-03-29T13:37:20+08:00",
     "input_file": "ipf.knit.md"
   },
   {
