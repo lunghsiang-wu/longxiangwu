@@ -1,5 +1,22 @@
 [
   {
+    "path": "blog/2026-03-29-jacknife/",
+    "title": "What is Jacknife?",
+    "description": "A procedure for reducing bias in estimation and providing approximate confidence intervals in cases where these are difficult to obtain in the usual way.",
+    "author": [
+      {
+        "name": "Longxiang Wu",
+        "url": "https://lunghsiang-wu.github.io/longxiangwu/"
+      }
+    ],
+    "date": "2025-08-05",
+    "categories": [],
+    "contents": "\nA procedure for reducing bias in estimation and providing approximate confidence\nintervals in cases where these are difficult to obtain in the usual way. The principle behind\nthe method is to omit each sample member in turn from the data thereby generating \\(n\\)\nseparate samples each of size \\(n - 1\\). The parameter of interest, \\(\\theta\\), can now be estimated from\neach of these subsamples giving a series of estimates, \\(\\hat{\\theta}_1, \\hat{\\theta}_2, \\ldots, \\hat{\\theta}_n\\). The jackknife estimator\nof the parameter is now\n\\[\\tilde{\\theta} = n\\hat{\\theta} - (n-1) \\frac{\\sum_{i=1}^{n} \\hat{\\theta}_i}{n}\\]\nwhere \\(\\hat{\\theta}\\) is the usual estimator using the complete set of \\(n\\) observations. The jackknife\nestimator of the standard error of \\(\\hat{\\theta}\\) is\n\\[\\hat{\\sigma}_J = \\left[ \\frac{(n-1)}{n} \\sum_{i=1}^{n} (\\hat{\\theta}_i - \\bar{\\theta})^2 \\right]^{\\frac{1}{2}}\\]\nwhere\n\\[\\bar{\\theta} = \\frac{1}{n} \\sum_{i=1}^{n} \\hat{\\theta}_i\\]\nA frequently used application is in discriminant analysis, for the estimation of misclassification rates. Calculated on the sample from which the classification rule is derived, these are\nknown to be optimistic. A jackknifed estimate obtained from calculating the discriminant\nfunction \\(n\\) times on the original observations, each time with one of the values removed, is\nusually a far more realistic measure of the performance of the derived classification rule.\n\n\n\n",
+    "preview": "blog/2026-03-29-jacknife/Schematic_of_Jackknife_Resampling.jpg",
+    "last_modified": "2026-03-29T13:14:27+08:00",
+    "input_file": "jacknife.knit.md"
+  },
+  {
     "path": "blog/2026-03-29-ipf/",
     "title": "What are Inverse Polynomial Functions?",
     "description": "Functions useful for modelling many dose–response relationships in biology.",

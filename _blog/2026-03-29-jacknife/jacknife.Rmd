@@ -1,0 +1,43 @@
+---
+title: "What is Jacknife?"
+description: |
+  A procedure for reducing bias in estimation and providing approximate confidence intervals in cases where these are difficult to obtain in the usual way. 
+author:
+  - name: Longxiang Wu
+    url: https://lunghsiang-wu.github.io/longxiangwu/
+date: 2025-08-05
+preview: Schematic_of_Jackknife_Resampling.jpg
+output:
+  distill::distill_article:
+    self_contained: false
+    includes:
+      in_header: header.html
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+A procedure for reducing bias in estimation and providing approximate *confidence
+intervals* in cases where these are difficult to obtain in the usual way. The principle behind
+the method is to omit each sample member in turn from the data thereby generating $n$
+separate samples each of size $n - 1$. The parameter of interest, $\theta$, can now be estimated from
+each of these subsamples giving a series of estimates, $\hat{\theta}_1, \hat{\theta}_2, \ldots, \hat{\theta}_n$. The jackknife estimator
+of the parameter is now
+
+$$\tilde{\theta} = n\hat{\theta} - (n-1) \frac{\sum_{i=1}^{n} \hat{\theta}_i}{n}$$
+
+where $\hat{\theta}$ is the usual estimator using the complete set of $n$ observations. The jackknife
+estimator of the standard error of $\hat{\theta}$ is
+
+$$\hat{\sigma}_J = \left[ \frac{(n-1)}{n} \sum_{i=1}^{n} (\hat{\theta}_i - \bar{\theta})^2 \right]^{\frac{1}{2}}$$
+
+where
+
+$$\bar{\theta} = \frac{1}{n} \sum_{i=1}^{n} \hat{\theta}_i$$
+
+A frequently used application is in *discriminant analysis*, for the estimation of *misclassification rates*. Calculated on the sample from which the *classification rule* is derived, these are
+known to be optimistic. A jackknifed estimate obtained from calculating the discriminant
+function $n$ times on the original observations, each time with one of the values removed, is
+usually a far more realistic measure of the performance of the derived classification rule.
