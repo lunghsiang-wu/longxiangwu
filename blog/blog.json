@@ -1,5 +1,41 @@
 [
   {
+    "path": "blog/2026-03-29-fuzzy/",
+    "title": "What is Fuzzy Set Theory?",
+    "description": "A radically different approach to dealing with uncertainty than the traditional probabilistic and statistical methods.",
+    "author": [
+      {
+        "name": "Longxiang Wu",
+        "url": "https://lunghsiang-wu.github.io/longxiangwu/"
+      }
+    ],
+    "date": "2025-05-02",
+    "categories": [],
+    "contents": "\nA radically different approach to dealing with uncertainty than the traditional\nprobabilistic and statistical methods. The essential feature of a fuzzy set is a membership\nfunction that assigns a grade of membership between 0 and 1 to each member of the\nset. Mathematically a membership function of a fuzzy set \\(A\\) is a mapping from a space \\(\\chi\\) to\nthe unit interval \\(m_A : \\chi \\rightarrow [0, 1]\\). Because memberships take their values in the unit\ninterval, it is tempting to think of them as probabilities; however, memberships do not\nfollow the laws of probability and it is possible to allow an object to simultaneously hold\nnonzero degrees of membership in sets traditionally considered mutually exclusive.\nMethods derived from the theory have been proposed as alternatives to traditional\nstatistical methods in areas such as quality control, linear regression and forecasting,\nalthough they have not met with universal acceptance and a number of statisticians\nhave commented that they have found no solution using such an approach that could\nnot have been achieved as least as effectively using probability and statistics.\n\n\n\n",
+    "preview": "blog/2026-03-29-fuzzy/1.jpg",
+    "last_modified": "2026-03-29T10:39:20+08:00",
+    "input_file": "fuzzy.knit.md"
+  },
+  {
+    "path": "blog/2026-03-29-fourier/",
+    "title": "What is Fast Fourier Transformation?",
+    "description": "A method of calculating the Fourier transform of a set of observations.",
+    "author": [
+      {
+        "name": "Longxiang Wu",
+        "url": "https://lunghsiang-wu.github.io/longxiangwu/"
+      }
+    ],
+    "date": "2025-04-09",
+    "categories": [],
+    "contents": "\nA method of calculating the Fourier transform of a set of observations \\(x_0, x_1, \\ldots, x_{n-1}\\), i.e. calculating \\(d(\\omega_p)\\) given by\n\\[d(\\omega_p) = \\sum_{t=0}^{n-1} x_t e^{i\\omega_p t}, \\quad p = 0, 1, 2, \\ldots, n-1; \\quad \\omega_p = \\frac{2\\pi p}{n}\\]\nThe number of computations required to calculate \\(\\{d(\\omega_p)\\}\\) is \\(n^2\\) which can be very\nlarge. The FFT reduces the number of computations to \\(O(n \\log_2 n)\\), and operates in the\nfollowing way.\nLet \\(n = rs\\) where \\(r\\) and \\(s\\) are integers. Let \\(t = rt_1 + t_0\\), \\(t = 0, 1, 2, \\ldots, n-1\\);\n\\(t_1 = 0, 1, 2, \\ldots, s-1\\); \\(t_0 = 0, 1, 2, \\ldots, r-1\\). Further let \\(p = sp_1 + p_0\\),\n\\(p_1 = 0, 1, 2, \\ldots, r-1\\), \\(p_0 = 0, 1, \\ldots, s-1\\). The FFT can now be written\n\\[\\begin{aligned}\nd(\\omega_p) = \\sum_{t=0}^{n-1} x_t e^{i\\omega_p t} &= \\sum_{t_0=0}^{r-1} \\sum_{t_1=0}^{s-1} x_{rt_1+t_0} e^{\\frac{2\\pi ip}{n}(rt_1+t_0)} \\\\\n&= \\sum_{t_0=0}^{r-1} e^{\\frac{2\\pi ip}{n}t_0} a(p_0, t_0)\n\\end{aligned}\\]\nwhere\n\\[a(p_0, t_0) = \\sum_{t_1=0}^{s-1} x_{rt_1+t_0} e^{\\frac{2\\pi i t_1 p_0}{s}}\\]\nCalculation of \\(a(p_0, t_0)\\) requires only \\(s^2\\) operations, and \\(d(\\omega_p)\\) only \\(rs^2\\). The evaluation of\n\\(d(\\omega_p)\\) reduces to the evaluation of \\(a(p_0, t_0)\\) which is itself a Fourier transform. Following\nthe same procedure, the computation of \\(a(p_0, t_0)\\) can be reduced in a similar way. The\nprocedures can be repeated until a single term is reached.\n\n\n\n",
+    "preview": "blog/2026-03-29-fourier/FFT-algorithm-1024x472.png",
+    "last_modified": "2026-03-29T10:31:05+08:00",
+    "input_file": "fourier.knit.md",
+    "preview_width": 1024,
+    "preview_height": 472
+  },
+  {
     "path": "blog/2026-03-29-factor/",
     "title": "What is Factor Analysis?",
     "description": "A procedure that postulates that the correlations or covariances between a set of observed variables.",

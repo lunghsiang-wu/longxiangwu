@@ -1,0 +1,36 @@
+---
+title: "What is Fuzzy Set Theory?"
+description: |
+  A radically different approach to dealing with uncertainty than the traditional probabilistic and statistical methods.
+author:
+  - name: Longxiang Wu
+    url: https://lunghsiang-wu.github.io/longxiangwu/
+date: 2025-05-02
+preview: 1.jpg
+output:
+  distill::distill_article:
+    self_contained: false
+    includes:
+      in_header: header.html
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+A radically different approach to dealing with uncertainty than the traditional
+probabilistic and statistical methods. The essential feature of a fuzzy set is a membership
+function that assigns a grade of membership between 0 and 1 to each member of the
+set. Mathematically a membership function of a fuzzy set $A$ is a mapping from a space $\chi$ to
+the unit interval $m_A : \chi \rightarrow [0, 1]$. Because memberships take their values in the unit
+interval, it is tempting to think of them as probabilities; however, memberships do not
+follow the laws of probability and it is possible to allow an object to simultaneously hold
+nonzero degrees of membership in sets traditionally considered mutually exclusive.
+Methods derived from the theory have been proposed as alternatives to traditional
+statistical methods in areas such as quality control, linear regression and forecasting,
+although they have not met with universal acceptance and a number of statisticians
+have commented that they have found no solution using such an approach that could
+not have been achieved as least as effectively using probability and statistics. 
+
+
