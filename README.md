@@ -1,2 +1,2 @@
-# longxiangwu.github.io
-This is my first personal page.
+## Personal page
+This is a repository for my personal page.
