@@ -1,0 +1,37 @@
+---
+title: "What is Diggle-Kenward Model for Dropouts?"
+description: |
+ A model applicable to longitudinal data in which the dropout process may give rise to informative missing values.
+author:
+  - name: Longxiang Wu
+    url: https://lunghsiang-wu.github.io/longxiangwu/
+date: 2026-03-29
+preview: Latent-growth-model-assuming-missing-data-to-be-MAR-solid-black-to-calculate.png
+output:
+  distill::distill_article:
+    self_contained: false
+    includes:
+      in_header: header.html
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+A model applicable to *longitudinal data* in which the dropout process may give rise to *informative missing values*. Specifically if the study protocol specifies a common set of $n$ measurement times for all subjects, and $d$ is used to represent the subject's dropout time, with $D = d$ if the values corresponding to times $d, d+1, \ldots, n$ are missing and $D = n+1$ indicating that the subject did not drop out, then a statistical model involves the joint distribution of the observations $y$ and $d$. This joint distribution can be written in two equivalent ways,
+
+$$\begin{aligned}
+f(y, d) &= f(y)g(d|y) \\
+&= g(d)f(y|d)
+\end{aligned}$$
+
+Models derived from the first factorization are known as *selection models* and those derived
+from the second factorisation are called *pattern mixture models*. The Diggle–Kenward
+model is an example of the former which specifies a *multivariate normal distribution* for $f(y)$
+and a *logistic regression* for $g(d|y)$. Explicitly if $p_t(y)$ denotes the *conditional probability*
+of dropout at time $t$, given $Y = y$ then,
+
+$$\ln\left\{\frac{p_t(y)}{1 - p_t(y)}\right\} = \alpha_0 y_t + \sum_{k=1}^{r} \alpha_k y_{t-k}$$
+
+
