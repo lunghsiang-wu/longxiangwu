@@ -452,25 +452,6 @@
     "preview_height": 283
   },
   {
-    "path": "portfolio/2026-03-19-adaboost/",
-    "title": "Using AdaBoost to Predict Whether Kobe Bryant's Shot is a Hit",
-    "description": "A integrated model project",
-    "author": [
-      {
-        "name": "Longxiang Wu",
-        "url": {}
-      }
-    ],
-    "date": "2024-06-01",
-    "categories": [],
-    "contents": "\n\n\n\n\n\n\n\n",
-    "preview": "portfolio/2026-03-19-adaboost/kobe.png",
-    "last_modified": "2026-03-27T18:35:42+08:00",
-    "input_file": {},
-    "preview_width": 1162,
-    "preview_height": 975
-  },
-  {
     "path": "portfolio/2026-03-19-svm/",
     "title": "Using a Support Vector Machine for Optical Character Recognition",
     "description": "A classification project",
