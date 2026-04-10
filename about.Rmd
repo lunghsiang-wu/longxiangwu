@@ -55,6 +55,12 @@ I am currently in a stable and fulfilling stage of life, living with my family a
 :::
 ::::
 
+
+:::: {style="display: flex; gap: 10px; align-items: flex-start;"}
+::: {style="flex-shrink: 0;"}
+![](russell.jpg){style="height: 300px; width: auto;"}
+:::
+::::
 </center>
 
 
