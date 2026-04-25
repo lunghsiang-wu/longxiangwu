@@ -1,0 +1,510 @@
+---
+title: "Predicting Loan Defaults Among Credit Card Customers"
+description: |
+  A predictive modeling project
+author:
+  - name: "Longxiang Wu"
+date: 2026-3-05
+output:
+  distill::distill_article:
+    self_contained: false
+---
+---
+jupyter:
+  jupytext:
+    text_representation:
+      extension: .Rmd
+      format_name: rmarkdown
+      format_version: '1.2'
+      jupytext_version: 1.19.1
+  kernelspec:
+    display_name: Python 3 (ipykernel)
+    language: python
+    name: python3
+---
+
+```{r setup, include=FALSE}
+library(reticulate)
+reticulate::use_python("/Library/Frameworks/Python.framework/Versions/3.14/bin/python3.14", required = TRUE)
+# or use your conda environment
+use_condaenv("base", required = TRUE)
+```
+
+<!-- #region-->
+
+<!-- #region toc=true -->
+<h1>Table of Contents<span class="tocSkip"></span></h1>
+
+<div class="toc"><ul class="toc-item"><li><span><a href="#1-data description and import" data-toc-modified-id="1-data description and import -1">1 Data description and import</a></span></li><li><span><a href="#2-data preliminary exploration" data-toc-modified-id="2-data preliminary exploration-2">2 data preliminary exploration So</a></span><ul class="toc-item"><li><span><a href="#2.1-data information check" data-toc-modified-id="2.1-data information check-2. 1">2.1 Data information check</a></span></li><li><span><a href="#2.2-data cleaning" data-toc-modified-id="2.2-data cleaning-2.2">2.2 number According to cleaning</a></span></li><li><span><a href="#2.3-data visualisation and analysis" data-toc-modified-id="2.3-data visualisation and analysis-2.3">2.3 data can Visualisation and analysis</a></span><ul class="toc-item"><li><span><a href="#2.3.1-data distribution" data-toc-modified-id="2.3.1-number According to distribution-2.3.1">2.3.1 Data distribution</a></span></li><li><span><a href="#2.3.2-View data distribution in combination with breach of contract" data-toc-modified-i d="2.3.2-View the data distribution in combination with the default situation-2.3.2">2.3.2 View the data distribution in combination with the breach of contract</a></span></li><li><span><a href="#2.3.3-show data relevance" da ta-toc-modified-id="2.3.3-Display data correlation-2.3.3">2.3.3 Display data relevance</a></span></li></ul></li></ul></li><li><span> <a href="#3-classification modelling" data-toc-modified-id="3-classification modelling-3">3 classification modelling</a></span><ul class="toc-item"><li><span><a href="#3.1-KNN model" data-toc-modified-id="3.1-KNN model-3.1">3.1 KNN model</a></span></li><li><span><a href=" #3.2-Decision Tree" data-toc-modified-id="3.2-Decision Tree-3.2">3.2 Decision Tree</a></span></li></ul></li><li><span><a href="#4- Introduce new evaluation indicators" data-toc-modified-id="4-Introduction of new evaluation indicators-4">4 Introduce new evaluation indicators</a></span></li><span><a href="#5-XGBoost" data-toc-modified-id="5-XGBoost-5">5 XGBoost</a></span><ul class="toc-item"></ul></li><li><span><a h Ref="#6-conclusion" data-toc-modified-id="6-conclusion-6">6 Conclusion</a></span></li></ul></div>
+<!-- #endregion -->
+
+# 1 Data description and import
+
+
+The data set used in this case is credit card customer data. The specific data includes: the number of each customer case, the customer's credit card limit, gender, education level, marital status, age, monthly repayment status during the data recording period (April-September 2005), billing records and payment records, in order to And the record of whether the customer breached the contract in the next month. The table information of the specific data field is recorded as follows:
+
+
+| Column name | Meaning description | Data type |
+|:----|:---------:|----:|
+| ID | Customer ID. |int64|
+|LIMIT_BAL|	 The credit limit given by the bank to customers, including the personal credit limit and the customer's family credit limit. | float 64 |
+|Sex|	 The gender of the client. Males are written as 1 and females are 2. |int64|
+| Education |	 The customer's education level. Graduate students and above are recorded as 1, universities are recorded as 2, high school students are recorded as 3, and others are recorded as 0. |int64|
+| MARRIAGE |	 The client's marital status. Unmarried is recorded as 2, married is recorded as 1, and others are recorded as 0. |int64|
+| Age |	 The age of the customer. |int64|
+| PAY_1～PAY_6|	 These six variables are the monthly repayment records from April to September 2005, with values of -1 to 9, representing the cumulative number of overdue months. |int64|
+| BILL_AMT1～BILL_AMT6|	 These six variables are the monthly billing records from April to September 2005, that is, the monthly credit card consumption records. | float 64 |
+| PAY_AMT1～PAY_AMT6|	 These six variables are the monthly payment records from April to September 2005, including the amount of bill repayment and the amount deposited on the credit card. | float 64 |
+| default.payment.next.month|	 On behalf of whether the customer will breach the contract next month, the breach of contract shall be recorded as 1, and if there is no breach of contract, it shall be recorded as 0. |int64|
+
+
+We first import some packages needed in the whole case process, mainly including Pandas, NumPy, Matplotlib, Seaborn and some machine learning packages required for visualisation.
+
+```{python}
+import pandas as pd
+import numpy as np
+import seaborn as sns
+import matplotlib.pyplot as plt
+import matplotlib
+plt.rcParams['font.sans-serif']=['SimHei']   # It is used to display Chinese labels normally.
+plt.rcParams['axes.unicode_minus']=False     # It is used to display negative signs normally.
+matplotlib.rc("font",family='Heiti TC')
+# %matplotlib inline
+
+import warnings
+warnings.filterwarnings('ignore')
+
+import sklearn
+from sklearn.model_selection import train_test_split
+from sklearn.neighbors import KNeighborsClassifier 
+from sklearn import metrics 
+from sklearn.metrics import precision_recall_curve
+from sklearn.metrics import confusion_matrix
+from sklearn import preprocessing
+```
+
+We use the `read_csv` function to import data and store the data as `df`.
+
+```{python}
+df = pd.read_csv('./input/data.csv')
+```
+
+# 2 Preliminary exploration of data
+
+
+## 2.1 Data information check
+
+
+First of all, we check the first five lines of the data and check the data reading.
+
+```{python}
+df.head(5)
+```
+
+Next, let's check the size of the data through `shape`.
+
+```{python}
+df.shape
+```
+
+Next, we use `info` to check the basic information such as the format of the data.
+
+```{python}
+df.info()
+```
+
+It can be seen that the size of the data is 30000x25, and there are no missing values in it, which is very complete.
+
+
+We can also view the basic statistical information of the data field through `describe` to obtain further information about the data.
+
+```{python}
+df.describe()
+```
+
+There is a total of 30,000 credit cardholders' information. The average credit limit of these cardholders `LIMIT_BAL` is 167484, but the standard deviation reaches 129747, the maximum credit card limit reaches 1 million, and the smallest limit is only 1,000, which is very large; we have Knowing that 2 represents women and 1 represents men, the average of gender `SEX` is above 1.6, indicating that the proportion of women in the sample is significantly higher than that of men. AT THE SAME TIME, WE ALSO FOUND ABNORMAL DATA THAT DID NOT COMPLY WITH THE DESCRIPTION. THE MAXIMUM AND MINIMUM VALUES OF EDUCATION LEVEL `EDUCATION` ARE OUTSIDE THE GIVEN FIELD DESCRIPTION. THE MARITAL STATUS `MARRIAGE` HAS A POINT MARKED AS 3, AND THE DESCRIPTION APPEARS IN THE REPAYMENT RECORDS OF `PAY_1` TO `PAY_6`. In addition to the description of -2, we should understand and clean up one by one.
+
+
+## 2.2Data cleaning
+
+
+First, use `value_counts` to check the field of education level:
+
+```{python}
+df['EDUCATION'].value_counts()
+```
+
+THE VALUES OF EDUCATION LEVEL `EDUCATION` MARKED WITH 4, 5 AND 6 CAN BE UNDERSTOOD AS "OTHER", WHICH REPRESENTS LOWER THAN HIGH SCHOOL EDUCATION. In order to sort the education from low to high, it is also necessary to swap the data tags labelled 1 and 3. We use `replace` to complete the above replacement, and the `inplace` parameter is set to `True` to replace the original data.
+
+```{python}
+df['EDUCATION'].replace([1,3,4,5,6],[3,1,0,0,0],inplace=True)
+df['EDUCATION'].value_counts()
+```
+
+In the data of gender `SEX`, men and women are marked as 1 and 2, and it is more in line with programming habits if we replace them with 0 and 1.
+
+```{python}
+df['SEX'].replace([1,2],[0,1],inplace=True)
+df['SEX'].value_counts()
+```
+
+We also check the marital status `MARRIage` column as well.
+
+```{python}
+df['MARRIAGE'].value_counts()
+```
+
+Martal status marked as 3 can be understood as "other", and we change it to the corresponding value of "other" to 0.
+
+```{python}
+df['MARRIAGE'].replace(3,0,inplace=True)
+df['MARRIAGE'].value_counts()
+```
+
+Finally, we also check the columns `PAY_1` to `PAY_6` that mark the repayment status. First of all, take the column `PAY_1` as an example.
+
+```{python}
+df['PAY_1'].value_counts()
+```
+
+The repayment of -2, -1 and 0 shall be regarded as debt repayment, and we will uniformly mark it as 0. After verification, the data from `PAY_1` to `PAY_6` has the same characteristics. We use `iloc` to locate the column we want to replace and carry out the replacement operation.
+
+```{python}
+df.iloc[:,[6,7,8,9,10,11]] = df.iloc[:,[6,7,8,9,10,11]].replace([-2,-1],[0,0])
+df.iloc[:,[6,7,8,9,10,11]].describe()
+```
+
+Sample labels should only be predicted as 0 and 1. We are more interested in the ratio of different labels and use the Series returned by `value_counts` to calculate.
+
+```{python}
+df['default.payment.next.month'].value_counts()[0]/df['default.payment.next.month'].value_counts()[1]
+```
+
+It can be seen that the labelling ratio of the two samples is about 3.5, and there is a problem of class imbalance in the data.
+
+
+## 2.3 Data visualisation and analysis
+
+
+We can also obtain more information about the characteristics of data and the correlation of data characteristics through visual analysis.
+
+
+### 2.3.1 Distribution of data
+
+
+First of all, we show the distribution of some data. For example, for the continuous variable `LIMIT_BAL`, check the data distribution. FOR THE DISCRETE VARIABLES `SEX`, `EDUCATION` AND `MARRIAGE`, CHECK THE PROPORTION OF DIFFERENT TYPES OF DATA.
+
+```{python}
+plt.title('Credit limit distribution map')
+
+sns.set_color_codes("pastel")
+sns.distplot(df['LIMIT_BAL'],kde=True,bins=100, color="blue")
+plt.xlabel("Credit limit")
+plt.show()
+```
+
+It can be seen that the distribution of credit limits is very uneven. The credit limit of a few people is very high, and the credit limit of most people is concentrated in lower values.
+
+```{python}
+plt.title('Age distribution chart of customers')
+
+sns.set_color_codes("pastel")
+sns.distplot(df['AGE'],kde=True,bins=60, color="green")
+plt.xlabel("Age")
+plt.show()
+```
+
+It can be seen from the figure that the age of customers is mainly between 20 and 40 years old.
+
+```{python}
+fig = plt.subplots(1, 3, figsize=(16, 12))
+
+plt.subplot(1, 3, 1)
+sex_map = {1: 'Male', 2: 'Female'}
+df['SEX'].map(sex_map).value_counts().plot(kind='pie', autopct='%1.1f%%')
+plt.ylabel("")
+plt.title('Gender distribution map')
+
+plt.subplot(1, 3, 2)
+edu_map = {1: 'Graduate or above', 2: 'Undergraduate', 3: 'High school', 4: 'Other', 5: 'Unknown', 6: 'Unknown', 0: 'Unknown'}
+df['EDUCATION'].map(edu_map).value_counts().plot(kind='pie', autopct='%1.1f%%')
+plt.title('Distribution map of education')
+plt.ylabel("")
+
+plt.subplot(1, 3, 3)
+mar_map = {1: 'Married', 2: 'Unmarried', 3: 'Other', 0: 'Other'}
+df['MARRIAGE'].map(mar_map).value_counts().plot(kind='pie', autopct='%1.1f%%')
+plt.title('Distribution map of marital status')
+plt.ylabel("")
+
+plt.show()
+```
+
+
+
+It can be seen from this figure that the distribution of gender is uneven, and the proportion of women is significantly higher than that of men. In terms of education, 72% of customers have a bachelor's degree or above. Marital status shows that there is not much difference between the number of married and unmarried clients.
+
+
+### 2.3.2 Check the data distribution in combination with the default situation
+
+
+After obtaining the data distribution information, we will check the characteristics of these data in combination with the corresponding tags to examine whether there is a significant difference in the breach of contract of customers for different gender, age and education.
+
+```{python}
+plt.figure()
+fig, ax = plt.subplots(1,3,figsize=(12,5))
+
+plt.subplot(1,3,1)
+ax=sns.countplot(x='SEX',hue='default.payment.next.month',data = df)
+ax.set_xticklabels(['Male','female'],fontsize=12)
+plt.xlabel("Sex")
+plt.ylabel("")
+plt.title('Different gender breach of contract')
+
+plt.subplot(1,3,2)
+ax=sns.countplot(x='EDUCATION',hue='default.payment.next.month',data = df)
+ax.set_xticklabels(['Other', 'High School', 'Undergraduate', 'Graduate and above'],fontsize=12)
+plt.xlabel("Education level")
+plt.ylabel("")
+plt.title('BREACH OF CONTRACT FOR DIFFERENT LEVELS OF EDUCATION')
+
+
+plt.subplot(1,3,3)
+ax=sns.countplot(x='MARRIAGE',hue='default.payment.next.month',data = df)
+ax.set_xticklabels(['Other', 'Married', 'Unmarried'], fontsize=12)
+plt.xlabel("Marital status")
+plt.ylabel("")
+plt.title('Different marital status of breach of contract')
+
+plt.show()
+```
+
+It can be seen from the figure that although the number of men is much lower than that of women, the number of defaults is not significantly lower than that of women. There is a similar situation for marital status. The number of unmarried people is more than the number of married people, but the number of breaches is not much different from the number of breaches of contract of married people, which also shows that the probability of breach of contract of the number of married people may be higher. Let's check the breach of contract on age and credit card limit.
+
+```{python}
+t0 = df[df['default.payment.next.month'] == 0]
+t1 = df[df['default.payment.next.month'] == 1]
+plt.figure()
+fig, ax = plt.subplots(1,2,figsize=(12,6))
+
+plt.subplot(1,2,1)
+sns.distplot(t0['AGE'],kde_kws={"color":"blue","label":"No breach of contract"})
+sns.distplot(t1['AGE'],kde_kws={"color":"orange","label":"Break a contract"})
+plt.xlabel('Age', fontsize=12)
+locs, labels = plt.xticks()
+plt.title('Circumstants of breach of contract at different ages')
+plt.tick_params(axis='both', which='major', labelsize=12)
+
+plt.subplot(1,2,2)
+sns.distplot(t0["LIMIT_BAL"],kde_kws={"color":"blue","label":"未违约"})
+sns.distplot(t1["LIMIT_BAL"],kde_kws={"color":"orange","label":"违约"})
+plt.xlabel('Credit card limit', fontsize=12)
+locs, labels = plt.xticks()
+plt.title('Default of different credit card limits')
+plt.tick_params(axis='both', which='major', labelsize=12)
+
+plt.show()
+```
+
+If we look at the picture above carefully, we can get more interesting information. For example, before the age of 30, the probability of customers' default is greater; between the ages of 30 and 40 is the interval with the highest customer credit, and after the age of 40, it will decrease again; customers with a lower credit card limit have a higher probability of default.
+
+
+### 2.3.3 Display data relevance
+
+
+In order to observe the correlation between variables, we can also draw a heat map for continuous variables.
+
+```{python}
+plt.figure(figsize = (12,12))
+df1 = df.iloc[:,[1,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23]].copy()
+plt.title('Heat map of continuous variable Pelson correlation coefficient',fontsize=20)
+sns.heatmap(df1.corr(),annot = True,cmap="Blues",annot_kws={'fontsize':9})
+```
+
+It can be seen that there is a strong linear correlation between the consumption records of each user in different months, and the colour is very dark. The repayment record also has a certain correlation, and the correlation of the payment record is relatively low. The discrete variables `SEX`, `EDUCATION`, `MARRIAGE`, `default.payment.next.month` should also be tested. We use `chi2' in Sklearn feature selection to output the card-square statistic of discrete features, and evaluate the correlation between these features and whether they are breached or not through `score` and `pvalue`.
+
+```{python}
+from sklearn.feature_selection import SelectKBest
+from sklearn.feature_selection import chi2
+
+y = df['default.payment.next.month']
+X = df[['SEX','EDUCATION','MARRIAGE']]
+
+chi2_selector = SelectKBest(chi2, k=2)
+chi2_selector.fit(X, y)
+```
+
+```{python}
+chi2_selector.scores_
+```
+
+```{python}
+chi2_selector.pvalues_
+```
+
+The higher the `scores`, the stronger the correlation between the characteristics and the default, and vice versa, the weaker; the value of `pvalues` is the opposite.
+
+Relatively speaking, gender has the greatest impact and marriage status has the least impact.
+
+
+# 3 Classification modelling
+
+
+First of all, we try to use some basic machine learning models to directly classify and model the data, and give the prediction results of the classification. We choose the more classic KNN and decision tree to observe the effect.
+
+
+## 3.1 KNN model
+
+
+In the KNN model, because it involves the concept of distance in Euclidean space, for unordered discrete variables, dumb variable coding should be done first. WE ENCODE THE DISORDERED DISCRETE VARIABLES `SEX` AND `MARRIAGE` WITH DUMB VARIABLES.
+
+```{python}
+str_columns = ['SEX','MARRIAGE']
+df_new = pd.get_dummies(df, columns=str_columns)
+df_new
+```
+
+We divide the data set into label column `y` and feature column `X` to prepare for later processing.
+
+```{python}
+y = df_new['default.payment.next.month']
+X = df_new.drop(columns=['ID','default.payment.next.month'])
+```
+
+For numerical variables, the range of numerical changes defined by different variables is very different, and we should also standardise this part of the data. Since the maximum and minimum value of some variables in the population is unknown (such as the customer's credit card limit `LIMIT_BAL`), we choose ZScore to standardise the characteristic column to standardise the processing, so that each column of data after processing is a data with an average value of 0 and a standard deviation of 1.
+
+```{python}
+X = X.astype(float)
+X.iloc[:, 0:20] = preprocessing.scale(X.iloc[:, 0:20])
+X.sample(5)
+```
+
+We choose a column of data and print out its mean and standard deviation to verify the effect of ZScore standardisation.
+
+```{python}
+print ('The average value is：{a}'.format(a = X.LIMIT_BAL.mean()))
+print ('The standard deviation is：{a}'.format(a = X.LIMIT_BAL.std()))
+```
+
+It can be seen that the mean value is close to 0 and the standard deviation is close to 1, indicating the success of standardisation. Next, we will divide the data into training sets and test sets. The size of the selected test set is 0.3, and the `random_state` parameter refers to the state parameter of the pseudo-random number).
+
+```{python}
+X_train, X_test,\
+y_train, y_test \
+= train_test_split(X, y, test_size=0.3, random_state=0)
+```
+
+After dividing the training set test set, print out the proportion of values labelled 1 and 0 in the training set and test set to test the division effect.
+
+```{python}
+print (y_train.value_counts()/len(y_train))
+print (y_test.value_counts()/len(y_test))
+```
+
+Next, we use `KNeighborsClassifier` in sklearn to classify and train the training set. When the parameter is not entered, the value of the `n_neighbors` parameter selected by the default KNN is 5.
+
+```{python}
+knn_model = KNeighborsClassifier()
+knn_model.fit(X_train, y_train)
+```
+
+After obtaining the model `knn_model`, we verify its classification effect on the test set and use the `predict` method to obtain the model's prediction result `knn_pred` for each test set sample label. Use the `predict_proba` method to obtain the model to divide each sample into a positive class of probability `knn_score`.
+
+```{python}
+from sklearn.neighbors import KNeighborsClassifier
+
+knn_model = KNeighborsClassifier(n_neighbors=5)
+knn_model.fit(X_train, y_train)
+
+knn_score = knn_model.predict_proba(X_test)[:, 1]
+knn_pred = knn_model.predict(X_test)
+```
+
+In order to show the effect of the classification model, we need to obtain the AUC score (`accuracy_score`), classification report and confusion matrix of the model. In order to facilitate subsequent use, we define a function `Get_report` to obtain this information.
+
+```{python}
+def Get_report(testers , predictors):
+    print ('The AUC Score of the model is：{a}'.format(a=metrics.accuracy_score(testers, predictors)))
+    print ('The classification report of the model is shown as follows:')
+    print (metrics.classification_report(testers, predictors))
+    print ('The confusion matrix of the model is shown as follows:')
+    plt.figure(figsize=(8,4))
+    ConfMatrix = confusion_matrix(testers, predictors)
+    sns.heatmap(ConfMatrix,annot=True, cmap="Blues", fmt="d", 
+            xticklabels = ['No breach of contract', 'Breach of contract'], 
+            yticklabels = ['No breach of contract', 'Breach of contract'])
+    plt.ylabel('Real label')
+    plt.xlabel('Predictive label')
+    plt.title("Confusing matrix")
+```
+
+We pass the `y_test` and `knn_pred` obtained before to this function to show the classification effect report of the KNN model.
+
+```{python}
+Get_report(y_test , knn_pred)
+```
+
+We found that although the accuracy of the overall forecast is not bad, the actual recall rate of the default sample is only 0.27, and the `f1-score` that can comprehensively show the accuracy and recall rate of positive samples is only 0.36. Let's try other models for comparison.
+
+
+## 3.2 Decision tree
+
+
+We then introduce the decision tree algorithm, directly conduct model training, and display the model training results and compare them with the results obtained by KNN.
+
+```{python}
+from sklearn import tree
+from sklearn.tree import DecisionTreeClassifier
+tree_model = DecisionTreeClassifier(random_state=1)
+tree_model.fit(X_train, y_train)
+```
+
+```{python}
+tree_score = tree_model.predict_proba(X_test)[:,1]
+tree_pred = tree_model.predict(X_test)
+Get_report(y_test,tree_pred)
+```
+
+It can be seen that the decision tree has improved in recall rate and `f1-score` compared with KNN, but it is still not satisfactory.
+
+
+# 5 XGBoost
+
+
+Next, we introduce a powerful algorithm - XGBoost, which is one of the representatives of Boosting. It is an improvement on GBDT (Gradient Boosting Decision Tree). We learn after resampling the data.
+
+```{python}
+from xgboost import XGBClassifier
+model = XGBClassifier(
+    booster='gbtree',
+    learning_rate=0.1,
+    gamma=1,
+    scale_pos_weight=1,
+    n_estimators=1000,
+    max_depth=6,
+    alpha=5,
+    reg_lambda=1,
+    early_stopping_rounds=10,
+    eval_metric="auc"  # moved here too
+)
+
+eval_set = [(X_test, y_test)]
+model.fit(X_train, y_train, eval_set=eval_set, verbose=False)
+
+```
+
+```{python}
+y_pred = model.predict(X_test)
+y_socre = model.predict_proba(X_test)[:,1]
+predictions = [round(value) for value in y_pred]
+Get_report(y_test,y_pred)
+```
+
+The `learning_rate` parameter represents the learning rate, which determines whether the target function can converge to the local minimum value and when it converges to the minimum value. `alpha` and `reg_lambda` correspond to L1 and L2 regular term coefficients respectively.
+
+
+# 6 Conclusion
+
+
+The final classification effect obtained in this case is not satisfactory. The best AUC value is about 0.8, and the highest `F1` value obtained from the positive sample is 0.55. For scenarios such as credit card default, which requires high recall rate of positive samples, higher recall rate and accuracy are often required. However, due to data limitations, it is difficult for this data set to achieve a good classification effect on the final results, but the processing and reference of different algorithms and indicators are worth reviewing.
+
