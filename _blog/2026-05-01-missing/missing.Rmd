@@ -1,0 +1,20 @@
+---
+title: "What are are missing values?"
+description: |
+  Observations missing from a set of data for some reason.
+author:
+  - name: Longxiang Wu
+    url: https://lunghsiang-wu.github.io/longxiangwu/
+date: 2026-04-17
+preview: missing.png.webp
+output:
+  distill::distill_article:
+    self_contained: false
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+Observations missing from a set of data for some reason. In *longitudinal studies*, for example, they may occur because subjects drop out of the study completely or do not appear for one or other of the scheduled visits or because of equipment failure. Common causes of subjects prematurely ceasing to participate include recovery, lack of improvement, unwanted signs or symptoms that may be related to the investigational treatment, unpleasant study procedures and intercurrent health problems. Such values greatly complicate many methods of analysis and simply using those individuals for whom the data are complete can be unsatisfactory in many situations. A distinction can be made between values *missing completely at random* (MCAR), *missing at random* (MAR) and *non-ignorable* (or *informative*). The MCAR variety arise when individuals drop out of the study in a process which is independent of both the observed measurements and those that would have been available had they not been missing; here the observed values effectively constitute a *simple random sample* of the values for all study subjects. Random drop-out (MAR) occurs when the drop-out process depends on the outcomes that have been observed in the past, but given this information is conditionally independent of all future (unrecorded) values of the outcome variable following drop-out. Finally, in the case of informative drop-out, the drop-out process depends on the unobserved values of the outcome variable. It is the latter which cause most problems for the analysis of data containing missing values. 
