@@ -189,18 +189,6 @@ plt.show()
 ```
 
 ```{python}
-sns.distplot(train["Age"])
-```
-
-```{python}
-train.rename(columns = {'SeriousDlqin2yrs':'There may be breach of contract in the next two years.', 'RevolvingUtilizationOfUnsecuredLines':'The ratio of available credit limit', 'age':'Age',
-       'NumberOfTime30-59DaysPastDueNotWorse':'The number of overdue 30-59 days', 'DebtRatio':'Debt ratio', 'MonthlyIncome':'Monthly income',
-       'NumberOfOpenCreditLinesAndLoans':'Number of credit', 'NumberOfTimes90DaysLate':'The number of overdue for more than 90 days',
-       'NumberRealEstateLoansOrLines':'Number of fixed asset loans', 'NumberOfTime60-89DaysPastDueNotWorse':'The number of overdues of 60-89 days',
-       'NumberOfDependents':'Number of family members'},inplace=True)
-```
-
-```{python}
 sns.distplot(train.loc[train["There may be breach of contract in the next two years."] == 0]["Age"])
 ```
 

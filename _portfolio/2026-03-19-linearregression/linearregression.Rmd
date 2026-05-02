@@ -237,7 +237,7 @@ import warnings
 warnings.filterwarnings('ignore', category=pd.errors.SettingWithCopyWarning)
 
 insurance_lm['bmi30'] = 0
-for i in range(0, 1338):
+for i in range(0, len(insurance_lm)):
     if insurance_lm['bmi'][i] >= 30:
         insurance_lm.loc[i, 'bmi30'] = 1
     else:

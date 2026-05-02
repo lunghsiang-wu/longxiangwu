@@ -176,8 +176,7 @@ for number in range(model.n_components):
     print (u"Variance： ", np.diag(model.covars_[number]))
     print ('')
 
-plt.figure(figsize=(50,10), dpi = 80)
-fig, axs = plt.subplots(model.n_components, sharex=True, sharey=True)
+fig, axs = plt.subplots(model.n_components, figsize=(50,10), sharex=True, sharey=True)
 colours = cm.rainbow(np.linspace(0, 1, model.n_components))
 for i, (ax, colour) in enumerate(zip(axs, colours)):
     # Use fancy indexing to plot data in each state.
