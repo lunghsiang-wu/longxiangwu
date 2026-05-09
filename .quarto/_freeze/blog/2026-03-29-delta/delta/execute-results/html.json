@@ -1,0 +1,15 @@
+{
+  "hash": "78c1afb93b4100c26f10e57724d496d8",
+  "result": {
+    "engine": "knitr",
+    "markdown": "---\ntitle: \"What is Delta Method?\"\ndescription: |\n  A procedure that uses the Taylor series expansion of a function of one or more random variables to obtain approximations to the expected value of the function and to its variance.\nauthor:\n  - name: Longxiang Wu\n    url: https://lunghsiang-wu.github.io/longxiangwu/\ndate: 2024-12-10\npreview: schematic.png\noutput:\n  distill::distill_article:\n    self_contained: false\n    includes:\n      in_header: header.html\n---\n\n\n\n\nA procedure that uses the *Taylor series expansion* of a function of one or more\nrandom variables to obtain approximations to the expected value of the function and to its\nvariance. For example, writing a variable $x$ as $x = \\mu + \\epsilon$ where $E(x) = \\mu$ and $E(\\epsilon) = 0$,\nTaylor's expansion gives\n\n$$f(x) = f(\\mu) + \\epsilon \\frac{df(x)}{dx}\\bigg|_{x=\\mu} + \\frac{\\epsilon^2}{2} \\frac{d^2f(x)}{dx^2}\\bigg|_{x=\\mu} + \\cdots$$\n\nIf terms involving $\\epsilon^2, \\epsilon^3$, etc. are assumed to be negligible then\n\n$$f(x) \\approx f(\\mu) + (x - \\mu)f'(\\mu)$$\n\nSo that\n\n$$\\text{var}[f(x)] \\approx [f'(\\mu)]^2 \\text{var}(x)$$\n\nSo if $f(x) = \\ln x$ then $\\text{var}(\\ln x) = (1/\\mu^2)\\text{var}(x)$.\n\n\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

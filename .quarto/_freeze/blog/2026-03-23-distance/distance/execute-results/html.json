@@ -1,0 +1,15 @@
+{
+  "hash": "d120225723851bc9f69cc6565da94fe7",
+  "result": {
+    "engine": "knitr",
+    "markdown": "---\ntitle: \"What is Distance Measure?\"\ndescription: |\n  A measure of the distance between points in multidimensinal space\nauthor:\n  - name: Longxiang Wu\n    url: https://lunghsiang-wu.github.io/longxiangwu/\ndate: 2024-01-24\npreview: distance.jpg\noutput:\n  distill::distill_article:\n    self_contained: false\n    includes:\n      in_header: header.html\n---\n\n\n\n\nA measure of the distance between points in multidimensional space (also called a **metric**). Distance measures are used with techniques such as *cluster analysis and *multidimensional scaling. The two measures most commonly used are Euclidean distance and the city-block metric.\n\n**Euclidean distance** is the straight-line distance between two points. In $d$ dimensions, if the positions of $P$ and $Q$ are given by the coordinates $(p_1, p_2, \\ldots, p_d)$ and $(q_1, q_2, \\ldots, q_d)$ then the Euclidean distance between $P$ and $Q$ is given by\n\n$$\\sqrt{\\sum_{j=1}^{d}(p_j - q_j)^2}.$$\n\nThe **city-block metric** in two dimensions measures the distance between two points in a city if, for example, the only directions in which one could travel were north-south and east-west. It is also called the **Manhattan distance**. In $d$ dimensions the city-block distance between $P$ and $Q$ is given by\n\n$$\\sum_{j=1}^{d}|p_j - q_j|.$$\n\nA generalization of the previous measures is the **Minkowski distance**\n\n$$\\left\\{\\sum_{j=1}^{d}|p_j - q_j|^k\\right\\}^{\\frac{1}{k}},$$\n\nwhere $k$ is a positive integer. Euclidean distance is the Minkowski distance of order 2, and Manhattan distance is the Minkowski distance of order 1.\n\nThe **Chebyshev distance** is the largest difference over the $d$ dimensions\n\n$$\\max_{j=1}^{d} |p_j - q_j|.$$\n\nTwo other measures that have been proposed are the **Canberra distance**, given by\n\n$$\\sum_{j=1}^{d} \\left\\{ \\frac{|p_j - q_j|}{|p_j| + |q_j|} \\right\\},$$\n\nand, in the context of counts of organisms, the **Bray-Curtis distance** (also called the **Sorensen distance**):\n\n$$\\frac{\\sum_{j=1}^{d} |p_j - q_j|}{\\sum_{j=1}^{d} (p_j + q_j)}.$$\n\n::: {.cell}\n::: {.cell-output-display}\n![**Distance measure.** These are the two simplest of an infinite number of possible measures of distance](distance.jpg)\n:::\n:::\n\n\nThe **Chebyshev distance** is the largest difference over the $d$ dimensions\n\n$$\\max_{j=1}^{d} |p_j - q_j|.$$\n\nTwo other measures that have been proposed are the **Canberra distance**, given by\n\n$$\\sum_{j=1}^{d} \\left\\{ \\frac{|p_j - q_j|}{|p_j| + |q_j|} \\right\\},$$\n\nand, in the context of counts of organisms, the **Bray-Curtis distance** (also called the **Sorensen distance**):\n\n$$\\frac{\\sum_{j=1}^{d} |p_j - q_j|}{\\sum_{j=1}^{d} (p_j + q_j)}.$$",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

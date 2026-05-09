@@ -1,0 +1,372 @@
+---
+title: "Processing of Time-Series Data on Passenger Volume in the Hangzhou Metro"
+description: |
+  A time series data processing project
+author:
+  - name: "Longxiang Wu"
+date: 2026-2-10
+output:
+  distill::distill_article:
+    self_contained: false
+---
+---
+jupyter:
+  jupytext:
+    text_representation:
+      extension: .Rmd
+      format_name: rmarkdown
+      format_version: '1.2'
+      jupytext_version: 1.19.1
+  kernelspec:
+    display_name: Python 3 (ipykernel)
+    language: python
+    name: python3
+---
+
+```{r setup, include=FALSE}
+library(reticulate)
+reticulate::use_python("/Library/Frameworks/Python.framework/Versions/3.14/bin/python3.14", required = TRUE)
+# or use your conda environment
+use_condaenv("base", required = TRUE)
+```
+
+<!-- #region-->
+
+
+```{python}
+## Data toolkit
+import numpy as np
+import pandas as pd
+from tqdm import tqdm
+
+import warnings
+warnings.filterwarnings('ignore')
+
+import lightgbm as lgb
+from functools import partial
+
+import os 
+import gc
+from scipy.sparse import vstack  
+import time
+import datetime
+
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+plt.rcParams['font.sans-serif']=['SimHei'] #It is used to display Chinese labels normally.
+import seaborn as sns 
+# %matplotlib inline
+```
+
+### Loading data
+
+```{python}
+from tqdm import tqdm
+from tqdm import tqdm_notebook
+
+path ='./input/'
+for i in tqdm(range(1,26)):
+    if i < 10:
+        train_tmp = pd.read_csv(path + 'Metro_train/record_2019-01-0' + str(i) + '.csv')
+    else:
+        train_tmp = pd.read_csv(path + 'Metro_train/record_2019-01-' + str(i) + '.csv')
+    if i== 1:
+        data = train_tmp
+    else:
+        data = pd.concat([data, train_tmp],axis=0,ignore_index=True) 
+        
+Metro_roadMap = pd.read_csv(path + 'Metro_roadMap.csv')
+
+test_A_record = pd.read_csv(path + 'Metro_testA/testA_record_2019-01-28.csv') 
+test_A_submit = pd.read_csv(path + 'Metro_testA/testA_submit_2019-01-29.csv') 
+
+data = pd.concat([data, test_A_record],axis=0,ignore_index=True)
+```
+
+```{python}
+data.head()
+```
+
+```{python}
+data.info()
+```
+
+```{python}
+def trans_time_10_minutes(x):
+    x_split = x.split(':')
+    x_part1 = x_split[0]
+    x_part2 = int(x_split[1]) // 10
+    if x_part2 == 0:
+        x_part2 = '00'
+    else:
+        x_part2 = str(x_part2 * 10)
+    return x_part1 + ':' + x_part2 + ':00'
+```
+
+```{python}
+# Knowledge points: time conversion, apply
+data['time'] = pd.to_datetime(data['time'])
+data['time_10_minutes'] = data['time'].astype(str).apply(lambda x: trans_time_10_minutes(x))
+```
+
+```{python}
+data.head()
+```
+
+```{python}
+# Knowledge point: groupby aggregation
+data_inNums = data[data.status == 1].groupby(['stationID','time_10_minutes']).size().to_frame('inNums').reset_index()
+data_inNums.head() 
+```
+
+```{python}
+data_outNums = data[data.status == 0].groupby(['stationID','time_10_minutes']).size().to_frame('outNums').reset_index()
+data_outNums.head() 
+```
+
+```{python}
+stationIDs = test_A_submit['stationID'].unique()
+times = [] 
+days = [i for i in range(1,26)] + [28, 29]
+for day in days: 
+    if day < 10:
+        day_str = '0' + str(day)
+    else:
+        day_str = str(day)
+    for hour in range(24):
+        if hour < 10:
+            hour_str = '0' + str(hour)
+        else:
+            hour_str = str(hour)
+        for minutes in range(6):
+            if minutes == 0:
+                minutes_str = '0' + str(minutes)
+            else:
+                minutes_str = str(minutes * 10) 
+            times.append('2019-01-' + day_str + ' ' + hour_str +':' + minutes_str + ':00')
+
+# Knowledge point: Find the product of Descartes
+from itertools import product
+stationids_by_times = list(product(stationIDs, times))
+# Build a new data set
+df_data = pd.DataFrame()
+df_data['stationID'] = np.array(stationids_by_times)[:,0]
+df_data['startTime'] = np.array(stationids_by_times)[:,1]
+# Knowledge point: sort sorting
+df_data = df_data.sort_values(['stationID','startTime'])
+df_data['endTime'] = df_data.groupby('stationID')['startTime'].shift(-1).values
+```
+
+```{python}
+df_data
+```
+
+```{python}
+def filltime(x):
+    x_split = x.split(' ')[0].split('-')
+    x_part1_1 = x_split[0] +'-'+x_split[1]+'-'
+    x_part1_2 = int(x_split[2]) + 1
+    if x_part1_2 < 10:
+        x_part1_2 = '0' + str(x_part1_2)
+    else:
+        x_part1_2 = str(x_part1_2)
+        
+    x_part2 = ' 00:00:00'
+    return x_part1_1 + x_part1_2 + x_part2
+# Knowledge point: missing value time filling
+df_data.loc[df_data.endTime.isnull(), 'endTime']  = \
+df_data.loc[df_data.endTime.isnull(), 'startTime'].apply(lambda x: filltime(x)) 
+df_data['stationID'] = df_data['stationID'].astype(int)
+```
+
+```{python}
+df_data
+```
+
+```{python}
+data_inNums.rename(columns={'time_10_minutes':'startTime'}, inplace=True)
+data_outNums.rename( columns={'time_10_minutes':'startTime'}, inplace=True)
+
+# Knowledge Point: Data Merger
+df_data = df_data.merge(data_inNums , on=['stationID', 'startTime'], how='left')
+df_data = df_data.merge(data_outNums, on=['stationID', 'startTime'], how='left')
+df_data['inNums']  = df_data['inNums'].fillna(0)
+df_data['outNums'] = df_data['outNums'].fillna(0)
+```
+
+```{python}
+# Knowledge points: time-related characteristics
+df_data['time'] = pd.to_datetime(df_data['startTime'])
+df_data['day'] = df_data['time'].dt.day  
+df_data['hours_in_day'] = df_data['time'].dt.hour 
+df_data['day_of_week'] = df_data['time'].dt.dayofweek 
+df_data['ten_minutes_in_day'] = df_data['hours_in_day'] * 6 + df_data['time'].dt.minute // 10 
+del df_data['time']
+```
+
+```{python}
+df_data
+```
+
+### Time series data visualisation operation
+
+```{python}
+import warnings
+import logging
+
+# Suppress findfont warnings
+logging.getLogger('matplotlib.font_manager').setLevel(logging.ERROR)
+
+tmp = df_data[df_data.day==1]
+dt = [r for r in range(tmp.loc[tmp.stationID==0, 'ten_minutes_in_day'].shape[0])]
+
+fig = plt.figure(1,figsize=[12,6])
+plt.ylabel('inNums',fontsize=14)
+plt.xlabel('date',fontsize=14)
+# plt.title('inNums of stationID ')
+
+for i in range(0,10):
+    plt.plot(dt, tmp.loc[tmp.stationID==i, 'inNums'], label = str(i)+' stationID' )
+    
+plt.legend(fontsize=14)
+```
+
+```{python}
+tmp = df_data[df_data.day==1]
+dt = [r for r in range(tmp.loc[tmp.stationID==0, 'ten_minutes_in_day'].shape[0])]
+
+fig = plt.figure(1,figsize=[12,6])
+plt.ylabel('outNums',fontsize=14)
+plt.xlabel('date',fontsize=14)
+# plt.title('outNums of stationID ')
+
+for i in range(0,10):
+    plt.plot(dt, tmp.loc[tmp.stationID==i, 'outNums'], label = str(i)+' stationID' )
+    
+plt.legend(fontsize=14)
+```
+
+```{python}
+tmp = df_data[df_data.day==3]
+dt = [r for r in range(tmp.loc[tmp.stationID==0, 'ten_minutes_in_day'].shape[0])]
+
+fig = plt.figure(1,figsize=[20,10])
+plt.ylabel('outNums')
+plt.xlabel('date')
+plt.title('outNums of stationID ')
+
+for i in range(0,10):
+    plt.plot(dt, tmp.loc[tmp.stationID==i, 'outNums'], label = str(i)+' stationID' )
+    
+plt.legend()
+plt.show()
+```
+
+```{python}
+tmp = df_data[df_data.day==5]
+dt = [r for r in range(tmp.loc[tmp.stationID==0, 'ten_minutes_in_day'].shape[0])]
+
+fig = plt.figure(1,figsize=[20,10])
+plt.ylabel('outNums')
+plt.xlabel('date')
+plt.title('outNums of stationID ')
+
+for i in range(0,10):
+    plt.plot(dt, tmp.loc[tmp.stationID==i, 'outNums'], label = str(i)+' stationID' )
+    
+plt.legend()
+plt.show()
+```
+
+Core reasons: the impact of holidays, the impact of the week and the weekend, day=3 4 7 is during the week, 5 6 is the weekend
+
+```{python}
+tmp = df_data[df_data.day>=1]
+dt = [r for r in range(tmp.loc[tmp.stationID==0, 'ten_minutes_in_day'].shape[0])]
+
+fig = plt.figure(1,figsize=[12,6])
+plt.ylabel('inNums',fontsize=14)
+plt.xlabel('date',fontsize=14)
+# plt.title('inNums of stationID ')
+
+for i in range(0,10):
+    plt.plot(dt, tmp.loc[tmp.stationID==i, 'inNums'], label = str(i)+' stationID' )
+    
+plt.legend()
+```
+
+It is relatively cyclical, and it is carried out around the day, or weekly
+
+```{python}
+tmp = df_data.loc[(df_data.day.isin([4,5]))] # 4为周内，5为周末
+tmp.loc[tmp.stationID == 4].pivot_table(index='hours_in_day',\
+                                        columns='day',values='inNums').plot(style='o-')
+
+plt.ylabel('inNums',fontsize=14)
+plt.xlabel('hour',fontsize=14)
+plt.legend(fontsize=14)
+```
+
+```{python}
+tmp = df_data.loc[(df_data.day.isin([3,4]))]
+tmp.loc[tmp.stationID == 4].pivot_table(index='hours_in_day',\
+                                        columns='day',values='inNums').plot(style='o-')
+
+plt.ylabel('inNums',fontsize=14)
+plt.xlabel('hour',fontsize=14)
+plt.legend(fontsize=14)
+```
+
+There is not much difference in the traffic during the week, but there is a big difference between weekdays and weekends.
+
+```{python}
+df_data['day'] = df_data['day'].astype(object)
+df_data.loc[df_data.day == 1, 'day'] = '元旦'
+```
+
+```{python}
+plt.rcParams['font.sans-serif'] = ['Heiti TC']
+plt.rcParams['axes.unicode_minus'] = False
+```
+
+```{python}
+tmp = df_data.loc[(df_data.day.isin(['元旦',2,3,4]))]
+tmp.loc[tmp.stationID == 4].pivot_table(index='hours_in_day',\
+                                        columns='day',values='inNums').plot(style='o-')
+
+plt.ylabel('inNums',fontsize=14)
+plt.xlabel('hour',fontsize=14)
+plt.legend(fontsize=14)
+plt.savefig("10_inNums_of_day1234.svg", format="svg")
+```
+
+```{python}
+# Eliminate the date that is very different from the distribution of the test set
+df_data = df_data.loc[((df_data.day_of_week < 5) & (df_data.day != 1))].copy()
+# Date of retention
+retain_days = list(df_data.day.unique())
+# Recalculate the rank, which is convenient for us to extract the characteristics later.
+days_relative = {} 
+for i,d in enumerate(retain_days):
+    days_relative[d] = i + 1
+
+df_data['days_relative'] = df_data['day'].map(days_relative)
+
+#### Visualisation generation码 ####
+dt = [r for r in range(df_data.loc[df_data.stationID==0, 
+    'ten_minutes_in_day'].shape[0])]
+fig = plt.figure(1,figsize=[12,6])
+plt.ylabel('inNums',fontsize=14)
+plt.xlabel('date',fontsize=14)
+
+for i in range(0,10):
+    plt.plot(dt, df_data.loc[df_data.stationID==i, 'inNums'], label = str(i)+' stationID' )  
+plt.legend()
+
+# Generate vector images
+plt.savefig("inNums_of_stationID.svg", format="svg")
+```
+
+
+

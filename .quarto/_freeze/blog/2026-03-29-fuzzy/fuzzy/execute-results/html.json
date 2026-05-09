@@ -1,0 +1,15 @@
+{
+  "hash": "a7518d9e35fd3303b3b11fef1b895733",
+  "result": {
+    "engine": "knitr",
+    "markdown": "---\ntitle: \"What is Fuzzy Set Theory?\"\ndescription: |\n  A radically different approach to dealing with uncertainty than the traditional probabilistic and statistical methods.\nauthor:\n  - name: Longxiang Wu\n    url: https://lunghsiang-wu.github.io/longxiangwu/\ndate: 2025-05-02\npreview: 1.jpg\noutput:\n  distill::distill_article:\n    self_contained: false\n    includes:\n      in_header: header.html\n---\n\n\n\n\nA radically different approach to dealing with uncertainty than the traditional\nprobabilistic and statistical methods. The essential feature of a fuzzy set is a membership\nfunction that assigns a grade of membership between 0 and 1 to each member of the\nset. Mathematically a membership function of a fuzzy set $A$ is a mapping from a space $\\chi$ to\nthe unit interval $m_A : \\chi \\rightarrow [0, 1]$. Because memberships take their values in the unit\ninterval, it is tempting to think of them as probabilities; however, memberships do not\nfollow the laws of probability and it is possible to allow an object to simultaneously hold\nnonzero degrees of membership in sets traditionally considered mutually exclusive.\nMethods derived from the theory have been proposed as alternatives to traditional\nstatistical methods in areas such as quality control, linear regression and forecasting,\nalthough they have not met with universal acceptance and a number of statisticians\nhave commented that they have found no solution using such an approach that could\nnot have been achieved as least as effectively using probability and statistics. \n\n\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

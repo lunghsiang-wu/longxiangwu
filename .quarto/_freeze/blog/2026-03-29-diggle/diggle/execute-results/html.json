@@ -1,0 +1,15 @@
+{
+  "hash": "891fba93dea7e5204c1e132d4c0c2857",
+  "result": {
+    "engine": "knitr",
+    "markdown": "---\ntitle: \"What is Diggle-Kenward Model for Dropouts?\"\ndescription: |\n A model applicable to longitudinal data in which the dropout process may give rise to informative missing values.\nauthor:\n  - name: Longxiang Wu\n    url: https://lunghsiang-wu.github.io/longxiangwu/\ndate: 2025-01-02\npreview: Latent-growth-model-assuming-missing-data-to-be-MAR-solid-black-to-calculate.png\noutput:\n  distill::distill_article:\n    self_contained: false\n    includes:\n      in_header: header.html\n---\n\n\n\n\nA model applicable to *longitudinal data* in which the dropout process may give rise to *informative missing values*. Specifically if the study protocol specifies a common set of $n$ measurement times for all subjects, and $d$ is used to represent the subject's dropout time, with $D = d$ if the values corresponding to times $d, d+1, \\ldots, n$ are missing and $D = n+1$ indicating that the subject did not drop out, then a statistical model involves the joint distribution of the observations $y$ and $d$. This joint distribution can be written in two equivalent ways,\n\n$$\\begin{aligned}\nf(y, d) &= f(y)g(d|y) \\\\\n&= g(d)f(y|d)\n\\end{aligned}$$\n\nModels derived from the first factorization are known as *selection models* and those derived\nfrom the second factorisation are called *pattern mixture models*. The Diggle–Kenward\nmodel is an example of the former which specifies a *multivariate normal distribution* for $f(y)$\nand a *logistic regression* for $g(d|y)$. Explicitly if $p_t(y)$ denotes the *conditional probability*\nof dropout at time $t$, given $Y = y$ then,\n\n$$\\ln\\left\\{\\frac{p_t(y)}{1 - p_t(y)}\\right\\} = \\alpha_0 y_t + \\sum_{k=1}^{r} \\alpha_k y_{t-k}$$\n<center>\n![Digit preference among different groups of observers. For zero, even, odd and five numerals.](1.jpg){width=50%}\n</center>\n\nWhen the dropout mechanism is informative the probability of dropout at time t can depend on the unobserved $y_t$.\n\n\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

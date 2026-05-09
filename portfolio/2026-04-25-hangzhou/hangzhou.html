@@ -1,0 +1,1966 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1"/>
+  <meta name="generator" content="distill" />
+
+  <style type="text/css">
+  /* Hide doc at startup (prevent jankiness while JS renders/transforms) */
+  body {
+    visibility: hidden;
+  }
+  </style>
+
+ <!--radix_placeholder_import_source-->
+ <!--/radix_placeholder_import_source-->
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css" data-origin="pandoc">
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  { color: #00769e; background-color: #f1f3f5; }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span { color: #00769e; } /* Normal */
+code span.al { color: #ad0000; } /* Alert */
+code span.an { color: #5e5e5e; } /* Annotation */
+code span.at { color: #657422; } /* Attribute */
+code span.bn { color: #ad0000; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #00769e; } /* ControlFlow */
+code span.ch { color: #20794d; } /* Char */
+code span.cn { color: #8f5902; } /* Constant */
+code span.co { color: #5e5e5e; } /* Comment */
+code span.cv { color: #5e5e5e; font-style: italic; } /* CommentVar */
+code span.do { color: #5e5e5e; font-style: italic; } /* Documentation */
+code span.dt { color: #ad0000; } /* DataType */
+code span.dv { color: #ad0000; } /* DecVal */
+code span.er { color: #ad0000; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #ad0000; } /* Float */
+code span.fu { color: #4758ab; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #5e5e5e; } /* Information */
+code span.kw { color: #00769e; } /* Keyword */
+code span.op { color: #5e5e5e; } /* Operator */
+code span.ot { color: #00769e; } /* Other */
+code span.pp { color: #ad0000; } /* Preprocessor */
+code span.sc { color: #5e5e5e; } /* SpecialChar */
+code span.ss { color: #20794d; } /* SpecialString */
+code span.st { color: #20794d; } /* String */
+code span.va { color: #111111; } /* Variable */
+code span.vs { color: #20794d; } /* VerbatimString */
+code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
+</style>
+
+
+  <!--radix_placeholder_meta_tags-->
+  <title>Processing of Time-Series Data on Passenger Volume in the Hangzhou Metro</title>
+
+  <meta property="description" itemprop="description" content="A time series data processing project"/>
+
+
+  <!--  https://schema.org/Article -->
+  <meta property="article:published" itemprop="datePublished" content="2026-02-10"/>
+  <meta property="article:created" itemprop="dateCreated" content="2026-02-10"/>
+  <meta name="article:author" content="Longxiang Wu"/>
+
+  <!--  https://developers.facebook.com/docs/sharing/webmasters#markup -->
+  <meta property="og:title" content="Processing of Time-Series Data on Passenger Volume in the Hangzhou Metro"/>
+  <meta property="og:type" content="article"/>
+  <meta property="og:description" content="A time series data processing project"/>
+  <meta property="og:locale" content="en_US"/>
+
+  <!--  https://dev.twitter.com/cards/types/summary -->
+  <meta property="twitter:card" content="summary"/>
+  <meta property="twitter:title" content="Processing of Time-Series Data on Passenger Volume in the Hangzhou Metro"/>
+  <meta property="twitter:description" content="A time series data processing project"/>
+
+  <!--/radix_placeholder_meta_tags-->
+  <!--radix_placeholder_rmarkdown_metadata-->
+
+  <script type="text/json" id="radix-rmarkdown-metadata">
+  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","author","date","output"]}},"value":[{"type":"character","attributes":{},"value":["Processing of Time-Series Data on Passenger Volume in the Hangzhou Metro"]},{"type":"character","attributes":{},"value":["A time series data processing project\n"]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name"]}},"value":[{"type":"character","attributes":{},"value":["Longxiang Wu"]}]}]},{"type":"character","attributes":{},"value":["2026-2-10"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained"]}},"value":[{"type":"logical","attributes":{},"value":[false]}]}]}]}
+  </script>
+  <!--/radix_placeholder_rmarkdown_metadata-->
+  
+  <script type="text/json" id="radix-resource-manifest">
+  {"type":"character","attributes":{},"value":["10_inNums_of_day1234.svg","hangzhou_files/figure-html5/unnamed-chunk-17-1.png","hangzhou_files/figure-html5/unnamed-chunk-18-3.png","hangzhou_files/figure-html5/unnamed-chunk-19-5.png","hangzhou_files/figure-html5/unnamed-chunk-20-7.png","hangzhou_files/figure-html5/unnamed-chunk-21-9.png","hangzhou_files/figure-html5/unnamed-chunk-22-11.png","hangzhou_files/figure-html5/unnamed-chunk-23-13.png","hangzhou_files/figure-html5/unnamed-chunk-26-15.png","hangzhou_files/figure-html5/unnamed-chunk-27-17.png","inNums_of_stationID.svg","input/Metro_roadMap.csv","input/Metro_testA/testA_record_2019-01-28.csv","input/Metro_testA/testA_submit_2019-01-29.csv","input/Metro_testB/testB_record_2019-01-26.csv","input/Metro_testB/testB_submit_2019-01-27.csv","input/Metro_train/record_2019-01-01.csv","input/Metro_train/record_2019-01-02.csv","input/Metro_train/record_2019-01-03.csv","input/Metro_train/record_2019-01-04.csv","input/Metro_train/record_2019-01-05.csv","input/Metro_train/record_2019-01-06.csv","input/Metro_train/record_2019-01-07.csv","input/Metro_train/record_2019-01-08.csv","input/Metro_train/record_2019-01-09.csv","input/Metro_train/record_2019-01-10.csv","input/Metro_train/record_2019-01-11.csv","input/Metro_train/record_2019-01-12.csv","input/Metro_train/record_2019-01-13.csv","input/Metro_train/record_2019-01-14.csv","input/Metro_train/record_2019-01-15.csv","input/Metro_train/record_2019-01-15(1).csv","input/Metro_train/record_2019-01-16.csv","input/Metro_train/record_2019-01-17.csv","input/Metro_train/record_2019-01-18.csv","input/Metro_train/record_2019-01-19.csv","input/Metro_train/record_2019-01-20.csv","input/Metro_train/record_2019-01-20(1).csv","input/Metro_train/record_2019-01-21.csv","input/Metro_train/record_2019-01-21(1).csv","input/Metro_train/record_2019-01-22.csv","input/Metro_train/record_2019-01-23.csv","input/Metro_train/record_2019-01-24.csv","input/Metro_train/record_2019-01-25.csv"]}
+  </script>
+  <!--radix_placeholder_navigation_in_header-->
+  <!--/radix_placeholder_navigation_in_header-->
+  <!--radix_placeholder_distill-->
+
+  <style type="text/css">
+
+  body {
+    background-color: white;
+  }
+
+  .pandoc-table {
+    width: 100%;
+  }
+
+  .pandoc-table>caption {
+    margin-bottom: 10px;
+  }
+
+  .pandoc-table th:not([align]) {
+    text-align: left;
+  }
+
+  .pagedtable-footer {
+    font-size: 15px;
+  }
+
+  d-byline .byline {
+    grid-template-columns: 2fr 2fr;
+  }
+
+  d-byline .byline h3 {
+    margin-block-start: 1.5em;
+  }
+
+  d-byline .byline .authors-affiliations h3 {
+    margin-block-start: 0.5em;
+  }
+
+  .authors-affiliations .orcid-id {
+    width: 16px;
+    height:16px;
+    margin-left: 4px;
+    margin-right: 4px;
+    vertical-align: middle;
+    padding-bottom: 2px;
+  }
+
+  d-title .dt-tags {
+    margin-top: 1em;
+    grid-column: text;
+  }
+
+  .dt-tags .dt-tag {
+    text-decoration: none;
+    display: inline-block;
+    color: rgba(0,0,0,0.6);
+    padding: 0em 0.4em;
+    margin-right: 0.5em;
+    margin-bottom: 0.4em;
+    font-size: 70%;
+    border: 1px solid rgba(0,0,0,0.2);
+    border-radius: 3px;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+
+  d-article table.gt_table td,
+  d-article table.gt_table th {
+    border-bottom: none;
+    font-size: 100%;
+  }
+
+  .html-widget {
+    margin-bottom: 2.0em;
+  }
+
+  .l-screen-inset {
+    padding-right: 16px;
+  }
+
+  .l-screen .caption {
+    margin-left: 10px;
+  }
+
+  .shaded {
+    background: rgb(247, 247, 247);
+    padding-top: 20px;
+    padding-bottom: 20px;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  }
+
+  .shaded .html-widget {
+    margin-bottom: 0;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+  }
+
+  .shaded .shaded-content {
+    background: white;
+  }
+
+  .text-output {
+    margin-top: 0;
+    line-height: 1.5em;
+  }
+
+  .hidden {
+    display: none !important;
+  }
+
+  hr.section-separator {
+    border: none;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    margin: 0px;
+  }
+
+
+  d-byline {
+    border-top: none;
+  }
+
+  d-article {
+    padding-top: 2.5rem;
+    padding-bottom: 30px;
+    border-top: none;
+  }
+
+  d-appendix {
+    padding-top: 30px;
+  }
+
+  d-article>p>img {
+    width: 100%;
+  }
+
+  d-article h2 {
+    margin: 1rem 0 1.5rem 0;
+  }
+
+  d-article h3 {
+    margin-top: 1.5rem;
+  }
+
+  d-article iframe {
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    margin-bottom: 2.0em;
+    width: 100%;
+  }
+
+  /* Tweak code blocks */
+
+  d-article div.sourceCode code,
+  d-article pre code {
+    font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+  }
+
+  d-article pre,
+  d-article div.sourceCode,
+  d-article div.sourceCode pre {
+    overflow: auto;
+  }
+
+  d-article div.sourceCode {
+    background-color: white;
+  }
+
+  d-article div.sourceCode pre {
+    padding-left: 10px;
+    font-size: 12px;
+    border-left: 2px solid rgba(0,0,0,0.1);
+  }
+
+  d-article pre {
+    font-size: 12px;
+    color: black;
+    background: none;
+    margin-top: 0;
+    text-align: left;
+    white-space: pre;
+    word-spacing: normal;
+    word-break: normal;
+    word-wrap: normal;
+    line-height: 1.5;
+
+    -moz-tab-size: 4;
+    -o-tab-size: 4;
+    tab-size: 4;
+
+    -webkit-hyphens: none;
+    -moz-hyphens: none;
+    -ms-hyphens: none;
+    hyphens: none;
+  }
+
+  d-article pre a {
+    border-bottom: none;
+  }
+
+  d-article pre a:hover {
+    border-bottom: none;
+    text-decoration: underline;
+  }
+
+  d-article details {
+    grid-column: text;
+    margin-bottom: 0.8em;
+  }
+
+  @media(min-width: 768px) {
+
+  d-article pre,
+  d-article div.sourceCode,
+  d-article div.sourceCode pre {
+    overflow: visible !important;
+  }
+
+  d-article div.sourceCode pre {
+    padding-left: 18px;
+    font-size: 14px;
+  }
+
+  /* tweak for Pandoc numbered line within distill */
+  d-article pre.numberSource code > span {
+      left: -2em;
+  }
+
+  d-article pre {
+    font-size: 14px;
+  }
+
+  }
+
+  figure img.external {
+    background: white;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    box-shadow: 0 1px 8px rgba(0, 0, 0, 0.1);
+    padding: 18px;
+    box-sizing: border-box;
+  }
+
+  /* CSS for d-contents */
+
+  .d-contents {
+    grid-column: text;
+    color: rgba(0,0,0,0.8);
+    font-size: 0.9em;
+    padding-bottom: 1em;
+    margin-bottom: 1em;
+    padding-bottom: 0.5em;
+    margin-bottom: 1em;
+    padding-left: 0.25em;
+    justify-self: start;
+  }
+
+  @media(min-width: 1000px) {
+    .d-contents.d-contents-float {
+      height: 0;
+      grid-column-start: 1;
+      grid-column-end: 4;
+      justify-self: center;
+      padding-right: 3em;
+      padding-left: 2em;
+    }
+  }
+
+  .d-contents nav h3 {
+    font-size: 18px;
+    margin-top: 0;
+    margin-bottom: 1em;
+  }
+
+  .d-contents li {
+    list-style-type: none
+  }
+
+  .d-contents nav > ul {
+    padding-left: 0;
+  }
+
+  .d-contents ul {
+    padding-left: 1em
+  }
+
+  .d-contents nav ul li {
+    margin-top: 0.6em;
+    margin-bottom: 0.2em;
+  }
+
+  .d-contents nav a {
+    font-size: 13px;
+    border-bottom: none;
+    text-decoration: none
+    color: rgba(0, 0, 0, 0.8);
+  }
+
+  .d-contents nav a:hover {
+    text-decoration: underline solid rgba(0, 0, 0, 0.6)
+  }
+
+  .d-contents nav > ul > li > a {
+    font-weight: 600;
+  }
+
+  .d-contents nav > ul > li > ul {
+    font-weight: inherit;
+  }
+
+  .d-contents nav > ul > li > ul > li {
+    margin-top: 0.2em;
+  }
+
+
+  .d-contents nav ul {
+    margin-top: 0;
+    margin-bottom: 0.25em;
+  }
+
+  .d-article-with-toc h2:nth-child(2) {
+    margin-top: 0;
+  }
+
+
+  /* Figure */
+
+  .figure {
+    position: relative;
+    margin-bottom: 2.5em;
+    margin-top: 1.5em;
+  }
+
+  .figure .caption {
+    color: rgba(0, 0, 0, 0.6);
+    font-size: 12px;
+    line-height: 1.5em;
+  }
+
+  .figure img.external {
+    background: white;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    box-shadow: 0 1px 8px rgba(0, 0, 0, 0.1);
+    padding: 18px;
+    box-sizing: border-box;
+  }
+
+  .figure .caption a {
+    color: rgba(0, 0, 0, 0.6);
+  }
+
+  .figure .caption b,
+  .figure .caption strong, {
+    font-weight: 600;
+    color: rgba(0, 0, 0, 1.0);
+  }
+
+  /* Citations */
+
+  d-article .citation {
+    color: inherit;
+    cursor: inherit;
+  }
+
+  div.hanging-indent{
+    margin-left: 1em; text-indent: -1em;
+  }
+
+  /* Citation hover box */
+
+  .tippy-box[data-theme~=light-border] {
+    background-color: rgba(250, 250, 250, 0.95);
+  }
+
+  .tippy-content > p {
+    margin-bottom: 0;
+    padding: 2px;
+  }
+
+
+  /* Tweak 1000px media break to show more text */
+
+  @media(min-width: 1000px) {
+    .base-grid,
+    distill-header,
+    d-title,
+    d-abstract,
+    d-article,
+    d-appendix,
+    distill-appendix,
+    d-byline,
+    d-footnote-list,
+    d-citation-list,
+    distill-footer {
+      grid-template-columns: [screen-start] 1fr [page-start kicker-start] 80px [middle-start] 50px [text-start kicker-end] 65px 65px 65px 65px 65px 65px 65px 65px [text-end gutter-start] 65px [middle-end] 65px [page-end gutter-end] 1fr [screen-end];
+      grid-column-gap: 16px;
+    }
+
+    .grid {
+      grid-column-gap: 16px;
+    }
+
+    d-article {
+      font-size: 1.06rem;
+      line-height: 1.7em;
+    }
+    figure .caption, .figure .caption, figure figcaption {
+      font-size: 13px;
+    }
+  }
+
+  @media(min-width: 1180px) {
+    .base-grid,
+    distill-header,
+    d-title,
+    d-abstract,
+    d-article,
+    d-appendix,
+    distill-appendix,
+    d-byline,
+    d-footnote-list,
+    d-citation-list,
+    distill-footer {
+      grid-template-columns: [screen-start] 1fr [page-start kicker-start] 60px [middle-start] 60px [text-start kicker-end] 60px 60px 60px 60px 60px 60px 60px 60px [text-end gutter-start] 60px [middle-end] 60px [page-end gutter-end] 1fr [screen-end];
+      grid-column-gap: 32px;
+    }
+
+    .grid {
+      grid-column-gap: 32px;
+    }
+  }
+
+
+  /* Get the citation styles for the appendix (not auto-injected on render since
+     we do our own rendering of the citation appendix) */
+
+  d-appendix .citation-appendix,
+  .d-appendix .citation-appendix {
+    font-size: 11px;
+    line-height: 15px;
+    border-left: 1px solid rgba(0, 0, 0, 0.1);
+    padding-left: 18px;
+    border: 1px solid rgba(0,0,0,0.1);
+    background: rgba(0, 0, 0, 0.02);
+    padding: 10px 18px;
+    border-radius: 3px;
+    color: rgba(150, 150, 150, 1);
+    overflow: hidden;
+    margin-top: -12px;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+  }
+
+  /* Include appendix styles here so they can be overridden */
+
+  d-appendix {
+    contain: layout style;
+    font-size: 0.8em;
+    line-height: 1.7em;
+    margin-top: 60px;
+    margin-bottom: 0;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    color: rgba(0,0,0,0.5);
+    padding-top: 60px;
+    padding-bottom: 48px;
+  }
+
+  d-appendix h3 {
+    grid-column: page-start / text-start;
+    font-size: 15px;
+    font-weight: 500;
+    margin-top: 1em;
+    margin-bottom: 0;
+    color: rgba(0,0,0,0.65);
+  }
+
+  d-appendix h3 + * {
+    margin-top: 1em;
+  }
+
+  d-appendix ol {
+    padding: 0 0 0 15px;
+  }
+
+  @media (min-width: 768px) {
+    d-appendix ol {
+      padding: 0 0 0 30px;
+      margin-left: -30px;
+    }
+  }
+
+  d-appendix li {
+    margin-bottom: 1em;
+  }
+
+  d-appendix a {
+    color: rgba(0, 0, 0, 0.6);
+  }
+
+  d-appendix > * {
+    grid-column: text;
+  }
+
+  d-appendix > d-footnote-list,
+  d-appendix > d-citation-list,
+  d-appendix > distill-appendix {
+    grid-column: screen;
+  }
+
+  /* Include footnote styles here so they can be overridden */
+
+  d-footnote-list {
+    contain: layout style;
+  }
+
+  d-footnote-list > * {
+    grid-column: text;
+  }
+
+  d-footnote-list a.footnote-backlink {
+    color: rgba(0,0,0,0.3);
+    padding-left: 0.5em;
+  }
+
+
+
+  /* Anchor.js */
+
+  .anchorjs-link {
+    /*transition: all .25s linear; */
+    text-decoration: none;
+    border-bottom: none;
+  }
+  *:hover > .anchorjs-link {
+    margin-left: -1.125em !important;
+    text-decoration: none;
+    border-bottom: none;
+  }
+
+  /* Social footer */
+
+  .social_footer {
+    margin-top: 30px;
+    margin-bottom: 0;
+    color: rgba(0,0,0,0.67);
+  }
+
+  .disqus-comments {
+    margin-right: 30px;
+  }
+
+  .disqus-comment-count {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.4);
+    cursor: pointer;
+  }
+
+  #disqus_thread {
+    margin-top: 30px;
+  }
+
+  .article-sharing a {
+    border-bottom: none;
+    margin-right: 8px;
+  }
+
+  .article-sharing a:hover {
+    border-bottom: none;
+  }
+
+  .sidebar-section.subscribe {
+    font-size: 12px;
+    line-height: 1.6em;
+  }
+
+  .subscribe p {
+    margin-bottom: 0.5em;
+  }
+
+
+  .article-footer .subscribe {
+    font-size: 15px;
+    margin-top: 45px;
+  }
+
+
+  .sidebar-section.custom {
+    font-size: 12px;
+    line-height: 1.6em;
+  }
+
+  .custom p {
+    margin-bottom: 0.5em;
+  }
+
+  /* Styles for listing layout (hide title) */
+  .layout-listing d-title, .layout-listing .d-title {
+    display: none;
+  }
+
+  /* Styles for posts lists (not auto-injected) */
+
+
+  .posts-with-sidebar {
+    padding-left: 45px;
+    padding-right: 45px;
+  }
+
+  .posts-list .description h2,
+  .posts-list .description p {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", Arial, sans-serif;
+  }
+
+  .posts-list .description h2 {
+    font-weight: 700;
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+
+  .posts-list h2.post-tag {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+    padding-bottom: 12px;
+  }
+  .posts-list {
+    margin-top: 60px;
+    margin-bottom: 24px;
+  }
+
+  .posts-list .post-preview {
+    text-decoration: none;
+    overflow: hidden;
+    display: block;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    padding: 24px 0;
+  }
+
+  .post-preview-last {
+    border-bottom: none !important;
+  }
+
+  .posts-list .posts-list-caption {
+    grid-column: screen;
+    font-weight: 400;
+  }
+
+  .posts-list .post-preview h2 {
+    margin: 0 0 6px 0;
+    line-height: 1.2em;
+    font-style: normal;
+    font-size: 24px;
+  }
+
+  .posts-list .post-preview p {
+    margin: 0 0 12px 0;
+    line-height: 1.4em;
+    font-size: 16px;
+  }
+
+  .posts-list .post-preview .thumbnail {
+    box-sizing: border-box;
+    margin-bottom: 24px;
+    position: relative;
+    max-width: 500px;
+  }
+  .posts-list .post-preview img {
+    width: 100%;
+    display: block;
+  }
+
+  .posts-list .metadata {
+    font-size: 12px;
+    line-height: 1.4em;
+    margin-bottom: 18px;
+  }
+
+  .posts-list .metadata > * {
+    display: inline-block;
+  }
+
+  .posts-list .metadata .publishedDate {
+    margin-right: 2em;
+  }
+
+  .posts-list .metadata .dt-authors {
+    display: block;
+    margin-top: 0.3em;
+    margin-right: 2em;
+  }
+
+  .posts-list .dt-tags {
+    display: block;
+    line-height: 1em;
+  }
+
+  .posts-list .dt-tags .dt-tag {
+    display: inline-block;
+    color: rgba(0,0,0,0.6);
+    padding: 0.3em 0.4em;
+    margin-right: 0.2em;
+    margin-bottom: 0.4em;
+    font-size: 60%;
+    border: 1px solid rgba(0,0,0,0.2);
+    border-radius: 3px;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+
+  .posts-list img {
+    opacity: 1;
+  }
+
+  .posts-list img[data-src] {
+    opacity: 0;
+  }
+
+  .posts-more {
+    clear: both;
+  }
+
+
+  .posts-sidebar {
+    font-size: 16px;
+  }
+
+  .posts-sidebar h3 {
+    font-size: 16px;
+    margin-top: 0;
+    margin-bottom: 0.5em;
+    font-weight: 400;
+    text-transform: uppercase;
+  }
+
+  .sidebar-section {
+    margin-bottom: 30px;
+  }
+
+  .categories ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .categories li {
+    color: rgba(0, 0, 0, 0.8);
+    margin-bottom: 0;
+  }
+
+  .categories li>a {
+    border-bottom: none;
+  }
+
+  .categories li>a:hover {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.4);
+  }
+
+  .categories .active {
+    font-weight: 600;
+  }
+
+  .categories .category-count {
+    color: rgba(0, 0, 0, 0.4);
+  }
+
+
+  @media(min-width: 768px) {
+    .posts-list .post-preview h2 {
+      font-size: 26px;
+    }
+    .posts-list .post-preview .thumbnail {
+      float: right;
+      width: 30%;
+      margin-bottom: 0;
+    }
+    .posts-list .post-preview .description {
+      float: left;
+      width: 45%;
+    }
+    .posts-list .post-preview .metadata {
+      float: left;
+      width: 20%;
+      margin-top: 8px;
+    }
+    .posts-list .post-preview p {
+      margin: 0 0 12px 0;
+      line-height: 1.5em;
+      font-size: 16px;
+    }
+    .posts-with-sidebar .posts-list {
+      float: left;
+      width: 75%;
+    }
+    .posts-with-sidebar .posts-sidebar {
+      float: right;
+      width: 20%;
+      margin-top: 60px;
+      padding-top: 24px;
+      padding-bottom: 24px;
+    }
+  }
+
+
+  /* Improve display for browsers without grid (IE/Edge <= 15) */
+
+  .downlevel {
+    line-height: 1.6em;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", Arial, sans-serif;
+    margin: 0;
+  }
+
+  .downlevel .d-title {
+    padding-top: 6rem;
+    padding-bottom: 1.5rem;
+  }
+
+  .downlevel .d-title h1 {
+    font-size: 50px;
+    font-weight: 700;
+    line-height: 1.1em;
+    margin: 0 0 0.5rem;
+  }
+
+  .downlevel .d-title p {
+    font-weight: 300;
+    font-size: 1.2rem;
+    line-height: 1.55em;
+    margin-top: 0;
+  }
+
+  .downlevel .d-byline {
+    padding-top: 0.8em;
+    padding-bottom: 0.8em;
+    font-size: 0.8rem;
+    line-height: 1.8em;
+  }
+
+  .downlevel .section-separator {
+    border: none;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+  }
+
+  .downlevel .d-article {
+    font-size: 1.06rem;
+    line-height: 1.7em;
+    padding-top: 1rem;
+    padding-bottom: 2rem;
+  }
+
+
+  .downlevel .d-appendix {
+    padding-left: 0;
+    padding-right: 0;
+    max-width: none;
+    font-size: 0.8em;
+    line-height: 1.7em;
+    margin-bottom: 0;
+    color: rgba(0,0,0,0.5);
+    padding-top: 40px;
+    padding-bottom: 48px;
+  }
+
+  .downlevel .footnotes ol {
+    padding-left: 13px;
+  }
+
+  .downlevel .base-grid,
+  .downlevel .distill-header,
+  .downlevel .d-title,
+  .downlevel .d-abstract,
+  .downlevel .d-article,
+  .downlevel .d-appendix,
+  .downlevel .distill-appendix,
+  .downlevel .d-byline,
+  .downlevel .d-footnote-list,
+  .downlevel .d-citation-list,
+  .downlevel .distill-footer,
+  .downlevel .appendix-bottom,
+  .downlevel .posts-container {
+    padding-left: 40px;
+    padding-right: 40px;
+  }
+
+  @media(min-width: 768px) {
+    .downlevel .base-grid,
+    .downlevel .distill-header,
+    .downlevel .d-title,
+    .downlevel .d-abstract,
+    .downlevel .d-article,
+    .downlevel .d-appendix,
+    .downlevel .distill-appendix,
+    .downlevel .d-byline,
+    .downlevel .d-footnote-list,
+    .downlevel .d-citation-list,
+    .downlevel .distill-footer,
+    .downlevel .appendix-bottom,
+    .downlevel .posts-container {
+    padding-left: 150px;
+    padding-right: 150px;
+    max-width: 900px;
+  }
+  }
+
+  .downlevel pre code {
+    display: block;
+    border-left: 2px solid rgba(0, 0, 0, .1);
+    padding: 0 0 0 20px;
+    font-size: 14px;
+  }
+
+  .downlevel code, .downlevel pre {
+    color: black;
+    background: none;
+    font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+    text-align: left;
+    white-space: pre;
+    word-spacing: normal;
+    word-break: normal;
+    word-wrap: normal;
+    line-height: 1.5;
+
+    -moz-tab-size: 4;
+    -o-tab-size: 4;
+    tab-size: 4;
+
+    -webkit-hyphens: none;
+    -moz-hyphens: none;
+    -ms-hyphens: none;
+    hyphens: none;
+  }
+
+  .downlevel .posts-list .post-preview {
+    color: inherit;
+  }
+
+
+
+  </style>
+
+  <script type="application/javascript">
+
+  function is_downlevel_browser() {
+    if (bowser.isUnsupportedBrowser({ msie: "12", msedge: "16"},
+                                   window.navigator.userAgent)) {
+      return true;
+    } else {
+      return window.load_distill_framework === undefined;
+    }
+  }
+
+  // show body when load is complete
+  function on_load_complete() {
+
+    // add anchors
+    if (window.anchors) {
+      window.anchors.options.placement = 'left';
+      window.anchors.add('d-article > h2, d-article > h3, d-article > h4, d-article > h5');
+    }
+
+
+    // set body to visible
+    document.body.style.visibility = 'visible';
+
+    // force redraw for leaflet widgets
+    if (window.HTMLWidgets) {
+      var maps = window.HTMLWidgets.findAll(".leaflet");
+      $.each(maps, function(i, el) {
+        var map = this.getMap();
+        map.invalidateSize();
+        map.eachLayer(function(layer) {
+          if (layer instanceof L.TileLayer)
+            layer.redraw();
+        });
+      });
+    }
+
+    // trigger 'shown' so htmlwidgets resize
+    $('d-article').trigger('shown');
+  }
+
+  function init_distill() {
+
+    init_common();
+
+    // create front matter
+    var front_matter = $('<d-front-matter></d-front-matter>');
+    $('#distill-front-matter').wrap(front_matter);
+
+    // create d-title
+    $('.d-title').changeElementType('d-title');
+
+    // separator
+    var separator = '<hr class="section-separator" style="clear: both"/>';
+    // prepend separator above appendix
+    $('.d-byline').before(separator);
+    $('.d-article').before(separator);
+
+    // create d-byline
+    var byline = $('<d-byline></d-byline>');
+    $('.d-byline').replaceWith(byline);
+
+    // create d-article
+    var article = $('<d-article></d-article>');
+    $('.d-article').wrap(article).children().unwrap();
+
+    // move posts container into article
+    $('.posts-container').appendTo($('d-article'));
+
+    // create d-appendix
+    $('.d-appendix').changeElementType('d-appendix');
+
+    // flag indicating that we have appendix items
+    var appendix = $('.appendix-bottom').children('h3').length > 0;
+
+    // replace footnotes with <d-footnote>
+    $('.footnote-ref').each(function(i, val) {
+      appendix = true;
+      var href = $(this).attr('href');
+      var id = href.replace('#', '');
+      var fn = $('#' + id);
+      var fn_p = $('#' + id + '>p');
+      fn_p.find('.footnote-back').remove();
+      var text = fn_p.html();
+      var dtfn = $('<d-footnote></d-footnote>');
+      dtfn.html(text);
+      $(this).replaceWith(dtfn);
+    });
+    // remove footnotes
+    $('.footnotes').remove();
+
+    // move refs into #references-listing
+    $('#references-listing').replaceWith($('#refs'));
+
+    $('h1.appendix, h2.appendix').each(function(i, val) {
+      $(this).changeElementType('h3');
+    });
+    $('h3.appendix').each(function(i, val) {
+      var id = $(this).attr('id');
+      $('.d-contents a[href="#' + id + '"]').parent().remove();
+      appendix = true;
+      $(this).nextUntil($('h1, h2, h3')).addBack().appendTo($('d-appendix'));
+    });
+
+    // show d-appendix if we have appendix content
+    $("d-appendix").css('display', appendix ? 'grid' : 'none');
+
+    // localize layout chunks to just output
+    $('.layout-chunk').each(function(i, val) {
+
+      // capture layout
+      var layout = $(this).attr('data-layout');
+
+      // apply layout to markdown level block elements
+      var elements = $(this).children().not('details, div.sourceCode, pre, script');
+      elements.each(function(i, el) {
+        var layout_div = $('<div class="' + layout + '"></div>');
+        if (layout_div.hasClass('shaded')) {
+          var shaded_content = $('<div class="shaded-content"></div>');
+          $(this).wrap(shaded_content);
+          $(this).parent().wrap(layout_div);
+        } else {
+          $(this).wrap(layout_div);
+        }
+      });
+
+
+      // unwrap the layout-chunk div
+      $(this).children().unwrap();
+    });
+
+    // remove code block used to force  highlighting css
+    $('.distill-force-highlighting-css').parent().remove();
+
+    // remove empty line numbers inserted by pandoc when using a
+    // custom syntax highlighting theme, except when numbering line
+    // in code chunk
+    $('pre:not(.numberLines) code.sourceCode a:empty').remove();
+
+    // load distill framework
+    load_distill_framework();
+
+    // wait for window.distillRunlevel == 4 to do post processing
+    function distill_post_process() {
+
+      if (!window.distillRunlevel || window.distillRunlevel < 4)
+        return;
+
+      // hide author/affiliations entirely if we have no authors
+      var front_matter = JSON.parse($("#distill-front-matter").html());
+      var have_authors = front_matter.authors && front_matter.authors.length > 0;
+      if (!have_authors)
+        $('d-byline').addClass('hidden');
+
+      // article with toc class
+      $('.d-contents').parent().addClass('d-article-with-toc');
+
+      // strip links that point to #
+      $('.authors-affiliations').find('a[href="#"]').removeAttr('href');
+
+      // add orcid ids
+      $('.authors-affiliations').find('.author').each(function(i, el) {
+        var orcid_id = front_matter.authors[i].orcidID;
+        var author_name = front_matter.authors[i].author
+        if (orcid_id) {
+          var a = $('<a></a>');
+          a.attr('href', 'https://orcid.org/' + orcid_id);
+          var img = $('<img></img>');
+          img.addClass('orcid-id');
+          img.attr('alt', author_name ? 'ORCID ID for ' + author_name : 'ORCID ID');
+          img.attr('src','data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA2ZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDo1N0NEMjA4MDI1MjA2ODExOTk0QzkzNTEzRjZEQTg1NyIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDozM0NDOEJGNEZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDozM0NDOEJGM0ZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M1IE1hY2ludG9zaCI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOkZDN0YxMTc0MDcyMDY4MTE5NUZFRDc5MUM2MUUwNEREIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjU3Q0QyMDgwMjUyMDY4MTE5OTRDOTM1MTNGNkRBODU3Ii8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+84NovQAAAR1JREFUeNpiZEADy85ZJgCpeCB2QJM6AMQLo4yOL0AWZETSqACk1gOxAQN+cAGIA4EGPQBxmJA0nwdpjjQ8xqArmczw5tMHXAaALDgP1QMxAGqzAAPxQACqh4ER6uf5MBlkm0X4EGayMfMw/Pr7Bd2gRBZogMFBrv01hisv5jLsv9nLAPIOMnjy8RDDyYctyAbFM2EJbRQw+aAWw/LzVgx7b+cwCHKqMhjJFCBLOzAR6+lXX84xnHjYyqAo5IUizkRCwIENQQckGSDGY4TVgAPEaraQr2a4/24bSuoExcJCfAEJihXkWDj3ZAKy9EJGaEo8T0QSxkjSwORsCAuDQCD+QILmD1A9kECEZgxDaEZhICIzGcIyEyOl2RkgwAAhkmC+eAm0TAAAAABJRU5ErkJggg==');
+          a.append(img);
+          $(this).append(a);
+        }
+      });
+
+      // hide elements of author/affiliations grid that have no value
+      function hide_byline_column(caption) {
+        $('d-byline').find('h3:contains("' + caption + '")').parent().css('visibility', 'hidden');
+      }
+
+      // affiliations
+      var have_affiliations = false;
+      for (var i = 0; i<front_matter.authors.length; ++i) {
+        var author = front_matter.authors[i];
+        if (author.affiliation !== "&nbsp;") {
+          have_affiliations = true;
+          break;
+        }
+      }
+      if (!have_affiliations)
+        $('d-byline').find('h3:contains("Affiliations")').css('visibility', 'hidden');
+
+      // published date
+      if (!front_matter.publishedDate)
+        hide_byline_column("Published");
+
+      // document object identifier
+      var doi = $('d-byline').find('h3:contains("DOI")');
+      var doi_p = doi.next().empty();
+      if (!front_matter.doi) {
+        // if we have a citation and valid citationText then link to that
+        if ($('#citation').length > 0 && front_matter.citationText) {
+          doi.html('Citation');
+          $('<a href="#citation"></a>')
+            .text(front_matter.citationText)
+            .appendTo(doi_p);
+        } else {
+          hide_byline_column("DOI");
+        }
+      } else {
+        $('<a></a>')
+           .attr('href', "https://doi.org/" + front_matter.doi)
+           .html(front_matter.doi)
+           .appendTo(doi_p);
+      }
+
+       // change plural form of authors/affiliations
+      if (front_matter.authors.length === 1) {
+        var grid = $('.authors-affiliations');
+        grid.children('h3:contains("Authors")').text('Author');
+        grid.children('h3:contains("Affiliations")').text('Affiliation');
+      }
+
+      // remove d-appendix and d-footnote-list local styles
+      $('d-appendix > style:first-child').remove();
+      $('d-footnote-list > style:first-child').remove();
+
+      // move appendix-bottom entries to the bottom
+      $('.appendix-bottom').appendTo('d-appendix').children().unwrap();
+      $('.appendix-bottom').remove();
+
+      // hoverable references
+      $('span.citation[data-cites]').each(function() {
+        const citeChild = $(this).children()[0]
+        // Do not process if @xyz has been used without escaping and without bibliography activated
+        // https://github.com/rstudio/distill/issues/466
+        if (citeChild === undefined) return true
+
+        if (citeChild.nodeName == "D-FOOTNOTE") {
+          var fn = citeChild
+          $(this).html(fn.shadowRoot.querySelector("sup"))
+          $(this).id = fn.id
+          fn.remove()
+        }
+        var refs = $(this).attr('data-cites').split(" ");
+        var refHtml = refs.map(function(ref) {
+          // Could use CSS.escape too here, we insure backward compatibility in navigator
+          return "<p>" + $('div[id="ref-' + ref + '"]').html() + "</p>";
+        }).join("\n");
+        window.tippy(this, {
+          allowHTML: true,
+          content: refHtml,
+          maxWidth: 500,
+          interactive: true,
+          interactiveBorder: 10,
+          theme: 'light-border',
+          placement: 'bottom-start'
+        });
+      });
+
+      // fix footnotes in tables (#411)
+      // replacing broken distill.pub feature
+      $('table d-footnote').each(function() {
+        // we replace internal showAtNode methode which is triggered when hovering a footnote
+        this.hoverBox.showAtNode = function(node) {
+          // ported from https://github.com/distillpub/template/pull/105/files
+          calcOffset = function(elem) {
+              let x = elem.offsetLeft;
+              let y = elem.offsetTop;
+              // Traverse upwards until an `absolute` element is found or `elem`
+              // becomes null.
+              while (elem = elem.offsetParent && elem.style.position != 'absolute') {
+                  x += elem.offsetLeft;
+                  y += elem.offsetTop;
+              }
+
+              return { left: x, top: y };
+          }
+          // https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/offsetTop
+          const bbox = node.getBoundingClientRect();
+          const offset = calcOffset(node);
+          this.show([offset.left + bbox.width, offset.top + bbox.height]);
+        }
+      })
+
+      // clear polling timer
+      clearInterval(tid);
+
+      // show body now that everything is ready
+      on_load_complete();
+    }
+
+    var tid = setInterval(distill_post_process, 50);
+    distill_post_process();
+
+  }
+
+  function init_downlevel() {
+
+    init_common();
+
+     // insert hr after d-title
+    $('.d-title').after($('<hr class="section-separator"/>'));
+
+    // check if we have authors
+    var front_matter = JSON.parse($("#distill-front-matter").html());
+    var have_authors = front_matter.authors && front_matter.authors.length > 0;
+
+    // manage byline/border
+    if (!have_authors)
+      $('.d-byline').remove();
+    $('.d-byline').after($('<hr class="section-separator"/>'));
+    $('.d-byline a').remove();
+
+    // remove toc
+    $('.d-contents').remove();
+
+    // move appendix elements
+    $('h1.appendix, h2.appendix').each(function(i, val) {
+      $(this).changeElementType('h3');
+    });
+    $('h3.appendix').each(function(i, val) {
+      $(this).nextUntil($('h1, h2, h3')).addBack().appendTo($('.d-appendix'));
+    });
+
+
+    // inject headers into references and footnotes
+    var refs_header = $('<h3></h3>');
+    refs_header.text('References');
+    $('#refs').prepend(refs_header);
+
+    var footnotes_header = $('<h3></h3');
+    footnotes_header.text('Footnotes');
+    $('.footnotes').children('hr').first().replaceWith(footnotes_header);
+
+    // move appendix-bottom entries to the bottom
+    $('.appendix-bottom').appendTo('.d-appendix').children().unwrap();
+    $('.appendix-bottom').remove();
+
+    // remove appendix if it's empty
+    if ($('.d-appendix').children().length === 0)
+      $('.d-appendix').remove();
+
+    // prepend separator above appendix
+    $('.d-appendix').before($('<hr class="section-separator" style="clear: both"/>'));
+
+    // trim code
+    $('pre>code').each(function(i, val) {
+      $(this).html($.trim($(this).html()));
+    });
+
+    // move posts-container right before article
+    $('.posts-container').insertBefore($('.d-article'));
+
+    $('body').addClass('downlevel');
+
+    on_load_complete();
+  }
+
+
+  function init_common() {
+
+    // jquery plugin to change element types
+    (function($) {
+      $.fn.changeElementType = function(newType) {
+        var attrs = {};
+
+        $.each(this[0].attributes, function(idx, attr) {
+          attrs[attr.nodeName] = attr.nodeValue;
+        });
+
+        this.replaceWith(function() {
+          return $("<" + newType + "/>", attrs).append($(this).contents());
+        });
+      };
+    })(jQuery);
+
+    // prevent underline for linked images
+    $('a > img').parent().css({'border-bottom' : 'none'});
+
+    // mark non-body figures created by knitr chunks as 100% width
+    $('.layout-chunk').each(function(i, val) {
+      var figures = $(this).find('img, .html-widget');
+      // ignore leaflet img layers (#106)
+      figures = figures.filter(':not(img[class*="leaflet"])')
+      if ($(this).attr('data-layout') !== "l-body") {
+        figures.css('width', '100%');
+      } else {
+        figures.css('max-width', '100%');
+        figures.filter("[width]").each(function(i, val) {
+          var fig = $(this);
+          fig.css('width', fig.attr('width') + 'px');
+        });
+
+      }
+    });
+
+    // auto-append index.html to post-preview links in file: protocol
+    // and in rstudio ide preview
+    $('.post-preview').each(function(i, val) {
+      if (window.location.protocol === "file:")
+        $(this).attr('href', $(this).attr('href') + "index.html");
+    });
+
+    // get rid of index.html references in header
+    if (window.location.protocol !== "file:") {
+      $('.distill-site-header a[href]').each(function(i,val) {
+        $(this).attr('href', $(this).attr('href').replace(/^index[.]html/, "./"));
+      });
+    }
+
+    // add class to pandoc style tables
+    $('tr.header').parent('thead').parent('table').addClass('pandoc-table');
+    $('.kable-table').children('table').addClass('pandoc-table');
+
+    // add figcaption style to table captions
+    $('caption').parent('table').addClass("figcaption");
+
+    // initialize posts list
+    if (window.init_posts_list)
+      window.init_posts_list();
+
+    // implmement disqus comment link
+    $('.disqus-comment-count').click(function() {
+      window.headroom_prevent_pin = true;
+      $('#disqus_thread').toggleClass('hidden');
+      if (!$('#disqus_thread').hasClass('hidden')) {
+        var offset = $(this).offset();
+        $(window).resize();
+        $('html, body').animate({
+          scrollTop: offset.top - 35
+        });
+      }
+    });
+  }
+
+  document.addEventListener('DOMContentLoaded', function() {
+    if (is_downlevel_browser())
+      init_downlevel();
+    else
+      window.addEventListener('WebComponentsReady', init_distill);
+  });
+
+  </script>
+
+  <!--/radix_placeholder_distill-->
+  <script src="hangzhou_files/header-attrs-2.30/header-attrs.js"></script>
+  <script src="hangzhou_files/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+  <script src="hangzhou_files/popper-2.6.0/popper.min.js"></script>
+  <link href="hangzhou_files/tippy-6.2.7/tippy.css" rel="stylesheet" />
+  <link href="hangzhou_files/tippy-6.2.7/tippy-light-border.css" rel="stylesheet" />
+  <script src="hangzhou_files/tippy-6.2.7/tippy.umd.min.js"></script>
+  <script src="hangzhou_files/anchor-4.2.2/anchor.min.js"></script>
+  <script src="hangzhou_files/bowser-1.9.3/bowser.min.js"></script>
+  <script src="hangzhou_files/webcomponents-2.0.0/webcomponents.js"></script>
+  <script src="hangzhou_files/distill-2.2.21/template.v2.js"></script>
+  <!--radix_placeholder_site_in_header-->
+  <!--/radix_placeholder_site_in_header-->
+
+
+</head>
+
+<body>
+
+<!--radix_placeholder_front_matter-->
+
+<script id="distill-front-matter" type="text/json">
+{"title":"Processing of Time-Series Data on Passenger Volume in the Hangzhou Metro","description":"A time series data processing project","authors":[{"author":"Longxiang Wu","authorURL":"#","affiliation":"&nbsp;","affiliationURL":"#","orcidID":""}],"publishedDate":"2026-02-10T00:00:00.000+08:00","citationText":"Wu, 2026"}
+</script>
+
+<!--/radix_placeholder_front_matter-->
+<!--radix_placeholder_navigation_before_body-->
+<!--/radix_placeholder_navigation_before_body-->
+<!--radix_placeholder_site_before_body-->
+<!--/radix_placeholder_site_before_body-->
+
+<div class="d-title">
+<h1>Processing of Time-Series Data on Passenger Volume in the Hangzhou Metro</h1>
+
+<!--radix_placeholder_categories-->
+<!--/radix_placeholder_categories-->
+<p><p>A time series data processing project</p></p>
+</div>
+
+<div class="d-byline">
+  Longxiang Wu  
+  
+<br/>2026-2-10
+</div>
+
+<div class="d-article">
+<!-- #region-->
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode" id="cb1"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">## Data toolkit</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> tqdm <span class="im">import</span> tqdm</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> warnings</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>warnings.filterwarnings(<span class="st">&#39;ignore&#39;</span>)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> lightgbm <span class="im">as</span> lgb</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> functools <span class="im">import</span> partial</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os </span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> gc</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.sparse <span class="im">import</span> vstack  </span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> time</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> datetime</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>plt.rcParams[<span class="st">&#39;font.sans-serif&#39;</span>]<span class="op">=</span>[<span class="st">&#39;SimHei&#39;</span>] <span class="co">#It is used to display Chinese labels normally.</span></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns </span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a><span class="co"># %matplotlib inline</span></span></code></pre></div>
+</div>
+<h3 id="loading-data">Loading data</h3>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode" id="cb2"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> tqdm <span class="im">import</span> tqdm</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> tqdm <span class="im">import</span> tqdm_notebook</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>path <span class="op">=</span><span class="st">&#39;./input/&#39;</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> tqdm(<span class="bu">range</span>(<span class="dv">1</span>,<span class="dv">26</span>)):</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> i <span class="op">&lt;</span> <span class="dv">10</span>:</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>        train_tmp <span class="op">=</span> pd.read_csv(path <span class="op">+</span> <span class="st">&#39;Metro_train/record_2019-01-0&#39;</span> <span class="op">+</span> <span class="bu">str</span>(i) <span class="op">+</span> <span class="st">&#39;.csv&#39;</span>)</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>        train_tmp <span class="op">=</span> pd.read_csv(path <span class="op">+</span> <span class="st">&#39;Metro_train/record_2019-01-&#39;</span> <span class="op">+</span> <span class="bu">str</span>(i) <span class="op">+</span> <span class="st">&#39;.csv&#39;</span>)</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> i<span class="op">==</span> <span class="dv">1</span>:</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>        data <span class="op">=</span> train_tmp</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>        data <span class="op">=</span> pd.concat([data, train_tmp],axis<span class="op">=</span><span class="dv">0</span>,ignore_index<span class="op">=</span><span class="va">True</span>) </span></code></pre></div>
+<pre><code>  0%|          | 0/25 [00:00&lt;?, ?it/s]  4%|4         | 1/25 [00:02&lt;01:10,  2.95s/it]  8%|8         | 2/25 [00:05&lt;01:08,  2.98s/it] 12%|#2        | 3/25 [00:09&lt;01:08,  3.13s/it] 16%|#6        | 4/25 [00:12&lt;01:07,  3.20s/it] 20%|##        | 5/25 [00:15&lt;01:03,  3.18s/it] 24%|##4       | 6/25 [00:19&lt;01:01,  3.25s/it] 28%|##8       | 7/25 [00:22&lt;01:01,  3.42s/it] 32%|###2      | 8/25 [00:27&lt;01:04,  3.81s/it] 36%|###6      | 9/25 [00:31&lt;01:01,  3.87s/it] 40%|####      | 10/25 [00:35&lt;01:00,  4.03s/it] 44%|####4     | 11/25 [00:40&lt;00:58,  4.21s/it] 48%|####8     | 12/25 [00:48&lt;01:11,  5.51s/it] 52%|#####2    | 13/25 [00:55&lt;01:11,  5.95s/it] 56%|#####6    | 14/25 [01:01&lt;01:03,  5.79s/it] 60%|######    | 15/25 [01:06&lt;00:54,  5.49s/it] 64%|######4   | 16/25 [01:11&lt;00:50,  5.58s/it] 68%|######8   | 17/25 [01:18&lt;00:47,  5.95s/it] 72%|#######2  | 18/25 [01:26&lt;00:44,  6.35s/it] 76%|#######6  | 19/25 [01:33&lt;00:40,  6.71s/it] 80%|########  | 20/25 [01:41&lt;00:35,  7.18s/it] 84%|########4 | 21/25 [01:51&lt;00:31,  7.92s/it] 88%|########8 | 22/25 [02:03&lt;00:27,  9.21s/it] 92%|#########2| 23/25 [02:16&lt;00:20, 10.29s/it] 96%|#########6| 24/25 [02:31&lt;00:11, 11.65s/it]100%|##########| 25/25 [02:45&lt;00:00, 12.54s/it]100%|##########| 25/25 [02:45&lt;00:00,  6.64s/it]</code></pre>
+<div class="sourceCode" id="cb4"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>Metro_roadMap <span class="op">=</span> pd.read_csv(path <span class="op">+</span> <span class="st">&#39;Metro_roadMap.csv&#39;</span>)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>test_A_record <span class="op">=</span> pd.read_csv(path <span class="op">+</span> <span class="st">&#39;Metro_testA/testA_record_2019-01-28.csv&#39;</span>) </span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>test_A_submit <span class="op">=</span> pd.read_csv(path <span class="op">+</span> <span class="st">&#39;Metro_testA/testA_submit_2019-01-29.csv&#39;</span>) </span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> pd.concat([data, test_A_record],axis<span class="op">=</span><span class="dv">0</span>,ignore_index<span class="op">=</span><span class="va">True</span>)</span></code></pre></div>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode" id="cb5"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>data.head()</span></code></pre></div>
+<pre><code>                  time lineID  ...                             userID  payType
+0  2019-01-01 02:00:05      B  ...  D13f76f42c9a677c4add94d9e480fb5c5        3
+1  2019-01-01 02:01:40      B  ...  D9a337d37d9512184b8e3fd477934b293        3
+2  2019-01-01 02:01:53      B  ...  Dc9e179298617f40b782490c1f3e2346c        3
+3  2019-01-01 02:02:38      B  ...  D9a337d37d9512184b8e3fd477934b293        3
+4  2019-01-01 02:03:42      B  ...  Dd1cde61886c23fdb7ef1fdb76c9b1234        3
+
+[5 rows x 7 columns]</code></pre>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode" id="cb7"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>data.info()</span></code></pre></div>
+<pre><code>&lt;class &#39;pandas.DataFrame&#39;&gt;
+RangeIndex: 61042131 entries, 0 to 61042130
+Data columns (total 7 columns):
+ #   Column     Dtype
+---  ------     -----
+ 0   time       str  
+ 1   lineID     str  
+ 2   stationID  int64
+ 3   deviceID   int64
+ 4   status     int64
+ 5   userID     str  
+ 6   payType    int64
+dtypes: int64(4), str(3)
+memory usage: 3.2 GB</code></pre>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode" id="cb9"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> trans_time_10_minutes(x):</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    x_split <span class="op">=</span> x.split(<span class="st">&#39;:&#39;</span>)</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    x_part1 <span class="op">=</span> x_split[<span class="dv">0</span>]</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>    x_part2 <span class="op">=</span> <span class="bu">int</span>(x_split[<span class="dv">1</span>]) <span class="op">//</span> <span class="dv">10</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> x_part2 <span class="op">==</span> <span class="dv">0</span>:</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>        x_part2 <span class="op">=</span> <span class="st">&#39;00&#39;</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>        x_part2 <span class="op">=</span> <span class="bu">str</span>(x_part2 <span class="op">*</span> <span class="dv">10</span>)</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> x_part1 <span class="op">+</span> <span class="st">&#39;:&#39;</span> <span class="op">+</span> x_part2 <span class="op">+</span> <span class="st">&#39;:00&#39;</span></span></code></pre></div>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode" id="cb10"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Knowledge points: time conversion, apply</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>data[<span class="st">&#39;time&#39;</span>] <span class="op">=</span> pd.to_datetime(data[<span class="st">&#39;time&#39;</span>])</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>data[<span class="st">&#39;time_10_minutes&#39;</span>] <span class="op">=</span> data[<span class="st">&#39;time&#39;</span>].astype(<span class="bu">str</span>).<span class="bu">apply</span>(<span class="kw">lambda</span> x: trans_time_10_minutes(x))</span></code></pre></div>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode" id="cb11"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>data.head()</span></code></pre></div>
+<pre><code>                 time lineID  ...  payType      time_10_minutes
+0 2019-01-01 02:00:05      B  ...        3  2019-01-01 02:00:00
+1 2019-01-01 02:01:40      B  ...        3  2019-01-01 02:00:00
+2 2019-01-01 02:01:53      B  ...        3  2019-01-01 02:00:00
+3 2019-01-01 02:02:38      B  ...        3  2019-01-01 02:00:00
+4 2019-01-01 02:03:42      B  ...        3  2019-01-01 02:00:00
+
+[5 rows x 8 columns]</code></pre>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode" id="cb13"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Knowledge point: groupby aggregation</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>data_inNums <span class="op">=</span> data[data.status <span class="op">==</span> <span class="dv">1</span>].groupby([<span class="st">&#39;stationID&#39;</span>,<span class="st">&#39;time_10_minutes&#39;</span>]).size().to_frame(<span class="st">&#39;inNums&#39;</span>).reset_index()</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>data_inNums.head() </span></code></pre></div>
+<pre><code>   stationID      time_10_minutes  inNums
+0          0  2019-01-01 05:30:00       1
+1          0  2019-01-01 05:40:00       4
+2          0  2019-01-01 05:50:00       3
+3          0  2019-01-01 06:00:00      17
+4          0  2019-01-01 06:10:00      21</code></pre>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode" id="cb15"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>data_outNums <span class="op">=</span> data[data.status <span class="op">==</span> <span class="dv">0</span>].groupby([<span class="st">&#39;stationID&#39;</span>,<span class="st">&#39;time_10_minutes&#39;</span>]).size().to_frame(<span class="st">&#39;outNums&#39;</span>).reset_index()</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>data_outNums.head() </span></code></pre></div>
+<pre><code>   stationID      time_10_minutes  outNums
+0          0  2019-01-01 05:50:00        1
+1          0  2019-01-01 06:20:00        1
+2          0  2019-01-01 06:30:00       49
+3          0  2019-01-01 06:40:00       48
+4          0  2019-01-01 06:50:00       25</code></pre>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode" id="cb17"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>stationIDs <span class="op">=</span> test_A_submit[<span class="st">&#39;stationID&#39;</span>].unique()</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>times <span class="op">=</span> [] </span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>days <span class="op">=</span> [i <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>,<span class="dv">26</span>)] <span class="op">+</span> [<span class="dv">28</span>, <span class="dv">29</span>]</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> day <span class="kw">in</span> days: </span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> day <span class="op">&lt;</span> <span class="dv">10</span>:</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>        day_str <span class="op">=</span> <span class="st">&#39;0&#39;</span> <span class="op">+</span> <span class="bu">str</span>(day)</span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>        day_str <span class="op">=</span> <span class="bu">str</span>(day)</span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> hour <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">24</span>):</span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> hour <span class="op">&lt;</span> <span class="dv">10</span>:</span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>            hour_str <span class="op">=</span> <span class="st">&#39;0&#39;</span> <span class="op">+</span> <span class="bu">str</span>(hour)</span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span>:</span>
+<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a>            hour_str <span class="op">=</span> <span class="bu">str</span>(hour)</span>
+<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> minutes <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">6</span>):</span>
+<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> minutes <span class="op">==</span> <span class="dv">0</span>:</span>
+<span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a>                minutes_str <span class="op">=</span> <span class="st">&#39;0&#39;</span> <span class="op">+</span> <span class="bu">str</span>(minutes)</span>
+<span id="cb17-17"><a href="#cb17-17" aria-hidden="true" tabindex="-1"></a>            <span class="cf">else</span>:</span>
+<span id="cb17-18"><a href="#cb17-18" aria-hidden="true" tabindex="-1"></a>                minutes_str <span class="op">=</span> <span class="bu">str</span>(minutes <span class="op">*</span> <span class="dv">10</span>) </span>
+<span id="cb17-19"><a href="#cb17-19" aria-hidden="true" tabindex="-1"></a>            times.append(<span class="st">&#39;2019-01-&#39;</span> <span class="op">+</span> day_str <span class="op">+</span> <span class="st">&#39; &#39;</span> <span class="op">+</span> hour_str <span class="op">+</span><span class="st">&#39;:&#39;</span> <span class="op">+</span> minutes_str <span class="op">+</span> <span class="st">&#39;:00&#39;</span>)</span>
+<span id="cb17-20"><a href="#cb17-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-21"><a href="#cb17-21" aria-hidden="true" tabindex="-1"></a><span class="co"># Knowledge point: Find the product of Descartes</span></span>
+<span id="cb17-22"><a href="#cb17-22" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> itertools <span class="im">import</span> product</span>
+<span id="cb17-23"><a href="#cb17-23" aria-hidden="true" tabindex="-1"></a>stationids_by_times <span class="op">=</span> <span class="bu">list</span>(product(stationIDs, times))</span>
+<span id="cb17-24"><a href="#cb17-24" aria-hidden="true" tabindex="-1"></a><span class="co"># Build a new data set</span></span>
+<span id="cb17-25"><a href="#cb17-25" aria-hidden="true" tabindex="-1"></a>df_data <span class="op">=</span> pd.DataFrame()</span>
+<span id="cb17-26"><a href="#cb17-26" aria-hidden="true" tabindex="-1"></a>df_data[<span class="st">&#39;stationID&#39;</span>] <span class="op">=</span> np.array(stationids_by_times)[:,<span class="dv">0</span>]</span>
+<span id="cb17-27"><a href="#cb17-27" aria-hidden="true" tabindex="-1"></a>df_data[<span class="st">&#39;startTime&#39;</span>] <span class="op">=</span> np.array(stationids_by_times)[:,<span class="dv">1</span>]</span>
+<span id="cb17-28"><a href="#cb17-28" aria-hidden="true" tabindex="-1"></a><span class="co"># Knowledge point: sort sorting</span></span>
+<span id="cb17-29"><a href="#cb17-29" aria-hidden="true" tabindex="-1"></a>df_data <span class="op">=</span> df_data.sort_values([<span class="st">&#39;stationID&#39;</span>,<span class="st">&#39;startTime&#39;</span>])</span>
+<span id="cb17-30"><a href="#cb17-30" aria-hidden="true" tabindex="-1"></a>df_data[<span class="st">&#39;endTime&#39;</span>] <span class="op">=</span> df_data.groupby(<span class="st">&#39;stationID&#39;</span>)[<span class="st">&#39;startTime&#39;</span>].shift(<span class="op">-</span><span class="dv">1</span>).values</span></code></pre></div>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode" id="cb18"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>df_data</span></code></pre></div>
+<pre><code>      stationID            startTime              endTime
+0             0  2019-01-01 00:00:00  2019-01-01 00:10:00
+1             0  2019-01-01 00:10:00  2019-01-01 00:20:00
+2             0  2019-01-01 00:20:00  2019-01-01 00:30:00
+3             0  2019-01-01 00:30:00  2019-01-01 00:40:00
+4             0  2019-01-01 00:40:00  2019-01-01 00:50:00
+...         ...                  ...                  ...
+38875         9  2019-01-29 23:10:00  2019-01-29 23:20:00
+38876         9  2019-01-29 23:20:00  2019-01-29 23:30:00
+38877         9  2019-01-29 23:30:00  2019-01-29 23:40:00
+38878         9  2019-01-29 23:40:00  2019-01-29 23:50:00
+38879         9  2019-01-29 23:50:00                  NaN
+
+[314928 rows x 3 columns]</code></pre>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode" id="cb20"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> filltime(x):</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>    x_split <span class="op">=</span> x.split(<span class="st">&#39; &#39;</span>)[<span class="dv">0</span>].split(<span class="st">&#39;-&#39;</span>)</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>    x_part1_1 <span class="op">=</span> x_split[<span class="dv">0</span>] <span class="op">+</span><span class="st">&#39;-&#39;</span><span class="op">+</span>x_split[<span class="dv">1</span>]<span class="op">+</span><span class="st">&#39;-&#39;</span></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>    x_part1_2 <span class="op">=</span> <span class="bu">int</span>(x_split[<span class="dv">2</span>]) <span class="op">+</span> <span class="dv">1</span></span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> x_part1_2 <span class="op">&lt;</span> <span class="dv">10</span>:</span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>        x_part1_2 <span class="op">=</span> <span class="st">&#39;0&#39;</span> <span class="op">+</span> <span class="bu">str</span>(x_part1_2)</span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>        x_part1_2 <span class="op">=</span> <span class="bu">str</span>(x_part1_2)</span>
+<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a>    x_part2 <span class="op">=</span> <span class="st">&#39; 00:00:00&#39;</span></span>
+<span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> x_part1_1 <span class="op">+</span> x_part1_2 <span class="op">+</span> x_part2</span>
+<span id="cb20-12"><a href="#cb20-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Knowledge point: missing value time filling</span></span>
+<span id="cb20-13"><a href="#cb20-13" aria-hidden="true" tabindex="-1"></a>df_data.loc[df_data.endTime.isnull(), <span class="st">&#39;endTime&#39;</span>]  <span class="op">=</span> <span class="op">\</span></span>
+<span id="cb20-14"><a href="#cb20-14" aria-hidden="true" tabindex="-1"></a>df_data.loc[df_data.endTime.isnull(), <span class="st">&#39;startTime&#39;</span>].<span class="bu">apply</span>(<span class="kw">lambda</span> x: filltime(x)) </span>
+<span id="cb20-15"><a href="#cb20-15" aria-hidden="true" tabindex="-1"></a>df_data[<span class="st">&#39;stationID&#39;</span>] <span class="op">=</span> df_data[<span class="st">&#39;stationID&#39;</span>].astype(<span class="bu">int</span>)</span></code></pre></div>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode" id="cb21"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>df_data</span></code></pre></div>
+<pre><code>       stationID            startTime              endTime
+0              0  2019-01-01 00:00:00  2019-01-01 00:10:00
+1              0  2019-01-01 00:10:00  2019-01-01 00:20:00
+2              0  2019-01-01 00:20:00  2019-01-01 00:30:00
+3              0  2019-01-01 00:30:00  2019-01-01 00:40:00
+4              0  2019-01-01 00:40:00  2019-01-01 00:50:00
+...          ...                  ...                  ...
+38875          9  2019-01-29 23:10:00  2019-01-29 23:20:00
+38876          9  2019-01-29 23:20:00  2019-01-29 23:30:00
+38877          9  2019-01-29 23:30:00  2019-01-29 23:40:00
+38878          9  2019-01-29 23:40:00  2019-01-29 23:50:00
+38879          9  2019-01-29 23:50:00  2019-01-30 00:00:00
+
+[314928 rows x 3 columns]</code></pre>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode" id="cb23"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>data_inNums.rename(columns<span class="op">=</span>{<span class="st">&#39;time_10_minutes&#39;</span>:<span class="st">&#39;startTime&#39;</span>}, inplace<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>data_outNums.rename( columns<span class="op">=</span>{<span class="st">&#39;time_10_minutes&#39;</span>:<span class="st">&#39;startTime&#39;</span>}, inplace<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Knowledge Point: Data Merger</span></span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>df_data <span class="op">=</span> df_data.merge(data_inNums , on<span class="op">=</span>[<span class="st">&#39;stationID&#39;</span>, <span class="st">&#39;startTime&#39;</span>], how<span class="op">=</span><span class="st">&#39;left&#39;</span>)</span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>df_data <span class="op">=</span> df_data.merge(data_outNums, on<span class="op">=</span>[<span class="st">&#39;stationID&#39;</span>, <span class="st">&#39;startTime&#39;</span>], how<span class="op">=</span><span class="st">&#39;left&#39;</span>)</span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>df_data[<span class="st">&#39;inNums&#39;</span>]  <span class="op">=</span> df_data[<span class="st">&#39;inNums&#39;</span>].fillna(<span class="dv">0</span>)</span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a>df_data[<span class="st">&#39;outNums&#39;</span>] <span class="op">=</span> df_data[<span class="st">&#39;outNums&#39;</span>].fillna(<span class="dv">0</span>)</span></code></pre></div>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode" id="cb24"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Knowledge points: time-related characteristics</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>df_data[<span class="st">&#39;time&#39;</span>] <span class="op">=</span> pd.to_datetime(df_data[<span class="st">&#39;startTime&#39;</span>])</span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>df_data[<span class="st">&#39;day&#39;</span>] <span class="op">=</span> df_data[<span class="st">&#39;time&#39;</span>].dt.day  </span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>df_data[<span class="st">&#39;hours_in_day&#39;</span>] <span class="op">=</span> df_data[<span class="st">&#39;time&#39;</span>].dt.hour </span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>df_data[<span class="st">&#39;day_of_week&#39;</span>] <span class="op">=</span> df_data[<span class="st">&#39;time&#39;</span>].dt.dayofweek </span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>df_data[<span class="st">&#39;ten_minutes_in_day&#39;</span>] <span class="op">=</span> df_data[<span class="st">&#39;hours_in_day&#39;</span>] <span class="op">*</span> <span class="dv">6</span> <span class="op">+</span> df_data[<span class="st">&#39;time&#39;</span>].dt.minute <span class="op">//</span> <span class="dv">10</span> </span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a><span class="kw">del</span> df_data[<span class="st">&#39;time&#39;</span>]</span></code></pre></div>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode" id="cb25"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>df_data</span></code></pre></div>
+<pre><code>        stationID            startTime  ... day_of_week  ten_minutes_in_day
+0               0  2019-01-01 00:00:00  ...           1                   0
+1               0  2019-01-01 00:10:00  ...           1                   1
+2               0  2019-01-01 00:20:00  ...           1                   2
+3               0  2019-01-01 00:30:00  ...           1                   3
+4               0  2019-01-01 00:40:00  ...           1                   4
+...           ...                  ...  ...         ...                 ...
+314923          9  2019-01-29 23:10:00  ...           1                 139
+314924          9  2019-01-29 23:20:00  ...           1                 140
+314925          9  2019-01-29 23:30:00  ...           1                 141
+314926          9  2019-01-29 23:40:00  ...           1                 142
+314927          9  2019-01-29 23:50:00  ...           1                 143
+
+[314928 rows x 9 columns]</code></pre>
+</div>
+<h3 id="time-series-data-visualisation-operation">Time series data visualisation operation</h3>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode" id="cb27"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> warnings</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> logging</span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Suppress findfont warnings</span></span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>logging.getLogger(<span class="st">&#39;matplotlib.font_manager&#39;</span>).setLevel(logging.ERROR)</span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a>tmp <span class="op">=</span> df_data[df_data.day<span class="op">==</span><span class="dv">1</span>]</span>
+<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a>dt <span class="op">=</span> [r <span class="cf">for</span> r <span class="kw">in</span> <span class="bu">range</span>(tmp.loc[tmp.stationID<span class="op">==</span><span class="dv">0</span>, <span class="st">&#39;ten_minutes_in_day&#39;</span>].shape[<span class="dv">0</span>])]</span>
+<span id="cb27-9"><a href="#cb27-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-10"><a href="#cb27-10" aria-hidden="true" tabindex="-1"></a>fig <span class="op">=</span> plt.figure(<span class="dv">1</span>,figsize<span class="op">=</span>[<span class="dv">12</span>,<span class="dv">6</span>])</span>
+<span id="cb27-11"><a href="#cb27-11" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">&#39;inNums&#39;</span>,fontsize<span class="op">=</span><span class="dv">14</span>)</span>
+<span id="cb27-12"><a href="#cb27-12" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">&#39;date&#39;</span>,fontsize<span class="op">=</span><span class="dv">14</span>)</span>
+<span id="cb27-13"><a href="#cb27-13" aria-hidden="true" tabindex="-1"></a><span class="co"># plt.title(&#39;inNums of stationID &#39;)</span></span>
+<span id="cb27-14"><a href="#cb27-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-15"><a href="#cb27-15" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">0</span>,<span class="dv">10</span>):</span>
+<span id="cb27-16"><a href="#cb27-16" aria-hidden="true" tabindex="-1"></a>    plt.plot(dt, tmp.loc[tmp.stationID<span class="op">==</span>i, <span class="st">&#39;inNums&#39;</span>], label <span class="op">=</span> <span class="bu">str</span>(i)<span class="op">+</span><span class="st">&#39; stationID&#39;</span> )</span>
+<span id="cb27-17"><a href="#cb27-17" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb27-18"><a href="#cb27-18" aria-hidden="true" tabindex="-1"></a>plt.legend(fontsize<span class="op">=</span><span class="dv">14</span>)</span></code></pre></div>
+<p><img src="hangzhou_files/figure-html5/unnamed-chunk-17-1.png" alt="" width="1152" /></p>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode" id="cb28"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>tmp <span class="op">=</span> df_data[df_data.day<span class="op">==</span><span class="dv">1</span>]</span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>dt <span class="op">=</span> [r <span class="cf">for</span> r <span class="kw">in</span> <span class="bu">range</span>(tmp.loc[tmp.stationID<span class="op">==</span><span class="dv">0</span>, <span class="st">&#39;ten_minutes_in_day&#39;</span>].shape[<span class="dv">0</span>])]</span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>fig <span class="op">=</span> plt.figure(<span class="dv">1</span>,figsize<span class="op">=</span>[<span class="dv">12</span>,<span class="dv">6</span>])</span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">&#39;outNums&#39;</span>,fontsize<span class="op">=</span><span class="dv">14</span>)</span>
+<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">&#39;date&#39;</span>,fontsize<span class="op">=</span><span class="dv">14</span>)</span>
+<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a><span class="co"># plt.title(&#39;outNums of stationID &#39;)</span></span>
+<span id="cb28-8"><a href="#cb28-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-9"><a href="#cb28-9" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">0</span>,<span class="dv">10</span>):</span>
+<span id="cb28-10"><a href="#cb28-10" aria-hidden="true" tabindex="-1"></a>    plt.plot(dt, tmp.loc[tmp.stationID<span class="op">==</span>i, <span class="st">&#39;outNums&#39;</span>], label <span class="op">=</span> <span class="bu">str</span>(i)<span class="op">+</span><span class="st">&#39; stationID&#39;</span> )</span>
+<span id="cb28-11"><a href="#cb28-11" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb28-12"><a href="#cb28-12" aria-hidden="true" tabindex="-1"></a>plt.legend(fontsize<span class="op">=</span><span class="dv">14</span>)</span></code></pre></div>
+<p><img src="hangzhou_files/figure-html5/unnamed-chunk-18-3.png" alt="" width="1152" /></p>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode" id="cb29"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>tmp <span class="op">=</span> df_data[df_data.day<span class="op">==</span><span class="dv">3</span>]</span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>dt <span class="op">=</span> [r <span class="cf">for</span> r <span class="kw">in</span> <span class="bu">range</span>(tmp.loc[tmp.stationID<span class="op">==</span><span class="dv">0</span>, <span class="st">&#39;ten_minutes_in_day&#39;</span>].shape[<span class="dv">0</span>])]</span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>fig <span class="op">=</span> plt.figure(<span class="dv">1</span>,figsize<span class="op">=</span>[<span class="dv">20</span>,<span class="dv">10</span>])</span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">&#39;outNums&#39;</span>)</span>
+<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">&#39;date&#39;</span>)</span>
+<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">&#39;outNums of stationID &#39;</span>)</span>
+<span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-9"><a href="#cb29-9" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">0</span>,<span class="dv">10</span>):</span>
+<span id="cb29-10"><a href="#cb29-10" aria-hidden="true" tabindex="-1"></a>    plt.plot(dt, tmp.loc[tmp.stationID<span class="op">==</span>i, <span class="st">&#39;outNums&#39;</span>], label <span class="op">=</span> <span class="bu">str</span>(i)<span class="op">+</span><span class="st">&#39; stationID&#39;</span> )</span>
+<span id="cb29-11"><a href="#cb29-11" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb29-12"><a href="#cb29-12" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
+<span id="cb29-13"><a href="#cb29-13" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div>
+<p><img src="hangzhou_files/figure-html5/unnamed-chunk-19-5.png" alt="" width="1920" /></p>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode" id="cb30"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>tmp <span class="op">=</span> df_data[df_data.day<span class="op">==</span><span class="dv">5</span>]</span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>dt <span class="op">=</span> [r <span class="cf">for</span> r <span class="kw">in</span> <span class="bu">range</span>(tmp.loc[tmp.stationID<span class="op">==</span><span class="dv">0</span>, <span class="st">&#39;ten_minutes_in_day&#39;</span>].shape[<span class="dv">0</span>])]</span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>fig <span class="op">=</span> plt.figure(<span class="dv">1</span>,figsize<span class="op">=</span>[<span class="dv">20</span>,<span class="dv">10</span>])</span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">&#39;outNums&#39;</span>)</span>
+<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">&#39;date&#39;</span>)</span>
+<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">&#39;outNums of stationID &#39;</span>)</span>
+<span id="cb30-8"><a href="#cb30-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-9"><a href="#cb30-9" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">0</span>,<span class="dv">10</span>):</span>
+<span id="cb30-10"><a href="#cb30-10" aria-hidden="true" tabindex="-1"></a>    plt.plot(dt, tmp.loc[tmp.stationID<span class="op">==</span>i, <span class="st">&#39;outNums&#39;</span>], label <span class="op">=</span> <span class="bu">str</span>(i)<span class="op">+</span><span class="st">&#39; stationID&#39;</span> )</span>
+<span id="cb30-11"><a href="#cb30-11" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb30-12"><a href="#cb30-12" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
+<span id="cb30-13"><a href="#cb30-13" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div>
+<p><img src="hangzhou_files/figure-html5/unnamed-chunk-20-7.png" alt="" width="1920" /></p>
+</div>
+<p>Core reasons: the impact of holidays, the impact of the week and the weekend, day=3 4 7 is during the week, 5 6 is the weekend</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode" id="cb31"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>tmp <span class="op">=</span> df_data[df_data.day<span class="op">&gt;=</span><span class="dv">1</span>]</span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>dt <span class="op">=</span> [r <span class="cf">for</span> r <span class="kw">in</span> <span class="bu">range</span>(tmp.loc[tmp.stationID<span class="op">==</span><span class="dv">0</span>, <span class="st">&#39;ten_minutes_in_day&#39;</span>].shape[<span class="dv">0</span>])]</span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>fig <span class="op">=</span> plt.figure(<span class="dv">1</span>,figsize<span class="op">=</span>[<span class="dv">12</span>,<span class="dv">6</span>])</span>
+<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">&#39;inNums&#39;</span>,fontsize<span class="op">=</span><span class="dv">14</span>)</span>
+<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">&#39;date&#39;</span>,fontsize<span class="op">=</span><span class="dv">14</span>)</span>
+<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a><span class="co"># plt.title(&#39;inNums of stationID &#39;)</span></span>
+<span id="cb31-8"><a href="#cb31-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-9"><a href="#cb31-9" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">0</span>,<span class="dv">10</span>):</span>
+<span id="cb31-10"><a href="#cb31-10" aria-hidden="true" tabindex="-1"></a>    plt.plot(dt, tmp.loc[tmp.stationID<span class="op">==</span>i, <span class="st">&#39;inNums&#39;</span>], label <span class="op">=</span> <span class="bu">str</span>(i)<span class="op">+</span><span class="st">&#39; stationID&#39;</span> )</span>
+<span id="cb31-11"><a href="#cb31-11" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb31-12"><a href="#cb31-12" aria-hidden="true" tabindex="-1"></a>plt.legend()</span></code></pre></div>
+<p><img src="hangzhou_files/figure-html5/unnamed-chunk-21-9.png" alt="" width="1152" /></p>
+</div>
+<p>It is relatively cyclical, and it is carried out around the day, or weekly</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode" id="cb32"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>tmp <span class="op">=</span> df_data.loc[(df_data.day.isin([<span class="dv">4</span>,<span class="dv">5</span>]))] <span class="co"># 4为周内，5为周末</span></span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>tmp.loc[tmp.stationID <span class="op">==</span> <span class="dv">4</span>].pivot_table(index<span class="op">=</span><span class="st">&#39;hours_in_day&#39;</span>,<span class="op">\</span></span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>                                        columns<span class="op">=</span><span class="st">&#39;day&#39;</span>,values<span class="op">=</span><span class="st">&#39;inNums&#39;</span>).plot(style<span class="op">=</span><span class="st">&#39;o-&#39;</span>)</span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">&#39;inNums&#39;</span>,fontsize<span class="op">=</span><span class="dv">14</span>)</span>
+<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">&#39;hour&#39;</span>,fontsize<span class="op">=</span><span class="dv">14</span>)</span>
+<span id="cb32-7"><a href="#cb32-7" aria-hidden="true" tabindex="-1"></a>plt.legend(fontsize<span class="op">=</span><span class="dv">14</span>)</span></code></pre></div>
+<p><img src="hangzhou_files/figure-html5/unnamed-chunk-22-11.png" alt="" width="624" /></p>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode" id="cb33"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>tmp <span class="op">=</span> df_data.loc[(df_data.day.isin([<span class="dv">3</span>,<span class="dv">4</span>]))]</span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>tmp.loc[tmp.stationID <span class="op">==</span> <span class="dv">4</span>].pivot_table(index<span class="op">=</span><span class="st">&#39;hours_in_day&#39;</span>,<span class="op">\</span></span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>                                        columns<span class="op">=</span><span class="st">&#39;day&#39;</span>,values<span class="op">=</span><span class="st">&#39;inNums&#39;</span>).plot(style<span class="op">=</span><span class="st">&#39;o-&#39;</span>)</span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">&#39;inNums&#39;</span>,fontsize<span class="op">=</span><span class="dv">14</span>)</span>
+<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">&#39;hour&#39;</span>,fontsize<span class="op">=</span><span class="dv">14</span>)</span>
+<span id="cb33-7"><a href="#cb33-7" aria-hidden="true" tabindex="-1"></a>plt.legend(fontsize<span class="op">=</span><span class="dv">14</span>)</span></code></pre></div>
+<p><img src="hangzhou_files/figure-html5/unnamed-chunk-23-13.png" alt="" width="624" /></p>
+</div>
+<p>There is not much difference in the traffic during the week, but there is a big difference between weekdays and weekends.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode" id="cb34"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>df_data[<span class="st">&#39;day&#39;</span>] <span class="op">=</span> df_data[<span class="st">&#39;day&#39;</span>].astype(<span class="bu">object</span>)</span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>df_data.loc[df_data.day <span class="op">==</span> <span class="dv">1</span>, <span class="st">&#39;day&#39;</span>] <span class="op">=</span> <span class="st">&#39;元旦&#39;</span></span></code></pre></div>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode" id="cb35"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>plt.rcParams[<span class="st">&#39;font.sans-serif&#39;</span>] <span class="op">=</span> [<span class="st">&#39;Heiti TC&#39;</span>]</span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>plt.rcParams[<span class="st">&#39;axes.unicode_minus&#39;</span>] <span class="op">=</span> <span class="va">False</span></span></code></pre></div>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode" id="cb36"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>tmp <span class="op">=</span> df_data.loc[(df_data.day.isin([<span class="st">&#39;元旦&#39;</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>]))]</span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>tmp.loc[tmp.stationID <span class="op">==</span> <span class="dv">4</span>].pivot_table(index<span class="op">=</span><span class="st">&#39;hours_in_day&#39;</span>,<span class="op">\</span></span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>                                        columns<span class="op">=</span><span class="st">&#39;day&#39;</span>,values<span class="op">=</span><span class="st">&#39;inNums&#39;</span>).plot(style<span class="op">=</span><span class="st">&#39;o-&#39;</span>)</span>
+<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">&#39;inNums&#39;</span>,fontsize<span class="op">=</span><span class="dv">14</span>)</span>
+<span id="cb36-6"><a href="#cb36-6" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">&#39;hour&#39;</span>,fontsize<span class="op">=</span><span class="dv">14</span>)</span>
+<span id="cb36-7"><a href="#cb36-7" aria-hidden="true" tabindex="-1"></a>plt.legend(fontsize<span class="op">=</span><span class="dv">14</span>)</span>
+<span id="cb36-8"><a href="#cb36-8" aria-hidden="true" tabindex="-1"></a>plt.savefig(<span class="st">&quot;10_inNums_of_day1234.svg&quot;</span>, <span class="bu">format</span><span class="op">=</span><span class="st">&quot;svg&quot;</span>)</span></code></pre></div>
+<p><img src="hangzhou_files/figure-html5/unnamed-chunk-26-15.png" alt="" width="624" /></p>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode" id="cb37"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Eliminate the date that is very different from the distribution of the test set</span></span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>df_data <span class="op">=</span> df_data.loc[((df_data.day_of_week <span class="op">&lt;</span> <span class="dv">5</span>) <span class="op">&amp;</span> (df_data.day <span class="op">!=</span> <span class="dv">1</span>))].copy()</span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Date of retention</span></span>
+<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a>retain_days <span class="op">=</span> <span class="bu">list</span>(df_data.day.unique())</span>
+<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Recalculate the rank, which is convenient for us to extract the characteristics later.</span></span>
+<span id="cb37-6"><a href="#cb37-6" aria-hidden="true" tabindex="-1"></a>days_relative <span class="op">=</span> {} </span>
+<span id="cb37-7"><a href="#cb37-7" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i,d <span class="kw">in</span> <span class="bu">enumerate</span>(retain_days):</span>
+<span id="cb37-8"><a href="#cb37-8" aria-hidden="true" tabindex="-1"></a>    days_relative[d] <span class="op">=</span> i <span class="op">+</span> <span class="dv">1</span></span>
+<span id="cb37-9"><a href="#cb37-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-10"><a href="#cb37-10" aria-hidden="true" tabindex="-1"></a>df_data[<span class="st">&#39;days_relative&#39;</span>] <span class="op">=</span> df_data[<span class="st">&#39;day&#39;</span>].<span class="bu">map</span>(days_relative)</span>
+<span id="cb37-11"><a href="#cb37-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-12"><a href="#cb37-12" aria-hidden="true" tabindex="-1"></a><span class="co">#### Visualisation generation码 ####</span></span>
+<span id="cb37-13"><a href="#cb37-13" aria-hidden="true" tabindex="-1"></a>dt <span class="op">=</span> [r <span class="cf">for</span> r <span class="kw">in</span> <span class="bu">range</span>(df_data.loc[df_data.stationID<span class="op">==</span><span class="dv">0</span>, </span>
+<span id="cb37-14"><a href="#cb37-14" aria-hidden="true" tabindex="-1"></a>    <span class="st">&#39;ten_minutes_in_day&#39;</span>].shape[<span class="dv">0</span>])]</span>
+<span id="cb37-15"><a href="#cb37-15" aria-hidden="true" tabindex="-1"></a>fig <span class="op">=</span> plt.figure(<span class="dv">1</span>,figsize<span class="op">=</span>[<span class="dv">12</span>,<span class="dv">6</span>])</span>
+<span id="cb37-16"><a href="#cb37-16" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">&#39;inNums&#39;</span>,fontsize<span class="op">=</span><span class="dv">14</span>)</span>
+<span id="cb37-17"><a href="#cb37-17" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">&#39;date&#39;</span>,fontsize<span class="op">=</span><span class="dv">14</span>)</span>
+<span id="cb37-18"><a href="#cb37-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-19"><a href="#cb37-19" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">0</span>,<span class="dv">10</span>):</span>
+<span id="cb37-20"><a href="#cb37-20" aria-hidden="true" tabindex="-1"></a>    plt.plot(dt, df_data.loc[df_data.stationID<span class="op">==</span>i, <span class="st">&#39;inNums&#39;</span>], label <span class="op">=</span> <span class="bu">str</span>(i)<span class="op">+</span><span class="st">&#39; stationID&#39;</span> )  </span>
+<span id="cb37-21"><a href="#cb37-21" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
+<span id="cb37-22"><a href="#cb37-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-23"><a href="#cb37-23" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate vector images</span></span>
+<span id="cb37-24"><a href="#cb37-24" aria-hidden="true" tabindex="-1"></a>plt.savefig(<span class="st">&quot;inNums_of_stationID.svg&quot;</span>, <span class="bu">format</span><span class="op">=</span><span class="st">&quot;svg&quot;</span>)</span></code></pre></div>
+<p><img src="hangzhou_files/figure-html5/unnamed-chunk-27-17.png" alt="" width="1152" /></p>
+</div>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<!--radix_placeholder_article_footer-->
+<!--/radix_placeholder_article_footer-->
+</div>
+
+<div class="d-appendix">
+</div>
+
+
+<!--radix_placeholder_site_after_body-->
+<!--/radix_placeholder_site_after_body-->
+<!--radix_placeholder_appendices-->
+<div class="appendix-bottom"></div>
+<!--/radix_placeholder_appendices-->
+<!--radix_placeholder_navigation_after_body-->
+<!--/radix_placeholder_navigation_after_body-->
+
+</body>
+
+</html>

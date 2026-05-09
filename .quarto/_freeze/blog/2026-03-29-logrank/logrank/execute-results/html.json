@@ -1,0 +1,15 @@
+{
+  "hash": "41a1463d4100af3f9c3682121948997f",
+  "result": {
+    "engine": "knitr",
+    "markdown": "---\ntitle: \"What is Logrank Test?\"\ndescription: |\n  A test for comparing two or more sets of survival times, to assess the null hypothesis that there is no difference in the survival experience of the individuals in the different groups.\nauthor:\n  - name: Longxiang Wu\n    url: https://lunghsiang-wu.github.io/longxiangwu/\ndate: 2025-12-05\npreview: Slide13.png\noutput:\n  distill::distill_article:\n    self_contained: false\n    includes:\n      in_header: header.html\n---\n\n\n\n\nA test for comparing two or more sets of *survival times*, to assess the null hypothesis\nthat there is no difference in the survival experience of the individuals in the different groups.\nFor the two-group situation the *test statistic* is\n\n$$U = \\sum_{j=1}^{r} (d_{1j} - e_{1j})$$\n\nwhere $d_{1j}$ is the number of deaths in the first group at $t_{(j)}$, the $j$th ordered death time,\n$j = 1, 2, \\ldots, r$, and $e_{1j}$ is the corresponding expected number of deaths given by\n\n$$e_{1j} = n_{1j} d_j / n_j$$\n\nwhere $d_j$ is the total number of deaths at time $t_{(j)}$, $n_j$ is the total number of individuals at risk at\nthis time, and $n_{1j}$ the number of individuals at risk in the first group. The expected value of $U$\nis zero and its variance is given by\n\n<center>\n![Lognormal distributions for $\\mu = 1.0$; $\\sigma = 0.5, 1.0, 1.5$.](1.jpg)\n</center>\n\n$$V = \\sum_{j=1}^{r} n_j v_{1j}$$\n\nwhere\n\n$$v_{1j} = \\frac{n_{1j} n_{2j} d_j (n_j - d_j)}{n_j^2 (n_j - 1)}$$\n\nConsequently $U/\\sqrt{V}$ can be referred to a standard normal distribution to assess the\nhypothesis of interest. Other tests use the same test statistic with different values for the\nweights. The *Tarone–Ware test*, for example, uses $w_j = \\sqrt{n_j}$ and the *Peto-Prentice test* uses\n\n$$w_j = \\prod_{i=1}^{j} \\frac{n_i - d_i + 1}{n_i + 1}$$\n\n\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

@@ -1,0 +1,42 @@
+---
+title: "What is EU Model?"
+description: |
+ A model used in investigations of the rate of success of in vitro fertilization.
+author:
+  - name: Longxiang Wu
+    url: https://lunghsiang-wu.github.io/longxiangwu/
+date: 2025-02-05
+output:
+  distill::distill_article:
+    self_contained: false
+    includes:
+      in_header: header.html
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+A model used in investigations of the rate of success of *in vitro* fertilization (IVF), defined
+in terms of the following two parameters.
+
+$$\begin{aligned}
+e &= \text{Prob(of a viable embryo)} \\
+u &= \text{Prob(of a receptive uterus)}
+\end{aligned}$$
+
+Assuming the two events, viable embryo and receptive uterus, are independent, the
+probability of observing $j$ implantations out of $i$ transferred embryos is given by
+$$P(j|i, u, e) = \binom{i}{j} ue^j(1-e)^{i-j}, \text{ for } j = 1, 2, 3, \ldots, i.$$
+
+The probability of at least one implantation out of $i$ transferred embryos is given by
+
+$$P(j > 0 | i, u, e) = u[1 - (1-e)^i]$$
+
+and the probability of no implantations by
+
+$$P(j = 0 | i, u, e) = 1 - u[1 - (1-e)^i]$$
+
+The parameters $u$ and $e$ can be estimated by *maximum likelihood estimation* from observations
+on the number of attempts at IVF with $j$ implantations from $i$ transferred. 

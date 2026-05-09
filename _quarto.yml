@@ -1,0 +1,48 @@
+project:
+  type: website
+  output-dir: docs
+  render:
+    - index.qmd
+    - about.qmd
+    - blog.qmd
+    - portfolio.qmd
+    - blog/**/*.Rmd
+    - portfolio/**/*.Rmd
+
+execute:
+  enabled: false
+
+knitr:
+  opts_chunk:
+    eval: false
+
+website:
+  title: "Longxiang Wu"
+  site-url: "https://lunghsiang-wu.github.io/longxiangwu/"
+  navbar:
+    right:
+      - text: "Home"
+        href: index.qmd
+      - text: "About"
+        href: about.qmd
+      - text: "Blog"
+        href: blog.qmd
+      - text: "Portfolio"
+        href: portfolio.qmd
+      - text: "CV"
+        href: "https://drive.google.com/open?id=12Xriqne4FDnxYba4KgjzilUYBpsUsCf-&usp=drive_fs"
+      - icon: github
+        href: "https://github.com/lunghsiang-wu"
+      - icon: linkedin
+        href: "https://www.linkedin.com/in/longxiangwu"
+      - icon: mastodon
+        href: "https://fosstodon.org/@longxiangwu"
+      - icon: rss
+        href: blog.xml
+
+format:
+  html:
+    theme: cosmo
+    css: longxiang_theme.css
+    toc: true
+

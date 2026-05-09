@@ -1,0 +1,15 @@
+{
+  "hash": "a0fd79c0edb7294bd0975447d3a327c9",
+  "result": {
+    "engine": "knitr",
+    "markdown": "---\ntitle: \"What is Cochran-Armitage Test?\"\ndescription: |\n  A test whether there is a linear trend when the response is binary\nauthor:\n  - name: Longxiang Wu\n    url: https://lunghsiang-wu.github.io/longxiangwu/\ndate: 2024-04-20\npreview: cochran.webp\noutput:\n  distill::distill_article:\n    self_contained: false\n    includes:\n      in_header: header.html\n---\n\n\n\n\n\n**Cochran-Armitage test** A test (named after \\*Cochran and \\*Armitage) for trend in a $2 \\times k$ \\*contingency table where the columns correspond to categories of an \\*ordinal variable. Denote the \\*frequency in row $i$ and column $j$ by $f_{ij}$ with $i = 1$ or $2$, and $j = 1, \\ldots, J$, denote the row totals by $f_{10}$ and $f_{20}$, the column totals by $f_{o1}, \\ldots, f_{oJ}$, and the grand total by $f_{oo}$. The test examines the \\*null hypothesis that, as $j$ increases, the population proportion for a given row consistently increases (or decreases). The test statistic is $T$ given by\n\n$$T = \\frac{\\sum_{j=1}^{J} t_j(f_{1j}f_{20} - f_{2j}f_{10})}{\\sqrt{f_{10}f_{20}\\left(\\sum_{j=1}^{J} t_j^2 f_{oj}(f_{oo} - f_{oj}) - 2\\sum_{j=1}^{J-1}\\sum_{k=j+1}^{J} t_j t_k f_{oj} f_{ok}\\right)/f_{oo}}},$$\n\nwhere $t_1, \\ldots, t_k$ are constants chosen by the user (the optimal choice is usually $t_j = j$, for all $j$). In the absence of trend, $T$ has an approximate standard \\*normal distribution.\n\nThe test is popularly used in the genetic context where $J = 3$, the column categories are three possible genotypes labelled $aa$, $Aa$, and $AA$, and the rows refer to two types of individual.\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

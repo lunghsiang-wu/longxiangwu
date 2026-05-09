@@ -1,0 +1,1082 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.36">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Longxiang Wu">
+<meta name="dcterms.date" content="2026-01-02">
+<meta name="description" content="A data visualisation project">
+
+<title>Visualisation of Data on Obesity Levels among Mexicans – Longxiang Wu</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-845c23b38eaddc0f92fda52bfe77a8c8.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-158031087360bce0ff56dc785ce39e06.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="../../longxiang_theme.css">
+</head>
+
+<body class="nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Longxiang Wu</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../about.html"> 
+<span class="menu-text">About</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../blog.html"> 
+<span class="menu-text">Blog</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../portfolio.html"> 
+<span class="menu-text">Portfolio</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://drive.google.com/open?id=12Xriqne4FDnxYba4KgjzilUYBpsUsCf-&amp;usp=drive_fs"> 
+<span class="menu-text">CV</span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/lunghsiang-wu"> <i class="bi bi-github" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://www.linkedin.com/in/longxiangwu"> <i class="bi bi-linkedin" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://fosstodon.org/@longxiangwu"> <i class="bi bi-mastodon" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="../../blog.xml"> <i class="bi bi-rss" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#import-data-sets-and-necessary-modules" id="toc-import-data-sets-and-necessary-modules" class="nav-link active" data-scroll-target="#import-data-sets-and-necessary-modules">1. Import data sets and necessary modules</a></li>
+  <li><a href="#visual-analysis-of-factors-affecting-obesity" id="toc-visual-analysis-of-factors-affecting-obesity" class="nav-link" data-scroll-target="#visual-analysis-of-factors-affecting-obesity">2. Visual analysis of factors affecting obesity</a>
+  <ul class="collapse">
+  <li><a href="#explore-the-distribution-of-numerical-fields" id="toc-explore-the-distribution-of-numerical-fields" class="nav-link" data-scroll-target="#explore-the-distribution-of-numerical-fields">2.1 Explore the distribution of numerical fields</a></li>
+  <li><a href="#use-histograms-to-explore-the-distribution-of-numerical-fields" id="toc-use-histograms-to-explore-the-distribution-of-numerical-fields" class="nav-link" data-scroll-target="#use-histograms-to-explore-the-distribution-of-numerical-fields">2.2 Use histograms to explore the distribution of numerical fields</a></li>
+  <li><a href="#use-heat-maps-to-explore-the-correlation-of-numerical-fields" id="toc-use-heat-maps-to-explore-the-correlation-of-numerical-fields" class="nav-link" data-scroll-target="#use-heat-maps-to-explore-the-correlation-of-numerical-fields">2.3 Use heat maps to explore the correlation of numerical fields</a></li>
+  <li><a href="#use-scattering-diagrams-to-explore-the-relationship-between-age-and-time-of-using-technical-equipment" id="toc-use-scattering-diagrams-to-explore-the-relationship-between-age-and-time-of-using-technical-equipment" class="nav-link" data-scroll-target="#use-scattering-diagrams-to-explore-the-relationship-between-age-and-time-of-using-technical-equipment">2.4 Use scattering diagrams to explore the relationship between age and time of using technical equipment</a></li>
+  <li><a href="#use-pie-charts-to-explore-the-relationship-between-obesity-and-gender" id="toc-use-pie-charts-to-explore-the-relationship-between-obesity-and-gender" class="nav-link" data-scroll-target="#use-pie-charts-to-explore-the-relationship-between-obesity-and-gender">2.5 Use pie charts to explore the relationship between obesity and gender</a></li>
+  <li><a href="#use-bar-charts-to-explore-the-relationship-between-obesity-and-alcohol-frequency" id="toc-use-bar-charts-to-explore-the-relationship-between-obesity-and-alcohol-frequency" class="nav-link" data-scroll-target="#use-bar-charts-to-explore-the-relationship-between-obesity-and-alcohol-frequency">2.6 Use bar charts to explore the relationship between obesity and alcohol frequency</a></li>
+  <li><a href="#use-the-box-line-diagram-to-explore-the-relationship-between-obesity-and-age" id="toc-use-the-box-line-diagram-to-explore-the-relationship-between-obesity-and-age" class="nav-link" data-scroll-target="#use-the-box-line-diagram-to-explore-the-relationship-between-obesity-and-age">2.7 Use the box line diagram to explore the relationship between obesity and age</a></li>
+  </ul></li>
+  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary">3. Summary</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Visualisation of Data on Obesity Levels among Mexicans</h1>
+</div>
+
+<div>
+  <div class="description">
+    A data visualisation project
+  </div>
+</div>
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Longxiang Wu </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">January 2, 2026</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<!-- #region -->
+<!-- #region toc=true -->
+<h1>
+Table of Contents<span class="tocSkip"></span>
+</h1>
+<div class="toc">
+<ul class="toc-item">
+<li>
+<span><a href="#1.-Import data set and necessary modules" data-toc-modified-id="1.-lead Enter the data set and the necessary modules-1">1. Import data sets and necessary modules</a></span>
+</li>
+<li>
+<span><a href="#2.-Visual analysis of obesity influencing factors" data-toc-modified-id="2.-Visual analysis of obesity influencing factors- Two">two. Visual analysis of factors affecting obesity</a></span>
+<ul class="toc-item">
+<li>
+<span><a href="#2.1-Explore the distribution of numerical fields" data-toc-modified-i="" d="2.1-Explore the distribution of numerical fields-2.1">2.1 Explore the distribution of numerical fields</a></span>
+</li>
+<li>
+<span><a href="#2.2-Use histograms to explore the distribution of numerical fields" data-toc-modified-id="2.2-Use histograms to explore the distribution of numerical fields-2.2">2.2 Use histograms to explore the distribution of numerical fields</a></span>
+</li>
+<li>
+<span><a h="" ref="#2.3-Use heat maps to explore the correlation of numerical fields" data-toc-modified-id="2.3-Use heat maps to explore the correlation of numerical fields-2.3">2.3 Use heat maps to explore the correlation of numerical fields</a> </span>
+</li>
+<li>
+<span><a href="#2.4-Use scatter diagrams to explore the relationship between age and the time of using technical equipment" data-toc-modified-id="2.4-Use scatter diagrams to explore age and use technology settings The relationship between time reserve-2.4">2.4 Use scatter charts to explore the relationship between age and the time of using technical equipment</a></span>
+</li>
+<li>
+<span><a href="#2.5-Use pie charts to explore the relationship between obesity and gender" data-="" toc-modified-id="2.5-Use pie charts to explore the relationship between obesity and gender-2.5">2.5 Use pie charts to explore the relationship between obesity and gender</a></span>
+</li>
+<li>
+<span><a href="#2 .6-Use column charts to explore the relationship between obesity and alcohol frequency" data-toc-modified-id="2.6-Use column charts to explore the relationship between obesity and alcohol frequency-2.6">2.6 Use column charts to explore the relationship between obesity and alcohol frequency&lt;/ A&gt;</a></span><a href="#2 .6-Use column charts to explore the relationship between obesity and alcohol frequency" data-toc-modified-id="2.6-Use column charts to explore the relationship between obesity and alcohol frequency-2.6">
+</a></li><a href="#2 .6-Use column charts to explore the relationship between obesity and alcohol frequency" data-toc-modified-id="2.6-Use column charts to explore the relationship between obesity and alcohol frequency-2.6">
+</a><li><a href="#2 .6-Use column charts to explore the relationship between obesity and alcohol frequency" data-toc-modified-id="2.6-Use column charts to explore the relationship between obesity and alcohol frequency-2.6">
+<span></span></a><a href="#2.7-Use box diagrams to explore the relationship between obesity and age" data-toc-modified-id="2.7-Use box diagrams to explore the relationship between obesity and age -2.7">2.7 Use box line diagrams to explore the relationship between obesity and age</a>
+</li>
+</ul>
+</li>
+<li>
+<span><a href="#3.-summary" data-toc-modified-id="3.-Summary-3">3. Summarise</a></span>
+</li>
+</ul>
+</div>
+<!-- #endregion -->
+<section id="import-data-sets-and-necessary-modules" class="level1">
+<h1>1. Import data sets and necessary modules</h1>
+<p>First, check the types and meanings of each field.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: right;">Column Name</th>
+<th style="text-align: right;">Type</th>
+<th style="text-align: right;">Meaning Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;"><strong>Gender</strong></td>
+<td style="text-align: right;">Character type</td>
+<td style="text-align: right;">Gender</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;"><strong>Age</strong></td>
+<td style="text-align: right;">Floating point type</td>
+<td style="text-align: right;">Age</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;"><strong>Height</strong></td>
+<td style="text-align: right;">Floating point type</td>
+<td style="text-align: right;">Height(m)</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;"><strong>Weight</strong></td>
+<td style="text-align: right;">Floating point type</td>
+<td style="text-align: right;">Weight(kg)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;"><strong>family_history_with_overweight</strong></td>
+<td style="text-align: right;">Character type</td>
+<td style="text-align: right;">Whether the family member suffers from or suffers from overweight</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;"><strong>FAVC</strong></td>
+<td style="text-align: right;">Character type</td>
+<td style="text-align: right;">Do you often eat high-calorie food</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;"><strong>FCVC</strong></td>
+<td style="text-align: right;">Floating point type</td>
+<td style="text-align: right;">The frequency of eating vegetables at ordinary times</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;"><strong>NCP</strong></td>
+<td style="text-align: right;">Floating point type</td>
+<td style="text-align: right;">Number of meals in a day</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;"><strong>CAEC</strong></td>
+<td style="text-align: right;">Character type</td>
+<td style="text-align: right;">Eating between meals</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;"><strong>SMOKE</strong></td>
+<td style="text-align: right;">Character type</td>
+<td style="text-align: right;">Do you smoke</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;"><strong>CH2O</strong></td>
+<td style="text-align: right;">Floating point type</td>
+<td style="text-align: right;">Daily water intake (L)</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;"><strong>SCC</strong></td>
+<td style="text-align: right;">Character type</td>
+<td style="text-align: right;">Whether to detect daily calories</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;"><strong>FAF</strong></td>
+<td style="text-align: right;">Floating point type</td>
+<td style="text-align: right;">Frequency of movement (days)</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;"><strong>TUE</strong></td>
+<td style="text-align: right;">Floating point type</td>
+<td style="text-align: right;">Daily use time of technical equipment</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;"><strong>CALC</strong></td>
+<td style="text-align: right;">Character type</td>
+<td style="text-align: right;">Frequency of drinking</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;"><strong>MTRANS</strong></td>
+<td style="text-align: right;">Character type</td>
+<td style="text-align: right;">Usually used means of transportation</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;"><strong>NObeyesdad</strong></td>
+<td style="text-align: right;">Character type</td>
+<td style="text-align: right;">Obesity level</td>
+</tr>
+</tbody>
+</table>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd </span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt </span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> warnings</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>warnings.filterwarnings(<span class="st">'ignore'</span>)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>plt.rcParams[<span class="st">'font.sans-serif'</span>] <span class="op">=</span> [<span class="st">'Heiti TC'</span>]</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>plt.rcParams[<span class="st">'axes.unicode_minus'</span>] <span class="op">=</span> <span class="va">False</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>matplotlib.rc(<span class="st">"font"</span>, family<span class="op">=</span><span class="st">'Heiti TC'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>First, read the data.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> pd.read_csv(<span class="st">'./input/ObesityDataSet_raw_and_data_sinthetic.csv'</span>)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>data.head()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Check the basic information of the data set</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>data.info()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>It can be seen from the results of the <code>info()</code> function that the data set contains a total of 2,111 data without missing data; according to the type of data, it can be seen that this data set contains 8 numerical fields and 9 non-numerical fields.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># View descriptive statistics</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>data.describe(include<span class="op">=</span><span class="st">'all'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>data.head()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>data.describe()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Through the descriptive statistical function <code>describe()</code>, we can see the mean, standard deviation, minimum, maximum and conential of the continuous data in this data set. At the same time, we can also see the number of different values and other indicators in the discrete data.</p>
+<p>Through these indicators, we can make a preliminary judgement on this data set. For example: in the field <code>Gender</code>, the number of <code>Male</code> reaches 1,068, and the total number is 2,111, so it can be preliminarily judged that the number of men and women is relatively equal; in the field <code>family_history_with_overweight</code>, the answer is The number of <code>yes</code> has reached 1,726. Since the total number of people is 2,111, it can be preliminarily judged that most people have a history of family obesity.</p>
+</section>
+<section id="visual-analysis-of-factors-affecting-obesity" class="level1">
+<h1>2. Visual analysis of factors affecting obesity</h1>
+<section id="explore-the-distribution-of-numerical-fields" class="level2">
+<h2 class="anchored" data-anchor-id="explore-the-distribution-of-numerical-fields">2.1 Explore the distribution of numerical fields</h2>
+<p>By exploring non-numerical and numerical data separately, the specific distribution of the data and the data of each field can be seen more intuitively. Next, because the data of the fields <code>family_history_with_overweight</code>, <code>FAVC</code>, <code>SMOKE</code> and <code>SCC</code> are <code>yes</code> or <code>no</code> in non-numerical data, they can be displayed through a stacked bar chart. .</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>family_yes <span class="op">=</span> data[data[<span class="st">'family_history_with_overweight'</span>]<span class="op">==</span><span class="st">'yes'</span>][<span class="st">'family_history_with_overweight'</span>].count()</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>family_no <span class="op">=</span> data[<span class="st">'family_history_with_overweight'</span>].count() <span class="op">-</span> family_yes</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>high_cal_yes <span class="op">=</span> data[data[<span class="st">'FAVC'</span>]<span class="op">==</span><span class="st">'yes'</span>][<span class="st">'FAVC'</span>].count()</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>high_cal_no <span class="op">=</span> data[<span class="st">'FAVC'</span>].count() <span class="op">-</span> high_cal_yes</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>smo_cal_yes <span class="op">=</span> data[data[<span class="st">'SMOKE'</span>]<span class="op">==</span><span class="st">'yes'</span>][<span class="st">'SMOKE'</span>].count()</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>smo_cal_no <span class="op">=</span> data[<span class="st">'SMOKE'</span>].count() <span class="op">-</span> smo_cal_yes</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>test_cal_yes <span class="op">=</span> data[data[<span class="st">'SCC'</span>]<span class="op">==</span><span class="st">'yes'</span>][<span class="st">'SCC'</span>].count()</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>test_cal_no <span class="op">=</span> data[<span class="st">'SCC'</span>].count() <span class="op">-</span> test_cal_yes</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>high_cal_yes</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>high_cal_no</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>answer <span class="op">=</span> [<span class="st">'yes'</span>, <span class="st">'no'</span>]</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>labels <span class="op">=</span> [<span class="st">'Family obesity history'</span>, <span class="st">'high-calorie food'</span>, <span class="st">'smoking or not'</span>, <span class="st">'daily calorie detection'</span>]</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>yes_lable <span class="op">=</span> [family_yes, high_cal_yes, smo_cal_yes, test_cal_yes]</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>no_lable <span class="op">=</span> [family_no, high_cal_no, smo_cal_no, test_cal_no]</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>width <span class="op">=</span> <span class="fl">0.355</span>    </span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots()</span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>ax.bar(labels, yes_lable, width, label<span class="op">=</span><span class="st">'yes'</span>,color <span class="op">=</span> <span class="st">'seashell'</span>)</span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>ax.bar(labels, no_lable, width, label<span class="op">=</span><span class="st">'no'</span>,color <span class="op">=</span> <span class="st">'plum'</span>)</span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">'Number of people'</span>)</span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">'Non-numerical field distribution'</span>)</span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a>ax.legend()</span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>It can be clearly seen from the figure that most Mexicans have a family history of obesity, and most of them have the habit of consuming high-calorie foods; almost all of the people surveyed do not smoke and do not have the habit of daily calorie testing.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>data[<span class="st">'CALC'</span>].value_counts()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>labels <span class="op">=</span> [<span class="st">'Sometimes'</span>, <span class="st">'no'</span>, <span class="st">'Frequently'</span>, <span class="st">'Always'</span>]</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>values <span class="op">=</span> [<span class="dv">10</span>, <span class="dv">20</span>, <span class="dv">30</span>, <span class="dv">40</span>]</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">6</span>, <span class="dv">6</span>))</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>plt.pie(values, labels<span class="op">=</span>labels, autopct<span class="op">=</span><span class="st">'</span><span class="sc">%1.1f%%</span><span class="st">'</span>, </span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>        wedgeprops<span class="op">=</span><span class="bu">dict</span>(width<span class="op">=</span><span class="fl">0.5</span>))  <span class="co"># width&lt;1 makes it a donut</span></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Test Chart"</span>)</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>It can be seen from the picture that most people sometimes drink some alcohol, while the other majority do not drink, and a few often drink alcohol.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>list1 <span class="op">=</span> [data[data[<span class="st">'CALC'</span>]<span class="op">==</span><span class="st">'Sometimes'</span>][<span class="st">'CALC'</span>].count(), data[data[<span class="st">'CAEC'</span>]<span class="op">==</span><span class="st">'Sometimes'</span>][<span class="st">'CAEC'</span>].count()]</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>list2 <span class="op">=</span> [data[data[<span class="st">'CALC'</span>]<span class="op">==</span><span class="st">'no'</span>][<span class="st">'CALC'</span>].count(), data[data[<span class="st">'CAEC'</span>]<span class="op">==</span><span class="st">'no'</span>][<span class="st">'CAEC'</span>].count()]</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>list3 <span class="op">=</span> [data[data[<span class="st">'CALC'</span>]<span class="op">==</span><span class="st">'Frequently'</span>][<span class="st">'CALC'</span>].count(), data[data[<span class="st">'CAEC'</span>]<span class="op">==</span><span class="st">'Frequently'</span>][<span class="st">'CAEC'</span>].count()]</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>list4 <span class="op">=</span> [data[data[<span class="st">'CALC'</span>]<span class="op">==</span><span class="st">'Always'</span>][<span class="st">'CALC'</span>].count(), data[data[<span class="st">'CAEC'</span>]<span class="op">==</span><span class="st">'Always'</span>][<span class="st">'CAEC'</span>].count()]</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(list1)</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(list2)</span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(list3)</span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(list4)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>categories <span class="op">=</span> [<span class="st">"Drinking frequency"</span>, <span class="st">"Eating between meals"</span>]</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>occasionally <span class="op">=</span> [<span class="dv">1401</span>, <span class="dv">1765</span>]</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>nothing <span class="op">=</span> [<span class="dv">639</span>, <span class="dv">51</span>]</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>always <span class="op">=</span> [<span class="dv">70</span>, <span class="dv">242</span>]</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>frequently <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">53</span>]</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.arange(<span class="bu">len</span>(categories))</span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>width <span class="op">=</span> <span class="fl">0.5</span></span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>colors <span class="op">=</span> [<span class="st">"#d65f5f"</span>, <span class="st">"#8c613c"</span>, <span class="st">"#dc7ec0"</span>, <span class="st">"#797979"</span>]</span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">6</span>))</span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a>ax.bar(x, occasionally, width, label<span class="op">=</span><span class="st">'Occasionally'</span>, color<span class="op">=</span>colors[<span class="dv">0</span>])</span>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a>ax.bar(x, nothing,      width, label<span class="op">=</span><span class="st">'Nothing'</span>,      color<span class="op">=</span>colors[<span class="dv">1</span>], bottom<span class="op">=</span>occasionally)</span>
+<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a>ax.bar(x, always,       width, label<span class="op">=</span><span class="st">'Always'</span>,       color<span class="op">=</span>colors[<span class="dv">2</span>], bottom<span class="op">=</span>[i<span class="op">+</span>j <span class="cf">for</span> i,j <span class="kw">in</span> <span class="bu">zip</span>(occasionally, nothing)])</span>
+<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a>ax.bar(x, frequently,   width, label<span class="op">=</span><span class="st">'Frequently'</span>,   color<span class="op">=</span>colors[<span class="dv">3</span>], bottom<span class="op">=</span>[i<span class="op">+</span>j<span class="op">+</span>k <span class="cf">for</span> i,j,k <span class="kw">in</span> <span class="bu">zip</span>(occasionally, nothing, always)])</span>
+<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-17"><a href="#cb14-17" aria-hidden="true" tabindex="-1"></a>ax.set_xticks(x)</span>
+<span id="cb14-18"><a href="#cb14-18" aria-hidden="true" tabindex="-1"></a>ax.set_xticklabels(categories)</span>
+<span id="cb14-19"><a href="#cb14-19" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">"Drinking frequency &amp; Eating between meals"</span>)</span>
+<span id="cb14-20"><a href="#cb14-20" aria-hidden="true" tabindex="-1"></a>ax.legend(loc<span class="op">=</span><span class="st">'center right'</span>)</span>
+<span id="cb14-21"><a href="#cb14-21" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb14-22"><a href="#cb14-22" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>It can be seen from the figure that the number of people who drink occasionally is relatively large, almost twice the number of people who never drink; most people have the habit of occasionally eating between meals, and a smaller part of them have the habit of eating between meals.</p>
+</section>
+<section id="use-histograms-to-explore-the-distribution-of-numerical-fields" class="level2">
+<h2 class="anchored" data-anchor-id="use-histograms-to-explore-the-distribution-of-numerical-fields">2.2 Use histograms to explore the distribution of numerical fields</h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>data.columns[[<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">6</span>,<span class="dv">7</span>,<span class="dv">10</span>,<span class="dv">12</span>,<span class="dv">13</span>]].tolist()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>col1 <span class="op">=</span> data.columns[[<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">6</span>,<span class="dv">7</span>,<span class="dv">10</span>,<span class="dv">12</span>,<span class="dv">13</span>]].tolist()</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>fig,ax <span class="op">=</span> plt.subplots(<span class="dv">2</span>,<span class="dv">4</span>,figsize <span class="op">=</span> (<span class="dv">8</span>,<span class="dv">6</span>))</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>column_name <span class="op">=</span> [<span class="st">'Age'</span>, <span class="st">'height (m)'</span>, <span class="st">'Weight (kg)'</span>, <span class="st">'Frequency of eating vegetables'</span>, <span class="st">'Number of meals in a day'</span>, <span class="st">'Daily drinking water (L)'</span>, <span class="st">'Frequency of exercise (days)'</span>, <span class="st">'Daily use of technical equipment'</span>]</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>j<span class="op">=</span><span class="dv">0</span></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">0</span>,<span class="bu">len</span>(col1)):</span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>    plt.subplot(<span class="bu">int</span>(<span class="st">'24'</span><span class="op">+</span><span class="bu">str</span>(i<span class="op">+</span><span class="dv">1</span>)))</span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>    x <span class="op">=</span> data[col1[i]]</span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>    sns.distplot(x,color <span class="op">=</span> <span class="st">'lightpink'</span>)</span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>    tit<span class="op">=</span>column_name[j]</span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a>    j <span class="op">=</span> j<span class="op">+</span><span class="dv">1</span></span>
+<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a>    plt.title(tit<span class="op">+</span><span class="st">'Histogram'</span>,size<span class="op">=</span><span class="dv">10</span>)</span>
+<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>According to the histogram distribution of each continuity feature above, the characteristics of each field can be judged. First of all, according to the histogram of <code>Age</code>, it can be seen that the age distribution of the people mainly studied in this data set is mostly between 20 and 25 years old; the overall distribution of weight is relatively concentrated, and there is no obvious outlying value.</p>
+<p>Regarding eating habits, most of the people included in this data usually eat vegetables between 2 and 3; among them, most of them eat 3 times a day, but there are also a considerable number of people who eat 1 time; the daily drinking water of the population is concentrated in 2L. In terms of daily life habits, from this histogram, it can be concluded that most people exercise frequently; among them, the time of use of electronic products is mostly distributed within 0-2 hours.</p>
+</section>
+<section id="use-heat-maps-to-explore-the-correlation-of-numerical-fields" class="level2">
+<h2 class="anchored" data-anchor-id="use-heat-maps-to-explore-the-correlation-of-numerical-fields">2.3 Use heat maps to explore the correlation of numerical fields</h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># sns.set_theme(style="white",font_scale=0.8)</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>d <span class="op">=</span> pd.DataFrame(data<span class="op">=</span>data,</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>                 columns<span class="op">=</span>data.columns)</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>corr <span class="op">=</span> d.corr(numeric_only<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>mask <span class="op">=</span> np.triu(np.ones_like(corr, dtype<span class="op">=</span><span class="bu">bool</span>))</span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>f, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">6</span>))</span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>cmap <span class="op">=</span> sns.diverging_palette(<span class="dv">200</span>, <span class="dv">20</span>, as_cmap<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>sns.heatmap(corr, mask<span class="op">=</span>mask, cmap<span class="op">=</span>cmap, vmax<span class="op">=</span><span class="fl">.6</span>, center<span class="op">=</span><span class="dv">0</span>,</span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>            square<span class="op">=</span><span class="va">True</span>, linewidths<span class="op">=</span><span class="fl">.8</span>, cbar_kws<span class="op">=</span>{<span class="st">"shrink"</span>: <span class="fl">.5</span>})</span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a>rc <span class="op">=</span> {<span class="st">'font.sans-serif'</span>: <span class="st">'SimHei'</span>,</span>
+<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a>      <span class="st">'axes.unicode_minus'</span>: <span class="va">False</span>}</span>
+<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a>sns.<span class="bu">set</span>(context<span class="op">=</span><span class="st">'notebook'</span>, style<span class="op">=</span><span class="st">'ticks'</span>, rc<span class="op">=</span>rc)</span>
+<span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">'Numerical field heat map'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>It can be seen from the figure that there is a relatively weak correlation between most features. There is a relatively strong positive correlation between <code>Height</code> and <code>Weight</code>, and there is a relatively strong negative correlation between <code>TUE</code> (the time of daily use of technical equipment) and <code>Age</code>. Therefore, it can be preliminarily judged that the age group of people around 25 years old included in this data set uses electronic devices for a long time.</p>
+</section>
+<section id="use-scattering-diagrams-to-explore-the-relationship-between-age-and-time-of-using-technical-equipment" class="level2">
+<h2 class="anchored" data-anchor-id="use-scattering-diagrams-to-explore-the-relationship-between-age-and-time-of-using-technical-equipment">2.4 Use scattering diagrams to explore the relationship between age and time of using technical equipment</h2>
+<p>From the above heat map, it is preliminarily known that there is a strong negative correlation between age and the use of electronic devices. Next, use a scatter chart to specifically check the relationship between the two.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>sns.scatterplot(data<span class="op">=</span>data, x<span class="op">=</span>data[<span class="st">'Age'</span>], y<span class="op">=</span>data[<span class="st">'TUE'</span>],size <span class="op">=</span><span class="dv">8</span>,color <span class="op">=</span> <span class="st">"#faceb6"</span>,legend <span class="op">=</span> <span class="va">False</span>)</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'Age'</span>, fontsize<span class="op">=</span><span class="dv">8</span>)</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'TUE'</span>, fontsize<span class="op">=</span><span class="dv">8</span>)</span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>It can be seen from the figure that people around the age of 20 generally use technical equipment for a long time, and with age, the daily use of technical equipment is decreasing.</p>
+</section>
+<section id="use-pie-charts-to-explore-the-relationship-between-obesity-and-gender" class="level2">
+<h2 class="anchored" data-anchor-id="use-pie-charts-to-explore-the-relationship-between-obesity-and-gender">2.5 Use pie charts to explore the relationship between obesity and gender</h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Check the different levels of obesity</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>data[<span class="st">'NObeyesdad'</span>].unique()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>data[data[<span class="st">'Gender'</span>]<span class="op">==</span><span class="st">'Female'</span>].groupby([<span class="st">'NObeyesdad'</span>]).size().tolist()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Female &amp; Male obesity distribution</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>female_data <span class="op">=</span> data[data[<span class="st">'Gender'</span>]<span class="op">==</span><span class="st">'Female'</span>].groupby([<span class="st">'NObeyesdad'</span>]).size().tolist()</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>male_data <span class="op">=</span> data[data[<span class="st">'Gender'</span>]<span class="op">==</span><span class="st">'Male'</span>].groupby([<span class="st">'NObeyesdad'</span>]).size().tolist()</span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>male_data.reverse()</span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>inner_sizes <span class="op">=</span> data.groupby([<span class="st">'Gender'</span>]).size().tolist()</span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>inner_labels <span class="op">=</span> [<span class="st">"Female"</span>, <span class="st">"Male"</span>]</span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a>obesity_types <span class="op">=</span> [<span class="st">'Normal'</span>, <span class="st">'Overweight I'</span>, <span class="st">'Overweight II'</span>,</span>
+<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a>                 <span class="st">'Obese I'</span>, <span class="st">'Olweight'</span>, <span class="st">'Obesity II'</span>, <span class="st">'Obesity III'</span>]</span>
+<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a>outer_labels <span class="op">=</span> obesity_types <span class="op">+</span> obesity_types[::<span class="op">-</span><span class="dv">1</span>]</span>
+<span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a>outer_sizes <span class="op">=</span> female_data <span class="op">+</span> male_data</span>
+<span id="cb21-13"><a href="#cb21-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-14"><a href="#cb21-14" aria-hidden="true" tabindex="-1"></a>colors_inner <span class="op">=</span> [<span class="st">'#44a0d6'</span>, <span class="st">'#fc7716'</span>]</span>
+<span id="cb21-15"><a href="#cb21-15" aria-hidden="true" tabindex="-1"></a>colors_outer <span class="op">=</span> [<span class="st">'#74c476'</span>,<span class="st">'#9e9ac8'</span>,<span class="st">'#4c72b0'</span>,<span class="st">'#ee854a'</span>,<span class="st">'#6acc64'</span>,<span class="st">'#d65f5f'</span>,<span class="st">'#8c613c'</span>,</span>
+<span id="cb21-16"><a href="#cb21-16" aria-hidden="true" tabindex="-1"></a>                <span class="st">'#dc7ec0'</span>,<span class="st">'#797979'</span>,<span class="st">'#d5bb67'</span>,<span class="st">'#82c6e2'</span>,<span class="st">'#faceb6'</span>,<span class="st">'#fae9b6'</span>]</span>
+<span id="cb21-17"><a href="#cb21-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-18"><a href="#cb21-18" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">8</span>))</span>
+<span id="cb21-19"><a href="#cb21-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-20"><a href="#cb21-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Inner pie (Gender)</span></span>
+<span id="cb21-21"><a href="#cb21-21" aria-hidden="true" tabindex="-1"></a>ax.pie(inner_sizes, labels<span class="op">=</span>inner_labels, radius<span class="op">=</span><span class="fl">0.4</span>,</span>
+<span id="cb21-22"><a href="#cb21-22" aria-hidden="true" tabindex="-1"></a>       colors<span class="op">=</span>colors_inner, autopct<span class="op">=</span><span class="st">'</span><span class="sc">%1.1f%%</span><span class="st">'</span>,</span>
+<span id="cb21-23"><a href="#cb21-23" aria-hidden="true" tabindex="-1"></a>       pctdistance<span class="op">=</span><span class="fl">0.75</span>, labeldistance<span class="op">=</span><span class="fl">0.5</span>)</span>
+<span id="cb21-24"><a href="#cb21-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-25"><a href="#cb21-25" aria-hidden="true" tabindex="-1"></a><span class="co"># Outer pie (Obesity type)</span></span>
+<span id="cb21-26"><a href="#cb21-26" aria-hidden="true" tabindex="-1"></a>ax.pie(outer_sizes, labels<span class="op">=</span>outer_labels, radius<span class="op">=</span><span class="fl">0.8</span>,</span>
+<span id="cb21-27"><a href="#cb21-27" aria-hidden="true" tabindex="-1"></a>       colors<span class="op">=</span>colors_outer[:<span class="bu">len</span>(outer_sizes)],</span>
+<span id="cb21-28"><a href="#cb21-28" aria-hidden="true" tabindex="-1"></a>       autopct<span class="op">=</span><span class="st">'</span><span class="sc">%1.1f%%</span><span class="st">'</span>, pctdistance<span class="op">=</span><span class="fl">0.85</span>,</span>
+<span id="cb21-29"><a href="#cb21-29" aria-hidden="true" tabindex="-1"></a>       labeldistance<span class="op">=</span><span class="fl">1.05</span>, startangle<span class="op">=</span><span class="dv">0</span>,</span>
+<span id="cb21-30"><a href="#cb21-30" aria-hidden="true" tabindex="-1"></a>       wedgeprops<span class="op">=</span><span class="bu">dict</span>(width<span class="op">=</span><span class="fl">0.4</span>))</span>
+<span id="cb21-31"><a href="#cb21-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-32"><a href="#cb21-32" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">"Gender &amp; Obesity Degree"</span>, pad<span class="op">=</span><span class="dv">20</span>)</span>
+<span id="cb21-33"><a href="#cb21-33" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb21-34"><a href="#cb21-34" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>It can be seen from the figure that the proportion of men and women in this data set is relatively evenly distributed. Among them, there are more people with obesity level I among men, accounting for 13.97%, followed by overweight II and obesity III; among women with underweight people, accounting for 15.3%, followed by normal and overweight II. It can be seen that there are more obese men than women, and there are more underweight women.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>data.groupby([<span class="st">'Gender'</span>,<span class="st">'NObeyesdad'</span>]).size().reset_index().sort_values(<span class="dv">0</span>, ascending<span class="op">=</span><span class="va">False</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="use-bar-charts-to-explore-the-relationship-between-obesity-and-alcohol-frequency" class="level2">
+<h2 class="anchored" data-anchor-id="use-bar-charts-to-explore-the-relationship-between-obesity-and-alcohol-frequency">2.6 Use bar charts to explore the relationship between obesity and alcohol frequency</h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">8</span>,<span class="dv">6</span>))</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> sns.countplot(x<span class="op">=</span><span class="st">'NObeyesdad'</span>,order <span class="op">=</span> [<span class="st">'Insufficient_Weight'</span>, <span class="st">'Normal_Weight'</span>, <span class="st">'Overweight_Level_I'</span>, <span class="st">'Overweight_Level_II'</span>,</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>       <span class="st">'Obesity_Type_I'</span>, <span class="st">'Obesity_Type_II'</span>,</span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>       <span class="st">'Obesity_Type_III'</span>],hue<span class="op">=</span><span class="st">'CALC'</span>,data<span class="op">=</span>data, palette<span class="op">=</span><span class="st">"Set2"</span>)</span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>ax.set_xticklabels(ax.get_xticklabels(),rotation<span class="op">=</span><span class="dv">30</span>,size <span class="op">=</span> <span class="dv">10</span>) </span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>From this bar chart, it can be seen that there is no obvious causal relationship between drinking frequency and obesity symptoms, but most of the drinking frequency of people with obesity symptoms is `Sometimes’. Combined with the characteristics of the age distribution of the sub-data set, it can be found that young people around 25 years old often drink alcohol.</p>
+</section>
+<section id="use-the-box-line-diagram-to-explore-the-relationship-between-obesity-and-age" class="level2">
+<h2 class="anchored" data-anchor-id="use-the-box-line-diagram-to-explore-the-relationship-between-obesity-and-age">2.7 Use the box line diagram to explore the relationship between obesity and age</h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">10</span>,<span class="dv">6</span>))</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> sns.boxplot(x<span class="op">=</span>data[<span class="st">'NObeyesdad'</span>],order <span class="op">=</span> [<span class="st">'Insufficient_Weight'</span>, <span class="st">'Normal_Weight'</span>, <span class="st">'Overweight_Level_I'</span>, <span class="st">'Overweight_Level_II'</span>,</span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>       <span class="st">'Obesity_Type_I'</span>, <span class="st">'Obesity_Type_II'</span>,</span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>       <span class="st">'Obesity_Type_III'</span>],y<span class="op">=</span>data[<span class="st">'Age'</span>],hue<span class="op">=</span>data[<span class="st">'Gender'</span>],palette<span class="op">=</span><span class="st">"Set3"</span>)</span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>ax.set_xticklabels(ax.get_xticklabels(),rotation<span class="op">=</span><span class="dv">30</span>,size <span class="op">=</span> <span class="dv">10</span>) </span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a><span class="co"># plt.title('Age distribution of people with different degrees of obesity')</span></span>
+<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">10</span>,<span class="dv">6</span>))</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> sns.boxplot(x<span class="op">=</span>data[<span class="st">'NObeyesdad'</span>],order <span class="op">=</span> [<span class="st">'Insufficient_Weight'</span>, <span class="st">'Normal_Weight'</span>, <span class="st">'Overweight_Level_I'</span>, <span class="st">'Overweight_Level_II'</span>,</span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>       <span class="st">'Obesity_Type_I'</span>, <span class="st">'Obesity_Type_II'</span>,</span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>       <span class="st">'Obesity_Type_III'</span>],y<span class="op">=</span>data[<span class="st">'Age'</span>],hue<span class="op">=</span>data[<span class="st">'FAVC'</span>],palette<span class="op">=</span><span class="st">"Set3"</span>)</span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>ax.set_xticklabels(ax.get_xticklabels(),rotation<span class="op">=</span><span class="dv">30</span>,size <span class="op">=</span> <span class="dv">10</span>) </span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a><span class="co"># plt.title('Age distribution of people with different degrees of obesity')</span></span>
+<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Through the box line diagram in the figure, the box line diagram of <code>Normal_Weight</code> and <code>Insufficient_Weight</code> is relatively concentrated, so it can be concluded that most of the normal weight and underweight people are concentrated around the age of 20; however, the distribution of obese people is relatively scattered, and the overall division Between the ages of 20 and 30, it can be concluded that people are more likely to suffer from obesity symptoms as the age approaches the age of 30. Among them, <code>Obesity_Type_I</code> has the largest population span, distributed from 20 to 50 years old, so it can be seen that there is no obvious correlation between obesity type I and age, and all ages may suffer from this obesity.</p>
+</section>
+</section>
+<section id="summary" class="level1">
+<h1>3. Summary</h1>
+<p>The data is about the degree of obesity in Mexicans. First of all, by querying the basic information and distribution of numerical and non-numerical data, we have a general understanding of the data, and then preliminary judgement through the heat map, which fields need to explore the correlation between them; because of the age and There is a certain negative correlation between technical equipment, so draw a scatter plot to show this relationship. Then, this case explores the relationship between obesity degree and gender, drinking frequency and family obesity history, and shows it with pie charts, bar charts and box diagrams respectively.</p>
+<p>Through the graph obtained from the above exploratory analysis, three main points can be drawn: first, a basic situation about this data set is that the distribution of men and women is relatively balanced, both of them are around 20-25 years old; second, men are more prone to obesity symptoms than women, and obesity symptoms are easily affected by family obesity symptoms; finally , the younger the age, the longer the time to use technical equipment.</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/lunghsiang-wu\.github\.io\/longxiangwu\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

@@ -1,0 +1,58 @@
+---
+title: "What are Many-outlier Detection Procedures?"
+description: |
+  Procedures for detecting multiple outliers in a sample of n observations.
+author:
+  - name: Longxiang Wu
+    url: https://lunghsiang-wu.github.io/longxiangwu/
+date: 2026-01-04
+preview: out.png
+output:
+  distill::distill_article:
+    self_contained: false
+    includes:
+      in_header: header.html
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+Procedures for detecting multiple *outliers* in a sample of
+$n$ observations, $x_1, x_2, \ldots, x_n$. Generally based on assuming that $k$ of the observations
+$x_{i_1}, x_{i_2}, \ldots, x_{i_k}$ are outliers distributed normally with mean $\mu + \lambda_{i_j}, j = 1, \ldots, k$ and variance
+$\sigma^2$, while the remaining $n$-$k$ observations are normally distributed with mean $\mu$ and again
+variance $\sigma^2$. Three such procedures are:
+
+1. *The extreme standardized deviate* (ESD), given by
+
+$$\text{ESD}_i = |x^{(S_i - 1)} - \bar{x}(S_{i-1})| / s(S_{i-1}), \quad i = 1, \ldots, k$$
+
+where $x^{(S_i-1)}$ is the observation farthest away from the mean $\bar{x}(S_{i-1})$ in the subset
+$S_{i-1}$, and
+
+$$s^2(S_{i-1}) = \sum_{j=1}^{n-i+1} [x_j(S_{i-1}) - \bar{x}(S_{i-1})]^2 / (n - i)$$
+
+$S_0 = \{x_1, x_2, \ldots, x_n\}$ and subsets $S_i, i = 1, \ldots, k-1$ are formed by deleting an
+observation farthest from the mean of the subset $S_{i-1}$.
+
+2. *The standardized range procedure* (STR):
+
+$$\text{STR}_i = [x_l(S_{i-1}) - x_s(S_{i-1})] / s(S_{i-1}), \quad i = 1, \ldots, k$$
+
+where $x_l(S_{i-1})$ is the largest observation in the subset $S_{i-1}$, and $x_s(S_{i-1})$ is the smallest
+observation in the subset $S_{i-1}$.
+
+3. *The kurtosis procedure* (KUR):
+
+$$\text{KUR}_i = (n - i + 1) \sum_{j=1}^{n-i+1} [x_j(S_{i-1}) - \bar{x}(S_{i-1})]^4 / \left[ \sum_{j=1}^{n-i+1} \{x_j(S_{i-1}) - \bar{x}(S_{i-1})\}^2 \right]^2,$$
+
+$$i = 1, \ldots, k$$
+
+Sample values of any of these statistics are compared with the corresponding critical
+values for $i=k$. If a sample value is found to be greater than the corresponding critical
+value, $k$ outliers are declared to be present in the sample; otherwise, similar comparisons are made for $i = k-1, \ldots, 1$ until for a particular value of $i=l$, the sample value
+is greater than the corresponding ordeal value in which case $l$ outliers are declared to
+be present in the sample. If for $i=1$ the sample value of the statistics is less than or
+equal to the corresponding critical value, no outliers are detected. 

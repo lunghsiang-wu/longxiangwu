@@ -1,0 +1,15 @@
+{
+  "hash": "45d9df0289b5eb2f5fc1445d18799b40",
+  "result": {
+    "engine": "knitr",
+    "markdown": "---\ntitle: \"What is Jacknife?\"\ndescription: |\n  A procedure for reducing bias in estimation and providing approximate confidence intervals in cases where these are difficult to obtain in the usual way. \nauthor:\n  - name: Longxiang Wu\n    url: https://lunghsiang-wu.github.io/longxiangwu/\ndate: 2025-08-05\npreview: Schematic_of_Jackknife_Resampling.jpg\noutput:\n  distill::distill_article:\n    self_contained: false\n    includes:\n      in_header: header.html\n---\n\n\n\n\nA procedure for reducing bias in estimation and providing approximate *confidence\nintervals* in cases where these are difficult to obtain in the usual way. The principle behind\nthe method is to omit each sample member in turn from the data thereby generating $n$\nseparate samples each of size $n - 1$. The parameter of interest, $\\theta$, can now be estimated from\neach of these subsamples giving a series of estimates, $\\hat{\\theta}_1, \\hat{\\theta}_2, \\ldots, \\hat{\\theta}_n$. The jackknife estimator\nof the parameter is now\n\n$$\\tilde{\\theta} = n\\hat{\\theta} - (n-1) \\frac{\\sum_{i=1}^{n} \\hat{\\theta}_i}{n}$$\n\nwhere $\\hat{\\theta}$ is the usual estimator using the complete set of $n$ observations. The jackknife\nestimator of the standard error of $\\hat{\\theta}$ is\n\n$$\\hat{\\sigma}_J = \\left[ \\frac{(n-1)}{n} \\sum_{i=1}^{n} (\\hat{\\theta}_i - \\bar{\\theta})^2 \\right]^{\\frac{1}{2}}$$\n\nwhere\n\n$$\\bar{\\theta} = \\frac{1}{n} \\sum_{i=1}^{n} \\hat{\\theta}_i$$\n\nA frequently used application is in *discriminant analysis*, for the estimation of *misclassification rates*. Calculated on the sample from which the *classification rule* is derived, these are\nknown to be optimistic. A jackknifed estimate obtained from calculating the discriminant\nfunction $n$ times on the original observations, each time with one of the values removed, is\nusually a far more realistic measure of the performance of the derived classification rule.",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

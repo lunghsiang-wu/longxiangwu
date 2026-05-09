@@ -1,0 +1,33 @@
+---
+title: "What is Martingale?"
+description: |
+author:
+  - name: Longxiang Wu
+    url: https://lunghsiang-wu.github.io/longxiangwu/
+date: 2026-03-18
+preview: 1694284809.jpg
+output:
+  distill::distill_article:
+    self_contained: false
+    includes:
+      in_header: header.html
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+In a gambling context the term originally referred to a system for recouping losses by
+doubling the stake after each loss. The modern mathematical concept can also be viewed in
+such terms as a mathematical formalization of the concept of a 'fair' game defined as one in
+which the expected size of the gambler's bank after the $n$th game given the results of all
+previous games is unchanged from the size after the $(n-1)$th game, i.e. the gambler's
+average gain or loss after each game, given the previous history of the games is zero. More
+formally the term refers to a *stochastic process*, or a sequence of random variables $S_1, S_2, \ldots,$
+which is such that the expected value of the $(n+1)$th random variable conditional on the
+values of the first $n$, equals the value of the $n$th random variable, i.e.
+
+$$E(S_{n+1} | S_1, S_2, \ldots, S_n) = S_n \qquad n \geq 1$$
+
+so that $E(S_n)$ does not depend on $n$. 

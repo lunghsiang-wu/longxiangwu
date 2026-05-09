@@ -1,0 +1,15 @@
+{
+  "hash": "94d69885abd69b13555bf7efde55fadb",
+  "result": {
+    "engine": "knitr",
+    "markdown": "---\ntitle: \"What are Inverse Polynomial Functions?\"\ndescription: |\n  Functions useful for modelling many dose–response relationships in biology.\nauthor:\n  - name: Longxiang Wu\n    url: https://lunghsiang-wu.github.io/longxiangwu/\ndate: 2025-07-01\npreview: polywiggle.gif\noutput:\n  distill::distill_article:\n    self_contained: false\n    includes:\n      in_header: header.html\n---\n\n\n\n\nFunctions useful for modelling many *dose–response* relationships in biology. For a particular dose or stimulus $x$, the expected value of the response variable, $y$, is defined by\n\n$$E(y) = \\frac{x + \\alpha}{\\sum_{i=0}^{d} \\beta_i (x + \\alpha)^i} \\quad x \\geq 0$$\n\nThe parameters, $\\beta_1, \\beta_2, \\ldots, \\beta_d$, define the shape of the dose–response curve and $\\alpha$ defines its\nposition on the $x$ axis. A particularly useful form of the function is obtained by setting $\\alpha = 0$\nand $d = 1$. The resulting curve is\n\n$$E(y) = \\frac{x}{\\beta_0 + \\beta_1 x} \\quad x \\geq 0$$\n\nwhich can be rewritten as\n\n$$E(y) = \\frac{k_1 x}{k_2 + x}$$\n\nwhere $k_1 = 1/\\beta_1$ and $k_2 = \\beta_0/\\beta_1$. This final equation is equivalent to the *Michaelis–Menten* equation. \n\n<center>\n![Examples of inverse normal distributions: $\\mu = 1.0$; $\\lambda = 2.0, 6.0$.](1.jpg)\n</center>",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

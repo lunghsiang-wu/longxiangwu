@@ -1,0 +1,1543 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.36">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Longxiang Wu">
+<meta name="dcterms.date" content="2025-03-20">
+<meta name="description" content="A feature selection project">
+
+<title>Bank Telemarketing – Longxiang Wu</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-845c23b38eaddc0f92fda52bfe77a8c8.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-158031087360bce0ff56dc785ce39e06.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="../../longxiang_theme.css">
+</head>
+
+<body class="nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Longxiang Wu</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../about.html"> 
+<span class="menu-text">About</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../blog.html"> 
+<span class="menu-text">Blog</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../portfolio.html"> 
+<span class="menu-text">Portfolio</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://drive.google.com/open?id=12Xriqne4FDnxYba4KgjzilUYBpsUsCf-&amp;usp=drive_fs"> 
+<span class="menu-text">CV</span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/lunghsiang-wu"> <i class="bi bi-github" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://www.linkedin.com/in/longxiangwu"> <i class="bi bi-linkedin" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://fosstodon.org/@longxiangwu"> <i class="bi bi-mastodon" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="../../blog.xml"> <i class="bi bi-rss" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#experiment-evironment" id="toc-experiment-evironment" class="nav-link active" data-scroll-target="#experiment-evironment">0 Experiment evironment</a></li>
+  <li><a href="#data-explore" id="toc-data-explore" class="nav-link" data-scroll-target="#data-explore">1 Data explore</a></li>
+  <li><a href="#data-preprocessing" id="toc-data-preprocessing" class="nav-link" data-scroll-target="#data-preprocessing">2 Data preprocessing</a></li>
+  <li><a href="#numerical-conversion" id="toc-numerical-conversion" class="nav-link" data-scroll-target="#numerical-conversion">Numerical conversion</a></li>
+  <li><a href="#visualisation" id="toc-visualisation" class="nav-link" data-scroll-target="#visualisation">Visualisation</a></li>
+  <li><a href="#standardlisation" id="toc-standardlisation" class="nav-link" data-scroll-target="#standardlisation">0-1 Standardlisation</a></li>
+  <li><a href="#feature-selection-and-model-establishment" id="toc-feature-selection-and-model-establishment" class="nav-link" data-scroll-target="#feature-selection-and-model-establishment">3 Feature selection and model establishment</a></li>
+  <li><a href="#regularised" id="toc-regularised" class="nav-link" data-scroll-target="#regularised">3.1 Regularised</a></li>
+  <li><a href="#feature-selection" id="toc-feature-selection" class="nav-link" data-scroll-target="#feature-selection">Feature selection</a></li>
+  <li><a href="#build-a-model-on-the-feature-subset" id="toc-build-a-model-on-the-feature-subset" class="nav-link" data-scroll-target="#build-a-model-on-the-feature-subset">Build a model on the feature subset</a></li>
+  <li><a href="#comparison-establish-a-model-on-the-complete-collection-of-features" id="toc-comparison-establish-a-model-on-the-complete-collection-of-features" class="nav-link" data-scroll-target="#comparison-establish-a-model-on-the-complete-collection-of-features">Comparison: Establish a model on the complete collection of features</a></li>
+  <li><a href="#tree-based-model" id="toc-tree-based-model" class="nav-link" data-scroll-target="#tree-based-model">3.2 Tree-based model</a></li>
+  <li><a href="#feature-selection-1" id="toc-feature-selection-1" class="nav-link" data-scroll-target="#feature-selection-1">Feature selection</a></li>
+  <li><a href="#build-a-model-on-the-feature-subset-1" id="toc-build-a-model-on-the-feature-subset-1" class="nav-link" data-scroll-target="#build-a-model-on-the-feature-subset-1">Build a model on the feature subset</a></li>
+  <li><a href="#comparison-establish-a-model-on-the-complete-collection-of-features-1" id="toc-comparison-establish-a-model-on-the-complete-collection-of-features-1" class="nav-link" data-scroll-target="#comparison-establish-a-model-on-the-complete-collection-of-features-1">Comparison: Establish a model on the complete collection of features</a></li>
+  <li><a href="#feature-understanding-and-evaluation" id="toc-feature-understanding-and-evaluation" class="nav-link" data-scroll-target="#feature-understanding-and-evaluation">4 Feature understanding and evaluation</a></li>
+  <li><a href="#data-downsiming" id="toc-data-downsiming" class="nav-link" data-scroll-target="#data-downsiming">5 Data downsiming</a></li>
+  <li><a href="#data-dimension-reduction-and-visual-analysis-process" id="toc-data-dimension-reduction-and-visual-analysis-process" class="nav-link" data-scroll-target="#data-dimension-reduction-and-visual-analysis-process">Data dimension reduction and visual analysis process</a></li>
+  <li><a href="#diminsion-on-the-complete-collection-of-features" id="toc-diminsion-on-the-complete-collection-of-features" class="nav-link" data-scroll-target="#diminsion-on-the-complete-collection-of-features">Diminsion on the complete collection of features</a></li>
+  <li><a href="#the-degree-of-explanation-of-the-main-component-of-pca-dimension-reduction-to-the-original-data-variance" id="toc-the-degree-of-explanation-of-the-main-component-of-pca-dimension-reduction-to-the-original-data-variance" class="nav-link" data-scroll-target="#the-degree-of-explanation-of-the-main-component-of-pca-dimension-reduction-to-the-original-data-variance">The degree of explanation of the main component of PCA dimension reduction to the original data variance</a></li>
+  <li><a href="#construct-model-prediction-and-evaluation-functions" id="toc-construct-model-prediction-and-evaluation-functions" class="nav-link" data-scroll-target="#construct-model-prediction-and-evaluation-functions">Construct model prediction and evaluation functions</a></li>
+  <li><a href="#the-influence-of-the-number-of-features-n_components-on-model-performance-after-dimension-reduction" id="toc-the-influence-of-the-number-of-features-n_components-on-model-performance-after-dimension-reduction" class="nav-link" data-scroll-target="#the-influence-of-the-number-of-features-n_components-on-model-performance-after-dimension-reduction">The influence of the number of features n_components on model performance after dimension reduction</a></li>
+  <li><a href="#the-impact-of-data-dimension-reduction-on-the-predictive-performance-of-the-model" id="toc-the-impact-of-data-dimension-reduction-on-the-predictive-performance-of-the-model" class="nav-link" data-scroll-target="#the-impact-of-data-dimension-reduction-on-the-predictive-performance-of-the-model">The impact of data dimension reduction on the predictive performance of the model</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Bank Telemarketing</h1>
+</div>
+
+<div>
+  <div class="description">
+    A feature selection project
+  </div>
+</div>
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Longxiang Wu </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">March 20, 2025</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<!-- #region -->
+<section id="experiment-evironment" class="level3">
+<h3 class="anchored" data-anchor-id="experiment-evironment">0 Experiment evironment</h3>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># !pip freeze | grep pandas;</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co"># !pip freeze | grep numpy;</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co"># !pip freeze | grep matplotlib;</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># !pip freeze | grep seaborn;</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co"># !pip freeze | grep scikit-learn;</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co"># !pip freeze | grep tqdm;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Ignore the warning message</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> warnings</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>warnings.filterwarnings(<span class="st">'ignore'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="data-explore" class="level3">
+<h3 class="anchored" data-anchor-id="data-explore">1 Data explore</h3>
+<p>The data of this case comes from the information of a Portuguese bank to promote fixed deposit products. You can refer to its official website. The data set collects 17 characteristics, including basic customer information, marketing activity information and socio-economic environment information. The target characteristics are whether customers order products.</p>
+<p>The following is an introduction to the meaning of 17 characteristics:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># %config InlineBackend.figure_format='retina'</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">"bank_introduction.txt"</span>, <span class="st">"r"</span>) <span class="im">as</span> f:</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    lines <span class="op">=</span> f.read().splitlines()</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>df_intro <span class="op">=</span> pd.DataFrame(lines, columns<span class="op">=</span>[<span class="st">"intro"</span>])</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(df_intro)):</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(df_intro[<span class="st">"intro"</span>][i])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>The basic information of customers includes age, occupation, marital status, education level, housing loans and personal loans, etc.; marketing activity information includes call method, number of calls and last marketing results, etc.; socio-economic environment information includes employment change rate, consumer price index and consumer information index, etc.</p>
+<p>Read the data:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># To display all columns, add the following command.</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>pd.set_option(<span class="st">'display.max_columns'</span>,<span class="va">None</span>)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>df<span class="op">=</span>pd.read_csv(<span class="st">"bank-additional-full.csv"</span>,sep<span class="op">=</span><span class="st">";"</span>)</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>data<span class="op">=</span>df.copy()</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>data.head()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Observe the basic information of the data set:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>data.info()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Observation found:</p>
+<ol type="1">
+<li><p>The dimension of the data set is (41188, 17);</p></li>
+<li><p>Statistics show that all the features are complete, but many object types of features use unknown to represent missing, so missing values need to be processed;</p></li>
+<li><p>There are 11 characteristics of object types, which need to be numerically converted.</p></li>
+</ol>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>data.describe()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Observing the commonly used statistics of each feature, it is found that there are obvious quantitative differences between the data, which needs to be standardised.</p>
+</section>
+<section id="data-preprocessing" class="level3">
+<h3 class="anchored" data-anchor-id="data-preprocessing">2 Data preprocessing</h3>
+<section id="missing-value-processing" class="level4">
+<h4 class="anchored" data-anchor-id="missing-value-processing">Missing value processing</h4>
+<p>First, find all the object type characteristics and count the number of missing values in them.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Find the object type characteristics</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>col<span class="op">=</span>data.columns</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>object_list<span class="op">=</span>[]</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(col)):</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="bu">type</span>(data[col[i]][<span class="dv">0</span>])<span class="op">!=</span>np.int64 <span class="kw">and</span> <span class="bu">type</span>(data[col[i]][<span class="dv">0</span>])<span class="op">!=</span>np.float64:</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>        object_list.append(col[i])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>You can also directly use the <code>select_dtypes</code> method of <code>DataFrame</code> to specify the choice of <code>object</code>:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Find the object type characteristics</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>object_data <span class="op">=</span> data.select_dtypes(include<span class="op">=</span>[<span class="st">'object'</span>])</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>object_columns <span class="op">=</span> object_data.columns</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>object_list <span class="op">=</span> object_columns.tolist()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Count the number of missing values of each characteristic</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>missing_list <span class="op">=</span> []</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> item <span class="kw">in</span> object_columns:</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">try</span>:</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>        missing_num <span class="op">=</span> object_data[item].value_counts().loc[<span class="st">'unknown'</span>]</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">"The number of missing data about </span><span class="sc">%s</span><span class="st"> :"</span> <span class="op">%</span> item, missing_num)</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>        missing_list.append(item)</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">except</span> <span class="pp">Exception</span> <span class="im">as</span> e:</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">"The number of missing data about </span><span class="sc">%s</span><span class="st"> :"</span> <span class="op">%</span> item, <span class="st">'0'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>In addition to <code>default</code> and <code>education</code>, the number of missing values is small, and the missing sample can be discarded directly; for <code>default</code> and <code>education</code>, fill in the missing values with plurality.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>new_data<span class="op">=</span>data[data[<span class="st">"job"</span>]<span class="op">!=</span><span class="st">"unknown"</span>][data[<span class="st">"marital"</span>]<span class="op">!=</span><span class="st">"unknown"</span>][data[<span class="st">"housing"</span>]<span class="op">!=</span><span class="st">"unknown"</span>][data[<span class="st">"loan"</span>]<span class="op">!=</span><span class="st">"unknown"</span>]</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>new_data.head()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Discard some missing samples</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>new_data<span class="op">=</span>data[data[<span class="st">"job"</span>]<span class="op">!=</span><span class="st">"unknown"</span>][data[<span class="st">"marital"</span>]<span class="op">!=</span><span class="st">"unknown"</span>][data[<span class="st">"housing"</span>]<span class="op">!=</span><span class="st">"unknown"</span>][data[<span class="st">"loan"</span>]<span class="op">!=</span><span class="st">"unknown"</span>]</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>new_data.index<span class="op">=</span><span class="bu">range</span>(<span class="bu">len</span>(new_data))</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Fill in the missing values with a large number of numbers</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>new_data[<span class="st">"default"</span>].replace(<span class="st">'unknown'</span>, new_data[<span class="st">"default"</span>].value_counts().index[<span class="dv">0</span>], inplace<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>new_data[<span class="st">'education'</span>].replace(<span class="st">'unknown'</span>, new_data[<span class="st">"education"</span>].value_counts().index[<span class="dv">0</span>], inplace<span class="op">=</span><span class="va">True</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Check the situation after filling</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span> (<span class="st">" This is the new distribution of default:"</span>)</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span> (new_data[<span class="st">"default"</span>].value_counts())</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span> (<span class="st">" This is the new distribution of education:"</span>)</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span> (new_data[<span class="st">"education"</span>].value_counts())</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+</section>
+<section id="numerical-conversion" class="level3">
+<h3 class="anchored" data-anchor-id="numerical-conversion">Numerical conversion</h3>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Use one-hot variables to represent object type features.</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>object_list.remove(<span class="st">"y"</span>)</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> item <span class="kw">in</span> object_list:</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>    dummies<span class="op">=</span>pd.get_dummies(new_data[item],prefix<span class="op">=</span>item)</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>    new_data<span class="op">=</span>pd.concat([new_data,dummies],axis<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">del</span> new_data[item]</span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Numericalisation of target characteristics</span></span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>new_data[<span class="st">"label"</span>]<span class="op">=</span><span class="dv">0</span></span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>new_data[<span class="st">"label"</span>][new_data[<span class="st">"y"</span>]<span class="op">==</span><span class="st">"yes"</span>]<span class="op">=</span><span class="dv">1</span></span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>new_data[<span class="st">"label"</span>][new_data[<span class="st">"y"</span>]<span class="op">==</span><span class="st">"no"</span>]<span class="op">=</span><span class="dv">0</span></span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a><span class="kw">del</span> new_data[<span class="st">"y"</span>] </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="visualisation" class="level3">
+<h3 class="anchored" data-anchor-id="visualisation">Visualisation</h3>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>corr <span class="op">=</span> new_data.corr()</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>mask <span class="op">=</span> np.zeros_like(corr, dtype<span class="op">=</span><span class="bu">bool</span>)</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>mask[np.triu_indices_from(mask)] <span class="op">=</span> <span class="va">True</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>f, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">10</span>))</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>cmap <span class="op">=</span> sns.diverging_palette(<span class="dv">220</span>, <span class="dv">10</span>, as_cmap<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>sns.heatmap(corr, mask<span class="op">=</span>mask, cmap<span class="op">=</span>cmap, vmax<span class="op">=</span><span class="fl">1.0</span>,</span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>            square<span class="op">=</span><span class="va">True</span>, xticklabels<span class="op">=</span><span class="dv">2</span>, yticklabels<span class="op">=</span><span class="dv">2</span>,</span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>            linewidths<span class="op">=</span><span class="fl">.3</span>, cbar_kws<span class="op">=</span>{<span class="st">"shrink"</span>: <span class="fl">.5</span>}, ax<span class="op">=</span>ax)</span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>new_data.columns</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>The bottom line of the vertical coordinate is the target feature. It can be seen that there are still many features related to it. The darkest colour is the feature duration. Further observe the relationship between them:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>f, ax1 <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">1</span>, figsize<span class="op">=</span>(<span class="dv">6</span>,<span class="dv">4</span>))</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>sns.boxplot(x<span class="op">=</span><span class="st">"label"</span>,y<span class="op">=</span><span class="st">'duration'</span>,data<span class="op">=</span>new_data,ax<span class="op">=</span>ax1)</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>It is easy to find that the characteristic duration has a great impact on the target characteristics, but pay attention to the characteristic information:</p>
+<p>duration: last contact duration, in seconds (numeric). Important note: this attribute highly affects the output target (e.g., if duration=0 then y=‘no’). Yet, the duration is not known before a call is performed. Also, after the end of the call y is obviously known. Thus, this input should only be included for benchmark purposes and should be discarded if the intention is to have a realistic predictive model.</p>
+<p>This shows that the feature duration is not available at any time, so we should abandon the feature when building the model.</p>
+</section>
+<section id="standardlisation" class="level3">
+<h3 class="anchored" data-anchor-id="standardlisation">0-1 Standardlisation</h3>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn <span class="im">import</span>  preprocessing <span class="im">as</span> prep</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>x<span class="op">=</span>new_data.copy()</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="kw">del</span> x[<span class="st">"label"</span>]</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="kw">del</span> x[<span class="st">"duration"</span>]</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>y<span class="op">=</span>new_data[<span class="st">"label"</span>]</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>minmax_scale<span class="op">=</span>prep.MinMaxScaler().fit( x[ x.columns])</span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>x[ x.columns]<span class="op">=</span>minmax_scale.transform( x[ x.columns])</span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>x.head()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="feature-selection-and-model-establishment" class="level3">
+<h3 class="anchored" data-anchor-id="feature-selection-and-model-establishment">3 Feature selection and model establishment</h3>
+<p>The requirement of this case is to find the key features that affect the ordered products and establish model predictions, so it is more appropriate to choose encapsulated and embedded feature selection methods. Here we try two embedded methods: regularised models and tree-based models. After data preprocessing, there are a total of 56 features. In order to effectively reduce the number of features, we adopt L1 regularisation, because in this case, the model effect is more important than stability; the tree-based model adopts the ExtraTrees model, which is an integrated model similar to a random forest, and the integrated model is selected. In order to improve the prediction effect of the model, the criteria for selecting branch nodes have tried Gini impurity and Entropy entropy respectively.</p>
+<p>First, randomly divide the training set and the test set in a ratio of 7:3:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Randomly divide the training set and the test set</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> train_test_split</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>train_x, test_x, train_y, test_y <span class="op">=</span> train_test_split(x, y, test_size<span class="op">=</span><span class="fl">0.3</span>, random_state<span class="op">=</span><span class="dv">0</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>First, define the functions that need to be used after three:</p>
+<ul>
+<li><p>The function evaluate(pred,test_y) is used to evaluate the classification results;</p></li>
+<li><p>The function find_name(new_feature, df_feature) is used to output the name of the key feature;</p></li>
+<li><p>The function FS_importance(arr_importance, col, N) is used to select features according to the importance of features.</p></li>
+</ul>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn <span class="im">import</span> metrics</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> classification_report </span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a><span class="co">"""</span></span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a><span class="co">The function evaluate(pred,test_y) is used to evaluate the classification results;</span></span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a><span class="co">Input: real classification, predicted classification results</span></span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a><span class="co">Output: classification accuracy, confusion matrix, etc.</span></span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a><span class="co">"""</span></span>
+<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> evaluate(pred,test_y):</span>
+<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a>    <span class="co"># The accuracy rate of output classification</span></span>
+<span id="cb19-14"><a href="#cb19-14" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Accuracy: </span><span class="sc">%.4f</span><span class="st">"</span>  <span class="op">%</span> (metrics.accuracy_score(test_y,pred)))</span>
+<span id="cb19-15"><a href="#cb19-15" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb19-16"><a href="#cb19-16" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Output various indicators to measure the classification effect</span></span>
+<span id="cb19-17"><a href="#cb19-17" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(classification_report(test_y, pred)) </span>
+<span id="cb19-18"><a href="#cb19-18" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb19-19"><a href="#cb19-19" aria-hidden="true" tabindex="-1"></a>    <span class="co"># More intuitively, we draw a confusion matrix through seaborn.</span></span>
+<span id="cb19-20"><a href="#cb19-20" aria-hidden="true" tabindex="-1"></a>    <span class="co"># %matplotlib inline</span></span>
+<span id="cb19-21"><a href="#cb19-21" aria-hidden="true" tabindex="-1"></a>    plt.figure(figsize<span class="op">=</span>(<span class="dv">6</span>,<span class="dv">4</span>))</span>
+<span id="cb19-22"><a href="#cb19-22" aria-hidden="true" tabindex="-1"></a>    colorMetrics <span class="op">=</span> metrics.confusion_matrix(test_y,pred)</span>
+<span id="cb19-23"><a href="#cb19-23" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb19-24"><a href="#cb19-24" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Coordinate y represents test_y, that is, the real category, and coordinate x represents the estimated category pred</span></span>
+<span id="cb19-25"><a href="#cb19-25" aria-hidden="true" tabindex="-1"></a>    sns.heatmap(colorMetrics,annot<span class="op">=</span><span class="va">True</span>,fmt<span class="op">=</span><span class="st">'d'</span>,xticklabels<span class="op">=</span>[<span class="dv">0</span>,<span class="dv">1</span>],yticklabels<span class="op">=</span>[<span class="dv">0</span>,<span class="dv">1</span>])</span>
+<span id="cb19-26"><a href="#cb19-26" aria-hidden="true" tabindex="-1"></a>    plt.show()</span>
+<span id="cb19-27"><a href="#cb19-27" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb19-28"><a href="#cb19-28" aria-hidden="true" tabindex="-1"></a><span class="co">"""</span></span>
+<span id="cb19-29"><a href="#cb19-29" aria-hidden="true" tabindex="-1"></a><span class="co">The function find_name(new_feature, df_feature) is used to output the name of the key feature;</span></span>
+<span id="cb19-30"><a href="#cb19-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-31"><a href="#cb19-31" aria-hidden="true" tabindex="-1"></a><span class="co">Input: original features, selected key features;</span></span>
+<span id="cb19-32"><a href="#cb19-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-33"><a href="#cb19-33" aria-hidden="true" tabindex="-1"></a><span class="co">Output: the name of the key feature</span></span>
+<span id="cb19-34"><a href="#cb19-34" aria-hidden="true" tabindex="-1"></a><span class="co">"""</span></span>
+<span id="cb19-35"><a href="#cb19-35" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> find_name(new_feature, df_feature):</span>
+<span id="cb19-36"><a href="#cb19-36" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb19-37"><a href="#cb19-37" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Define the list to store the key feature name</span></span>
+<span id="cb19-38"><a href="#cb19-38" aria-hidden="true" tabindex="-1"></a>    feature_name<span class="op">=</span>[]</span>
+<span id="cb19-39"><a href="#cb19-39" aria-hidden="true" tabindex="-1"></a>    col<span class="op">=</span>df_feature.columns</span>
+<span id="cb19-40"><a href="#cb19-40" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb19-41"><a href="#cb19-41" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Find the name information of key features</span></span>
+<span id="cb19-42"><a href="#cb19-42" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">int</span>(new_feature.shape[<span class="dv">0</span>])):</span>
+<span id="cb19-43"><a href="#cb19-43" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(df_feature.shape[<span class="dv">1</span>]):</span>
+<span id="cb19-44"><a href="#cb19-44" aria-hidden="true" tabindex="-1"></a>            </span>
+<span id="cb19-45"><a href="#cb19-45" aria-hidden="true" tabindex="-1"></a>            <span class="co"># The discrimination standard is that the feature vector in new_feature is consistent with the feature vector in df_feature.</span></span>
+<span id="cb19-46"><a href="#cb19-46" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> np.mean(<span class="bu">abs</span>(new_feature[i]<span class="op">-</span>df_feature[col[j]]))<span class="op">==</span><span class="dv">0</span>:</span>
+<span id="cb19-47"><a href="#cb19-47" aria-hidden="true" tabindex="-1"></a>                feature_name.append(col[j])</span>
+<span id="cb19-48"><a href="#cb19-48" aria-hidden="true" tabindex="-1"></a>                <span class="bu">print</span> (i<span class="op">+</span><span class="dv">1</span>,col[j]) </span>
+<span id="cb19-49"><a href="#cb19-49" aria-hidden="true" tabindex="-1"></a>                <span class="cf">break</span></span>
+<span id="cb19-50"><a href="#cb19-50" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> feature_name</span>
+<span id="cb19-51"><a href="#cb19-51" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-52"><a href="#cb19-52" aria-hidden="true" tabindex="-1"></a><span class="co">"""</span></span>
+<span id="cb19-53"><a href="#cb19-53" aria-hidden="true" tabindex="-1"></a><span class="co">The function FS_importance(arr_importance, col, N) is used to select features according to the importance of features.</span></span>
+<span id="cb19-54"><a href="#cb19-54" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-55"><a href="#cb19-55" aria-hidden="true" tabindex="-1"></a><span class="co">Input: feature importance, feature name set, number of selected features</span></span>
+<span id="cb19-56"><a href="#cb19-56" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-57"><a href="#cb19-57" aria-hidden="true" tabindex="-1"></a><span class="co">Output: the first N characteristics according to the importance of the characteristics</span></span>
+<span id="cb19-58"><a href="#cb19-58" aria-hidden="true" tabindex="-1"></a><span class="co">"""</span></span>
+<span id="cb19-59"><a href="#cb19-59" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> FS_importance(arr_importance, col, N):</span>
+<span id="cb19-60"><a href="#cb19-60" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb19-61"><a href="#cb19-61" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Dictionary storage    </span></span>
+<span id="cb19-62"><a href="#cb19-62" aria-hidden="true" tabindex="-1"></a>    dict_order<span class="op">=</span><span class="bu">dict</span>(<span class="bu">zip</span>(col, arr_importance))</span>
+<span id="cb19-63"><a href="#cb19-63" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb19-64"><a href="#cb19-64" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Sort by the importance of the characteristics</span></span>
+<span id="cb19-65"><a href="#cb19-65" aria-hidden="true" tabindex="-1"></a>    new_feature <span class="op">=</span> <span class="bu">sorted</span>(dict_order.items(), key<span class="op">=</span><span class="kw">lambda</span> item: item[<span class="dv">1</span>], reverse<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb19-66"><a href="#cb19-66" aria-hidden="true" tabindex="-1"></a>    feature_top, score<span class="op">=</span><span class="bu">zip</span>(<span class="op">*</span>new_feature)</span>
+<span id="cb19-67"><a href="#cb19-67" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="bu">list</span>(feature_top[:N])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="regularised" class="level3">
+<h3 class="anchored" data-anchor-id="regularised">3.1 Regularised</h3>
+<p>This section consists of three parts:</p>
+<ol type="1">
+<li><p>Feature selection: Feature selection adopts L1 regularisation, and the model effect when the punishment coefficient C takes different values is tried respectively. The model effect is measured by the average accuracy rate obtained from the 50% cross-verification on the training set. Through graph comparison, the punishment coefficient that makes the model effect the best is found;</p></li>
+<li><p>Establish a model on the feature subset: use the optimal subset obtained in the feature selection to establish a model;</p></li>
+<li><p>Establish a model on the collection of features: Use the original collection of features to establish a model, compare it with the model effect of Part 2, and observe the impact of feature selection on the model effect.</p></li>
+</ol>
+</section>
+<section id="feature-selection" class="level3">
+<h3 class="anchored" data-anchor-id="feature-selection">Feature selection</h3>
+<p>Discuss the impact of different penalty coefficients on the feature selection effect, and carry out 50% cross-verification on the training set to verify the model effect. The baseline is the average accuracy rate of the model obtained by 50% cross-verification on the training set with the feature set.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Import the modules required for cross-verification and feature selection</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> tqdm</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn <span class="im">import</span> model_selection</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.svm <span class="im">import</span> LinearSVC</span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.feature_selection <span class="im">import</span> SelectFromModel</span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Define a model without regularisation</span></span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>lsvc <span class="op">=</span> LinearSVC(C<span class="op">=</span><span class="fl">1e-5</span>)</span>
+<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Cross-validation calculates the average accuracy rate of the complete collection of application features</span></span>
+<span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a>score<span class="op">=</span>model_selection.cross_val_score(lsvc, train_x, train_y, cv<span class="op">=</span><span class="dv">5</span>)</span>
+<span id="cb20-12"><a href="#cb20-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-13"><a href="#cb20-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Explore the impact of different parameters on the effect of feature selection</span></span>
+<span id="cb20-14"><a href="#cb20-14" aria-hidden="true" tabindex="-1"></a><span class="co"># xx represents the set of parameters</span></span>
+<span id="cb20-15"><a href="#cb20-15" aria-hidden="true" tabindex="-1"></a>acc_subset<span class="op">=</span>[]</span>
+<span id="cb20-16"><a href="#cb20-16" aria-hidden="true" tabindex="-1"></a>xx<span class="op">=</span>np.array(<span class="bu">range</span>(<span class="dv">5</span>,<span class="dv">205</span>,<span class="dv">5</span>))<span class="op">*</span><span class="fl">0.01</span></span>
+<span id="cb20-17"><a href="#cb20-17" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> tqdm.tqdm(xx):</span>
+<span id="cb20-18"><a href="#cb20-18" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb20-19"><a href="#cb20-19" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Define a model for L1 regularised feature selection</span></span>
+<span id="cb20-20"><a href="#cb20-20" aria-hidden="true" tabindex="-1"></a>    lsvc_l1 <span class="op">=</span> LinearSVC(C<span class="op">=</span>i, penalty<span class="op">=</span><span class="st">"l1"</span>, dual<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb20-21"><a href="#cb20-21" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb20-22"><a href="#cb20-22" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Cross-verification calculates the average accuracy of the application feature subset</span></span>
+<span id="cb20-23"><a href="#cb20-23" aria-hidden="true" tabindex="-1"></a>    scores<span class="op">=</span>model_selection.cross_val_score(lsvc_l1, train_x, train_y, cv<span class="op">=</span><span class="dv">5</span>)</span>
+<span id="cb20-24"><a href="#cb20-24" aria-hidden="true" tabindex="-1"></a>    acc_subset.append(scores.mean())</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Draw a picture to observe the impact of different penalty coefficients on the feature selection effect:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># yy represents the average accuracy rate of applied feature subsets under different parameters.</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="co"># y0 represents the average accuracy rate of the complete collection of application features, which is used as the baseline.</span></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>yy<span class="op">=</span>acc_subset</span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>y0<span class="op">=</span>[score.mean()]<span class="op">*</span><span class="bu">len</span>(xx)</span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Compare the difference between the complete collection of features and the subset of features</span></span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>fig<span class="op">=</span>plt.figure(figsize<span class="op">=</span>(<span class="dv">18</span>,<span class="dv">6</span>))</span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>ax1<span class="op">=</span>fig.add_subplot(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">1</span>)</span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a>plt.plot(xx,yy,<span class="st">"bo-"</span>)</span>
+<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a>plt.plot(xx,y0,<span class="st">"r-"</span>)</span>
+<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a>ax1.set_xlabel(<span class="st">"The value of the parameter C"</span>)</span>
+<span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a>ax1.set_ylabel(<span class="st">"Mean accuracy on training set by CV"</span>)</span>
+<span id="cb21-13"><a href="#cb21-13" aria-hidden="true" tabindex="-1"></a>ax1.set_title(<span class="st">"Comparison between feature universal set and subset"</span>)</span>
+<span id="cb21-14"><a href="#cb21-14" aria-hidden="true" tabindex="-1"></a>ax1.set_ylim([score.mean()<span class="op">-</span><span class="fl">0.01</span>,<span class="bu">max</span>(yy)<span class="op">+</span><span class="fl">0.01</span>])</span>
+<span id="cb21-15"><a href="#cb21-15" aria-hidden="true" tabindex="-1"></a>ax1.set_xlim([<span class="bu">min</span>(xx),<span class="bu">max</span>(xx)])</span>
+<span id="cb21-16"><a href="#cb21-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-17"><a href="#cb21-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Observe the differences between different characteristic subsets</span></span>
+<span id="cb21-18"><a href="#cb21-18" aria-hidden="true" tabindex="-1"></a>ax2<span class="op">=</span>fig.add_subplot(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">2</span>)</span>
+<span id="cb21-19"><a href="#cb21-19" aria-hidden="true" tabindex="-1"></a>plt.plot(xx,yy,<span class="st">"bo-"</span>)</span>
+<span id="cb21-20"><a href="#cb21-20" aria-hidden="true" tabindex="-1"></a>plt.plot(xx,y0,<span class="st">"r-"</span>)</span>
+<span id="cb21-21"><a href="#cb21-21" aria-hidden="true" tabindex="-1"></a>ax2.set_xlabel(<span class="st">"The value of the parameter C"</span>)</span>
+<span id="cb21-22"><a href="#cb21-22" aria-hidden="true" tabindex="-1"></a>ax2.set_ylabel(<span class="st">"Mean accuracy on training set by CV"</span>)</span>
+<span id="cb21-23"><a href="#cb21-23" aria-hidden="true" tabindex="-1"></a>ax2.set_title(<span class="st">"Comparison among different parameters"</span>)</span>
+<span id="cb21-24"><a href="#cb21-24" aria-hidden="true" tabindex="-1"></a>ax2.set_ylim([<span class="bu">min</span>(yy)<span class="op">-</span><span class="fl">0.001</span>,<span class="bu">max</span>(yy)<span class="op">+</span><span class="fl">0.001</span>])</span>
+<span id="cb21-25"><a href="#cb21-25" aria-hidden="true" tabindex="-1"></a>ax2.set_xlim([<span class="bu">min</span>(xx),<span class="bu">max</span>(xx)])</span>
+<span id="cb21-26"><a href="#cb21-26" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>The horizontal coordinates of the above two diagrams are the punishment coefficients, and the vertical coordinates are the average accuracy rate obtained by cross-verification. Observe the left figure, the accuracy rate of the model applied feature subsets under different punishment coefficients in the blue folding table, and the red straight line is our baseline, that is, the accuracy rate obtained by applying the feature set on the same model. It can be found that the blue line is above the red line, which shows that the model effect after L1 regularisation feature selection has been significantly improved. Furthermore, we also want to observe the difference between different feature subsets. The right figure enlarges the blue line. We can see that when the punishment coefficient is 1.7, the model effect is the best, so we can try to use L1 regularisation with a punishment coefficient of 1.7 for feature selection.</p>
+</section>
+<section id="build-a-model-on-the-feature-subset" class="level3">
+<h3 class="anchored" data-anchor-id="build-a-model-on-the-feature-subset">Build a model on the feature subset</h3>
+<p>Establish a LinearSVC model on the optimal subset obtained in the previous part, and output the feature name selected by L1 regularisation.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Establish an L1 regularisation model</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>lsvc_l1 <span class="op">=</span> LinearSVC(C<span class="op">=</span><span class="fl">1.7</span>, penalty<span class="op">=</span><span class="st">"l1"</span>, dual<span class="op">=</span><span class="va">False</span>).fit(train_x, train_y)</span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>pred<span class="op">=</span>lsvc_l1.predict(test_x)</span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Output the characteristic name selected by L1 regularisation</span></span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> SelectFromModel(lsvc_l1,prefit<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>new_train_x <span class="op">=</span> model.transform(train_x).T</span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>FS_result<span class="op">=</span>find_name(new_train_x, train_x)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Evaluate_subset the values of various evaluation indicators of the model in the list:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn <span class="im">import</span> metrics</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="co">#accuracy</span></span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>acc_subset <span class="op">=</span> metrics.accuracy_score(test_y,pred)</span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a><span class="co">#precision</span></span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>precision_subset <span class="op">=</span> metrics.precision_score(test_y,pred,average<span class="op">=</span><span class="st">'weighted'</span>)</span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a><span class="co">#recall</span></span>
+<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a>recall_subset <span class="op">=</span> metrics.recall_score(test_y,pred,average<span class="op">=</span><span class="st">'weighted'</span>)</span>
+<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a><span class="co">#f1-score</span></span>
+<span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a>f1_subset <span class="op">=</span> metrics.f1_score(test_y,pred,average<span class="op">=</span><span class="st">'weighted'</span>)</span>
+<span id="cb23-13"><a href="#cb23-13" aria-hidden="true" tabindex="-1"></a>evaluate_subset <span class="op">=</span> [acc_subset,precision_subset,recall_subset,f1_subset]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>The detailed evaluation of the model effect is shown in the confusion matrix in the figure below:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>evaluate(pred,test_y)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="comparison-establish-a-model-on-the-complete-collection-of-features" class="level3">
+<h3 class="anchored" data-anchor-id="comparison-establish-a-model-on-the-complete-collection-of-features">Comparison: Establish a model on the complete collection of features</h3>
+<p>Build the same <code>LinearSVC</code> model on the feature collection:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Establish a model without regularisation (set C to a number close to 0)</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>lsvc <span class="op">=</span> LinearSVC(C<span class="op">=</span><span class="fl">1e-5</span>)</span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>lsvc_model <span class="op">=</span> lsvc.fit(train_x,train_y)</span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>pred<span class="op">=</span>lsvc_model.predict(test_x)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>More detailed evaluation of the model effect:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co">#accuracy</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>acc_all <span class="op">=</span> metrics.accuracy_score(test_y,pred)</span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a><span class="co">#precision</span></span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>precision_all <span class="op">=</span> metrics.precision_score(test_y,pred,average<span class="op">=</span><span class="st">'weighted'</span>)</span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a><span class="co">#recall</span></span>
+<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a>recall_all <span class="op">=</span> metrics.recall_score(test_y,pred,average<span class="op">=</span><span class="st">'weighted'</span>)</span>
+<span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-10"><a href="#cb26-10" aria-hidden="true" tabindex="-1"></a><span class="co">#f1-score</span></span>
+<span id="cb26-11"><a href="#cb26-11" aria-hidden="true" tabindex="-1"></a>f1_all <span class="op">=</span> metrics.f1_score(test_y,pred,average<span class="op">=</span><span class="st">'weighted'</span>)</span>
+<span id="cb26-12"><a href="#cb26-12" aria-hidden="true" tabindex="-1"></a>evaluate_all <span class="op">=</span> [acc_all,precision_all,recall_all,f1_all]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>evaluate(pred,test_y)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>More intuitively compare the difference in the model effect brought by the feature subset and the feature set:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>index<span class="op">=</span>[<span class="st">"accuracy"</span>,<span class="st">"precision"</span>,<span class="st">"recall"</span>,<span class="st">"f1-score"</span>]</span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> <span class="bu">zip</span>(evaluate_all,evaluate_subset)</span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>df<span class="op">=</span>pd.DataFrame(data,columns<span class="op">=</span>[<span class="st">"universal set"</span>,<span class="st">"subset"</span>],index<span class="op">=</span>index)</span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>df.plot(kind<span class="op">=</span><span class="st">"bar"</span>,figsize<span class="op">=</span>(<span class="dv">10</span>,<span class="dv">8</span>))</span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>plt.ylim([<span class="fl">0.75</span>,<span class="fl">0.95</span>])</span>
+<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>The model established by applying the feature subset has better performance in all aspects, which shows that it is necessary to select features before modelling. In particular, using the model obtained from the data collection to predict the negative class (label value is 0) of the samples of all test sets, this model is actually meaningless.</p>
+</section>
+<section id="tree-based-model" class="level3">
+<h3 class="anchored" data-anchor-id="tree-based-model">3.2 Tree-based model</h3>
+<p>This section consists of three parts:</p>
+<ol type="1">
+<li><p>Feature selection: Feature selection tried to take Gini impurity and Entropy as indicators, and compared the impact of selecting different numbers of characteristics on the model effect. The model effect is measured by the average accuracy rate obtained by 50% cross-verification on the training set. Through graph comparison, it is found that the model effect The number of the best characteristics;</p></li>
+<li><p>Establish a model on the feature subset: use the optimal subset obtained in the feature selection to establish a model;</p></li>
+<li><p>Establish a model on the collection of features: Use the original collection of features to establish a model, compare it with the model effect of Part 2, and observe the impact of feature selection on the model effect.</p></li>
+</ol>
+</section>
+<section id="feature-selection-1" class="level3">
+<h3 class="anchored" data-anchor-id="feature-selection-1">Feature selection</h3>
+<p>The index is characterised by Gini inpurity and Entropy, and the impact of selecting different features on the feature selection effect is discussed. 50% cross-verification is carried out on the training set to verify the model effect. The baseline is the average accuracy rate of the model obtained by 50% cross-verification on the training set.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Define a model with Gini impurity as the classification indicator</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.ensemble <span class="im">import</span> ExtraTreesClassifier</span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>clf_gini <span class="op">=</span> ExtraTreesClassifier(criterion<span class="op">=</span><span class="st">'gini'</span>)</span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Fit the model on the training set to obtain the characteristic importance score.</span></span>
+<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a>clf_gini <span class="op">=</span> clf_gini.fit(train_x, train_y)</span>
+<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a>importance_gini<span class="op">=</span>clf_gini.feature_importances_ </span>
+<span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-9"><a href="#cb29-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Cross-validation calculates the average accuracy rate of the complete collection of application features</span></span>
+<span id="cb29-10"><a href="#cb29-10" aria-hidden="true" tabindex="-1"></a>score_gini<span class="op">=</span>model_selection.cross_val_score(clf_gini, train_x, train_y, cv<span class="op">=</span><span class="dv">5</span>)</span>
+<span id="cb29-11"><a href="#cb29-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-12"><a href="#cb29-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Define a model with Entropy entropy as the classification indicator</span></span>
+<span id="cb29-13"><a href="#cb29-13" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.ensemble <span class="im">import</span> ExtraTreesClassifier</span>
+<span id="cb29-14"><a href="#cb29-14" aria-hidden="true" tabindex="-1"></a>clf_entropy <span class="op">=</span> ExtraTreesClassifier(criterion<span class="op">=</span><span class="st">'entropy'</span>)</span>
+<span id="cb29-15"><a href="#cb29-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-16"><a href="#cb29-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Fit the model on the training set to obtain the characteristic importance score.</span></span>
+<span id="cb29-17"><a href="#cb29-17" aria-hidden="true" tabindex="-1"></a>clf_entropy <span class="op">=</span> clf_entropy.fit(train_x, train_y)</span>
+<span id="cb29-18"><a href="#cb29-18" aria-hidden="true" tabindex="-1"></a>importance_entropy<span class="op">=</span>clf_entropy.feature_importances_</span>
+<span id="cb29-19"><a href="#cb29-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-20"><a href="#cb29-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Cross-validation calculates the average accuracy rate of the complete collection of application features</span></span>
+<span id="cb29-21"><a href="#cb29-21" aria-hidden="true" tabindex="-1"></a>score_entropy<span class="op">=</span>model_selection.cross_val_score(clf_entropy, train_x, train_y, cv<span class="op">=</span><span class="dv">5</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Take Gini impurity as the indicator</span></span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Explore the influence of different numbers of features on the effect of feature selection</span></span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a><span class="co"># xx represents the set of the number of features.</span></span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>acc_subset_gini<span class="op">=</span>[]</span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>xx<span class="op">=</span>np.array(<span class="bu">range</span>(<span class="dv">1</span>,<span class="dv">56</span>,<span class="dv">1</span>))</span>
+<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> tqdm.tqdm(xx):</span>
+<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb30-8"><a href="#cb30-8" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Define the ExtraTrees model</span></span>
+<span id="cb30-9"><a href="#cb30-9" aria-hidden="true" tabindex="-1"></a>    clf_gini <span class="op">=</span> ExtraTreesClassifier(criterion<span class="op">=</span><span class="st">'gini'</span>)</span>
+<span id="cb30-10"><a href="#cb30-10" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb30-11"><a href="#cb30-11" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Choose characteristics according to the importance of characteristics</span></span>
+<span id="cb30-12"><a href="#cb30-12" aria-hidden="true" tabindex="-1"></a>    feature<span class="op">=</span>FS_importance(importance_gini, train_x.columns, i)</span>
+<span id="cb30-13"><a href="#cb30-13" aria-hidden="true" tabindex="-1"></a>    new_train_x<span class="op">=</span>train_x[feature]</span>
+<span id="cb30-14"><a href="#cb30-14" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb30-15"><a href="#cb30-15" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Cross-verification calculates the average accuracy of the application feature subset</span></span>
+<span id="cb30-16"><a href="#cb30-16" aria-hidden="true" tabindex="-1"></a>    scores<span class="op">=</span>model_selection.cross_val_score(clf_gini, new_train_x, train_y, cv<span class="op">=</span><span class="dv">5</span>)</span>
+<span id="cb30-17"><a href="#cb30-17" aria-hidden="true" tabindex="-1"></a>    acc_subset_gini.append(scores.mean())</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Take Entropy Entropy As The Indicator</span></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Explore the influence of different numbers of features on the effect of feature selection</span></span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a><span class="co"># xx represents the set of the number of features.</span></span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>acc_subset_entropy<span class="op">=</span>[]</span>
+<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a>xx<span class="op">=</span>np.array(<span class="bu">range</span>(<span class="dv">1</span>,<span class="dv">56</span>,<span class="dv">1</span>))</span>
+<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> tqdm.tqdm(xx):</span>
+<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb31-8"><a href="#cb31-8" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Define the ExtraTrees model</span></span>
+<span id="cb31-9"><a href="#cb31-9" aria-hidden="true" tabindex="-1"></a>    clf_entropy <span class="op">=</span> ExtraTreesClassifier(criterion<span class="op">=</span><span class="st">'entropy'</span>)</span>
+<span id="cb31-10"><a href="#cb31-10" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb31-11"><a href="#cb31-11" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Choose characteristics according to the importance of characteristics</span></span>
+<span id="cb31-12"><a href="#cb31-12" aria-hidden="true" tabindex="-1"></a>    feature<span class="op">=</span>FS_importance(importance_entropy, train_x.columns, i)</span>
+<span id="cb31-13"><a href="#cb31-13" aria-hidden="true" tabindex="-1"></a>    new_train_x<span class="op">=</span>train_x[feature]</span>
+<span id="cb31-14"><a href="#cb31-14" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb31-15"><a href="#cb31-15" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Cross-verification calculates the average accuracy of the application feature subset</span></span>
+<span id="cb31-16"><a href="#cb31-16" aria-hidden="true" tabindex="-1"></a>    scores<span class="op">=</span>model_selection.cross_val_score(clf_entropy, new_train_x, train_y, cv<span class="op">=</span><span class="dv">5</span>)</span>
+<span id="cb31-17"><a href="#cb31-17" aria-hidden="true" tabindex="-1"></a>    acc_subset_entropy.append(scores.mean())</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Draw a picture to observe the impact of different characteristics on the feature selection effect:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Take Gini impurity as the indicator</span></span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a><span class="co"># yy represents the average accuracy rate of applied feature subsets under different characteristics.</span></span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a><span class="co"># y0 represents the average accuracy rate of the complete collection of application features, which is used as the baseline.</span></span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>yy<span class="op">=</span>acc_subset_gini</span>
+<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a>y0<span class="op">=</span>[score_gini.mean()]<span class="op">*</span><span class="bu">len</span>(xx)</span>
+<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-7"><a href="#cb32-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Compare the difference between the complete collection of features and the subset of features</span></span>
+<span id="cb32-8"><a href="#cb32-8" aria-hidden="true" tabindex="-1"></a>fig<span class="op">=</span>plt.figure(figsize<span class="op">=</span>(<span class="dv">18</span>,<span class="dv">6</span>))</span>
+<span id="cb32-9"><a href="#cb32-9" aria-hidden="true" tabindex="-1"></a>ax1<span class="op">=</span>fig.add_subplot(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">1</span>)</span>
+<span id="cb32-10"><a href="#cb32-10" aria-hidden="true" tabindex="-1"></a>plt.plot(xx,yy,<span class="st">"bo-"</span>)</span>
+<span id="cb32-11"><a href="#cb32-11" aria-hidden="true" tabindex="-1"></a>plt.plot(xx,y0,<span class="st">"r-"</span>)</span>
+<span id="cb32-12"><a href="#cb32-12" aria-hidden="true" tabindex="-1"></a>ax1.set_xlabel(<span class="st">"The number of features"</span>)</span>
+<span id="cb32-13"><a href="#cb32-13" aria-hidden="true" tabindex="-1"></a>ax1.set_ylabel(<span class="st">"Mean accuracy on training set by CV"</span>)</span>
+<span id="cb32-14"><a href="#cb32-14" aria-hidden="true" tabindex="-1"></a>ax1.set_title(<span class="st">"Comparison among feature numbers by Gini"</span>)</span>
+<span id="cb32-15"><a href="#cb32-15" aria-hidden="true" tabindex="-1"></a>ax1.set_ylim([<span class="bu">min</span>(yy)<span class="op">-</span><span class="fl">0.001</span>,<span class="bu">max</span>(yy)<span class="op">+</span><span class="fl">0.001</span>])</span>
+<span id="cb32-16"><a href="#cb32-16" aria-hidden="true" tabindex="-1"></a>ax1.set_xlim([<span class="bu">min</span>(xx),<span class="bu">max</span>(xx)])</span>
+<span id="cb32-17"><a href="#cb32-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-18"><a href="#cb32-18" aria-hidden="true" tabindex="-1"></a><span class="co"># yy represents the average accuracy rate of applied feature subsets under different parameters.</span></span>
+<span id="cb32-19"><a href="#cb32-19" aria-hidden="true" tabindex="-1"></a><span class="co"># y0 represents the average accuracy rate of the complete collection of application features, which is used as the baseline.</span></span>
+<span id="cb32-20"><a href="#cb32-20" aria-hidden="true" tabindex="-1"></a>yy<span class="op">=</span>acc_subset_entropy</span>
+<span id="cb32-21"><a href="#cb32-21" aria-hidden="true" tabindex="-1"></a>y0<span class="op">=</span>[score_entropy.mean()]<span class="op">*</span><span class="bu">len</span>(xx)</span>
+<span id="cb32-22"><a href="#cb32-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-23"><a href="#cb32-23" aria-hidden="true" tabindex="-1"></a><span class="co"># Observe the differences between different characteristic subsets</span></span>
+<span id="cb32-24"><a href="#cb32-24" aria-hidden="true" tabindex="-1"></a>ax2<span class="op">=</span>fig.add_subplot(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">2</span>)</span>
+<span id="cb32-25"><a href="#cb32-25" aria-hidden="true" tabindex="-1"></a>plt.plot(xx,yy,<span class="st">"bo-"</span>)</span>
+<span id="cb32-26"><a href="#cb32-26" aria-hidden="true" tabindex="-1"></a>plt.plot(xx,y0,<span class="st">"r-"</span>)</span>
+<span id="cb32-27"><a href="#cb32-27" aria-hidden="true" tabindex="-1"></a>ax2.set_xlabel(<span class="st">"The number of features"</span>)</span>
+<span id="cb32-28"><a href="#cb32-28" aria-hidden="true" tabindex="-1"></a>ax2.set_ylabel(<span class="st">"Mean accuracy on training set by CV"</span>)</span>
+<span id="cb32-29"><a href="#cb32-29" aria-hidden="true" tabindex="-1"></a>ax2.set_title(<span class="st">"Comparison among feature numbers by Entropy"</span>)</span>
+<span id="cb32-30"><a href="#cb32-30" aria-hidden="true" tabindex="-1"></a>ax2.set_ylim([<span class="bu">min</span>(yy)<span class="op">-</span><span class="fl">0.001</span>,<span class="bu">max</span>(yy)<span class="op">+</span><span class="fl">0.001</span>])</span>
+<span id="cb32-31"><a href="#cb32-31" aria-hidden="true" tabindex="-1"></a>ax2.set_xlim([<span class="bu">min</span>(xx),<span class="bu">max</span>(xx)])</span>
+<span id="cb32-32"><a href="#cb32-32" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>The horizontal coordinates of the above two figures are the number of features, and the vertical coordinates are the average accuracy rate obtained by cross-verification. The model accuracy rate of the application of feature subsets under different features in the blue folding table, and the red straight line is our baseline, that is, the accuracy rate obtained by applying the full set of features on the same model, different The left figure uses Gini impurity as the indicator for feature selection, while the right figure takes Entropy as the indicator for feature selection. It can be found that the number of features has a great impact on the effect of feature selection. On some feature subsets (for example, when the number of features is 2, 5, 6, 55), the model can achieve better results than baseline; but on some other feature subsets (such as when the number of features is 14, 15, 16), the model On the contrary, the effect of the mould has been reduced a lot. It is found from the figure that when the feature subset contains 2 features, the model effect is the best. However, after testing, it is found that when the number of features is too small, although the accuracy rate is indeed high, it will cause a very low F1 value. In the end, we choose the feature subset with the number of features of 6 obtained with Entropy as the indicator as the optimal subset candidate. We would like to remind everyone that for classification problems, we can’t just look at the accuracy rate. Other indicators are also very important. The selection of characteristic subsets should be considered comprehensively from many aspects.</p>
+<p>The first 6 key characteristics are as follows:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span> (<span class="st">"The most important 6 features computed by mini:"</span>)</span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(FS_importance(importance_gini, train_x.columns, <span class="dv">6</span>))</span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span> (<span class="st">"The most important 6 features computed by entropy:"</span>)</span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(FS_importance(importance_entropy, train_x.columns, <span class="dv">6</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="build-a-model-on-the-feature-subset-1" class="level3">
+<h3 class="anchored" data-anchor-id="build-a-model-on-the-feature-subset-1">Build a model on the feature subset</h3>
+<p>Establish the ExtraTrees model on the optimal subset obtained in the previous part, and output the feature name selected with entropy as the indicator.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Define the ExtraTrees model</span></span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>clf_entropy <span class="op">=</span> ExtraTreesClassifier(criterion<span class="op">=</span><span class="st">'entropy'</span>)</span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Choose characteristics according to the importance of characteristics</span></span>
+<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a>feature<span class="op">=</span>FS_importance(importance_entropy, train_x.columns, <span class="dv">6</span>)</span>
+<span id="cb34-6"><a href="#cb34-6" aria-hidden="true" tabindex="-1"></a>new_train_x<span class="op">=</span>train_x[feature]</span>
+<span id="cb34-7"><a href="#cb34-7" aria-hidden="true" tabindex="-1"></a>new_test_x<span class="op">=</span>test_x[feature]</span>
+<span id="cb34-8"><a href="#cb34-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-9"><a href="#cb34-9" aria-hidden="true" tabindex="-1"></a>clf_entropy <span class="op">=</span> clf_entropy.fit(new_train_x, train_y) </span>
+<span id="cb34-10"><a href="#cb34-10" aria-hidden="true" tabindex="-1"></a>pred<span class="op">=</span>clf_entropy.predict(new_test_x)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Detailed evaluation of the model effect:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="co">#accuracy</span></span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>acc_subset <span class="op">=</span> metrics.accuracy_score(test_y,pred)</span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a><span class="co">#precision</span></span>
+<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a>precision_subset <span class="op">=</span> metrics.precision_score(test_y,pred,average<span class="op">=</span><span class="st">'weighted'</span>)</span>
+<span id="cb35-6"><a href="#cb35-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-7"><a href="#cb35-7" aria-hidden="true" tabindex="-1"></a><span class="co">#recall</span></span>
+<span id="cb35-8"><a href="#cb35-8" aria-hidden="true" tabindex="-1"></a>recall_subset <span class="op">=</span> metrics.recall_score(test_y,pred,average<span class="op">=</span><span class="st">'weighted'</span>)</span>
+<span id="cb35-9"><a href="#cb35-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-10"><a href="#cb35-10" aria-hidden="true" tabindex="-1"></a><span class="co">#f1-score</span></span>
+<span id="cb35-11"><a href="#cb35-11" aria-hidden="true" tabindex="-1"></a>f1_subset <span class="op">=</span> metrics.f1_score(test_y,pred,average<span class="op">=</span><span class="st">'weighted'</span>)</span>
+<span id="cb35-12"><a href="#cb35-12" aria-hidden="true" tabindex="-1"></a>evaluate_subset <span class="op">=</span> [acc_subset,precision_subset,recall_subset,f1_subset]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>evaluate(pred,test_y)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="comparison-establish-a-model-on-the-complete-collection-of-features-1" class="level3">
+<h3 class="anchored" data-anchor-id="comparison-establish-a-model-on-the-complete-collection-of-features-1">Comparison: Establish a model on the complete collection of features</h3>
+<p>Build the same ExtraTrees model on the collection of features:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.ensemble <span class="im">import</span> ExtraTreesClassifier</span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>clf_entropy <span class="op">=</span> ExtraTreesClassifier(criterion<span class="op">=</span><span class="st">'entropy'</span>)</span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>clf_entropy <span class="op">=</span> clf_entropy.fit(train_x, train_y) </span>
+<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a>pred<span class="op">=</span>clf_entropy.predict(test_x)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Detailed evaluation of the model effect:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="co">#accuracy</span></span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>acc_all <span class="op">=</span> metrics.accuracy_score(test_y,pred)</span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a><span class="co">#precision</span></span>
+<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a>precision_all <span class="op">=</span> metrics.precision_score(test_y,pred,average<span class="op">=</span><span class="st">'weighted'</span>)</span>
+<span id="cb38-6"><a href="#cb38-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-7"><a href="#cb38-7" aria-hidden="true" tabindex="-1"></a><span class="co">#recall</span></span>
+<span id="cb38-8"><a href="#cb38-8" aria-hidden="true" tabindex="-1"></a>recall_all <span class="op">=</span> metrics.recall_score(test_y,pred,average<span class="op">=</span><span class="st">'weighted'</span>)</span>
+<span id="cb38-9"><a href="#cb38-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-10"><a href="#cb38-10" aria-hidden="true" tabindex="-1"></a><span class="co">#f1-score</span></span>
+<span id="cb38-11"><a href="#cb38-11" aria-hidden="true" tabindex="-1"></a>f1_all <span class="op">=</span> metrics.f1_score(test_y,pred,average<span class="op">=</span><span class="st">'weighted'</span>)</span>
+<span id="cb38-12"><a href="#cb38-12" aria-hidden="true" tabindex="-1"></a>evaluate_all <span class="op">=</span> [acc_all,precision_all,recall_all,f1_all]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>evaluate(pred,test_y)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>More intuitively compare the difference in the model effect brought by the feature subset and the feature set:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb40"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>index<span class="op">=</span>[<span class="st">"accuracy"</span>,<span class="st">"precision"</span>,<span class="st">"recall"</span>,<span class="st">"f1-score"</span>]</span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> <span class="bu">zip</span>(evaluate_all,evaluate_subset)</span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>df<span class="op">=</span>pd.DataFrame(data,columns<span class="op">=</span>[<span class="st">"universal set"</span>,<span class="st">"subset"</span>],index<span class="op">=</span>index)</span>
+<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a>df.plot(kind<span class="op">=</span><span class="st">"bar"</span>,figsize<span class="op">=</span>(<span class="dv">10</span>,<span class="dv">8</span>))</span>
+<span id="cb40-5"><a href="#cb40-5" aria-hidden="true" tabindex="-1"></a>plt.ylim([<span class="fl">0.85</span>,<span class="fl">0.91</span>])</span>
+<span id="cb40-6"><a href="#cb40-6" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>The model established by applying the feature subset has better performance in all aspects, which shows that it is necessary to select features before modelling.</p>
+</section>
+<section id="feature-understanding-and-evaluation" class="level3">
+<h3 class="anchored" data-anchor-id="feature-understanding-and-evaluation">4 Feature understanding and evaluation</h3>
+<p>We have tried three feature selection methods: L1 regularisation, Gini impurity, and Entropy. All three methods believe that feature age and campaign have the greatest impact on whether to order products, so we want to further observe how this influence relationship is.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Further observe the relationship between age and label</span></span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>sns.jointplot(x<span class="op">=</span><span class="st">'age'</span>,y<span class="op">=</span><span class="st">'label'</span>,data<span class="op">=</span>new_data,kind<span class="op">=</span><span class="st">'reg'</span>,x_estimator<span class="op">=</span> np.mean,order<span class="op">=</span><span class="dv">2</span>)</span>
+<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Because label is a discrete variable, it can be replaced by its mean. It can be found that there is a secondary relationship between age and label. Middle-aged people do not like to order products, but young people and the elderly people order products at a higher rate. The discovery can guide banks to position the target audience of telemarketing more accurately.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb42"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Further observe the relationship between campaign and label</span></span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>f, ax1 <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">1</span>, sharex<span class="op">=</span><span class="va">True</span>, figsize<span class="op">=</span>(<span class="dv">6</span>, <span class="dv">4</span>))</span>
+<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a>c1, c2 <span class="op">=</span> sns.color_palette(<span class="st">'Set1'</span>, <span class="dv">2</span>)</span>
+<span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a>sns.kdeplot(new_data[<span class="st">'campaign'</span>][new_data[<span class="st">"label"</span>]<span class="op">==</span><span class="dv">1</span>], shade<span class="op">=</span><span class="va">True</span>, color<span class="op">=</span>c1, label<span class="op">=</span><span class="st">'Yes'</span>,ax<span class="op">=</span>ax1)</span>
+<span id="cb42-5"><a href="#cb42-5" aria-hidden="true" tabindex="-1"></a>sns.kdeplot(new_data[<span class="st">'campaign'</span>][new_data[<span class="st">"label"</span>]<span class="op">==</span><span class="dv">0</span>], shade<span class="op">=</span><span class="va">True</span>, color<span class="op">=</span>c2, label<span class="op">=</span><span class="st">'No'</span>, ax<span class="op">=</span>ax1)</span>
+<span id="cb42-6"><a href="#cb42-6" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>The characteristic campaign represents the number of contacts with customers, the red distribution represents the campaign data distribution of the ordered products, and the blue distribution represents the campaign data distribution that does not order. It can be found that the red distribution is more biased towards 0 and the numerical distribution is smaller, which shows that when the number of contacts is less, customers are more inclined to order products. For banks, the frequent contact of salespeople to customers should be controlled.</p>
+</section>
+<section id="data-downsiming" class="level3">
+<h3 class="anchored" data-anchor-id="data-downsiming">5 Data downsiming</h3>
+<p>In this section, we first downsize the data set train_x containing 56 features, use different methods to reduce the data and conduct visual analysis on the two-dimensional plane, and finally analyze the impact of data downsizing on the model prediction effect.</p>
+<p>Let’s first list the variables that will be used later and have been defined before: | Dataset Name | Meaning | |————–|———| | <code>train_x</code> | Training dataset with 56 features | | <code>test_x</code> | Test dataset with 56 features | | <code>train_y</code> | True labels for training set | | <code>test_y</code> | True labels for test set |</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb43"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Use index descending to arrange DataFrame</span></span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>train_x.sort_index(inplace<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a>train_y.sort_index(inplace<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a>new_train_x.sort_index(inplace<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb43-5"><a href="#cb43-5" aria-hidden="true" tabindex="-1"></a>train_x.head()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="data-dimension-reduction-and-visual-analysis-process" class="level3">
+<h3 class="anchored" data-anchor-id="data-dimension-reduction-and-visual-analysis-process">Data dimension reduction and visual analysis process</h3>
+<p>The dimension reduction method to be shown in this case and the module of sklearn are shown in the following table:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 23%">
+<col style="width: 51%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>sklearn Module</th>
+<th>Method Called</th>
+<th>Dimensionality Reduction Method</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>decomposition</td>
+<td>PCA<br>KernelPCA</td>
+<td>PCA<br>KPCA</td>
+</tr>
+<tr class="even">
+<td>discriminant_analysis</td>
+<td>LinearDiscriminantAnalysis</td>
+<td>LDA</td>
+</tr>
+<tr class="odd">
+<td>manifold</td>
+<td>MDS<br>Isomap<br>LocallyLinearEmbedding<br>TSNE<br>SpectralEmbedding</td>
+<td>MDS<br>Isomap<br>LLE<br>t-SNE<br>Spectral Embedding</td>
+</tr>
+</tbody>
+</table>
+<p>The process of calling the above methods for dimension reduction is similar:</p>
+<ul>
+<li><p>First, create an instance according to the specific method: instance name = sklearn module. Called method (setting of some parameters)</p></li>
+<li><p>Then convert the data: the converted data variable name = instance name.fit_transform(X), and some methods such as LDA dimension reduction also need to provide the label y</p></li>
+<li><p>Finally, visualize the converted data: enter the converted data and title, and draw a diagram of the two-dimensional space.</p></li>
+</ul>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb44"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn <span class="im">import</span> (manifold, decomposition, discriminant_analysis)</span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a><span class="co"># %matplotlib inline</span></span>
+<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a><span class="co"># %config InlineBackend.figure_format = 'retina' #The retina high-definition display mode of the picture</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>After importing the necessary packages, we begin to create instances of different dimension reduction classes:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb45"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="co"># When creating an instance, there are more parameters that can be adjusted. You might as well try more.</span></span>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>pca <span class="op">=</span> decomposition.PCA(n_components<span class="op">=</span><span class="dv">2</span>)</span>
+<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a>lda <span class="op">=</span> discriminant_analysis.LinearDiscriminantAnalysis(n_components<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb45-4"><a href="#cb45-4" aria-hidden="true" tabindex="-1"></a>kpca <span class="op">=</span> decomposition.KernelPCA(n_components<span class="op">=</span><span class="dv">2</span>, kernel<span class="op">=</span><span class="st">"rbf"</span>, fit_inverse_transform<span class="op">=</span><span class="va">True</span>, gamma<span class="op">=</span><span class="fl">.8</span>)</span>
+<span id="cb45-5"><a href="#cb45-5" aria-hidden="true" tabindex="-1"></a>mds <span class="op">=</span> manifold.MDS(n_components<span class="op">=</span><span class="dv">2</span>, n_init<span class="op">=</span><span class="dv">1</span>, max_iter<span class="op">=</span><span class="dv">100</span>)</span>
+<span id="cb45-6"><a href="#cb45-6" aria-hidden="true" tabindex="-1"></a>iso <span class="op">=</span> manifold.Isomap(n_components<span class="op">=</span><span class="dv">2</span>, n_neighbors<span class="op">=</span><span class="dv">2</span>)</span>
+<span id="cb45-7"><a href="#cb45-7" aria-hidden="true" tabindex="-1"></a>lle <span class="op">=</span> manifold.LocallyLinearEmbedding(n_components<span class="op">=</span><span class="dv">2</span>, n_neighbors<span class="op">=</span><span class="dv">3</span>, eigen_solver<span class="op">=</span><span class="st">'dense'</span>)</span>
+<span id="cb45-8"><a href="#cb45-8" aria-hidden="true" tabindex="-1"></a>tsne <span class="op">=</span> manifold.TSNE(n_components<span class="op">=</span><span class="dv">2</span>, init<span class="op">=</span><span class="st">'pca'</span>, random_state<span class="op">=</span><span class="dv">10</span>)</span>
+<span id="cb45-9"><a href="#cb45-9" aria-hidden="true" tabindex="-1"></a>spectral <span class="op">=</span> manifold.SpectralEmbedding(n_components<span class="op">=</span><span class="dv">2</span>, random_state<span class="op">=</span><span class="dv">10</span>, eigen_solver<span class="op">=</span><span class="st">'arpack'</span>)</span>
+<span id="cb45-10"><a href="#cb45-10" aria-hidden="true" tabindex="-1"></a>names <span class="op">=</span> [<span class="st">'PCA'</span>, <span class="st">'LDA'</span>, <span class="st">'KPCA'</span>, <span class="st">'MDS'</span>, <span class="st">'ISOMAP'</span>, <span class="st">'LLE'</span>, <span class="st">'t-SNE'</span>, <span class="st">'Spectral Embedding'</span>]</span>
+<span id="cb45-11"><a href="#cb45-11" aria-hidden="true" tabindex="-1"></a>algorithms <span class="op">=</span> [pca, lda, kpca, mds, iso, lle, tsne, spectral]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Next, the results of different dimension reduction methods can be visualized on the two-dimensional plane in turn.</p>
+</section>
+<section id="diminsion-on-the-complete-collection-of-features" class="level3">
+<h3 class="anchored" data-anchor-id="diminsion-on-the-complete-collection-of-features">Diminsion on the complete collection of features</h3>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb46"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="co">#The hexadecimal color code represents light green and orange respectively.</span></span>
+<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a>colors <span class="op">=</span> [<span class="st">'#5dbe80'</span>,<span class="st">'#efab40'</span>] </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb47"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="co">"""</span></span>
+<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a><span class="co">The function plot_2d(datax,datay) is used to reduce the dimension of datax data;</span></span>
+<span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-4"><a href="#cb47-4" aria-hidden="true" tabindex="-1"></a><span class="co">Input: unlabeled datax, labeled data datay;</span></span>
+<span id="cb47-5"><a href="#cb47-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-6"><a href="#cb47-6" aria-hidden="true" tabindex="-1"></a><span class="co">Output: None</span></span>
+<span id="cb47-7"><a href="#cb47-7" aria-hidden="true" tabindex="-1"></a><span class="co">"""</span></span>
+<span id="cb47-8"><a href="#cb47-8" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> plot_2d(datax, datay):</span>
+<span id="cb47-9"><a href="#cb47-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i, algorithm <span class="kw">in</span> <span class="bu">enumerate</span>(algorithms):</span>
+<span id="cb47-10"><a href="#cb47-10" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> algorithm <span class="op">==</span> lda:</span>
+<span id="cb47-11"><a href="#cb47-11" aria-hidden="true" tabindex="-1"></a>            lda.set_params(n_components<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb47-12"><a href="#cb47-12" aria-hidden="true" tabindex="-1"></a>            x_2d <span class="op">=</span> algorithm.fit_transform(datax, datay)</span>
+<span id="cb47-13"><a href="#cb47-13" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span>:</span>
+<span id="cb47-14"><a href="#cb47-14" aria-hidden="true" tabindex="-1"></a>            x_2d <span class="op">=</span> algorithm.fit_transform(datax)</span>
+<span id="cb47-15"><a href="#cb47-15" aria-hidden="true" tabindex="-1"></a>            plt.subplot(<span class="dv">2</span>, <span class="dv">4</span>, i<span class="op">+</span><span class="dv">1</span>)</span>
+<span id="cb47-16"><a href="#cb47-16" aria-hidden="true" tabindex="-1"></a>            <span class="cf">for</span> j, label <span class="kw">in</span> <span class="bu">enumerate</span>(datay.unique()):</span>
+<span id="cb47-17"><a href="#cb47-17" aria-hidden="true" tabindex="-1"></a>                plt.scatter(x_2d[datay<span class="op">==</span>label, <span class="dv">0</span>],</span>
+<span id="cb47-18"><a href="#cb47-18" aria-hidden="true" tabindex="-1"></a>                            x_2d[datay<span class="op">==</span>label, <span class="dv">1</span>],</span>
+<span id="cb47-19"><a href="#cb47-19" aria-hidden="true" tabindex="-1"></a>                            color<span class="op">=</span>colors[j],</span>
+<span id="cb47-20"><a href="#cb47-20" aria-hidden="true" tabindex="-1"></a>                            label<span class="op">=</span>label)</span>
+<span id="cb47-21"><a href="#cb47-21" aria-hidden="true" tabindex="-1"></a>            plt.legend(loc<span class="op">=</span><span class="st">'best'</span>, frameon<span class="op">=</span><span class="va">True</span>, edgecolor<span class="op">=</span><span class="st">'k'</span>, shadow<span class="op">=</span><span class="va">False</span>, scatterpoints<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb47-22"><a href="#cb47-22" aria-hidden="true" tabindex="-1"></a>            plt.title(names[i])</span>
+<span id="cb47-23"><a href="#cb47-23" aria-hidden="true" tabindex="-1"></a>            plt.xticks([])</span>
+<span id="cb47-24"><a href="#cb47-24" aria-hidden="true" tabindex="-1"></a>            plt.yticks([])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb48"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">2</span>,<span class="dv">4</span>,figsize<span class="op">=</span>(<span class="dv">15</span>,<span class="dv">10</span>))</span>
+<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a><span class="co"># There is too much data and the operation is too slow. We only select the first 3,000 lines for visualization.</span></span>
+<span id="cb48-4"><a href="#cb48-4" aria-hidden="true" tabindex="-1"></a>plot_2d(train_x.iloc[<span class="dv">0</span>:<span class="dv">3000</span>], train_y.iloc[<span class="dv">0</span>:<span class="dv">3000</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>It can be seen that the two-dimensional plane cannot see the embedded structure of the original data. Next, let’s see whether the data dimension reduction will affect the performance of the model.</p>
+</section>
+<section id="the-degree-of-explanation-of-the-main-component-of-pca-dimension-reduction-to-the-original-data-variance" class="level3">
+<h3 class="anchored" data-anchor-id="the-degree-of-explanation-of-the-main-component-of-pca-dimension-reduction-to-the-original-data-variance">The degree of explanation of the main component of PCA dimension reduction to the original data variance</h3>
+<p>After using PCA or LDA dimension reduction, we can obtain the degree of interpretation of the component to the original data variance after dimension reduction through the explained_variance_ratio_ method. Here we take PCA as an example.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb49"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Build a pca_var_explained_df data box to facilitate subsequent drawing with seaborn</span></span>
+<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a>components <span class="op">=</span> <span class="dv">10</span></span>
+<span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a>pca <span class="op">=</span> decomposition.PCA(n_components<span class="op">=</span>components).fit(train_x)</span>
+<span id="cb49-4"><a href="#cb49-4" aria-hidden="true" tabindex="-1"></a>pca_var_explained_df <span class="op">=</span> pd.DataFrame({<span class="st">'principal component'</span>:np.arange(<span class="dv">1</span>,components<span class="op">+</span><span class="dv">1</span>),</span>
+<span id="cb49-5"><a href="#cb49-5" aria-hidden="true" tabindex="-1"></a>                                    <span class="st">'variance_explained'</span>:pca.explained_variance_ratio_})</span>
+<span id="cb49-6"><a href="#cb49-6" aria-hidden="true" tabindex="-1"></a>pca_var_explained_df</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Then we take each main component as the horizontal coordinate, and the corresponding degree of interpretation of the original data is the vertical coordinate to make a bar chart:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb50"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> sns.barplot(x<span class="op">=</span><span class="st">'principal component'</span>,</span>
+<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a>                 y<span class="op">=</span><span class="st">'variance_explained'</span>,</span>
+<span id="cb50-3"><a href="#cb50-3" aria-hidden="true" tabindex="-1"></a>                 data<span class="op">=</span>pca_var_explained_df,</span>
+<span id="cb50-4"><a href="#cb50-4" aria-hidden="true" tabindex="-1"></a>                 palette<span class="op">=</span><span class="st">"Set1"</span>)</span>
+<span id="cb50-5"><a href="#cb50-5" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">'PCA - Variance explained'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>It can be seen that for the data set train_x we use, the main component obtained from PCA dimension reduction has a low degree of interpretation of the original data variance.</p>
+</section>
+<section id="construct-model-prediction-and-evaluation-functions" class="level3">
+<h3 class="anchored" data-anchor-id="construct-model-prediction-and-evaluation-functions">Construct model prediction and evaluation functions</h3>
+<p>Use the Extratree model to discuss here.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb51"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="co">"""</span></span>
+<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a><span class="co">The function model_evaluate is used to calculate the impact of mapping data to different dimensions of low-dimensional space on model performance;</span></span>
+<span id="cb51-3"><a href="#cb51-3" aria-hidden="true" tabindex="-1"></a><span class="co">Input----------------------------------------------</span></span>
+<span id="cb51-4"><a href="#cb51-4" aria-hidden="true" tabindex="-1"></a><span class="co">     n_components：Low-dimensional space dimension，Int</span></span>
+<span id="cb51-5"><a href="#cb51-5" aria-hidden="true" tabindex="-1"></a><span class="co">     names_specified：Specify the dimension reduction method to be used，List</span></span>
+<span id="cb51-6"><a href="#cb51-6" aria-hidden="true" tabindex="-1"></a><span class="co">     train_x：Training set without label column，DataFrame or ndarray</span></span>
+<span id="cb51-7"><a href="#cb51-7" aria-hidden="true" tabindex="-1"></a><span class="co">     train_y：Training set label，DataFrame or ndarray</span></span>
+<span id="cb51-8"><a href="#cb51-8" aria-hidden="true" tabindex="-1"></a><span class="co">     test_x：Test set without labelled column，DataFrame or ndarray</span></span>
+<span id="cb51-9"><a href="#cb51-9" aria-hidden="true" tabindex="-1"></a><span class="co">     test_y：Test set label，DataFrame or ndarray</span></span>
+<span id="cb51-10"><a href="#cb51-10" aria-hidden="true" tabindex="-1"></a><span class="co">    ----------------------------------------------</span></span>
+<span id="cb51-11"><a href="#cb51-11" aria-hidden="true" tabindex="-1"></a><span class="co">Output</span></span>
+<span id="cb51-12"><a href="#cb51-12" aria-hidden="true" tabindex="-1"></a><span class="co">    f1_all：ExtratreeThe integrated classifier predicts the F1 score on the test set，Dictionary</span></span>
+<span id="cb51-13"><a href="#cb51-13" aria-hidden="true" tabindex="-1"></a><span class="co">"""</span></span>
+<span id="cb51-14"><a href="#cb51-14" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> model_evaluate(n_components, names_specified, train_x, train_y, test_x, test_y):</span>
+<span id="cb51-15"><a href="#cb51-15" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb51-16"><a href="#cb51-16" aria-hidden="true" tabindex="-1"></a>    f1_all <span class="op">=</span> {}</span>
+<span id="cb51-17"><a href="#cb51-17" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb51-18"><a href="#cb51-18" aria-hidden="true" tabindex="-1"></a>    pca <span class="op">=</span> decomposition.PCA(n_components<span class="op">=</span>n_components)</span>
+<span id="cb51-19"><a href="#cb51-19" aria-hidden="true" tabindex="-1"></a>    lda <span class="op">=</span> discriminant_analysis.LinearDiscriminantAnalysis(n_components<span class="op">=</span><span class="dv">1</span>)  <span class="co"># fixed: max 1 for binary classification</span></span>
+<span id="cb51-20"><a href="#cb51-20" aria-hidden="true" tabindex="-1"></a>    kpca <span class="op">=</span> decomposition.KernelPCA(n_components<span class="op">=</span>n_components, kernel<span class="op">=</span><span class="st">"rbf"</span>, fit_inverse_transform<span class="op">=</span><span class="va">True</span>, gamma<span class="op">=</span><span class="fl">.8</span>)</span>
+<span id="cb51-21"><a href="#cb51-21" aria-hidden="true" tabindex="-1"></a>    mds <span class="op">=</span> manifold.MDS(n_components<span class="op">=</span>n_components, n_init<span class="op">=</span><span class="dv">1</span>, max_iter<span class="op">=</span><span class="dv">100</span>)</span>
+<span id="cb51-22"><a href="#cb51-22" aria-hidden="true" tabindex="-1"></a>    iso <span class="op">=</span> manifold.Isomap(n_components<span class="op">=</span>n_components, n_neighbors<span class="op">=</span><span class="dv">2</span>)</span>
+<span id="cb51-23"><a href="#cb51-23" aria-hidden="true" tabindex="-1"></a>    llle <span class="op">=</span> manifold.LocallyLinearEmbedding(n_components<span class="op">=</span><span class="dv">2</span>, n_neighbors<span class="op">=</span><span class="dv">3</span>, eigen_solver<span class="op">=</span><span class="st">'dense'</span>)</span>
+<span id="cb51-24"><a href="#cb51-24" aria-hidden="true" tabindex="-1"></a>    tsne <span class="op">=</span> manifold.TSNE(n_components<span class="op">=</span>n_components, init<span class="op">=</span><span class="st">'pca'</span>, random_state<span class="op">=</span><span class="dv">10</span>)</span>
+<span id="cb51-25"><a href="#cb51-25" aria-hidden="true" tabindex="-1"></a>    spectral <span class="op">=</span> manifold.SpectralEmbedding(n_components<span class="op">=</span>n_components, random_state<span class="op">=</span><span class="dv">10</span>, eigen_solver<span class="op">=</span><span class="st">'arpack'</span>)</span>
+<span id="cb51-26"><a href="#cb51-26" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb51-27"><a href="#cb51-27" aria-hidden="true" tabindex="-1"></a>    algorithms <span class="op">=</span> [pca, lda, kpca, mds, iso, lle, tsne, spectral]</span>
+<span id="cb51-28"><a href="#cb51-28" aria-hidden="true" tabindex="-1"></a>    name_algorithm <span class="op">=</span> {}</span>
+<span id="cb51-29"><a href="#cb51-29" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> name, algorithm <span class="kw">in</span> <span class="bu">zip</span>(names, algorithms):</span>
+<span id="cb51-30"><a href="#cb51-30" aria-hidden="true" tabindex="-1"></a>        name_algorithm[name] <span class="op">=</span> algorithm</span>
+<span id="cb51-31"><a href="#cb51-31" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb51-32"><a href="#cb51-32" aria-hidden="true" tabindex="-1"></a>    algorithms_specified <span class="op">=</span> []</span>
+<span id="cb51-33"><a href="#cb51-33" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> name <span class="kw">in</span> names_specified:</span>
+<span id="cb51-34"><a href="#cb51-34" aria-hidden="true" tabindex="-1"></a>        algorithms_specified.append(name_algorithm[name])</span>
+<span id="cb51-35"><a href="#cb51-35" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb51-36"><a href="#cb51-36" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i, algorithm <span class="kw">in</span> <span class="bu">enumerate</span>(algorithms_specified):</span>
+<span id="cb51-37"><a href="#cb51-37" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> algorithm <span class="op">==</span> lda:</span>
+<span id="cb51-38"><a href="#cb51-38" aria-hidden="true" tabindex="-1"></a>            dimen_reduct <span class="op">=</span> algorithm.fit(train_x, train_y)</span>
+<span id="cb51-39"><a href="#cb51-39" aria-hidden="true" tabindex="-1"></a>            train_x_embed <span class="op">=</span> dimen_reduct.transform(train_x)</span>
+<span id="cb51-40"><a href="#cb51-40" aria-hidden="true" tabindex="-1"></a>            test_x_embed <span class="op">=</span> dimen_reduct.transform(test_x)</span>
+<span id="cb51-41"><a href="#cb51-41" aria-hidden="true" tabindex="-1"></a>            clf_entropy <span class="op">=</span> ExtraTreesClassifier(criterion<span class="op">=</span><span class="st">'entropy'</span>)</span>
+<span id="cb51-42"><a href="#cb51-42" aria-hidden="true" tabindex="-1"></a>            model <span class="op">=</span> clf_entropy.fit(train_x_embed, train_y)</span>
+<span id="cb51-43"><a href="#cb51-43" aria-hidden="true" tabindex="-1"></a>            pred <span class="op">=</span> model.predict(test_x_embed)</span>
+<span id="cb51-44"><a href="#cb51-44" aria-hidden="true" tabindex="-1"></a>            f1_all[names_specified[i]] <span class="op">=</span> metrics.f1_score(test_y, pred, average<span class="op">=</span><span class="st">'weighted'</span>)</span>
+<span id="cb51-45"><a href="#cb51-45" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span>:</span>
+<span id="cb51-46"><a href="#cb51-46" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> <span class="bu">hasattr</span>(algorithm, <span class="st">'transform'</span>):</span>
+<span id="cb51-47"><a href="#cb51-47" aria-hidden="true" tabindex="-1"></a>                dimen_reduct <span class="op">=</span> algorithm.fit(train_x)</span>
+<span id="cb51-48"><a href="#cb51-48" aria-hidden="true" tabindex="-1"></a>                train_x_embed <span class="op">=</span> dimen_reduct.transform(train_x)</span>
+<span id="cb51-49"><a href="#cb51-49" aria-hidden="true" tabindex="-1"></a>                test_x_embed <span class="op">=</span> dimen_reduct.transform(test_x)</span>
+<span id="cb51-50"><a href="#cb51-50" aria-hidden="true" tabindex="-1"></a>                clf_entropy <span class="op">=</span> ExtraTreesClassifier(criterion<span class="op">=</span><span class="st">'entropy'</span>)</span>
+<span id="cb51-51"><a href="#cb51-51" aria-hidden="true" tabindex="-1"></a>                model <span class="op">=</span> clf_entropy.fit(train_x_embed, train_y)</span>
+<span id="cb51-52"><a href="#cb51-52" aria-hidden="true" tabindex="-1"></a>                pred <span class="op">=</span> model.predict(test_x_embed)</span>
+<span id="cb51-53"><a href="#cb51-53" aria-hidden="true" tabindex="-1"></a>                f1_all[names_specified[i]] <span class="op">=</span> metrics.f1_score(test_y, pred, average<span class="op">=</span><span class="st">'weighted'</span>)</span>
+<span id="cb51-54"><a href="#cb51-54" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> f1_all</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>For example, we map the data to the two-dimensional space and then build the model. The prediction performance of Extratree obtained is as follows (due to the large consumption of running time for some dimension reduction methods that need to calculate the distance, we only select 5,000 lines of the previous training set for modelling, and readers can try to use the complete training set for modelling):</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb52"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a>model_evaluate(n_components<span class="op">=</span><span class="dv">2</span>, names_specified<span class="op">=</span>names, train_x<span class="op">=</span>train_x.iloc[:<span class="dv">5000</span>], train_y<span class="op">=</span>train_y.iloc[:<span class="dv">5000</span>], test_x<span class="op">=</span>test_x, test_y<span class="op">=</span>test_y)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="the-influence-of-the-number-of-features-n_components-on-model-performance-after-dimension-reduction" class="level3">
+<h3 class="anchored" data-anchor-id="the-influence-of-the-number-of-features-n_components-on-model-performance-after-dimension-reduction">The influence of the number of features n_components on model performance after dimension reduction</h3>
+<p>It can be seen that since we only model the data dimension reduction class containing the transform method, we only got the model F1 score after processing the four dimension reduction methods of ISOMAP, KPCA, LLE and PCA. Take PCA as an example. Next, we examine the differences in the model prediction performance obtained by using the PCA method to map data in different low-dimensional spaces and then construct the model, and store the results in the nested dictionary f1:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb53"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a>f1<span class="op">=</span>{}</span>
+<span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a>names_specified<span class="op">=</span>[<span class="st">'PCA'</span>]</span>
+<span id="cb53-3"><a href="#cb53-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Take {2,3,...,10} dimensions for modelling in low-dimensional space.</span></span>
+<span id="cb53-4"><a href="#cb53-4" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> n_components <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">2</span>,<span class="dv">11</span>):</span>
+<span id="cb53-5"><a href="#cb53-5" aria-hidden="true" tabindex="-1"></a>    f1[n_components]<span class="op">=</span>model_evaluate(n_components, names_specified, train_x, train_y, test_x, test_y)</span>
+<span id="cb53-6"><a href="#cb53-6" aria-hidden="true" tabindex="-1"></a>f1</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>After obtaining the prediction result, in order to facilitate the drawing, we need to convert the results into dataframe. The final result of the conversion is expected to be the data box diff_n_components of the model F1 under different dimension reduction methods (after-dimensional name is the column name):</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb54"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Build a pca_var_explained_df data frame to facilitate subsequent drawing with seaborn</span></span>
+<span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a>components <span class="op">=</span> <span class="dv">10</span></span>
+<span id="cb54-3"><a href="#cb54-3" aria-hidden="true" tabindex="-1"></a>diff_n_components <span class="op">=</span> pd.DataFrame({<span class="st">'n_components'</span>:f1.keys()})</span>
+<span id="cb54-4"><a href="#cb54-4" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> name <span class="kw">in</span> names_specified:</span>
+<span id="cb54-5"><a href="#cb54-5" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb54-6"><a href="#cb54-6" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Get the model prediction result f1_score and convert it into a data box f1_score_df</span></span>
+<span id="cb54-7"><a href="#cb54-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> name <span class="kw">in</span> names_specified:</span>
+<span id="cb54-8"><a href="#cb54-8" aria-hidden="true" tabindex="-1"></a>        f1_score<span class="op">=</span>[]</span>
+<span id="cb54-9"><a href="#cb54-9" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> key <span class="kw">in</span> f1.keys():</span>
+<span id="cb54-10"><a href="#cb54-10" aria-hidden="true" tabindex="-1"></a>            f1_score.append(f1[key][name])</span>
+<span id="cb54-11"><a href="#cb54-11" aria-hidden="true" tabindex="-1"></a>        f1_score_df <span class="op">=</span> pd.DataFrame({name:f1_score})</span>
+<span id="cb54-12"><a href="#cb54-12" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb54-13"><a href="#cb54-13" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Splice f1_score_df with diff_n_component</span></span>
+<span id="cb54-14"><a href="#cb54-14" aria-hidden="true" tabindex="-1"></a>        diff_n_components <span class="op">=</span> pd.concat([diff_n_components,f1_score_df],axis<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb54-15"><a href="#cb54-15" aria-hidden="true" tabindex="-1"></a>diff_n_components</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb55"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> name <span class="kw">in</span> names_specified:</span>
+<span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a>    ax <span class="op">=</span> sns.barplot(x<span class="op">=</span><span class="st">'n_components'</span>,</span>
+<span id="cb55-3"><a href="#cb55-3" aria-hidden="true" tabindex="-1"></a>                     y<span class="op">=</span>name,</span>
+<span id="cb55-4"><a href="#cb55-4" aria-hidden="true" tabindex="-1"></a>                     data<span class="op">=</span>diff_n_components,</span>
+<span id="cb55-5"><a href="#cb55-5" aria-hidden="true" tabindex="-1"></a>                     palette<span class="op">=</span><span class="st">"Set1"</span>)</span>
+<span id="cb55-6"><a href="#cb55-6" aria-hidden="true" tabindex="-1"></a>    ax.set_title(<span class="st">'model evaluation under different dimensionality'</span>)</span>
+<span id="cb55-7"><a href="#cb55-7" aria-hidden="true" tabindex="-1"></a>    plt.ylim(<span class="fl">0.80</span>,<span class="fl">0.89</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>It can be seen from the results that n_components has little impact on the performance of the model.</p>
+</section>
+<section id="the-impact-of-data-dimension-reduction-on-the-predictive-performance-of-the-model" class="level3">
+<h3 class="anchored" data-anchor-id="the-impact-of-data-dimension-reduction-on-the-predictive-performance-of-the-model">The impact of data dimension reduction on the predictive performance of the model</h3>
+<p>The above is only analysed from the perspective of the parameters of the model, so what we are most concerned about is whether the data dimension reduction has a significant impact on the performance of the constructed model, and how is the difference from the model performance obtained by the feature selection method. The data sets we are going to use are: | Dataset Name | Meaning | |————–|———| | <code>train_x</code> | Training dataset with 56 features | | <code>test_x</code> | Test dataset with 56 features | | <code>new_train_x</code> | Training dataset with 6 features obtained from feature selection | | <code>new_test_x</code> | Test dataset with 6 features obtained from feature selection | | <code>train_y</code> | True labels for training set | | <code>test_y</code> | True labels for test set |</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb56"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a>x_labels <span class="op">=</span> [<span class="st">'Original'</span>,<span class="st">'Feature Selection'</span>,<span class="st">'Dimensionality Reduction (PCA)'</span>]</span>
+<span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a>f1_scores <span class="op">=</span> []</span>
+<span id="cb56-3"><a href="#cb56-3" aria-hidden="true" tabindex="-1"></a>datasets <span class="op">=</span> []</span>
+<span id="cb56-4"><a href="#cb56-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb56-5"><a href="#cb56-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Model prediction performance under the original data set (56 characteristics)</span></span>
+<span id="cb56-6"><a href="#cb56-6" aria-hidden="true" tabindex="-1"></a>clf_entropy <span class="op">=</span> ExtraTreesClassifier(criterion<span class="op">=</span><span class="st">'entropy'</span>)</span>
+<span id="cb56-7"><a href="#cb56-7" aria-hidden="true" tabindex="-1"></a>clf_entropy <span class="op">=</span> clf_entropy.fit(train_x, train_y) </span>
+<span id="cb56-8"><a href="#cb56-8" aria-hidden="true" tabindex="-1"></a>pred<span class="op">=</span>clf_entropy.predict(test_x)</span>
+<span id="cb56-9"><a href="#cb56-9" aria-hidden="true" tabindex="-1"></a>f1_scores.append(metrics.f1_score(test_y,pred,average<span class="op">=</span><span class="st">'weighted'</span>))</span>
+<span id="cb56-10"><a href="#cb56-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb56-11"><a href="#cb56-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Model prediction performance under the data set (6 characteristics) obtained by the feature selection method</span></span>
+<span id="cb56-12"><a href="#cb56-12" aria-hidden="true" tabindex="-1"></a>clf_entropy <span class="op">=</span> ExtraTreesClassifier(criterion<span class="op">=</span><span class="st">'entropy'</span>)</span>
+<span id="cb56-13"><a href="#cb56-13" aria-hidden="true" tabindex="-1"></a>clf_entropy <span class="op">=</span> clf_entropy.fit(new_train_x, train_y) </span>
+<span id="cb56-14"><a href="#cb56-14" aria-hidden="true" tabindex="-1"></a>pred<span class="op">=</span>clf_entropy.predict(new_test_x)</span>
+<span id="cb56-15"><a href="#cb56-15" aria-hidden="true" tabindex="-1"></a>f1_scores.append(metrics.f1_score(test_y,pred,average<span class="op">=</span><span class="st">'weighted'</span>))</span>
+<span id="cb56-16"><a href="#cb56-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb56-17"><a href="#cb56-17" aria-hidden="true" tabindex="-1"></a><span class="co"># PCA data dimension reduction method obtains (mapped to 6-dimensional) model prediction performance</span></span>
+<span id="cb56-18"><a href="#cb56-18" aria-hidden="true" tabindex="-1"></a>f1_scores.append(f1[<span class="dv">6</span>][<span class="st">'PCA'</span>])</span>
+<span id="cb56-19"><a href="#cb56-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb56-20"><a href="#cb56-20" aria-hidden="true" tabindex="-1"></a>f1_scores</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb57"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a>tmp <span class="op">=</span> <span class="bu">zip</span>(x_labels,f1_scores)</span>
+<span id="cb57-2"><a href="#cb57-2" aria-hidden="true" tabindex="-1"></a>method_comp <span class="op">=</span> pd.DataFrame(tmp,columns<span class="op">=</span>[<span class="st">"methods"</span>,<span class="st">"f1_score"</span>])</span>
+<span id="cb57-3"><a href="#cb57-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb57-4"><a href="#cb57-4" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> sns.barplot(x<span class="op">=</span><span class="st">'methods'</span>,</span>
+<span id="cb57-5"><a href="#cb57-5" aria-hidden="true" tabindex="-1"></a>                 y<span class="op">=</span><span class="st">'f1_score'</span>,</span>
+<span id="cb57-6"><a href="#cb57-6" aria-hidden="true" tabindex="-1"></a>                 data<span class="op">=</span>method_comp,</span>
+<span id="cb57-7"><a href="#cb57-7" aria-hidden="true" tabindex="-1"></a>                 palette<span class="op">=</span><span class="st">"Set1"</span>)</span>
+<span id="cb57-8"><a href="#cb57-8" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">'model evaluation under different methods'</span>)</span>
+<span id="cb57-9"><a href="#cb57-9" aria-hidden="true" tabindex="-1"></a>plt.ylim(<span class="fl">0.80</span>,<span class="fl">0.89</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>The feature selection method does have an improvement effect on the model, but for the data dimension reduction method, the effect is not as good as the feature selection method, which is related to the specific data set. When the data characteristics reach tens of thousands of levels, the data dimension reduction is beneficial to the interpretation of the model.</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/lunghsiang-wu\.github\.io\/longxiangwu\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
