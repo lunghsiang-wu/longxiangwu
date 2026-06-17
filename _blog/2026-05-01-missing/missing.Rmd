@@ -1,5 +1,5 @@
 ---
-title: "What are are missing values?"
+title: "What are missing values?"
 description: |
   Observations missing from a set of data for some reason.
 author:
