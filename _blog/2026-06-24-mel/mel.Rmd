@@ -1,0 +1,43 @@
+---
+title: "What is Mixed-effects logistic regression?"
+description: |
+  A generalization of standard logistic regression.
+author:
+  - name: Longxiang Wu
+    url: https://lunghsiang-wu.github.io/longxiangwu/
+date: 2026-05-20
+preview: mel.png
+output:
+  distill::distill_article:
+    self_contained: false
+    includes:
+      in_header: header.html
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+A generalization of standard *logistic regression* in which
+the intercept terms, $\alpha_i$ are allowed to vary between subjects according to some probability
+distribution, $f(\alpha)$. In essence these terms are used to model the possible different *frailties*
+of the subjects. For a single covariate $x$, the model often called a random intercept model, is
+
+$$\text{logit}[P(y_{ij}|\alpha_i, x_{ij})] = \alpha_i + \beta x_{ij}$$
+
+where $y_{ij}$ is the binary response variable for the $j$th measurement on subject $i$, and $x_{ij}$ is the
+corresponding covariate value. Here $\beta$ measures the change in the conditional logit of the
+probability of a response of unity with the covariate $x$, for individuals in each of the
+underlying risk groups described by $\alpha_i$. The *population averaged model* for $y_{ij}$ derived
+from this model is
+
+$$P(y_{ij} = 1 | x_{ij}) = \int (1 + e^{-\alpha - \beta x_{ij}})^{-1} f(\alpha) \, \text{d}\alpha$$
+
+Can be used to analyse *clustered binary data* or *longitudinal studies* in which the outcome
+variable is binary. In general interest centres on making inferences about the regression
+coefficient, $\beta$ (in practice a vector of coefficients) with the $\alpha$s being regarded as nuisance
+parameters. Parameter estimation typically proceeds via the *marginal likelihood* where the
+random effects are integrated out of the likelihood. Alternatively, estimation can be based on
+the *conditional likelihood*, with conditioning on the *sufficient statistics* for the $\alpha$s which are
+consequently eliminated from the likelihood function. 
