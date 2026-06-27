@@ -13,10 +13,10 @@
     "categories": [],
     "contents": "\nA generalization of standard logistic regression in which\nthe intercept terms, \\(\\alpha_i\\) are allowed to vary between subjects according to some probability\ndistribution, \\(f(\\alpha)\\). In essence these terms are used to model the possible different frailties\nof the subjects. For a single covariate \\(x\\), the model often called a random intercept model, is\n\\[\\text{logit}[P(y_{ij}|\\alpha_i, x_{ij})] = \\alpha_i + \\beta x_{ij}\\]\nwhere \\(y_{ij}\\) is the binary response variable for the \\(j\\)th measurement on subject \\(i\\), and \\(x_{ij}\\) is the\ncorresponding covariate value. Here \\(\\beta\\) measures the change in the conditional logit of the\nprobability of a response of unity with the covariate \\(x\\), for individuals in each of the\nunderlying risk groups described by \\(\\alpha_i\\). The population averaged model for \\(y_{ij}\\) derived\nfrom this model is\n\\[P(y_{ij} = 1 | x_{ij}) = \\int (1 + e^{-\\alpha - \\beta x_{ij}})^{-1} f(\\alpha) \\, \\text{d}\\alpha\\]\nCan be used to analyse clustered binary data or longitudinal studies in which the outcome\nvariable is binary. In general interest centres on making inferences about the regression\ncoefficient, \\(\\beta\\) (in practice a vector of coefficients) with the \\(\\alpha\\)s being regarded as nuisance\nparameters. Parameter estimation typically proceeds via the marginal likelihood where the\nrandom effects are integrated out of the likelihood. Alternatively, estimation can be based on\nthe conditional likelihood, with conditioning on the sufficient statistics for the \\(\\alpha\\)s which are\nconsequently eliminated from the likelihood function.\n\n\n\n",
     "preview": "blog/2026-06-24-mel/mel.png",
-    "last_modified": "2026-06-24T08:24:15+08:00",
+    "last_modified": "2026-06-27T12:57:05+08:00",
     "input_file": "mel.knit.md",
-    "preview_width": 700,
-    "preview_height": 700
+    "preview_width": 1344,
+    "preview_height": 960
   },
   {
     "path": "blog/2026-05-01-missing/",
