@@ -1,5 +1,24 @@
 [
   {
+    "path": "blog/2026-06-27-mmodels/",
+    "title": "What are multilevel models?",
+    "description": {},
+    "author": [
+      {
+        "name": "Longxiang Wu",
+        "url": "https://lunghsiang-wu.github.io/longxiangwu/"
+      }
+    ],
+    "date": "2026-06-27",
+    "categories": [],
+    "contents": "\nRegression models for multilevel or clustered data where units \\(i\\) are nested in clusters \\(j\\), for instance a cross-sectional study where students are nested in schools or longitudinal studies where measurement occasions are nested in subjects. In multilevel data the responses are expected to be dependent or correlated even after conditioning on observed covariates. Such dependence must be taken into account to ensure valid statistical inference.\nMultilevel regression models include random effects with normal distributions to induce dependence among units belonging in a cluster. The simplest multilevel model is a linear random intercept model\n\\[\nY_{ij} = \\beta_0 + \\beta_1 x_{1ij} + \\ldots + \\beta_q x_{qij} + \\zeta_{0j} + \\epsilon_{ij} = (\\beta_0 + \\zeta_{0j}) + \\beta_1 x_{1ij} + \\ldots + \\beta_q x_{qij} + \\epsilon_{ij}\n\\]\nwhere the normally distributed random intercept \\(\\zeta_{0j}\\) vary between clusters. The terms \\(\\epsilon_{ij}\\) are often called level-1 residuals and represent the residual variability within clusters. The level-1 residuals are assumed to be normally distributed mutually independent and independent from the random intercepts. In a linear random intercept model the residual correlation between the units in a cluster, given the covariates, is the intra-class correlation. An important assumption in multilevel models is that the observed convariates \\(x_{1ij}, \\ldots, x_{qij}\\) are independent from the random effects (and the level-1 residuals). If a Hausman test suggests that this so-called exogeneity assumption is violated, fixed-effects models with fixed cluster-specific effects \\(\\alpha_j\\) are sometimes preferred. Multilevel models are sometimes called mixed models because they contain both fixed effects \\(\\beta_0, \\beta_1, \\ldots, \\beta_q\\) and a random effects \\(\\zeta_{0j}\\).\nMore complex linear multilevel models also include at least one random coefficient \\(\\zeta_{1j}\\)\n\\[\n\\begin{aligned}\nY_{ij} &= \\beta_0 + \\beta_1 x_{1ij} + \\beta_2 x_{2ij} + \\ldots + \\beta_q x_{qij} + \\zeta_{0j} + \\zeta_{1j} x_{1ij} + \\epsilon_{ij} \\\\\n&= (\\beta_0 + \\zeta_{0j}) + (\\beta_1 + \\zeta_{1j}) x_{1ij} + \\beta_2 x_{2ij} + \\ldots + \\beta_q x_{qij} + \\epsilon_{ij}\n\\end{aligned}\n\\]\nwhere the effect of the covariate \\(X_{1ij}\\) (which varies within clusters) vary between clusters with random slope \\(\\beta + \\zeta_{1j}\\). The random effects \\(\\zeta_{0j}\\) and \\(\\zeta_{1j}\\) have a bivariate normal distribution with zero means.\nMultilevel generalized linear models or generalized linear mixed models are multilevel models where random effects are introduced in the linear predictor of generalized linear models. In addition to linear models for continuous responses, such models include, for instance, logistic random effects models for dichotomous, ordinal and nominal responses and log-linear random effects models for counts.\nMultilevel models can also be specified for higher-level data where units are nested in clusters which are nested in superclusters. An example of such a design would be measurement occasions nested in subjects who are nested in communities. Other terms sometimes used for multilevel models include mixed models, hierarchical models, random effects models and random coefficient models.\n\n\n\n",
+    "preview": "blog/2026-06-27-mmodels/mmodels.png",
+    "last_modified": "2026-06-27T13:41:05+08:00",
+    "input_file": "mmodels.knit.md",
+    "preview_width": 847,
+    "preview_height": 238
+  },
+  {
     "path": "blog/2026-06-24-mel/",
     "title": "What is Mixed-effects logistic regression?",
     "description": "A generalization of standard logistic regression.",
