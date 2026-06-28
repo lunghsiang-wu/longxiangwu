@@ -1,9 +1,0 @@
----
-title: "Blog"
-listing:
-  contents: blog
-  sort: "date desc"
-  type: default
-  page-size: 20
----
-
