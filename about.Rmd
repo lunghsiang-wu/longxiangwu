@@ -15,26 +15,6 @@ I have over ten years of experience working with a variety of partners in the te
 I am currently in a stable and fulfilling stage of life, living with my family and fully committed to both personal growth and professional development. The support and perspective offered by my family environment provide me with balance and inform my work approach, allowing me to operate with patience, care, and a long-term outlook. Beyond my professional interests in data and technology, I place a high value on building meaningful relationships, pursuing continuous learning, and bringing a holistic and authentic perspective to my work. I believe that the most impactful contributions come from individuals who are fully engaged both personally and professionally.
 
 
-## Books I Am Reading
-
-**An Introduction to Statistical Learning**. Gareth James, Daniela Witten, Trevor Hastie, and Robert Tibshirani
-
-**The Elements of Statistical Learning**. Trevor Hastie, Robert Tibshirani, and Jerome Friedman
-
-**Statistical Foundations of Data Science**. Jianqing Fan, Runze Li, Cun-Hui Zhang, and Hui Zou
-
-**Optimization for Data Analysis**. Stephen J. Wright, and Benjamin Recht
-
-**Introduction to Algorithms**. Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, and Clifford Stein
-
-**Computer Age Statistical Inference**. Bradley Efron, and Trevor Hastie
-
-**Machine Learning: A Probabilistic Perspective**. Kevin P. Murphy
-
-**Deep Learning**. Ian Goodfellow, Yoshua Bengio, and Aaron Courville
-
-**Reinforcement Learning: An Introduction**. Richard S. Sutton, and Andrew G. Barto
-
 ## Some Quotes
 <center>
 :::: {style="display: flex; gap: 10px; align-items: flex-start;"}
