@@ -7,8 +7,8 @@ links:
     url: "https://github.com/lunghsiang-wu"
   - label: '<i class="fab fa-linkedin"></i> LinkedIn'
     url: "https://www.linkedin.com/in/longxiangwu"
-  - label: '<i class="fab fa-mastodon"></i> Mastodon'
-    url: "https://fosstodon.org/\\@longxiangwu"
+  - label: '<i class="fab fa-bluesky"></i> Bluesky'
+    url: "https://bsky.app/profile/longxiang90.bsky.social"
   - label: '<i class="fas fa-envelope"></i> Email'
     url: "mailto:longxiangwu@outlook.com"
 base_url: https://lunghsiang-wu.github.io/longxiangwu/
@@ -40,4 +40,4 @@ meta() %>%
   )
 ```
  
-Hi! <span class="wave">👋</span> I am a marketing data scientist specializing in predictive modeling, data mining and customer profiling. I have a strong passion for data wrangling, modeling, and visualization, and am dedicated to empowering others to leverage data effectively in their own work.
+Hi! <span class="wave">👋</span> I am a data engineer and marketing data scientist specializing in predictive modeling, data mining and customer profiling. I have a strong passion for data wrangling, modeling, and visualization, and am dedicated to empowering others to leverage data effectively in their own work.

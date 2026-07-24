@@ -1,0 +1,538 @@
+---
+title: "Predicting Production Efficiency of Garment Factory Employees Using Regression Models"
+description: |
+  A predictive modelling project
+author:
+  - name: "Longxiang Wu"
+date: 2026-5-20
+output:
+  distill::distill_article:
+    self_contained: false
+---
+---
+jupyter:
+  jupytext:
+    text_representation:
+      extension: .Rmd
+      format_name: rmarkdown
+      format_version: '1.2'
+      jupytext_version: 1.19.1
+  kernelspec:
+    display_name: Python 3 (ipykernel)
+    language: python
+    name: python3
+---
+
+```{r setup, include=FALSE}
+library(reticulate)
+reticulate::use_python("/Library/Frameworks/Python.framework/Versions/3.14/bin/python3.14", required = TRUE)
+# or use your conda environment
+use_condaenv("base", required = TRUE)
+```
+
+
+# Catalogue
+
+
+[1 Data introduction and data reading](#1)<br>
+[2 Data Cleaning](#2)<br>
+[3 Exploratory Data Analysis](#3)<br>
+[3.1 Composition of each department team](#3.1)<br>
+[3.2 Employee Productivity Distribution](#3.2)<br>
+[3.3. Data correlation analysis](#3.3)<br>
+[4 Predict employee productivity](#4)<br>
+[4.1 Training Set Test Set Division](#5.1)<br>
+[4.2 Linear Regression](#5.2)<br>
+[4.3 Regression Decision Tree](#5.3)<br>
+[4.4 Neural Network](#5.4)<br>
+[5 Summary](#6)<br>
+    
+
+
+<div id="1"></div>
+
+# 1 Data introduction and data reading
+
+
+The employee productivity data set of the garment factory contains a total of 1197 rows and 15 columns, of which the `actual_productivity` column is the actual productivity of the employees we ultimately need to predict. The types and meanings of each field are shown in the following table:
+
+
+| Column Name | Type | Meaning Description |
+|-----:|-----:|-----:|
+|**date**|Character type|Date MM-DD-YYYY|
+|**quarter**|Character type|A few weeks of each month|
+|**department**|Character type|Department|
+|**day**|Character type|Week|
+|**team**|Integration|Team number|
+|**targeted_productivity**|floating point type|target productivity|
+|**smv**|Floating point type|Standard minute value, task allocation time|
+|**wip**|Floating point type|In-process, including the number of unfinished items in the product|
+|**over_time**|Integrative|Represents the timeout time of each team, in minutes|
+|**incentive**|Integration|Bonus to motivate specific actions|
+|**idle_time**|Floating point type|Time when production is interrupted due to various reasons|
+|**idle_men**|Integration|The number of idle workers due to production interruption|
+|**no_of_style_change**|Integration|The number of changes in specific product style|
+|**no_of_workers**|Floating point type|Number of workers in each team|
+|**actual_productivity**|Floating point type|The percentage of actual productivity delivered by workers, the value range is 0-1|
+
+
+First of all, we use the Pandas library to read data and view the basic information of the data.
+
+```{python}
+import pandas as pd
+import numpy as np
+import seaborn as sns
+import matplotlib.pyplot as plt
+import matplotlib
+plt.rcParams['font.sans-serif']=['SimHei']   # It is used to display Chinese labels normally.
+plt.rcParams['axes.unicode_minus']=False     # It is used to display negative signs normally.
+matplotlib.rc("font",family='Heiti TC')
+# %matplotlib inline
+import warnings
+
+# Warning is not displayed
+warnings.filterwarnings('ignore')
+
+# Read the data and view the first five lines of the data
+garments = pd.read_csv('./input/garments_worker_productivity.csv')
+garments.head()
+```
+
+```{python}
+garments.info()
+```
+
+The data set contains a total of 1197 rows and 15 columns, of which `date`, `quarter`, `department` and `day` field data types are object, and the rest are numeric types. At the same time, it can be found that there is a missing value in the `wip` column. Next, let's check the basic statistics of the data:
+
+```{python}
+garments['quarter'].value_counts()
+```
+
+```{python}
+garments.describe(include='all')
+```
+
+It can be seen from the results that the maximum value of the actual productivity of `actual_productivity` is 1.120437, and the actual value range of this field is 0-1, and we will deal with it in the future.
+
+
+<div id="2"></div>
+
+# 2 Data cleaning
+
+
+In the previous part, we found that there was a missing value in the `wip` column. Before processing, let's calculate the proportion of the missing value:
+
+```{python}
+# Check the ratio of wip missing values
+round(garments.wip.isnull().sum()/len(garments.wip),2)
+```
+
+There are 42% of missing values in `wip`. Since it accounts for a relatively large proportion, we directly delete the field here.
+
+```{python}
+# Delete the wip column
+garments.drop(columns=['wip'], inplace=True)
+```
+
+Next, use the `pd.to_datetime()` function to change the `date` column data type to the date type and set it as an index:
+
+```{python}
+# Convert the date to the time type and set it as an index
+garments.date = pd.to_datetime(garments.date)
+
+garments.set_index(['date'],inplace=True)
+
+# Check the date range
+garments.index
+```
+
+It can be seen that the data was collected from January 1, 2015 to March 11, 2015. We add the month `month` column in the data set according to the date:
+
+```{python}
+# Add the month
+garments['month'] = garments.index.month_name().values
+garments.head()
+```
+
+From the data, it is found that the value of the timeout time field of each team of `over_time` is large, because the field is in minutes. In order to facilitate observation, we convert the unit into hours.
+
+```{python}
+# Change the timeout time over_time to hours
+garments['over_time'] = garments['over_time'] / 60
+garments.head()
+```
+
+The `team` team number column in the data is numerical, and it should be regarded as a discrete variable in the actual analysis. Here, the `astype` method is used to convert it into `object`.
+
+```{python}
+# Change the team number and team type to object
+garments['team'] = garments['team'].astype('object')
+```
+
+Now, we begin to analyse whether there is an abnormal value in the data. Through observation, it is found that the unique value in the `department` department field is abnormal:
+
+```{python}
+# Check the unique value of the department field
+garments['department'].value_counts()
+```
+
+```{python}
+garments['department'].unique()
+```
+
+There are spelling errors and space problems in the value of this field. We have unified the value of this column: `sewing` is the sewing department, and `finishing` is the finishing workshop.
+
+```{python}
+# Modified to finishing and sewing
+garments['department'] = garments.department.apply(lambda x: 'finishing' if 'finishing' in x else 'sewing')
+garments['department'].value_counts()
+```
+
+In the data, there are 691 records in the sewing department and 506 records in the finishing workshop.
+
+
+Finally, we unify the value of `actual_productivity` greater than 1 to 1.
+
+```{python}
+# Set the productivity greater than 1 to 1
+garments.actual_productivity = garments.actual_productivity.apply(lambda x: 1 if x>1 else x)
+```
+
+<div id="3"></div>
+
+# 3 Exploratory data analysis
+
+
+In this part, we will have a preliminary understanding of the data in combination with the visual analysis method. First, we will check the composition of the teams of each department and the proportion of the number of records.
+
+
+<div id="3.1"></div>
+
+## 3.1 Composition of teams in various departments
+
+```{python}
+# Group aggregation counts the number of records of each team in each department
+team = garments.groupby(['department','team'])['team'].count()
+team
+```
+
+```{python}
+garments.groupby(['department','team'])[['targeted_productivity','actual_productivity']].agg({'mean','max','min'})
+```
+
+```{python}
+# Draw a nested pie chart
+fig, ax = plt.subplots(figsize=(5,5))
+
+size = 0.3
+vals = team.unstack().values
+
+# Set the color of each piece
+cmap = sns.diverging_palette(220,10,as_cmap=True)
+outer_colors = cmap([30,220])
+inner_colors = cmap(np.hstack([np.arange(60,120,5),np.arange(130,190,5)]))
+
+# The number of departments in the outer circle
+ax.pie(vals.sum(axis=1), radius=1, labels = ['Finishing workshop','Sewing Department'], colors=outer_colors,
+       wedgeprops=dict(width=size, edgecolor='w'),textprops={'fontsize': 12},autopct='%.1f%%',pctdistance=0.85
+      )
+
+# The number of inner circle teams
+ax.pie(vals.flatten(), radius=1-size, labels = team.index.get_level_values(1),colors=inner_colors,
+       labeldistance=.8,wedgeprops=dict(width=size, edgecolor='w')
+      )
+
+ax.set(aspect="equal")
+
+plt.title('The proportion of data volume of each department and the composition of the team', fontsize=15)
+plt.show()
+```
+
+Now we draw a nested pie chart in combination with the number of workers fields of each team of `no_of_workers`. Since the number of employees is not fixed, we first calculate the average number of people in groups, and then draw a pie chart to check the proportion of the number of employees.。
+
+
+It can be seen from the figure above that the sewing department and the finishing workshop each contain 12 teams, and the amount of data of each team in the same department is roughly the same. Overall, the data volume of the sewing department accounted for 57.7%, slightly higher than that of the finishing workshop.
+
+```{python}
+team_c = round(garments.groupby(['department','team'])['no_of_workers'].mean())
+team_c
+```
+
+```{python}
+# Draw a nested pie chart
+fig, ax = plt.subplots(figsize=(5,5))
+
+size = 0.3
+vals = team_c.unstack().values
+
+# Set the color of each piece
+cmap = sns.diverging_palette(220,10,as_cmap=True)
+outer_colors = cmap([30,220])
+inner_colors = cmap(np.hstack([np.arange(60,120,5),np.arange(130,190,5)]))
+
+#The number of departments in the outer circle
+ax.pie(vals.sum(axis=1), radius=1, labels = ['Finishing workshop','Sewing Department'], colors=outer_colors,
+       wedgeprops=dict(width=size, edgecolor='w'),textprops={'fontsize': 12},autopct='%.1f%%',pctdistance=0.85
+      )
+
+# The number of inner circle teams
+ax.pie(vals.flatten(), radius=1-size,colors=inner_colors,labels=['']*12+[x for x in range(1,13)],
+       labeldistance=.8,wedgeprops=dict(width=size, edgecolor='w')
+      )
+
+ax.set(aspect="equal")
+
+plt.title('The proportion of employees in each department', fontsize=15)
+plt.show()
+```
+
+According to the figure above, it can be found that the proportion of employees in the sewing department is 83.8%, which is much higher than the number of employees in the finishing workshop, and the number of people in each team in the same department is relatively balanced.
+
+
+<div id="3.2"></div>
+
+## 3.2 Distribution of employee productivity
+
+
+After analyzing the team composition of each department, we will observe the distribution of productivity in each department together.
+
+```{python}
+fig, ax =plt.subplots(figsize=(8,4))
+
+dpt_g = garments.groupby('department')['actual_productivity']
+
+sns.distplot(dpt_g.get_group('finishing'),label='Finishing workshop')
+sns.distplot(dpt_g.get_group('sewing'), label='Sewing Department')
+
+plt.title('The distribution of productivity in various departments',size=15)
+plt.legend()
+plt.xlabel('Productivity', size=12)
+plt.ylabel('Frequency', size=12)
+
+plt.show()
+```
+
+The overall productivity of both sectors is concentrated between 0.6 and 1, while the productivity of fewer employees is less than 0.5. In contrast, the employees in the sewing department are more concentrated in about 0.8, and the productivity of more employees in the finishing workshop is close to 1, but the overall distribution is relatively scattered.
+
+
+Next, let's look at the dispersion of productivity in each team in the two departments by drawing a box chart.
+
+```{python}
+fig, ax =plt.subplots(figsize=(12,4))
+
+sns.boxplot(x='team',y='actual_productivity',data=garments,hue='department')
+
+plt.title('The productivity dispersion of each team',size=15)
+plt.xlabel('Team number', size=12)
+plt.ylabel('Productivity', size=12)
+plt.legend(loc='lower left')
+
+plt.show()
+```
+
+It can be seen from the figure above that the productivity of the teams in the sewing department is relatively concentrated, but at the same time, there are more abnormal points with low productivity. In the finishing workshop, the productivity of teams 6 and 11 is the most dispersed, and the productivity of teams 1-5, 10, 11 and 12 is relatively high.
+
+
+Next, we will explore the impact of different times on employee productivity.
+
+```{python}
+fig, ax =plt.subplots(3,1,figsize=(8,10))
+
+# Set the color
+my_colors = ["#F1B5B9", "#AAC8D1"]
+sns.set_palette( my_colors )
+
+sns.boxplot(x='day',y='actual_productivity',data=garments,hue='department', order=['Monday','Tuesday','Wednesday','Thursday','Saturday','Sunday'], ax=ax[0])
+sns.boxplot(x='quarter',y='actual_productivity',data=garments,hue='department', ax=ax[1])
+sns.boxplot(x='month',y='actual_productivity',data=garments,hue='department', ax=ax[2])
+
+ax[0].set_title('The impact of different weeks on employee productivity',size=15)
+ax[1].set_title('The impact of each week on employee productivity',size=15)
+ax[2].set_title('The impact of different months on employee productivity', size=15)
+
+ax[0].legend(loc='lower right')
+ax[1].legend(loc='lower right')
+ax[2].legend(loc='lower right')
+
+#Set the default spacing
+plt.tight_layout() 
+plt.show()
+```
+
+It can be seen from the three figures above that there is no obvious impact on employee productivity at different times. Only in the fifth week of every month, the employee productivity of the two departments is slightly improved.
+
+
+<div id="3.3"></div>
+
+## 3.3 Data correlation analysis
+
+
+Finally, we use the continuous fields in the data to draw a heat map of the correlation coefficient matrix.
+
+```{python}
+# Calculate the correlation coefficient
+corr = garments.select_dtypes(include='number').corr()
+
+fig = plt.figure(figsize=(7,7))
+cmap = sns.diverging_palette(220, 10, as_cmap=True)
+mask = np.zeros_like(corr, dtype=np.bool_)  # also fixed: np.bool is deprecated
+mask[np.triu_indices_from(mask)] = True
+sns.heatmap(corr, annot=True, square=True, linewidths=1.5, cmap=cmap, mask=mask, center=0, cbar_kws={"shrink": .5})
+plt.title("The correlation between characteristics", fontsize=15)
+plt.show()
+```
+
+It can be seen from the figure that there is an obvious positive correlation between the number of employees in each team of `no_of_workers`, the task allocation time of `smv` and the overtime time of each team of `over_time`. In addition, there is also a strong positive correlation between the production interruption time of `idle_time` and the number of idle workers due to interruption of `idle_men`.
+
+
+<div id="4"></div>
+
+# 4 Predict employee productivity
+
+
+<div id="4.1"></div>
+
+## 4.1 Training set test set division
+
+
+Before training the model, first of all, the department is numerically coded. The sewing of the sewing department is 1, and the finishing of the finishing workshop is 0. And the discrete variables in the data set are single-heated.
+
+Then divide the training set test set according to 4:1, and standardize the Z-Score of the features.
+
+```{python}
+from sklearn.preprocessing import LabelEncoder
+
+le = LabelEncoder()
+garments['department'] = le.fit_transform(garments['department'])
+
+garments = pd.get_dummies(garments)
+```
+
+```{python}
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import StandardScaler
+
+X = garments.drop(columns=['actual_productivity'])
+y=garments['actual_productivity']
+
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=1)
+
+# Data standardization
+s = StandardScaler()
+X_train_sm = s.fit_transform(X_train)
+X_test_sm = s.transform(X_test)
+
+X_train_sm = X_train
+X_test_sm = X_test
+```
+
+<div id="4.2"></div>
+
+## 4.2 Linear regression
+
+
+First, train the linear regression model on the training set, and make prediction and evaluation on the test set, and output the determining coefficient R2 and mean square error:
+
+```{python}
+from sklearn.linear_model import LinearRegression
+from sklearn.metrics import r2_score,mean_squared_error
+
+mlr = LinearRegression()
+mlr.fit(X_train_sm, y_train)
+y_pred_sm = mlr.predict(X_test_sm)
+
+print(f'R2 为 {round(r2_score(y_test,y_pred_sm),4)}')
+print('Mean square error(MSE): %.4f' % mean_squared_error(y_test, y_pred_sm))
+
+# 可视化
+plt.figure(figsize=(6, 4))
+
+plt.scatter(x=y_test,y=y_pred_sm, alpha=.5)
+
+plt.xlabel('Actual value')
+plt.ylabel('Predicted value')
+plt.title('Comparison of actual value and predicted value',size=15)
+
+plt.show()
+```
+
+<div id="4.3"></div>
+
+## 4.3 Regression Decision Tree
+
+
+Next, we will try to build a regression decision tree model and set the maximum depth of the tree to 10:
+
+```{python}
+
+from sklearn.tree import DecisionTreeRegressor
+from sklearn import tree
+
+dtreg = DecisionTreeRegressor(max_depth=10,random_state=0)
+
+dtreg.fit(X_train_sm, y_train)
+
+y_pred_sm = dtreg.predict(X_test_sm)
+
+print(f'R2 为 {round(r2_score(y_test,y_pred_sm),4)}')
+print('Mean squared error (MSE): %.4f' % mean_squared_error(y_test, y_pred_sm))
+
+# 可视化
+plt.figure(figsize=(6, 4))
+
+plt.scatter(x=y_test, y=y_pred_sm, alpha=.5)
+
+plt.xlabel('Actual value')
+plt.ylabel('Predicted value')
+plt.title('Comparison of actual value and predicted value',size=15)
+
+plt.show()
+```
+
+The determination coefficient R2 of the model on the test set is 0.43, and the mean square error (MSE) is 0.02, and the prediction effect is slightly improved.
+
+
+<div id="5.4"></div>
+
+## 5.4 Neural network
+
+
+Finally, use `MLPClassifier` to build the model
+
+```{python}
+from sklearn.neural_network import MLPRegressor
+
+mlp = MLPRegressor(random_state=1024)
+
+mlp.fit(X_train_sm, y_train)
+
+y_pred_sm = mlp.predict(X_test_sm)
+y_pred_sm = pd.DataFrame(y_pred_sm)[0].apply(lambda x: 1 if x > 1 else x).values
+y_pred_sm = pd.DataFrame(y_pred_sm)[0].apply(lambda x: 0 if x < 0 else x).values
+
+print(f'R2 为 {round(r2_score(y_test,y_pred_sm),4)}')
+print('Mean squared error (MSE): %.4f' % mean_squared_error(y_test, y_pred_sm))
+
+# 可视化
+plt.figure(figsize=(6, 4))
+
+plt.scatter(x=y_test,y=y_pred_sm, alpha=.5)
+
+plt.xlabel('Actual value')
+plt.ylabel('Predicted value')
+plt.title('Comparison of actual value and predicted value',size=15)
+
+plt.show()
+```
+
+<div id="5"></div>
+
+## 5 Sum up
+
+
+In this case, we used the production efficiency data set of garment factory employees, combined with visual analysis methods to explore the hidden information in the data, and predicted the actual productivity of employees by establishing three models of linear regression, regression decision tree and neural network.
+
+
+
+
+
