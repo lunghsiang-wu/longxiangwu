@@ -1,8 +1,0 @@
----
-title: "Longxiang Wu"
-image: "longxiangwu.png"
-description: "The personal website of Longxiang Wu"
----
-
-Hi! I am a marketing data scientist specializing in predictive modeling, data mining and customer profiling. I have a strong passion for data wrangling, modeling, and visualization, and am dedicated to empowering others to leverage data effectively in their own work.
-

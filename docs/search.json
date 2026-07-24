@@ -1,20 +1,65 @@
-{
-  "articles": [
-    {
-      "path": "about.html",
-      "title": "About this site",
-      "description": "Some additional details about the website",
-      "author": [],
-      "contents": "\n\n\n\n",
-      "last_modified": "2026-03-18T21:25:39+08:00"
-    },
-    {
-      "path": "index.html",
-      "title": "Longxiang Wu",
-      "author": [],
-      "contents": "\n\n          \n          \n          \n          \n          \n          Home\n          About\n          ☰\n          \n          \n      \n        \n          \n            Longxiang Wu\n          \n          \n            \n              Hi! 👋 I am a data scientist\n              who helps insurance companies do customers profiling. I\n              love wrangling, modeling, and visualizing data, and\n              helping others do the same.\n            \n            \n              Hi! 👋 I am a data scientist\n              who helps insurance companies do customers profiling. I\n              love wrangling, modeling, and visualizing data, and\n              helping others do the same.\n            \n          \n\n          \n            \n              \n                  \n                    \n                       GitHub\n                    \n                  \n                \n                                \n                  \n                    \n                       LinkedIn\n                    \n                  \n                \n                                \n                  \n                    \n                       Mastodon\n                    \n                  \n                \n                                \n                  \n                    \n                       Email\n                    \n                  \n                \n                              \n          \n\n          \n            \n              \n                                \n                  \n                     GitHub\n                  \n                \n                                \n                  \n                     LinkedIn\n                  \n                \n                                \n                  \n                     Mastodon\n                  \n                \n                                \n                  \n                     Email\n                  \n                \n                              \n            \n          \n        \n      \n    \n\n    \n    \n    ",
-      "last_modified": "2026-03-18T21:30:16+08:00"
-    }
-  ],
-  "collections": []
-}
+[
+  {
+    "objectID": "portfolio.html",
+    "href": "portfolio.html",
+    "title": "Portfolio",
+    "section": "",
+    "text": "No matching items"
+  },
+  {
+    "objectID": "about.html#professional",
+    "href": "about.html#professional",
+    "title": "Longxiang Wu",
+    "section": "Professional",
+    "text": "Professional\nI have over ten years of experience working with a variety of partners in the technology and industry sectors, and I am a data scientist who is enthusiastic. My responsibilities encompass the entire data pipeline, from exploratory analysis to production-ready predictive models. Notable projects include the development of sales forecasting models for JD.com and the conduct of in-depth logistics data analysis to enhance operational efficiency. I am a member of the Irish Statistical Association."
+  },
+  {
+    "objectID": "about.html#personal",
+    "href": "about.html#personal",
+    "title": "Longxiang Wu",
+    "section": "Personal",
+    "text": "Personal\nI am currently in a stable and fulfilling stage of life, living with my family and fully committed to both personal growth and professional development. The support and perspective offered by my family environment provide me with balance and inform my work approach, allowing me to operate with patience, care, and a long-term outlook. Beyond my professional interests in data and technology, I place a high value on building meaningful relationships, pursuing continuous learning, and bringing a holistic and authentic perspective to my work. I believe that the most impactful contributions come from individuals who are fully engaged both personally and professionally."
+  },
+  {
+    "objectID": "about.html#books-i-am-reading",
+    "href": "about.html#books-i-am-reading",
+    "title": "Longxiang Wu",
+    "section": "Books I Am Reading",
+    "text": "Books I Am Reading\nAn Introduction to Statistical Learning. Gareth James, Daniela Witten, Trevor Hastie, and Robert Tibshirani\nThe Elements of Statistical Learning. Trevor Hastie, Robert Tibshirani, and Jerome Friedman\nStatistical Foundations of Data Science. Jianqing Fan, Runze Li, Cun-Hui Zhang, and Hui Zou\nOptimization for Data Analysis. Stephen J. Wright, and Benjamin Recht\nIntroduction to Algorithms. Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, and Clifford Stein\nComputer Age Statistical Inference. Bradley Efron, and Trevor Hastie\nMachine Learning: A Probabilistic Perspective. Kevin P. Murphy\nDeep Learning. Ian Goodfellow, Yoshua Bengio, and Aaron Courville\nReinforcement Learning: An Introduction. Richard S. Sutton, and Andrew G. Barto"
+  },
+  {
+    "objectID": "about.html#some-quotes",
+    "href": "about.html#some-quotes",
+    "title": "Longxiang Wu",
+    "section": "Some Quotes",
+    "text": "Some Quotes"
+  },
+  {
+    "objectID": "about.html#contact",
+    "href": "about.html#contact",
+    "title": "Longxiang Wu",
+    "section": "Contact",
+    "text": "Contact\nWant to chat? Go ahead, pipe up! Feel free to contact me on email, or LinkedIn. I hope to hear from you!"
+  },
+  {
+    "objectID": "about.html#paintings-by-claude-monet",
+    "href": "about.html#paintings-by-claude-monet",
+    "title": "Longxiang Wu",
+    "section": "Paintings by Claude Monet",
+    "text": "Paintings by Claude Monet"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Longxiang Wu",
+    "section": "",
+    "text": "Hi! I am a marketing data scientist specializing in predictive modeling, data mining and customer profiling. I have a strong passion for data wrangling, modeling, and visualization, and am dedicated to empowering others to leverage data effectively in their own work."
+  },
+  {
+    "objectID": "blog.html",
+    "href": "blog.html",
+    "title": "Blog",
+    "section": "",
+    "text": "No matching items"
+  }
+]

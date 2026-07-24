@@ -1,8 +1,0 @@
-execute:
-  freeze: false
-  eval: false
-
-knitr:
-  opts_chunk:
-    eval: false
-
