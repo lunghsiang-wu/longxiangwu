@@ -13,8 +13,8 @@
     "categories": [],
     "contents": "\nBorn in London, Karl Pearson was educated privately at University College School and at King’s College, Cambridge, where he was Third Wrangler in the Mathematics Tripos in 1879. On leaving Cambridge, he spent part of 1879 and 1880 studying medieval and sixteenth-century German literature at Berlin and Heidelberg Universities. He then read law at Lincoln’s Inn and was called to the bar by Inner Temple in 1881. He became Professor of Mathematics at King’s College, London in 1881 and at University College, London in 1883. Although largely motivated by the study of evolution and heredity, his early statistical work included an assessment of the randomness of Monte Carlo roulette; he concluded that the published evidence was incompatible with a fair wheel. Of more interest scientifically was his work on skew curves, particular his investigation of mixtures of two normal curves. In the space of 15 years up to 1900, Pearson laid the foundations of modern statistics with papers on moments, correlation, maximum likelihood and the chi-squared goodness-of-fit test. Became Professor of Eugenics at University College in 1911. Founded and edited the journal Biometrika. Karl Pearson died in Surrey on 27 April 1936.\n\n\n\n",
     "preview": "blog/2026-09-14-pearson/pearson.jpg",
-    "last_modified": "2026-09-14T20:13:22+08:00",
-    "input_file": "pearson.knit.md"
+    "last_modified": "2026-09-14T20:13:23+08:00",
+    "input_file": {}
   },
   {
     "path": "blog/2026-09-14-neyman/",
@@ -30,8 +30,8 @@
     "categories": [],
     "contents": "\nBorn in Bendery, Moldova, Neyman’s paternal grandfather was a Polish nobleman and a revolutionary who was burned alive in his house during the 1863 Polish uprising against the Russians. His doctoral thesis at the University of Warsaw was on probabilistic problems in agricultural experiments. Until 1938 when he emigrated to the USA he had worked in Poland though making academic visits to France and England. Between 1928 and 1933 he developed, in collaboration with Egon Pearson, a firm basis for the theory of hypothesis testing, supplying the logical foundation and mathematical rigour that were missing in the early methodology. In 1934 Neyman created the theory of survey sampling and also laid the theoretical foundation of modern quality control procedures. He moved to Berkeley in 1938. Neyman was one of the founders of modern statistics and received the Royal Statistical Society’s Guy medal in gold and in 1968 the US Medal of Science. Neyman died on 5 August 1981 in Oakland, California.\n\n\n\n",
     "preview": "blog/2026-09-14-neyman/neyman.jpg",
-    "last_modified": "2026-09-14T20:03:49+08:00",
-    "input_file": "neyman.knit.md"
+    "last_modified": "2026-09-14T20:03:50+08:00",
+    "input_file": {}
   },
   {
     "path": "blog/2026-09-14-multiav/",

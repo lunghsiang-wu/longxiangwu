@@ -22,8 +22,8 @@ navbar:
       href: https://github.com/lunghsiang-wu
     - icon: fa fa-linkedin
       href: https://www.linkedin.com/in/longxiangwu
-    - icon: fab fa-mastodon
-      href: https://fosstodon.org/@longxiangwu
+    - icon: fab fa-bluesky
+      href: https://bsky.app/profile/longxiang90.bsky.social
     - icon: fa fa-rss
       href: blog.xml
 output: distill::distill_article
