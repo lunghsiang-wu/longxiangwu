@@ -1,0 +1,56 @@
+---
+title: "What is Multivariate Analysis of Variance?"
+description: |
+  A procedure for testing the equality of the mean vectors of more than two populations for a multivariate response variable.
+author:
+  - name: Longxiang Wu
+    url: https://lunghsiang-wu.github.io/longxiangwu/
+date: 2026-07-25
+preview: multiav.jpg
+output:
+  distill::distill_article:
+    self_contained: false
+    includes:
+      in_header: header.html
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+A procedure for testing the equality of the mean vectors of more than two populations for a multivariate response variable. The technique is directly analogous to the *analysis of variance* of univariate data except that the groups are compared on $q$ response variables simultaneously. In the univariate case, $F$-tests are used to assess the hypotheses of interest. In the multivariate case, however, no single test statistic can be constructed that is optimal in all situations. The most widely used of the available test statistics is *Wilk's lambda* ($\Lambda$) which is based on three matrices **W** (the *within groups matrix of sums of squares and products*), **T** (the *total matrix of sums of squares and cross-products*) and **B** (the *between groups matrix of sums of squares and cross-products*), defined as follows:
+
+$$
+\mathbf{T} = \sum_{i=1}^{g}\sum_{j=1}^{n_i}(\mathbf{x}_{ij} - \bar{\mathbf{x}})(\mathbf{x}_{ij} - \bar{\mathbf{x}})'
+$$
+
+$$
+\mathbf{W} = \sum_{i=1}^{g}\sum_{j=1}^{n_i}(\mathbf{x}_{ij} - \bar{\mathbf{x}}_i)(\mathbf{x}_{ij} - \bar{\mathbf{x}}_i)'
+$$
+
+$$
+\mathbf{B} = \sum_{i=1}^{g} n_i(\bar{\mathbf{x}}_i - \bar{\mathbf{x}})(\bar{\mathbf{x}}_i - \bar{\mathbf{x}})'
+$$
+
+where $\mathbf{x}_{ij}$, $i = 1,\dots,g$, $j = 1,\dots,n_i$ represent the $j$th multivariate observation in the $i$th group, $g$ is the number of groups and $n_i$ is the number of observations in the $i$th group. The mean vector of the $i$th group is represented by $\bar{\mathbf{x}}_i$ and the mean vector of all the observations by $\bar{\mathbf{x}}$. These matrices satisfy the equation
+
+$$
+\mathbf{T} = \mathbf{W} + \mathbf{B}
+$$
+
+Wilk's lambda is given by the ratio of the determinants of **W** and **T**, i.e.
+
+$$
+\Lambda = \frac{|\mathbf{W}|}{|\mathbf{T}|} = \frac{|\mathbf{W}|}{|\mathbf{W} + \mathbf{B}|}
+$$
+
+The statistic, $\Lambda$, can be transformed to give an $F$-test to assess the null hypothesis of the equality of the population mean vectors. In addition to $\Lambda$ a number of other test statistics are available
+
+- *Roy's largest root criterion*: the largest eigenvalue of $\mathbf{BW}^{-1}$,
+- The *Hotelling–Lawley trace*: the sum of the eigenvalues of $\mathbf{BW}^{-1}$,
+- The *Pillai–Bartlett trace*: the sum of the eigenvalues of $\mathbf{BT}^{-1}$.
+
+It has been found that the differences in power between the various test statistics are generally quite small and so in most situations which one is chosen will not greatly affect conclusions.
+
+
