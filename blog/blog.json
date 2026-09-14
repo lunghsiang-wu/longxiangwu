@@ -1,5 +1,22 @@
 [
   {
+    "path": "blog/2026-09-14-pearson/",
+    "title": "Who is Karl Pearson?",
+    "description": {},
+    "author": [
+      {
+        "name": "Longxiang Wu",
+        "url": "https://lunghsiang-wu.github.io/longxiangwu/"
+      }
+    ],
+    "date": "2026-09-14",
+    "categories": [],
+    "contents": "\nBorn in London, Karl Pearson was educated privately at University College School and at King’s College, Cambridge, where he was Third Wrangler in the Mathematics Tripos in 1879. On leaving Cambridge, he spent part of 1879 and 1880 studying medieval and sixteenth-century German literature at Berlin and Heidelberg Universities. He then read law at Lincoln’s Inn and was called to the bar by Inner Temple in 1881. He became Professor of Mathematics at King’s College, London in 1881 and at University College, London in 1883. Although largely motivated by the study of evolution and heredity, his early statistical work included an assessment of the randomness of Monte Carlo roulette; he concluded that the published evidence was incompatible with a fair wheel. Of more interest scientifically was his work on skew curves, particular his investigation of mixtures of two normal curves. In the space of 15 years up to 1900, Pearson laid the foundations of modern statistics with papers on moments, correlation, maximum likelihood and the chi-squared goodness-of-fit test. Became Professor of Eugenics at University College in 1911. Founded and edited the journal Biometrika. Karl Pearson died in Surrey on 27 April 1936.\n\n\n\n",
+    "preview": "blog/2026-09-14-pearson/pearson.jpg",
+    "last_modified": "2026-09-14T20:13:22+08:00",
+    "input_file": "pearson.knit.md"
+  },
+  {
     "path": "blog/2026-09-14-neyman/",
     "title": "Who is Jerzy Neyman?",
     "description": {},
