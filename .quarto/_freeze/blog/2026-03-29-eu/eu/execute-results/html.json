@@ -1,0 +1,15 @@
+{
+  "hash": "1ab288c04410f71b813033dc86080322",
+  "result": {
+    "engine": "knitr",
+    "markdown": "---\ntitle: \"What is EU Model?\"\ndescription: |\n A model used in investigations of the rate of success of in vitro fertilization.\nauthor:\n  - name: Longxiang Wu\n    url: https://lunghsiang-wu.github.io/longxiangwu/\ndate: 2025-02-05\noutput:\n  distill::distill_article:\n    self_contained: false\n    includes:\n      in_header: header.html\n---\n\n\n\n\nA model used in investigations of the rate of success of *in vitro* fertilization (IVF), defined\nin terms of the following two parameters.\n\n$$\\begin{aligned}\ne &= \\text{Prob(of a viable embryo)} \\\\\nu &= \\text{Prob(of a receptive uterus)}\n\\end{aligned}$$\n\nAssuming the two events, viable embryo and receptive uterus, are independent, the\nprobability of observing $j$ implantations out of $i$ transferred embryos is given by\n$$P(j|i, u, e) = \\binom{i}{j} ue^j(1-e)^{i-j}, \\text{ for } j = 1, 2, 3, \\ldots, i.$$\n\nThe probability of at least one implantation out of $i$ transferred embryos is given by\n\n$$P(j > 0 | i, u, e) = u[1 - (1-e)^i]$$\n\nand the probability of no implantations by\n\n$$P(j = 0 | i, u, e) = 1 - u[1 - (1-e)^i]$$\n\nThe parameters $u$ and $e$ can be estimated by *maximum likelihood estimation* from observations\non the number of attempts at IVF with $j$ implantations from $i$ transferred. ",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

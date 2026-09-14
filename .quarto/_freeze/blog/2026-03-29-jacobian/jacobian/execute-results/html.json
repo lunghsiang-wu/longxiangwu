@@ -1,0 +1,15 @@
+{
+  "hash": "8ff4572ea164e96d9d8ea6648c9ce0ea",
+  "result": {
+    "engine": "knitr",
+    "markdown": "---\ntitle: \"What is Jacobian Leverage?\"\ndescription: |\n  An attempt to extend the concept of leverage in regression to non-linear models. \nauthor:\n  - name: Longxiang Wu\n    url: https://lunghsiang-wu.github.io/longxiangwu/\ndate: 2025-09-11\npreview: jacobian.jpg\noutput:\n  distill::distill_article:\n    self_contained: false\n    includes:\n      in_header: header.html\n---\n\n\n\n\nAn attempt to extend the concept of *leverage* in regression to *non-linear models*,\nof the form\n\n$$y_i = f_i(\\mathbf{\\theta}) + \\epsilon_i \\qquad (i = 1, \\ldots, n)$$\n\nwhere $f_i$ is a known function of the vector of parameters $\\mathbf{\\theta}$. Formally the Jacobian leverage,\n$\\hat{j}_{ik}$ is the limit as $b \\rightarrow 0$ of\n\n$$\\{f_i(\\hat{\\mathbf{\\theta}}) - f_i[\\hat{\\mathbf{\\theta}}(k, b)]\\}/b$$\n\nwhere $\\hat{\\mathbf{\\theta}}$ is the *least squares* estimate of $\\mathbf{\\theta}$ and $\\hat{\\mathbf{\\theta}}(k, b)$ is the corresponding estimate when $y_k$ is\nreplaced by $y_k + b$. Collecting the $\\hat{j}_{ik}$s in an $n \\times n$ matrix $\\mathbf{J}$ give\n\n$$\\hat{\\mathbf{J}} = \\hat{\\mathbf{V}}(\\hat{\\mathbf{V}}'\\hat{\\mathbf{V}} - [\\hat{\\mathbf{\\epsilon}}'][\\hat{\\mathbf{W}}])^{-1}\\hat{\\mathbf{V}}'$$\n\nwhere $\\hat{\\mathbf{\\epsilon}}$ is the $n \\times 1$ vector of residuals with elements $\\mathbf{\\epsilon}_i = y_i - f_i(\\hat{\\mathbf{\\theta}})$ and\n$[\\hat{\\mathbf{\\epsilon}}'][\\hat{\\mathbf{W}}] = \\sum_{i=1}^{n} \\hat{\\mathbf{\\epsilon}}_i \\hat{\\mathbf{W}}_i$: $\\mathbf{W}_i$ denotes the *Hessian matrix* of $f_i(\\mathbf{\\theta})$ and $\\hat{\\mathbf{V}}$ is the matrix whose\n$i$th row is $\\partial f_i(\\mathbf{\\theta})/\\partial \\mathbf{\\theta}'$ evaluated at $\\mathbf{\\theta} = \\hat{\\mathbf{\\theta}}$. The elements of $\\mathbf{J}$ can exhibit *superleverage*.\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

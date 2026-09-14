@@ -1,0 +1,15 @@
+{
+  "hash": "fc49bf1c17a09eab29d7722c0ad3a775",
+  "result": {
+    "engine": "knitr",
+    "markdown": "---\ntitle: \"What are Kernel Density Estimators?\"\ndescription: |\n  Methods of estimating a probability distribution using estimators.\nauthor:\n  - name: Longxiang Wu\n    url: https://lunghsiang-wu.github.io/longxiangwu/\ndate: 2025-10-17\npreview: kde-featured-image.png\noutput:\n  distill::distill_article:\n    self_contained: false\n    includes:\n      in_header: header.html\n---\n\n\n\n\n\nMethods of estimating a probability distribution using estimators of the form\n\n$$\\hat{f}(x) = \\frac{1}{nh} \\sum_{i=1}^{n} K\\left(\\frac{x - X_i}{h}\\right)$$\n\nwhere $h$ is known as *window width* or *bandwidth* and $K$ is the *kernel function* which\nis such that\n\n$$\\int_{-\\infty}^{\\infty} K(u) \\mathrm{d}u = 1$$\n\nEssentially such *kernel estimators* sum a series of 'bumps' placed at each of the observations. The kernel function determines the shape of the bumps while $h$ determines their width.\nThree commonly used kernel functions are\n\n| | |\n|:---|:---|\n| Rectangular: | $K(x) = 0.5$ if $|x| < 1$ and $K(x) = 0$ otherwise |\n| Triangular: | $K(x) = 1 - |x|$ if $|x| < 1$ and $K(x) = 0$ otherwise |\n| Gaussian: | $K(x) = \\dfrac{1}{\\sqrt{2\\pi}} e^{-\\frac{1}{2}x^2}$ |\n\nThe kernel estimator is a series of 'bumps' placed at the observations, with the kernel function determining the shape of the\nbumps and the window width $h$ determining their width. Figure 78 shows the individual\nbumps and the estimate, $\\hat{f}$, obtained from adding them up for an artificial set of data points\nusing a Gaussian kernel. The extension of kernel density estimation from univariate\nsituations to multivariate data is relatively straightforward. \n\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

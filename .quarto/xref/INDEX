@@ -1,0 +1,197 @@
+{
+  "portfolio.knit.md": {
+    "portfolio.knit.html": "076a722d"
+  },
+  "blog.knit.md": {
+    "blog.knit.html": "5b474ba2"
+  },
+  "index.qmd": {
+    "index.html": "0dab155f"
+  },
+  "about.qmd": {
+    "about.html": "703f89a9"
+  },
+  "blog.qmd": {
+    "blog.html": "1ec7b658"
+  },
+  "portfolio.qmd": {
+    "portfolio.html": "6be185e0"
+  },
+  "blog/2026-03-19-whatisbayesiananalysis/whatisbayesiananalysis.Rmd": {
+    "whatisbayesiananalysis.html": "f21b046c"
+  },
+  "blog/2026-03-21-cochran-armitage/cochran-armitage.Rmd": {
+    "cochran-armitage.html": "2b200041"
+  },
+  "blog/2026-03-23-anova/anova.Rmd": {
+    "anova.html": "73c69fb7"
+  },
+  "blog/2026-03-23-asso/asso.Rmd": {
+    "asso.html": "92f1328f"
+  },
+  "blog/2026-03-23-ci/ci.Rmd": {
+    "ci.html": "2b464b11"
+  },
+  "blog/2026-03-23-cs/cs.Rmd": {
+    "cs.html": "a0998d32"
+  },
+  "blog/2026-03-23-df/df.Rmd": {
+    "df.html": "59cc9e5e"
+  },
+  "blog/2026-03-23-discriminant/discriminant.Rmd": {
+    "discriminant.html": "9e4286b1"
+  },
+  "blog/2026-03-23-distance/distance.Rmd": {
+    "distance.html": "bc37be7c"
+  },
+  "blog/2026-03-29-ann/ann.Rmd": {
+    "ann.html": "a232929f"
+  },
+  "blog/2026-03-29-da/da.Rmd": {
+    "da.html": "ed70be2d"
+  },
+  "blog/2026-03-29-delta/delta.Rmd": {
+    "delta.html": "398a6683"
+  },
+  "blog/2026-03-29-diggle/diggle.Rmd": {
+    "diggle.html": "bab84547"
+  },
+  "blog/2026-03-29-eu/eu.Rmd": {
+    "eu.html": "d140ebcb"
+  },
+  "blog/2026-03-29-factor/factor.Rmd": {
+    "factor.html": "02205bf5"
+  },
+  "blog/2026-03-29-fourier/fourier.Rmd": {
+    "fourier.html": "24cbc2b0"
+  },
+  "blog/2026-03-29-fuzzy/fuzzy.Rmd": {
+    "fuzzy.html": "b266711a"
+  },
+  "blog/2026-03-29-harmonic/harmonic.Rmd": {
+    "harmonic.html": "7509ffac"
+  },
+  "blog/2026-03-29-ipf/ipf.Rmd": {
+    "ipf.html": "fb3ede61"
+  },
+  "blog/2026-03-29-jacknife/jacknife.Rmd": {
+    "jacknife.html": "abc3d304"
+  },
+  "blog/2026-03-29-jacobian/jacobian.Rmd": {
+    "jacobian.html": "00a806ee"
+  },
+  "blog/2026-03-29-kernel/kernel.Rmd": {
+    "kernel.html": "d4bfb803"
+  },
+  "blog/2026-03-29-local/local.Rmd": {
+    "local.html": "e200856d"
+  },
+  "blog/2026-03-29-logrank/logrank.Rmd": {
+    "logrank.html": "0a79437c"
+  },
+  "blog/2026-03-29-manyo/manyo.Rmd": {
+    "manyo.html": "01eee2c1"
+  },
+  "blog/2026-03-29-mart/mart.Rmd": {
+    "mart.html": "2904e3df"
+  },
+  "blog/2026-03-29-mcmc/mcmc.Rmd": {
+    "mcmc.html": "5792cb4f"
+  },
+  "portfolio/2026-03-19-bank/bank.Rmd": {
+    "bank.html": "02ecda30"
+  },
+  "portfolio/2026-03-19-cluster/cluster.Rmd": {
+    "cluster.html": "7217bda8"
+  },
+  "portfolio/2026-03-19-course/course.Rmd": {
+    "course.html": "22021eeb"
+  },
+  "portfolio/2026-03-19-desisontrees1/desisontrees1.Rmd": {
+    "desisontrees1.html": "8730a19f"
+  },
+  "portfolio/2026-03-19-face/face.Rmd": {
+    "face.html": "407bcf8b"
+  },
+  "portfolio/2026-03-19-filmrec/filmrec.Rmd": {
+    "filmrec.html": "d943cb07"
+  },
+  "portfolio/2026-03-19-handwritten/handwritten.Rmd": {
+    "handwritten.html": "845ab47a"
+  },
+  "portfolio/2026-03-19-kmeans/kmeans.Rmd": {
+    "kmeans.html": "96806af9"
+  },
+  "portfolio/2026-03-19-knn/knn.Rmd": {
+    "knn.html": "3bf4b64c"
+  },
+  "portfolio/2026-03-19-linearregression/linearregression.Rmd": {
+    "linearregression.html": "e4b8437a"
+  },
+  "portfolio/2026-03-19-londonmarathon/londonmarathon.Rmd": {
+    "londonmarathon.html": "ae84464f"
+  },
+  "portfolio/2026-03-19-mesothelioma/mesothelioma.Rmd": {
+    "mesothelioma.html": "f87a9ea3"
+  },
+  "portfolio/2026-03-19-retail/retail.Rmd": {
+    "retail.html": "a7eaec49"
+  },
+  "portfolio/2026-03-19-survey/survey.Rmd": {
+    "survey.html": "4d4f3990"
+  },
+  "portfolio/2026-03-19-svm/svm.Rmd": {
+    "svm.html": "3c810baf"
+  },
+  "portfolio/2026-03-19-vastcar/vastcar.Rmd": {
+    "vastcar.html": "a1cdb6dd"
+  },
+  "portfolio/2026-03-20-building/building.Rmd": {
+    "building.html": "8c07c8fd"
+  },
+  "portfolio/2026-03-20-chinese/chinese.Rmd": {
+    "chinese.html": "a51f6c07"
+  },
+  "portfolio/2026-03-20-community/community.Rmd": {
+    "community.html": "16a187cd"
+  },
+  "portfolio/2026-03-20-facial/facial.Rmd": {
+    "facial.html": "dbd148a9"
+  },
+  "portfolio/2026-03-20-reviews/reviews.Rmd": {
+    "reviews.html": "9cdca646"
+  },
+  "portfolio/2026-03-20-skirt/skirt.Rmd": {
+    "skirt.html": "e71843d1"
+  },
+  "portfolio/2026-03-20-spam/spam.Rmd": {
+    "spam.html": "8377ec59"
+  },
+  "portfolio/2026-03-20-speech/speech.Rmd": {
+    "speech.html": "f050e14c"
+  },
+  "portfolio/2026-03-20-stock/stock.Rmd": {
+    "stock.html": "5b82eb4e"
+  },
+  "portfolio/2026-03-20-wheat/wheat.Rmd": {
+    "wheat.html": "25b3fe7a"
+  },
+  "portfolio/2026-04-04-ifc/ifc.Rmd": {
+    "ifc.html": "48d9d95c"
+  },
+  "portfolio/2026-04-04-mexicans/mexicans.Rmd": {
+    "mexicans.html": "ca09492b"
+  },
+  "portfolio/2026-04-04-taobao/taobao.Rmd": {
+    "taobao.html": "bd497b0a"
+  },
+  "portfolio/2026-04-05-edacovid/edacovid.Rmd": {
+    "edacovid.html": "f97076ab"
+  },
+  "portfolio/2026-04-25-hangzhou/hangzhou.Rmd": {
+    "hangzhou.html": "58ee1f72"
+  },
+  "portfolio/2026-04-25-loandefaults/loandefaults.Rmd": {
+    "loandefaults.html": "0cdae270"
+  }
+}
