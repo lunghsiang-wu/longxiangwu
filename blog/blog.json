@@ -1,5 +1,22 @@
 [
   {
+    "path": "blog/2026-09-14-neyman/",
+    "title": "Who is Jerzy Neyman?",
+    "description": {},
+    "author": [
+      {
+        "name": "Longxiang Wu",
+        "url": "https://lunghsiang-wu.github.io/longxiangwu/"
+      }
+    ],
+    "date": "2026-08-13",
+    "categories": [],
+    "contents": "\nBorn in Bendery, Moldova, Neyman’s paternal grandfather was a Polish nobleman and a revolutionary who was burned alive in his house during the 1863 Polish uprising against the Russians. His doctoral thesis at the University of Warsaw was on probabilistic problems in agricultural experiments. Until 1938 when he emigrated to the USA he had worked in Poland though making academic visits to France and England. Between 1928 and 1933 he developed, in collaboration with Egon Pearson, a firm basis for the theory of hypothesis testing, supplying the logical foundation and mathematical rigour that were missing in the early methodology. In 1934 Neyman created the theory of survey sampling and also laid the theoretical foundation of modern quality control procedures. He moved to Berkeley in 1938. Neyman was one of the founders of modern statistics and received the Royal Statistical Society’s Guy medal in gold and in 1968 the US Medal of Science. Neyman died on 5 August 1981 in Oakland, California.\n\n\n\n",
+    "preview": "blog/2026-09-14-neyman/neyman.jpg",
+    "last_modified": "2026-09-14T20:03:49+08:00",
+    "input_file": "neyman.knit.md"
+  },
+  {
     "path": "blog/2026-09-14-multiav/",
     "title": "What is Multivariate Analysis of Variance?",
     "description": "A procedure for testing the equality of the mean vectors of more than two populations for a multivariate response variable.",
