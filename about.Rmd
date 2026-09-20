@@ -10,7 +10,7 @@ description: "Data Scientist & Analytics Professional"
 :::
 
 ::: {style="flex: 1 1 300px;"}
-<h2 style="margin-top: 0; font-size: 2.2rem; color: #2c3e50;">Hello/Enchanté/Hola.</h2>
+<h2 style="margin-top: 0; font-size: 2.2rem; color: #2c3e50;">Hello/Enchanté/Hola</h2>
 <p style="font-size: 1.15rem; line-height: 1.6; color: #555;">
   I am an enthusiastic data scientist with over ten years of experience working with a variety of partners in the technology and industry sectors. My responsibilities encompass the entire data pipeline, from exploratory analysis to production-ready predictive models.
 </p>
