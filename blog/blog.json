@@ -1,5 +1,24 @@
 [
   {
+    "path": "blog/2026-10-22-popuavm/",
+    "title": "What are Population Average Models?",
+    "description": "Models for clustered data in which the marginal expectation of the response variable is the primary focus of interest.",
+    "author": [
+      {
+        "name": "Longxiang Wu",
+        "url": "https://lunghsiang-wu.github.io/longxiangwu/"
+      }
+    ],
+    "date": "2026-10-22",
+    "categories": [],
+    "contents": "\nModels for clustered data in which the marginal expectation of the response variable is the primary focus of interest. An alternative approach is to use subject-specific models which concentrate on the modelling of changes in an individual’s response. This is accomplished by introducing subject-specific random effects into the model. A mixed effects model or multilevel model is an example. There are two key points which differentiate the two types of model.\nThe regression coefficients of a population averaged model describe what the average population response looks like. By contrast the regression coefficients of a subject-specific model describe what the average individual’s response curve looks like. In many cases and in particular when the model is linear in the subject-specific effects, the two interpretations will coincide. In the more general non-linear setting, however, the two approaches can lead to very different conclusions.\nA further distinction lies in the specification of the underlying variance–covariance structure. In population averaged models the marginal expectations are explicitly modelled while choosing a variance–covariance structure that adequately describes the correlation pattern among the repeated measurements. In subject-specific models, however, individual heterogeneity is modelled using subject-specific effects and it is these random effects which partially determine the variance–covariance structure.\n\n\n\n",
+    "preview": "blog/2026-10-22-popuavm/popu.png",
+    "last_modified": "2026-10-22T18:15:24+08:00",
+    "input_file": "popuavm.knit.md",
+    "preview_width": 1344,
+    "preview_height": 960
+  },
+  {
     "path": "blog/2026-09-14-pearson/",
     "title": "Who is Karl Pearson?",
     "description": {},
